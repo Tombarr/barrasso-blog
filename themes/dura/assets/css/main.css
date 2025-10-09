@@ -1,0 +1,76 @@
+:root, html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100vw;
+}
+
+body {
+  color: #222;
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+header {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  width: calc(100vw - 2em);
+  margin-bottom: 1rem;
+  z-index: 10;
+  padding: 0 1em;
+}
+
+hr {
+  opacity: 0.5;
+}
+
+#logo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+h1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#logo svg {
+  position: relative;
+  width: 3em;
+  height: 3em;
+  object-fit: contain;
+  display: inline-block;
+  transform-origin: 50% 50%;
+  transform: rotate(23deg);
+  overflow: hidden;
+  opacity: 0.75;
+}
+
+nav ul, nav li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav, nav ul, nav ul li {
+  display: inline-block;
+}
+
+hr.header-offset {
+  height: 5em;
+  background-color: transparent;
+  border: none;
+}
+
+footer {
+  margin-top: 1rem;
+}
+
+a {
+  color: #00e;
+  text-decoration: none;
+}
