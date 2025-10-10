@@ -1,26 +1,3 @@
-<!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
-<head>
-  {{ partial "head.html" . }}
-</head>
-<body>
-  <header>
-    {{ partial "header.html" . }}
-  </header>
-  <hr class="header-offset" />
-  <main>
-    {{ block "main" . }}{{ end }}
-  </main>
-  <section class="tree-divider-container">
-    <canvas class="tree-divider" width="1200" height="240" style="overflow: hidden;"></canvas>
-  </section>
-  <footer>
-    {{ partial "footer.html" . }}
-  </footer>
-</body>
-</html>
-
-<script type="text/javascript">
 const COLOR = '#000000';
 
 function secureRandomFloat() {
@@ -676,5 +653,3 @@ function fillAllCanvases() {
 }
 
 requestAnimationFrame(fillAllCanvases);
-</script>
-

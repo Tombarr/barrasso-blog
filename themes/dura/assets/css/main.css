@@ -66,6 +66,19 @@ hr.header-offset {
   border: none;
 }
 
+.tree-divider-container,
+canvas.tree-divider {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.tree-divider-container {
+  transform: scale(1.2);
+  transform-origin: center;
+}
+
 footer {
   margin-top: 1rem;
 }
