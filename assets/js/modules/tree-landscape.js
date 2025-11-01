@@ -1,28 +1,15 @@
-<!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
-<head>
-  {{ partial "head.html" . }}
-</head>
-<body>
-  <header>
-    {{ partial "header.html" . }}
-  </header>
-  <hr class="header-offset" />
-  <main>
-    {{ block "main" . }}{{ end }}
-  </main>
-  <footer>
-    <section class="tree-divider-container">
-      <canvas class="tree-divider" width="1200" height="240" style="overflow: hidden;" title="A random forest"></canvas>
-    </section>
-    {{ partial "footer.html" . }}
-  </footer>
-</body>
-</html>
+// Tree landscape generator
+// Adapted from Dura theme
 
-<script type="text/javascript">
-  // TODO: move to separate JS file and use ESBuild
-const COLOR = '#ffffff';
+/**
+ * Get tree color - always returns white
+ * CSS filter handles inverting to black for light theme
+ * @returns {string} Color hex code - always white
+ */
+function getTreeColor() {
+  // Always draw in white - CSS will invert to black for light theme
+  return '#ffffff';
+}
 
 function secureRandomFloat() {
   const randomUint32 = new Uint32Array(1);
@@ -54,7 +41,7 @@ const BASE_WIDTH = 16;
 const BASE_HEIGHT = 32;
 
 /**
- * Type 1: Simple triangular pine trees (top-left)
+ * Type 1: Simple triangular pine trees
  */
 function drawPineTree1(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
@@ -79,7 +66,7 @@ function drawPineTree1(ctx, { x, y }, size, color) {
 }
 
 /**
- * Type 2: Detailed evergreen with horizontal branches (top-right)
+ * Type 2: Detailed evergreen with horizontal branches
  */
 function drawPineTree2(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
@@ -108,7 +95,7 @@ function drawPineTree2(ctx, { x, y }, size, color) {
 }
 
 /**
- * Type 3: Layered triangular pine (middle-left)
+ * Type 3: Layered triangular pine
  */
 function drawPineTree3(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
@@ -145,7 +132,7 @@ function drawPineTree3(ctx, { x, y }, size, color) {
 }
 
 /**
- * Type 4: Dense evergreen with many small branches (middle-right)
+ * Type 4: Dense evergreen with many small branches
  */
 function drawPineTree4(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
@@ -181,7 +168,7 @@ function drawPineTree4(ctx, { x, y }, size, color) {
 }
 
 /**
- * Type 5: Horizontal layered branches (bottom-left)
+ * Type 5: Horizontal layered branches
  */
 function drawPineTree5(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
@@ -222,7 +209,7 @@ function drawPineTree5(ctx, { x, y }, size, color) {
 }
 
 /**
- * Type 6: Detailed evergreen with horizontal branches, short trunk (top-right)
+ * Type 6: Detailed evergreen with horizontal branches, short trunk
  */
  function drawPineTree6(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
@@ -251,7 +238,7 @@ function drawPineTree5(ctx, { x, y }, size, color) {
 }
 
 /**
- * Type 7: Detailed evergreen with varied horizontal branches (top-right)
+ * Type 7: Detailed evergreen with varied horizontal branches
  */
  function drawPineTree7(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
@@ -282,7 +269,7 @@ function drawPineTree5(ctx, { x, y }, size, color) {
 }
 
 /**
- * Position 1: Simple evergreen with branches (top-left, first)
+ * Type 8: Simple evergreen with upward angled branches
  */
  function drawPineTree8(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
@@ -318,7 +305,7 @@ function drawPineTree5(ctx, { x, y }, size, color) {
 }
 
 /**
- * Position 9: Rounded/capsule shaped trees (middle row, third)
+ * Type 9: Rounded/capsule shaped trees
  */
 function drawPineTree9(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
@@ -351,7 +338,7 @@ function drawPineTree9(ctx, { x, y }, size, color) {
 }
 
 /**
- * Position 15: Angular zigzag evergreen (bottom row, last)
+ * Type 10: Angular zigzag evergreen
  */
  function drawPineTree10(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
@@ -390,7 +377,7 @@ function drawPineTree9(ctx, { x, y }, size, color) {
 }
 
 /**
- * Deciduous Position 1: Circular canopy with branches
+ * Deciduous Type 1: Circular canopy with branches
  */
  function drawDeciduousTree1(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
@@ -443,95 +430,7 @@ function drawPineTree9(ctx, { x, y }, size, color) {
 }
 
 /**
- * Deciduous Position 4: Oval/elliptical canopy with branches
- */
- function drawDeciduousTree4(ctx, { x, y }, size, color) {
-  const w = BASE_WIDTH * size;
-  const h = BASE_HEIGHT * size;
-
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 1;
-
-  // Trunk
-  ctx.beginPath();
-  ctx.moveTo(x + w / 2, y + h * 0.6);
-  ctx.lineTo(x + w / 2, y + h);
-  ctx.stroke();
-
-  // Elliptical canopy
-  const radiusX = w * 0.45;
-  const radiusY = h * 0.4;
-  const centerY = y + h * 0.3;
-
-  ctx.beginPath();
-  ctx.ellipse(x + w / 2, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
-  ctx.stroke();
-
-  // Branch structure
-  ctx.beginPath();
-  ctx.moveTo(x + w / 2, y + h * 0.6);
-  ctx.lineTo(x + w / 2, centerY);
-  ctx.stroke();
-
-  // Left branch
-  ctx.beginPath();
-  ctx.moveTo(x + w / 2, centerY);
-  ctx.lineTo(x + w / 2 - radiusX * 0.4, centerY - radiusY * 0.3);
-  ctx.stroke();
-
-  // Right branch
-  ctx.beginPath();
-  ctx.moveTo(x + w / 2, centerY);
-  ctx.lineTo(x + w / 2 + radiusX * 0.4, centerY - radiusY * 0.3);
-  ctx.stroke();
-}
-
-/**
- * Deciduous Position 9: Cloud-like rounded canopy
- */
-function drawDeciduousTree9(ctx, { x, y }, size, color) {
-  const w = BASE_WIDTH * size;
-  const h = BASE_HEIGHT * size;
-
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 1;
-
-  // Trunk
-  ctx.beginPath();
-  ctx.moveTo(x + w / 2, y + h * 0.65);
-  ctx.lineTo(x + w / 2, y + h);
-  ctx.stroke();
-
-  // Cloud-like canopy with multiple arcs
-  const canopyY = y + h * 0.35;
-  const r1 = w * 0.45;
-  const r2 = w * 0.4;
-  const r3 = w * 0.35;
-
-  ctx.beginPath();
-  // Left bump
-  ctx.arc(x + w * 0.2, canopyY, r2, Math.PI * 2.2, Math.PI * 3.5);
-  ctx.stroke();
-  ctx.beginPath();
-
-  // Top bump
-  ctx.arc(x + w / 2, canopyY - r1 * 0.8, r1, Math.PI * 1, Math.PI * 2.2);
-  ctx.stroke();
-  ctx.beginPath();
-
-  // Right bump
-  ctx.arc(x + w * 0.8, canopyY, r3, Math.PI * 1.65, Math.PI * 3);
-  ctx.stroke();
-
-  // Simple trunk line inside
-  ctx.beginPath();
-  ctx.moveTo(x + w / 2, y + h * 0.65);
-  ctx.lineTo(x + w / 2, canopyY + r1 * 0.5);
-  ctx.stroke();
-}
-
-/**
- * Deciduous Position 2: Rounded rectangle canopy with branches
+ * Deciduous Type 2: Rounded rectangle canopy with branches
  */
 function drawDeciduousTree2(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
@@ -587,6 +486,94 @@ function drawDeciduousTree2(ctx, { x, y }, size, color) {
   ctx.stroke();
 }
 
+/**
+ * Deciduous Type 4: Oval/elliptical canopy with branches
+ */
+ function drawDeciduousTree4(ctx, { x, y }, size, color) {
+  const w = BASE_WIDTH * size;
+  const h = BASE_HEIGHT * size;
+
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1;
+
+  // Trunk
+  ctx.beginPath();
+  ctx.moveTo(x + w / 2, y + h * 0.6);
+  ctx.lineTo(x + w / 2, y + h);
+  ctx.stroke();
+
+  // Elliptical canopy
+  const radiusX = w * 0.45;
+  const radiusY = h * 0.4;
+  const centerY = y + h * 0.3;
+
+  ctx.beginPath();
+  ctx.ellipse(x + w / 2, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
+  ctx.stroke();
+
+  // Branch structure
+  ctx.beginPath();
+  ctx.moveTo(x + w / 2, y + h * 0.6);
+  ctx.lineTo(x + w / 2, centerY);
+  ctx.stroke();
+
+  // Left branch
+  ctx.beginPath();
+  ctx.moveTo(x + w / 2, centerY);
+  ctx.lineTo(x + w / 2 - radiusX * 0.4, centerY - radiusY * 0.3);
+  ctx.stroke();
+
+  // Right branch
+  ctx.beginPath();
+  ctx.moveTo(x + w / 2, centerY);
+  ctx.lineTo(x + w / 2 + radiusX * 0.4, centerY - radiusY * 0.3);
+  ctx.stroke();
+}
+
+/**
+ * Deciduous Type 9: Cloud-like rounded canopy
+ */
+function drawDeciduousTree9(ctx, { x, y }, size, color) {
+  const w = BASE_WIDTH * size;
+  const h = BASE_HEIGHT * size;
+
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1;
+
+  // Trunk
+  ctx.beginPath();
+  ctx.moveTo(x + w / 2, y + h * 0.65);
+  ctx.lineTo(x + w / 2, y + h);
+  ctx.stroke();
+
+  // Cloud-like canopy with multiple arcs
+  const canopyY = y + h * 0.35;
+  const r1 = w * 0.45;
+  const r2 = w * 0.4;
+  const r3 = w * 0.35;
+
+  ctx.beginPath();
+  // Left bump
+  ctx.arc(x + w * 0.2, canopyY, r2, Math.PI * 2.2, Math.PI * 3.5);
+  ctx.stroke();
+  ctx.beginPath();
+
+  // Top bump
+  ctx.arc(x + w / 2, canopyY - r1 * 0.8, r1, Math.PI * 1, Math.PI * 2.2);
+  ctx.stroke();
+  ctx.beginPath();
+
+  // Right bump
+  ctx.arc(x + w * 0.8, canopyY, r3, Math.PI * 1.65, Math.PI * 3);
+  ctx.stroke();
+
+  // Simple trunk line inside
+  ctx.beginPath();
+  ctx.moveTo(x + w / 2, y + h * 0.65);
+  ctx.lineTo(x + w / 2, canopyY + r1 * 0.5);
+  ctx.stroke();
+}
+
 function shuffleArray(array) {
   const clone = [...array];
   for (let i = clone.length - 1; i > 0; i--) {
@@ -633,6 +620,9 @@ function prepareCanvas(canvas) {
 function fillCanvas(canvas) {
   const ctx = prepareCanvas(canvas);
 
+  // Get theme-appropriate color
+  const color = getTreeColor();
+
   const top = 20;
   const repeatLimit = 20;
 
@@ -651,11 +641,11 @@ function fillCanvas(canvas) {
     const deltaX = getRandomIntInclusive(BASE_WIDTH * 0.85, BASE_WIDTH * 1.25);
     const drawTree = trees[r];
 
-    drawTree(ctx, { x: previousX + deltaX, y: top + BASE_HEIGHT * (1 - scale) }, scale, COLOR);
+    drawTree(ctx, { x: previousX + deltaX, y: top + BASE_HEIGHT * (1 - scale) }, scale, color);
     previousX += deltaX;
   }
 
-  ctx.strokeStyle = COLOR;
+  ctx.strokeStyle = color;
   ctx.lineWidth = 1;
 
   // Ground line
@@ -676,6 +666,6 @@ function fillAllCanvases() {
   canvases.forEach(fillCanvas);
 }
 
-requestAnimationFrame(fillAllCanvases);
-</script>
-
+export function initTreeLandscape() {
+  requestAnimationFrame(fillAllCanvases);
+}

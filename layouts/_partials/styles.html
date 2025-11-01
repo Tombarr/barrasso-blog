@@ -1,0 +1,11 @@
+{{- $css := resources.Get "css/output.css" -}}
+
+{{- if $css -}}
+  {{- if not hugo.IsServer -}}
+    {{- $css = $css | minify | fingerprint -}}
+  {{- end -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}"{{ end }}>
+{{- else -}}
+  {{- warnf "CSS file not found at assets/css/output.css. Run 'make css' or 'npx @tailwindcss/cli -i ./assets/css/input.css -o ./assets/css/output.css' to generate it." -}}
+  <!-- CSS file not found - run Tailwind compilation -->
+{{- end -}}

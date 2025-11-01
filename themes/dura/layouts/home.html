@@ -1,7 +1,55 @@
 {{ define "main" }}
+
+  <section class="hero">
+    <div id="portrait" class="portrait-variation"></div>
+  </section>
+
   {{ .Content }}
   {{ range site.RegularPages }}
     <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
     {{ .Summary }}
   {{ end }}
+
+  <script type="text/javascript">
+    (function() {
+      const PREVIOUS_PORTRAIT = "_p";
+      const RAND_LIMIT = 20;
+
+      function secureRandomFloat() {
+        const randomUint32 = new Uint32Array(1);
+        window.crypto.getRandomValues(randomUint32);
+        const u32Max = 0xffffffff;
+        return randomUint32[0] / (u32Max + 1);
+      }
+
+      function random() {
+        if ('crypto' in window && typeof window.crypto.getRandomValues === 'function') {
+          return secureRandomFloat();
+        }
+
+        return Math.random();
+      }
+
+      function getRandomNumInclusive(min, max) {
+        return Math.round(random() * (max - min) + min);
+      }
+
+      const portrait = document.getElementById("portrait");
+
+      requestAnimationFrame(function() {
+        // Avoid selecting the previous value
+        const prev = Number.parseInt(localStorage.getItem(PREVIOUS_PORTRAIT)) || 0;
+        let next = prev;
+        let i = 0;
+
+        while (next === prev && i++ < RAND_LIMIT) {
+          next = getRandomNumInclusive(1, 15);
+        }
+
+        portrait.classList.add(`portrait-${next}`);
+        localStorage.setItem(PREVIOUS_PORTRAIT, next.toString());
+      });
+    })();
+  </script>
+
 {{ end }}

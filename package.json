@@ -1,0 +1,26 @@
+{
+  "name": "barrasso-blog",
+  "version": "1.0.0",
+  "description": "Barrasso.me Blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tombarr/barrasso-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Tombarr/barrasso-blog/issues"
+  },
+  "homepage": "https://github.com/Tombarr/barrasso-blog#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.16",
+    "esbuild": "^0.25.11",
+    "tailwindcss": "^4.1.16"
+  }
+}

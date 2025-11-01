@@ -1,4 +1,37 @@
 baseURL = 'http://localhost/'
 languageCode = 'en-us'
 title = 'Tom Barrasso'
-theme = 'dura'
+theme = 'henry'
+disableHugoGeneratorInject = true
+
+[params]
+bioUrl = "https://kau.sh"
+summary = "Code, Culture, Creativity"
+enableSearch = true
+enablePagination = false
+avatar = "/images/tb.jpeg"
+sitename = "barrasso.me"
+github = "https://github.com/tombarr"
+enableRobotsTXT = true
+
+[params.author]
+name = "Tom Barrasso"
+email = "blog@barrasso.me"
+url = "https://barrasso.me"
+avatar = "/images/tb.jpeg"
+
+[[params.authors]]
+name = "Tom Barrasso"
+url = "https://barrasso.me"
+
+[params.copyright]
+holder = "Thomas Barrasso"
+year = "2025"
+
+[params.copyright.contentLicense]
+name = "Creative Commons Attribution 4.0 License"
+url = "https://creativecommons.org/licenses/by/4.0/"
+
+[params.copyright.codeLicense]
+name = "Apache 2.0 License"
+url = "https://www.apache.org/licenses/LICENSE-2.0"

@@ -1,0 +1,17 @@
+<section class="tree-divider-container">
+  <canvas class="tree-divider" width="1200" height="240" style="overflow: hidden;" title="A random forest"></canvas>
+</section>
+
+<div class="m-8 text-left text-ht-lighter text-xs blog-content-width">
+  {{- with .Site.Params.copyright -}}
+  <p class="mb-2">
+    Copyright &copy; {{ .year }}. {{ .holder }}.
+  </p>
+  <p>
+    Except as otherwise noted, the content of this page is licensed under the
+    <a href="{{ .contentLicense.url }}" target="_blank" rel="noopener noreferrer" class="decoration-ht-lightest">{{ .contentLicense.name }}</a>,
+    and code samples are licensed under the
+    <a href="{{ .codeLicense.url }}" target="_blank" rel="noopener noreferrer" class="decoration-ht-lightest">{{ .codeLicense.name }}</a>.
+  </p>
+  {{- end -}}
+</div>

@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+/* Tell Tailwind where to look for classes */
+@source "../../themes/henry/layouts/**/*.html";
+@source "../../layouts/**/*.html";
+@source "../../content/**/*.md";
+
+/* Import self-hosted fonts (replaces Google Fonts) */
+@import "./fonts-local.css";
+
+/* Import theme styles */
+@import "../../themes/henry/assets/css/theme.css";
+@import "../../themes/henry/assets/css/henry.css";
+
+/* Custom styles */
+@layer components {
+  /* Portrait avatar styles */
+  #portrait {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  /* Add left padding to article to make room for portrait */
+  .hero-with-portrait {
+    position: relative;
+    padding-left: 240px; /* 200px portrait + 40px gap */
+    min-height: 200px; /* Ensure container is at least as tall as portrait */
+  }
+
+  .portrait-variation {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    display: block;
+    border-radius: 100px;
+    overflow: hidden;
+    background-image: url('/images/portraits.jpg');
+    background-repeat: no-repeat;
+    background-size: 400% 400%;
+    background-origin: content-box;
+    border: 0.2em solid;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+    /* Default to first portrait (0,0) - works without JavaScript */
+    background-position: 0% 0%;
+  }
+
+  /* Light mode portrait border */
+  html:not(.dark) .portrait-variation {
+    border-color: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Dark mode portrait border */
+  html.dark .portrait-variation {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* 16 portrait positions (4x4 grid) - explicitly defined */
+  /* Row 0 */
+  .portrait-variation[data-portrait="0"] { background-position: 0% 0%; }
+  .portrait-variation[data-portrait="1"] { background-position: 33.333333% 0%; }
+  .portrait-variation[data-portrait="2"] { background-position: 66.666667% 0%; }
+  .portrait-variation[data-portrait="3"] { background-position: 100% 0%; }
+
+  /* Row 1 */
+  .portrait-variation[data-portrait="4"] { background-position: 0% 33.333333%; }
+  .portrait-variation[data-portrait="5"] { background-position: 33.333333% 33.333333%; }
+  .portrait-variation[data-portrait="6"] { background-position: 66.666667% 33.333333%; }
+  .portrait-variation[data-portrait="7"] { background-position: 100% 33.333333%; }
+
+  /* Row 2 */
+  .portrait-variation[data-portrait="8"] { background-position: 0% 66.666667%; }
+  .portrait-variation[data-portrait="9"] { background-position: 33.333333% 66.666667%; }
+  .portrait-variation[data-portrait="10"] { background-position: 66.666667% 66.666667%; }
+  .portrait-variation[data-portrait="11"] { background-position: 100% 66.666667%; }
+
+  /* Row 3 */
+  .portrait-variation[data-portrait="12"] { background-position: 0% 100%; }
+  .portrait-variation[data-portrait="13"] { background-position: 33.333333% 100%; }
+  .portrait-variation[data-portrait="14"] { background-position: 66.666667% 100%; }
+  .portrait-variation[data-portrait="15"] { background-position: 100% 100%; }
+
+  /* Clear float after hero section */
+  .hero ~ h2:first-of-type::before {
+    content: '';
+    display: table;
+    clear: both;
+    width: 100%;
+    height: 1px;
+  }
+
+  /* Tree divider styles */
+  .tree-divider-container,
+  canvas.tree-divider {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .tree-divider-container {
+    transform: scale(1.2);
+    transform-origin: center;
+  }
+
+  /*
+   * Invert tree canvas when theme changes without page reload
+   *
+   * Strategy: Always draw trees in WHITE, then use CSS to invert to black for light theme
+   * This is simpler than trying to track what color they were initially drawn in.
+   *
+   * - Dark theme (.dark class): Show white trees as-is (filter: invert(0))
+   * - Light theme (no .dark class): Invert white trees to black (filter: invert(1))
+   * - When theme toggles: CSS automatically adjusts the filter
+   * - Bonus: smooth transition between theme changes
+   */
+
+  /* In dark mode: show white trees as drawn */
+  html.dark canvas.tree-divider {
+    filter: invert(0);
+  }
+
+  /* In light mode: invert white trees to black */
+  html:not(.dark) canvas.tree-divider {
+    filter: invert(1);
+  }
+}
+
+/* Theme color fixes for proper contrast */
+@layer theme {
+  /* Light mode - white background with dark text */
+  html:not(.dark) {
+    /* henry background - white for light mode */
+    --color-hbg:         #ffffff;
+    --color-hbg-dark:    #f8f9fa;
+
+    /* henry text - dark colors for contrast on white */
+    --color-ht-lightest: var(--color-slate-400);  /* muted underline/decoration */
+    --color-ht-lighter:  var(--color-slate-500);  /* muted links like author */
+    --color-ht-light:    var(--color-slate-600);  /* underline/decoration */
+    --color-ht:          var(--color-slate-800);  /* base text - dark for readability */
+    --color-ht-dark:     var(--color-slate-800);
+
+    /* henry contrast - keep existing light mode contrast colors */
+    --color-hc-lightest: var(--color-yellow-100);
+    --color-hc-lighter:  var(--color-yellow-200);
+    --color-hc:          var(--color-yellow-300);
+    --color-hc-dark:     var(--color-yellow-500);
+  }
+
+  /* Dark mode - dark background with light text */
+  html.dark {
+    /* henry background - keep dark */
+    --color-hbg:         #1c2b33;
+    --color-hbg-dark:    #152027;
+
+    /* henry text - use lighter colors for better contrast on dark background */
+    --color-ht-lightest: var(--color-slate-600);  /* muted underline/decoration */
+    --color-ht-lighter:  var(--color-slate-400);  /* muted links like author */
+    --color-ht-light:    var(--color-slate-300);  /* underline/decoration */
+    --color-ht:          var(--color-slate-200);  /* base text - much lighter */
+    --color-ht-dark:     var(--color-slate-200);
+
+    /* henry contrast - orange for dark mode */
+    --color-hc-lightest: var(--color-orange-100);
+    --color-hc-lighter:  var(--color-orange-200);
+    --color-hc:          var(--color-orange-300);
+    --color-hc-dark:     var(--color-orange-500);
+  }
+}

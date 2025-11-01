@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="{{ .Language }}" class="no-js dark">
+{{- partial "head.html" . -}}
+
+<body class="min-h-screen bg-hbg text-ht">
+    {{/*
+    {{- partial "debug-hugo.html" . -}}
+    */}}
+
+    {{- block "content" . }}
+    <!-- Blocks may include default content. -->
+    {{- end }}
+
+    {{- partial "header.html" . -}}
+
+    {{- partial "scripts.html" . -}}
+</body>
+
+{{- partial "footer.html" . -}}
+
+</html>
