@@ -12,20 +12,40 @@
 @import "../../themes/henry/assets/css/theme.css";
 @import "../../themes/henry/assets/css/henry.css";
 
+:root .hero.post-content > :not(figure.full-bleed) {
+  margin: 0;
+  width: 100%;
+}
+
 /* Custom styles */
 @layer components {
-  /* Portrait avatar styles */
-  #portrait {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-
   /* Add left padding to article to make room for portrait */
   .hero-with-portrait {
     position: relative;
-    padding-left: 240px; /* 200px portrait + 40px gap */
-    min-height: 200px; /* Ensure container is at least as tall as portrait */
+    min-height: 200px;
+  }
+
+  /* Centered portrait variant for about page */
+  .hero-centered-portrait {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-centered-portrait #portrait {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .hero-centered-portrait #portrait .portrait-variation {
+    margin-inline: auto;
+    transform: scale(1.5);
+    margin-block: 1rem 4rem;
+  }
+
+  .hero-centered-portrait .about-content {
+    max-width: 65ch;
   }
 
   .portrait-variation {
@@ -35,15 +55,44 @@
     display: block;
     border-radius: 100px;
     overflow: hidden;
-    background-image: url('/images/portraits.jpg');
-    background-repeat: no-repeat;
-    background-size: 400% 400%;
-    background-origin: content-box;
+    /* Two background layers: dithered (bottom) and color (top, initially transparent) */
+    background-image: var(--portrait-dithered);
+    background-repeat: no-repeat, no-repeat;
+    background-size: 400% 400%, 400% 400%;
+    background-origin: content-box, content-box;
+    background-position: 0% 0%, 0% 0%;
     border: 0.2em solid;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     transform: scale(1.05);
-    /* Default to first portrait (0,0) - works without JavaScript */
-    background-position: 0% 0%;
+    /* Smooth transition for opacity on hover/tap */
+    transition: background-image 0.25s ease-in-out;
+  }
+
+  /* Initial state: color layer is transparent, showing dithered beneath */
+  .portrait-variation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--portrait-color);
+    background-repeat: no-repeat;
+    background-size: 400% 400%;
+    background-position: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+  }
+
+  /* On hover/tap: fade in the color layer */
+  .portrait-variation:hover::before,
+  .portrait-variation:active::before {
+    opacity: 1;
+  }
+
+  .hero-with-portrait:hover .portrait-variation::before {
+    opacity: 1;
   }
 
   /* Light mode portrait border */
@@ -58,28 +107,44 @@
 
   /* 16 portrait positions (4x4 grid) - explicitly defined */
   /* Row 0 */
-  .portrait-variation[data-portrait="0"] { background-position: 0% 0%; }
-  .portrait-variation[data-portrait="1"] { background-position: 33.333333% 0%; }
-  .portrait-variation[data-portrait="2"] { background-position: 66.666667% 0%; }
-  .portrait-variation[data-portrait="3"] { background-position: 100% 0%; }
+  .portrait-variation[data-portrait="0"] { background-position: 0% 0%, 0% 0%; }
+  .portrait-variation[data-portrait="0"]::before { background-position: 0% 0%; }
+  .portrait-variation[data-portrait="1"] { background-position: 33.333333% 0%, 33.333333% 0%; }
+  .portrait-variation[data-portrait="1"]::before { background-position: 33.333333% 0%; }
+  .portrait-variation[data-portrait="2"] { background-position: 66.666667% 0%, 66.666667% 0%; }
+  .portrait-variation[data-portrait="2"]::before { background-position: 66.666667% 0%; }
+  .portrait-variation[data-portrait="3"] { background-position: 100% 0%, 100% 0%; }
+  .portrait-variation[data-portrait="3"]::before { background-position: 100% 0%; }
 
   /* Row 1 */
-  .portrait-variation[data-portrait="4"] { background-position: 0% 33.333333%; }
-  .portrait-variation[data-portrait="5"] { background-position: 33.333333% 33.333333%; }
-  .portrait-variation[data-portrait="6"] { background-position: 66.666667% 33.333333%; }
-  .portrait-variation[data-portrait="7"] { background-position: 100% 33.333333%; }
+  .portrait-variation[data-portrait="4"] { background-position: 0% 33.333333%, 0% 33.333333%; }
+  .portrait-variation[data-portrait="4"]::before { background-position: 0% 33.333333%; }
+  .portrait-variation[data-portrait="5"] { background-position: 33.333333% 33.333333%, 33.333333% 33.333333%; }
+  .portrait-variation[data-portrait="5"]::before { background-position: 33.333333% 33.333333%; }
+  .portrait-variation[data-portrait="6"] { background-position: 66.666667% 33.333333%, 66.666667% 33.333333%; }
+  .portrait-variation[data-portrait="6"]::before { background-position: 66.666667% 33.333333%; }
+  .portrait-variation[data-portrait="7"] { background-position: 100% 33.333333%, 100% 33.333333%; }
+  .portrait-variation[data-portrait="7"]::before { background-position: 100% 33.333333%; }
 
   /* Row 2 */
-  .portrait-variation[data-portrait="8"] { background-position: 0% 66.666667%; }
-  .portrait-variation[data-portrait="9"] { background-position: 33.333333% 66.666667%; }
-  .portrait-variation[data-portrait="10"] { background-position: 66.666667% 66.666667%; }
-  .portrait-variation[data-portrait="11"] { background-position: 100% 66.666667%; }
+  .portrait-variation[data-portrait="8"] { background-position: 0% 66.666667%, 0% 66.666667%; }
+  .portrait-variation[data-portrait="8"]::before { background-position: 0% 66.666667%; }
+  .portrait-variation[data-portrait="9"] { background-position: 33.333333% 66.666667%, 33.333333% 66.666667%; }
+  .portrait-variation[data-portrait="9"]::before { background-position: 33.333333% 66.666667%; }
+  .portrait-variation[data-portrait="10"] { background-position: 66.666667% 66.666667%, 66.666667% 66.666667%; }
+  .portrait-variation[data-portrait="10"]::before { background-position: 66.666667% 66.666667%; }
+  .portrait-variation[data-portrait="11"] { background-position: 100% 66.666667%, 100% 66.666667%; }
+  .portrait-variation[data-portrait="11"]::before { background-position: 100% 66.666667%; }
 
   /* Row 3 */
-  .portrait-variation[data-portrait="12"] { background-position: 0% 100%; }
-  .portrait-variation[data-portrait="13"] { background-position: 33.333333% 100%; }
-  .portrait-variation[data-portrait="14"] { background-position: 66.666667% 100%; }
-  .portrait-variation[data-portrait="15"] { background-position: 100% 100%; }
+  .portrait-variation[data-portrait="12"] { background-position: 0% 100%, 0% 100%; }
+  .portrait-variation[data-portrait="12"]::before { background-position: 0% 100%; }
+  .portrait-variation[data-portrait="13"] { background-position: 33.333333% 100%, 33.333333% 100%; }
+  .portrait-variation[data-portrait="13"]::before { background-position: 33.333333% 100%; }
+  .portrait-variation[data-portrait="14"] { background-position: 66.666667% 100%, 66.666667% 100%; }
+  .portrait-variation[data-portrait="14"]::before { background-position: 66.666667% 100%; }
+  .portrait-variation[data-portrait="15"] { background-position: 100% 100%, 100% 100%; }
+  .portrait-variation[data-portrait="15"]::before { background-position: 100% 100%; }
 
   /* Clear float after hero section */
   .hero ~ h2:first-of-type::before {

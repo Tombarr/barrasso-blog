@@ -4,21 +4,32 @@ title = 'Tom Barrasso'
 theme = 'henry'
 disableHugoGeneratorInject = true
 
+[outputs]
+home = ["HTML", "RSS", "JSON", "SEARCH"]
+
 [params]
-bioUrl = "https://kau.sh"
+bioUrl = "https://barrasso.me"
 summary = "Code, Culture, Creativity"
 enableSearch = true
 enablePagination = false
-avatar = "/images/tb.jpeg"
+avatar = "/images/portraits.jpg"
 sitename = "barrasso.me"
 github = "https://github.com/tombarr"
 enableRobotsTXT = true
+
+[params.search]
+enabled = true
+[outputFormats.SEARCH]
+baseName = "search"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true
 
 [params.author]
 name = "Tom Barrasso"
 email = "blog@barrasso.me"
 url = "https://barrasso.me"
-avatar = "/images/tb.jpeg"
+avatar = "/images/portraits.jpg"
 
 [[params.authors]]
 name = "Tom Barrasso"

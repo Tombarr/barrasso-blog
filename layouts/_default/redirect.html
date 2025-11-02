@@ -1,0 +1,21 @@
+<section class="post flex flex-col items-center pt-20 md:pt-30 pb-4 md:pb-6">
+    <article class="post-content blog-content-width text-center">
+        <h1 class="post-title font-title font-bold text-ht-dark text-2xl md:text-4xl mb-8">
+            {{ .Title }}
+        </h1>
+        <p class="mb-8">
+            <a href="{{ .Params.externalLink }}" class="external-link text-hc-dark hover:underline">
+                {{ .Params.externalLink }}
+            </a>
+        </p>
+        <p class="text-sm text-ht-lighter">
+            If you are not redirected automatically, please click the link above.
+        </p>
+    </article>
+</section>
+
+<script type="text/javascript">
+    (() => {
+        window.location.href = "{{ .Params.externalLink }}";
+    })();
+</script>

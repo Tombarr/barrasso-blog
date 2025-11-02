@@ -6,7 +6,7 @@
             mb-8">
     <div class="w-full">
         <h1 class="flex flex-col items-start
-                   md:text-xl text-left
+                   md:text-xl text-start
                    text-ht-lighter
                    ">
             <!-- Other pages - breadcrumb navigation -->
@@ -26,11 +26,6 @@
                     class='no-underline
                            {{ if eq .Name "Tags" }} text-ht {{ end }}'>
                     topics
-                </a><span class="font-normal">|</span>
-                <a  href="/letter/"
-                    class='no-underline
-                           {{ if eq .RelPermalink "/letter/" }} text-ht {{ end }}'>
-                    letters
                 </a><span class="font-normal">|</span>
                 <a  href="/about/"
                     class='no-underline
@@ -94,8 +89,17 @@
 
 {{ if $.Param "enableSearch" }}
 
+    <!-- Search result item template -->
+    <template id="search-result-template">
+        <li class="search-result-item">
+            <a href="" class="block px-4 py-2 no-underline text-ht hover:bg-hbg-dark transition-colors duration-150" tabindex="0">
+                <span class="title"></span>
+            </a>
+        </li>
+    </template>
+
     <!-- Search related libs (Fuse) -->
-    {{ $fuse := resources.Get "js/fuse.6.4.0.js" }}
+    {{ $fuse := resources.Get "js/fuse.7.1.0.js" }}
     {{ $fuseSearch := resources.Get "js/fuse-search.js" }}
     {{ $search := slice $fuse $fuseSearch | resources.Concat "js/search.js" | resources.Minify }}
 
@@ -115,6 +119,7 @@
                      absolute right-0
                      w-screen max-w-[75vw] min-w-[200px] max-h-[75vh] overflow-y-auto
                      rounded-lg shadow-lg
+                     bg-hbg
               "></ul>
     </div>
 

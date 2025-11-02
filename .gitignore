@@ -144,7 +144,9 @@ vite.config.ts.timestamp-*
 # Hugo Output
 /public
 /resources
-assets/css/output.css
+output.css
+*.tmp.css
+*.tmp.js
 
 # macOS
 .DS_Store

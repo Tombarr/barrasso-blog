@@ -1,0 +1,33 @@
+<!-- Portrait avatar (positioned left, top-aligned) -->
+<!-- Default data-portrait="0" ensures portrait displays without JavaScript -->
+<!-- Inline script randomizes immediately to prevent flash -->
+{{ $avatarPath := strings.TrimPrefix "/" .Site.Params.avatar }}
+{{ $portraits := resources.Get $avatarPath }}
+{{ $portraitsGrayscale := $portraits.Filter (images.Contrast 50) (images.Grayscale) }}
+{{ $opts := dict
+    "method" "Atkinson"
+    "colors" (slice "000000" "ffffff" "999999")
+}}
+{{ $portraitsDithered := $portraitsGrayscale.Filter (images.Dither $opts) }}
+<figure id="portrait" data-dithered-url="{{ $portraitsDithered.RelPermalink }}" data-color-url="{{ $portraits.RelPermalink }}">
+    <div class="portrait-variation rounded-full! overflow-hidden block" data-portrait="0"></div>
+</figure>
+
+<script type="text/javascript">
+    (function() {
+        var figure = document.querySelector('#portrait');
+        var el = document.querySelector('.portrait-variation');
+        if (el && figure) {
+            // Set random portrait
+            el.setAttribute('data-portrait', Math.floor(Math.random() * 16));
+
+            // Set CSS custom properties for dithered and color images
+            var ditheredUrl = figure.getAttribute('data-dithered-url');
+            var colorUrl = figure.getAttribute('data-color-url');
+            if (ditheredUrl && colorUrl) {
+                el.style.setProperty('--portrait-dithered', 'url(' + ditheredUrl + ')');
+                el.style.setProperty('--portrait-color', 'url(' + colorUrl + ')');
+            }
+        }
+    })();
+</script>

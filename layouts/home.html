@@ -23,45 +23,17 @@
     {{ $groupedPages = $pages.GroupByDate "2006" }}
     {{ end }}
 
-
-    {{ if eq hugo.Environment "development" }}
-    <div class="text-sm text-ht-light mt-5 mb-5">
-    Total: {{len $pages}} posts <br>
-    GroupedPage count: {{ len $groupedPages }} <br>
-    isTaxonomy: {{ $isTaxonomy }} <br>
-    shouldPaginate: {{ $shouldPaginate }} <br>
-    Kind: {{ .Kind }} <br>
-    isListType: {{ $isListType }} <br>
-    Name: {{ .Name }} <br>
-    </div>
-    {{ end }}
-
     <!-- custom content included in header page -->
     {{ if .Content }}
+        {{ if not .IsHome }}
         <h1 class="
-            text-3xl font-title font-semibold">
+            text-3xl font-title font-semibold mb-8 block">
             {{ .Title }}
         </h1>
+        {{ end }}
 
-        <article class="post-content hero hero-with-portrait
-                    my-4">
-            <!-- Portrait avatar (positioned left, top-aligned) -->
-            <!-- Default data-portrait="0" ensures portrait displays without JavaScript -->
-            <!-- Inline script randomizes immediately to prevent flash -->
-            <figure id="portrait">
-                <div class="portrait-variation rounded-full! overflow-hidden block" data-portrait="0"></div>
-            </figure>
-
+        <article class="post-content hero my-4">
             {{ .Content }}
-
-            <script type="text/javascript">
-                (function() {
-                    var el = document.querySelector('.portrait-variation');
-                    if (el) {
-                        el.setAttribute('data-portrait', Math.floor(Math.random() * 16));
-                    }
-                })();
-            </script>
         </article>
     {{ end }}
 

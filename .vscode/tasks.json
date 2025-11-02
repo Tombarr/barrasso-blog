@@ -2,17 +2,10 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Start Hugo Server",
+      "label": "Watch CSS (Tailwind + PostCSS)",
       "type": "shell",
-      "command": "hugo server --bind 0.0.0.0 --disableFastRender --noHTTPCache",
+      "command": "make run-css",
       "isBackground": true,
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "runOptions": {
-        "runOn": "folderOpen"
-      },
       "problemMatcher": {
         "pattern": [
           {
@@ -24,13 +17,59 @@
         ],
         "background": {
           "activeOnStart": true,
-          "beginsPattern": "Web Server is available at",
-          "endsPattern": "Press Ctrl+C to stop"
+          "beginsPattern": ".*",
+          "endsPattern": "Rebuilding..."
         }
       },
       "presentation": {
         "reveal": "always",
-        "panel": "new"
+        "panel": "dedicated",
+        "group": "dev"
+      }
+    },
+    {
+      "label": "Start Hugo Server",
+      "type": "shell",
+      "command": "make run-site",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": [
+          {
+            "regexp": ".",
+            "file": 1,
+            "location": 2,
+            "message": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Watching for changes",
+          "endsPattern": "Web Server is available at"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "dev"
+      }
+    },
+    {
+      "label": "Start Development Server",
+      "dependsOn": [
+        "Watch CSS (Tailwind + PostCSS)",
+        "Start Hugo Server"
+      ],
+      "dependsOrder": "parallel",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
       }
     }
   ]

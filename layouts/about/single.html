@@ -1,0 +1,27 @@
+{{ define "content" }} {{ partial "single-before.html" . }}
+
+<section class="post flex flex-col items-center pt-20 md:pt-30 pb-4 md:pb-6">
+    <header class="post-header blog-content-width mb-8">
+        <h1
+            class="post-title font-title font-bold text-ht-dark text-2xl md:text-4xl mb-8"
+        >
+            {{ .Title }}
+            {{ if .Draft }}
+            <span class="draft pill-hc2-solid text-lg">Draft</span>
+            {{ end }}
+        </h1>
+    </header>
+
+    <!-- About page content with centered avatar -->
+    <article class="post-content hero hero-centered-portrait blog-content-width my-4">
+        {{- partial "avatar.html" . -}}
+
+        <div class="about-content text-start">
+            {{ replace .Content "\n" "<br/>" | safeHTML }}
+        </div>
+    </article>
+
+    {{- partial "nav.html" . -}}
+</section>
+
+{{end}}

@@ -1,0 +1,45 @@
+{{ if $.Param "enableSearch" }}
+
+
+{{- $pages := slice -}}
+{{- $pages = $pages | append .Site.RegularPages -}}
+{{- /* Filter out taxonomy pages and sections we don't want */ -}}
+{{- $pages = where $pages "Kind" "page" -}}
+{{- $invisibleSections := $.Param "invisibleSections" -}}
+{{- if and $invisibleSections (gt (len $invisibleSections) 0) -}}
+    {{- $pages = where $pages "Section" "not in" $invisibleSections -}}
+{{- end -}}
+{{- $pages = where $pages "Params.noindex" "!=" true -}}
+{{- /* Remove duplicates by creating a map of unique permalinks */ -}}
+{{- $uniquePages := slice -}}
+{{- $seenUrls := slice -}}
+{{- range $pages -}}
+    {{- $url := cond .Params.externalLink .Params.externalLink .Permalink -}}
+    {{- if not (in $seenUrls $url) -}}
+        {{- $uniquePages = $uniquePages | append . -}}
+        {{- $seenUrls = $seenUrls | append $url -}}
+    {{- end -}}
+{{- end -}}
+{{- $pages = $uniquePages -}}
+{{- /* warnf "INFO: search index page count: %v" (len $pages) */ -}}
+
+{{- $.Scratch.Add "index" slice -}}
+
+{{- range $pages -}}
+	{{- $page := . -}}
+	{{- /* Use externalLink if present, otherwise use absolute Permalink */ -}}
+	{{- $url := cond .Params.externalLink .Params.externalLink .Permalink -}}
+	{{- $entry := dict "permalink" $url "lang" .Language.Lang "title" .Title "contents" .Plain -}}
+
+	{{- range ($.Param "search.searchableParams") -}}
+		{{- $entry = merge $entry (dict . ($page.Param .)) }}
+	{{- end -}}
+
+    {{- $.Scratch.Add "index" $entry -}}
+{{- end -}}
+
+{{- $.Scratch.Get "index" | jsonify -}}
+
+
+{{- end -}}
+

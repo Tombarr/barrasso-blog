@@ -1,0 +1,12 @@
+{{ $title := partial "get-title-for-site.html" . }}
+<link href='{{ "feed.xml" | absURL }}' rel="alternate" type="application/rss+xml" title="{{ $title }}" />
+<link href='{{ "feed.xml" | absURL }}' rel="feed" type="application/rss+xml" title="{{ $title }}" />
+
+{{/*  Preferably set this similar to your --color-hbg from theme.css */}}
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#1c2b33">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c2b33">
+
+{{ if .Params.externalLink }}
+{{/* Meta refresh for external link posts - redirects immediately */}}
+<meta http-equiv="refresh" content="0; url={{ .Params.externalLink }}" />
+{{ end }}

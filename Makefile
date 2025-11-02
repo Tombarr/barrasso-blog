@@ -30,22 +30,26 @@ site:		## hugo compile build
 		--cleanDestinationDir --gc --minify --printI18nWarnings --buildDrafts \
 		--logLevel $(log)
 
-css:		## compile Tailwind CSS
+css:		## compile Tailwind CSS with PostCSS
 	@npx @tailwindcss/cli \
 		-i ./assets/css/input.css  \
-		-o ./assets/css/output.css
+		-o ./assets/css/output.tmp.css
+	@npx postcss ./assets/css/output.tmp.css -o ./assets/css/output.css
+	@rm -f ./assets/css/output.tmp.css
 
-run-css:	## run & watch Tailwind CSS compiler
+run-css:	## run & watch Tailwind CSS compiler with PostCSS
 	@npx @tailwindcss/cli \
 		-i ./assets/css/input.css  \
-		-o ./assets/css/output.css --watch
+		-o ./assets/css/output.tmp.css --watch & \
+	while [ ! -f ./assets/css/output.tmp.css ]; do sleep 0.5; done && \
+	npx postcss ./assets/css/output.tmp.css -o ./assets/css/output.css --watch
 
 run-site:	## run Hugo server
 	@hugo \
 		server \
 		--port=1313 --disableFastRender \
 		--cleanDestinationDir --gc --minify --printI18nWarnings --buildDrafts \
-		--logLevel $(log)
+		--logLevel $(log) --noHTTPCache
 
 caddy: 		## copy local Caddyfile and start Caddy server
 	@cp ./CaddyFile /opt/homebrew/etc/Caddyfile
@@ -55,6 +59,7 @@ caddy: 		## copy local Caddyfile and start Caddy server
 clean:		## remove all the generated files
 	rm -rf public
 	rm  -f assets/css/output.css
+	rm  -f assets/css/output.tmp.css
 
 post:		## create a new post ## make post slug=test-post
 	@hugo new content -k post content/blog/$$(date +%Y-%m-%d)-$(slug).md
