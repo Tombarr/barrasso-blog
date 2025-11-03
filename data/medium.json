@@ -1,0 +1,200 @@
+[
+  {
+      "url": "https://medium.com/@tbarrasso/is-podcasting-ready-for-ipv6-6893110c5889",
+      "title": "Is podcasting ready for IPv6?",
+      "summary": "The world has been running out of IPv4 addresses for some time. Podcasting may not be prepared for the inevitable IPv6 future.",
+      "pubDate": "Sep 10, 2020"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/podcasts-for-the-next-billion-1474778454e1",
+      "title": "Podcasts for the Next Billion",
+      "summary": "Designing a podcast client for KaiOS smart feature phones",
+      "pubDate": "Jun 24, 2020"
+  },
+  {
+      "url": "https://medium.com/javascript-in-plain-english/why-does-javascript-have-0-9b6e1965a075",
+      "title": "Why does JavaScript have -0?",
+      "summary": "Why so negative zero? JavaScript has two zeroes and they‘re both the same and different.",
+      "pubDate": "Dec 3, 2019"
+  },
+  {
+      "url": "https://medium.com/swlh/scale-securely-with-transit-gateway-198f600547e8",
+      "title": "Scale Securely with Transit Gateway",
+      "summary": "AWS Transit Gateway provides secure and scalable cloud connectivity to on-premise networks",
+      "pubDate": "Dec 2, 2019"
+  },
+  {
+      "url": "https://medium.com/gitconnected/totally-legit-software-methodologies-1d00f0b9d779",
+      "title": "Totally legit software methodologies",
+      "summary": "Instagram Driven Development, and other commonly employed strategies for crafting digital experiences.",
+      "pubDate": "Oct 14, 2019"
+  },
+  {
+      "url": "https://medium.com/better-programming/why-rspec-tests-fail-and-how-to-fix-them-402f1c7dce16",
+      "title": "Why RSpec Tests Fail (and How To Fix Them)",
+      "summary": "Knowing how to troubleshoot tests is an essential software skill",
+      "pubDate": "Oct 7, 2019"
+  },
+  {
+      "url": "https://medium.com/bitsrc/a-practical-guide-to-es6-proxy-229079c3c2f0",
+      "title": "A practical guide to ES6 Proxy",
+      "summary": "Proxies on proxies for clean and composable Javascript metaprogramming",
+      "pubDate": "May 16, 2019"
+  },
+  {
+      "url": "https://medium.com/codeburst/a-practical-guide-to-es6-symbol-3fc90117c7ac",
+      "title": "A practical guide to ES6 Symbol",
+      "summary": "Practical Javascript metaprogramming with Symbols",
+      "pubDate": "May 13, 2019"
+  },
+  {
+      "url": "https://medium.com/front-end-weekly/thank-u-symbol-iterator-next-aef9f09ff78",
+      "title": "thank u, [Symbol.iterator].next",
+      "summary": "I’m so f****in’ grateful for this spec. Modular iteration without cloning or modifying in-place.",
+      "pubDate": "Apr 10, 2019"
+  },
+  {
+      "url": "https://medium.com/free-code-camp/the-first-shall-be-last-with-javascript-arrays-11172fe9c1e0",
+      "title": "The first shall be last with JavaScript arrays",
+      "summary": "So the last shall be [0], and the first [length - 1]",
+      "pubDate": "Mar 28, 2019"
+  },
+  {
+      "url": "https://medium.com/hackernoon/dear-javascript-e52ab6b89dbb",
+      "title": "Dear Javascript,",
+      "summary": "this isn’t working.",
+      "pubDate": "Feb 8, 2019"
+  },
+  {
+      "url": "https://medium.com/bitsrc/how-to-learn-elixir-for-hipster-javascript-developers-f0352e579ac3",
+      "title": "How to Learn Elixir for Hipster Javascript Developers",
+      "summary": "Everyone knows Javascript. Your grandma, father-in-law, old college roommate… even your cat knows Javascript!",
+      "pubDate": "Feb 5, 2019"
+  },
+  {
+      "url": "https://medium.com/itnext/hello-elixir-the-first-month-d24255860b",
+      "title": "Hello, Elixir — The First Month",
+      "summary": "I’ve used Elixir for a month and mostly like it",
+      "pubDate": "Jan 10, 2019"
+  },
+  {
+      "url": "https://medium.com/itnext/animated-react-metaballs-dff3b3a6dee2",
+      "title": "Animated React Metaballs",
+      "summary": "React component for animated SVG metaballs",
+      "pubDate": "Aug 1, 2018"
+  },
+  {
+      "url": "https://medium.com/itnext/basics-of-text-analysis-visualization-1978de48af47",
+      "title": "Basics of Text Analysis & Visualization",
+      "summary": "Bigram cloud and sentiment analysis applied to GitHub READMEs",
+      "pubDate": "Jul 24, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/open-source-words-part-2-ce1077305a32",
+      "title": "Open Source Words — Part 2",
+      "summary": "There are many words used to describe software: framework, progressive, modular, reusable, extensible, scalable, simple, ad infinitum…",
+      "pubDate": "Jul 16, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/open-source-words-part-1-72f059c2730",
+      "title": "Open Source Words — Part 1",
+      "summary": "I set out to understand words used to describe software, and in particular, open source software. What words form the collective developer…",
+      "pubDate": "Jul 15, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/html-overlays-in-plotly-js-a5104f31acf5",
+      "title": "HTML Overlays in Plotly.js",
+      "summary": "I’ve talked about several features and limitations of Plotly.js before. It’s a very capable framework but I’ve found a number of important…",
+      "pubDate": "Jul 3, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/resumes-in-html-css-and-js-f9662d9d6477",
+      "title": "Resumes in HTML, CSS, and JS",
+      "summary": "There’s lots of guides on how to write a resume as a developer, but very few resources for actually creating one. Google for “resume…",
+      "pubDate": "Jun 29, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/quick-start-with-html-template-language-on-adobe-experience-manager-394bb093275b",
+      "title": "Quick Start with HTML Template Language on Adobe Experience Manager",
+      "summary": "Introduction",
+      "pubDate": "Mar 7, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/plotly-tip-6-positioning-axis-titles-in-horizontal-bar-chart-56b0713f9745",
+      "title": "Plotly Tip #6: positioning axis titles in horizontal bar chart",
+      "summary": "About Plot.ly",
+      "pubDate": "Feb 26, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/plotly-tip-5-sand-charts-c8331bfa3dee",
+      "title": "Plotly Tip #5: sand charts",
+      "summary": "About Plot.ly",
+      "pubDate": "Feb 6, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/plotly-tip-4-text-outlines-a0184ffed311",
+      "title": "Plotly Tip #4: text outlines",
+      "summary": "About Plot.ly",
+      "pubDate": "Feb 2, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/plotly-tip-3-custom-legends-a85db49c50fe",
+      "title": "Plotly Tip #3: Custom Legends",
+      "summary": "About Plot.ly",
+      "pubDate": "Jan 24, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/plotly-tip-2-svg-z-index-16c8a5125054",
+      "title": "Plotly Tip #2: SVG & z-index",
+      "summary": "About Plot.ly",
+      "pubDate": "Jan 23, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/plotly-tip-1-dtick-ac1d07117e8",
+      "title": "Plotly Tip #1: dtick",
+      "summary": "About Plot.ly",
+      "pubDate": "Jan 22, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/how-many-ways-to-say-unsubscribe-f3bbf42262cb",
+      "title": "How Many Ways To Say, Unsubscribe",
+      "summary": "I’ve recently been purging spam in my inbox.",
+      "pubDate": "Jan 12, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/drag-drop-using-css-transforms-e063d719a877",
+      "title": "Drag & Drop using CSS Transforms",
+      "summary": "Perhaps one of the most common features of modern web applications is the ability to drag (and sometimes drop or sort) elements. So common…",
+      "pubDate": "Jan 8, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/on-the-broken-image-icon-9d8cd3eb990f",
+      "title": "On The “Broken Image Icon”",
+      "summary": "A while ago I got to wondering if it is possible to style the broken image icon. As it turns out, aside from Firefox’s…",
+      "pubDate": "Jan 3, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/keeping-current-with-css-currentcolor-dc98ec3b9d3a",
+      "title": "Keeping current with CSS currentColor",
+      "summary": "If you’re familiar with Sass or LESS then you’re apt to use preprocessor variables to parameterize the dimensions and colors of a site…",
+      "pubDate": "Jan 1, 2018"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/how-i-wish-new-password-fields-worked-ade0909beec",
+      "title": "How I wish new password fields worked",
+      "summary": "For a recent project I was tasked with implementing client-side login & registration forms. The flow was quite complex because it involved…",
+      "pubDate": "Dec 30, 2017"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/advanced-meta-metaballs-864bbf0a945c",
+      "title": "Advanced meta-Metaballs",
+      "summary": "Building on my last article, Pretty Metaballs, I have seen a number of metaball examples that connect two circles, or that do so in a…",
+      "pubDate": "Dec 29, 2017"
+  },
+  {
+      "url": "https://medium.com/@tbarrasso/pretty-svg-metaballs-f8d2a4c6f594",
+      "title": "Pretty SVG Metaballs",
+      "summary": "Metaballs (not meatballs), like the ones below, are circles with overlapping areas proportional to their size and proximity.",
+      "pubDate": "Dec 20, 2017"
+  }
+]
