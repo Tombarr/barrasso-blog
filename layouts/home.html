@@ -101,52 +101,6 @@
                                             dur="25s"
                                             repeatCount="indefinite"/>
                         </radialGradient>
-
-                        <!-- Blur filter for soft aurora effect -->
-                        <filter id="auroraBlur" x="-50%" y="-50%" width="200%" height="200%">
-                          <feGaussianBlur in="SourceGraphic" stdDeviation="8">
-                            <animate attributeName="stdDeviation"
-                                     values="8;12;6;8"
-                                     dur="10s"
-                                     repeatCount="indefinite"/>
-                          </feGaussianBlur>
-                        </filter>
-
-                        <!-- Turbulence filter for organic movement -->
-                        <filter id="auroraTurbulence" x="-50%" y="-50%" width="200%" height="200%">
-                          <feTurbulence type="fractalNoise" baseFrequency="0.01 0.02" numOctaves="3" seed="1">
-                            <animate attributeName="baseFrequency"
-                                     values="0.01 0.02; 0.015 0.025; 0.01 0.02"
-                                     dur="20s"
-                                     repeatCount="indefinite"/>
-                          </feTurbulence>
-                          <feDisplacementMap in="SourceGraphic" scale="50">
-                            <animate attributeName="scale"
-                                     values="50;80;50"
-                                     dur="15s"
-                                     repeatCount="indefinite"/>
-                          </feDisplacementMap>
-                          <feGaussianBlur stdDeviation="5"/>
-                        </filter>
-
-                        <!-- Combined filter with turbulence and blur -->
-                        <filter id="auroraCombined" x="-50%" y="-50%" width="200%" height="200%">
-                          <feTurbulence type="fractalNoise" baseFrequency="0.01 0.015" numOctaves="4" seed="2">
-                            <animate attributeName="baseFrequency"
-                                     values="0.01 0.015; 0.02 0.025; 0.01 0.015"
-                                     dur="30s"
-                                     repeatCount="indefinite"/>
-                          </feTurbulence>
-                          <feColorMatrix type="hueRotate" values="0">
-                            <animate attributeName="values"
-                                     values="0;180;360;0"
-                                     dur="40s"
-                                     repeatCount="indefinite"/>
-                          </feColorMatrix>
-                          <feDisplacementMap in="SourceGraphic" scale="40"/>
-                          <feGaussianBlur stdDeviation="10"/>
-                          <feBlend mode="screen" in2="SourceGraphic"/>
-                        </filter>
                       </defs>
                 </svg>
             </div>
