@@ -42,6 +42,9 @@ function applyTheme(theme) {
     if (sunIcon) sunIcon.classList.add('hidden');
     if (moonIcon) moonIcon.classList.remove('hidden');
   }
+
+  // Dispatch custom event for theme changes
+  document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
 }
 
 /**

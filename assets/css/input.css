@@ -17,6 +17,10 @@
   width: 100%;
 }
 
+:root .hero.post-content > .metaball-container:not(figure.full-bleed) {
+  position: absolute;
+}
+
 /* Custom styles */
 @layer components {
   /* Add left padding to article to make room for portrait */
@@ -189,6 +193,43 @@
   /* In light mode: invert white trees to black */
   html:not(.dark) canvas.tree-divider {
     filter: invert(1);
+  }
+
+  /* Metaball background container */
+  .hero-with-metaball {
+    position: relative;
+  }
+
+  .metaball-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .metaball-container svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: scale(1.75) translate(-35%, -5%);
+    width: 800px;
+    height: 600px;
+    max-width: 100vw;
+    opacity: 0.15;
+    filter: grayscale(1);
+  }
+
+  :root.dark .metaball-container svg {
+    filter: invert(1) grayscale(1) brightness(200%);
+  }
+
+  /* Ensure hero content appears above metaball */
+  .hero-with-metaball > *:not(.metaball-container) {
+    position: relative;
+    z-index: 1;
   }
 }
 

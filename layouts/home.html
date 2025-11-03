@@ -32,7 +32,27 @@
         </h1>
         {{ end }}
 
-        <article class="post-content hero my-4">
+        <article class="post-content hero my-4 hero-with-metaball">
+            <!-- Metaball SVG background -->
+            <div class="metaball-container">
+                <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="metaball-gradient" x1="0%" y1="0%" x2="0%" y2="100%" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" style="stop-color:rgb(236,235,227);stop-opacity:1" />
+                            <stop offset="30%" style="stop-color:rgb(147,147,146);stop-opacity:1" />
+                            <stop offset="60%" style="stop-color:rgb(111,140,255);stop-opacity:1" />
+                        </linearGradient>
+
+                        <filter id="metaball-light">
+                            <feDiffuseLighting in="SourceGraphic" result="light" lighting-color="white">
+                                <fePointLight x="400px" y="300px" z="100" />
+                            </feDiffuseLighting>
+                            <feComposite in="SourceGraphic" in2="light" operator="arithmetic" k1="1" k2="1" k3="0" k4="0"/>
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
+
             {{ .Content }}
         </article>
     {{ end }}
