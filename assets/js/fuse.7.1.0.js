@@ -534,7 +534,7 @@
       value: function removeAt(idx) {
         this.records.splice(idx, 1);
 
-        // Change ref index of every subsquent doc
+        // Change ref index of every subsequent doc
         for (var i = idx, len = this.size(); i < len; i += 1) {
           this.records[i].i -= 1;
         }
@@ -891,8 +891,8 @@
     return str;
   };
 
-  var BitapSearch = /*#__PURE__*/function () {
-    function BitapSearch(pattern) {
+  var BitmapSearch = /*#__PURE__*/function () {
+    function BitmapSearch(pattern) {
       var _this = this;
       var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
         _ref$location = _ref.location,
@@ -913,7 +913,7 @@
         ignoreDiacritics = _ref$ignoreDiacritics === void 0 ? Config.ignoreDiacritics : _ref$ignoreDiacritics,
         _ref$ignoreLocation = _ref.ignoreLocation,
         ignoreLocation = _ref$ignoreLocation === void 0 ? Config.ignoreLocation : _ref$ignoreLocation;
-      _classCallCheck(this, BitapSearch);
+      _classCallCheck(this, BitmapSearch);
       this.options = {
         location: location,
         threshold: threshold,
@@ -956,7 +956,7 @@
         addChunk(this.pattern, 0);
       }
     }
-    _createClass(BitapSearch, [{
+    _createClass(BitmapSearch, [{
       key: "searchIn",
       value: function searchIn(text) {
         var _this$options = this.options,
@@ -978,7 +978,7 @@
           return _result;
         }
 
-        // Otherwise, use Bitap algorithm
+        // Otherwise, use Bitmap algorithm
         var _this$options2 = this.options,
           location = _this$options2.location,
           distance = _this$options2.distance,
@@ -1023,7 +1023,7 @@
         return result;
       }
     }]);
-    return BitapSearch;
+    return BitmapSearch;
   }();
 
   var BaseMatch = /*#__PURE__*/function () {
@@ -1295,7 +1295,7 @@
         ignoreLocation = _ref$ignoreLocation === void 0 ? Config.ignoreLocation : _ref$ignoreLocation;
       _classCallCheck(this, FuzzyMatch);
       _this = _super.call(this, pattern);
-      _this._bitapSearch = new BitapSearch(pattern, {
+      _this._bitmapSearch = new BitmapSearch(pattern, {
         location: location,
         threshold: threshold,
         distance: distance,
@@ -1311,7 +1311,7 @@
     _createClass(FuzzyMatch, [{
       key: "search",
       value: function search(text) {
-        return this._bitapSearch.searchIn(text);
+        return this._bitmapSearch.searchIn(text);
       }
     }], [{
       key: "type",
@@ -1430,7 +1430,7 @@
   }
 
   // These extended matchers can return an array of matches, as opposed
-  // to a singl match
+  // to a single match
   var MultiMatchSet = new Set([FuzzyMatch.type, IncludeMatch.type]);
 
   /**
@@ -1593,7 +1593,7 @@
         return new searcherClass(pattern, options);
       }
     }
-    return new BitapSearch(pattern, options);
+    return new BitmapSearch(pattern, options);
   }
 
   var LogicalOperator = {
@@ -1914,9 +1914,9 @@
                 results.push(resultMap[idx]);
               }
               expResults.forEach(function (_ref4) {
-                var _resultMap$idx$matche;
+                var _resultMap$idx$match;
                 var matches = _ref4.matches;
-                (_resultMap$idx$matche = resultMap[idx].matches).push.apply(_resultMap$idx$matche, _toConsumableArray(matches));
+                (_resultMap$idx$match = resultMap[idx].matches).push.apply(_resultMap$idx$match, _toConsumableArray(matches));
               });
             }
           }

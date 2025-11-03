@@ -43,7 +43,7 @@
         </div>
     {{ end }}
 
-    {{ if and (ne .Type "tags") (ne .Kind "page") }}
+    {{ if and (ne .Kind "page") (not (and (eq .Type "tags") (eq .Kind "taxonomy"))) }}
     {{ range $groupedPages }}
 
 
@@ -102,7 +102,7 @@
     {{ end }} <!-- if ne .Kind "page" -->
 
 
-    {{ if and (ne .Type "tags") (and (not $isTaxonomy) $shouldPaginate) }}
+    {{ if and (not (and (eq .Type "tags") (eq .Kind "taxonomy"))) (and (not $isTaxonomy) $shouldPaginate) }}
     <div class="pagination">{{ template "_internal/pagination.html" . }}</div>
     {{ end }}
 
