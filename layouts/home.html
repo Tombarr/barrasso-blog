@@ -90,8 +90,7 @@
                     mt-4
                     text-ht-light font-bold
                     " id="{{ .Key }}">
-                {{ .Key }}
-                {{ if eq hugo.Environment "development" }} - {{len .Pages}} posts{{ end }}
+                <time>{{ .Key }}</time>
             </h2>
             {{ end }}
 

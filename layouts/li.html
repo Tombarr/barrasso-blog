@@ -65,7 +65,10 @@
                 href="{{ $linkUrl }}"
                 {{ if $linkTarget }}target="{{ $linkTarget }}"{{ end }}
                 {{ if $linkRel }}rel="{{ $linkRel }}"{{ end }}>
-                {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{
+                {{ if (isset .Params "favicon") }}
+                    <img src="{{ .Params.favicon }}" alt="favicon" width="16" height="16" class="external-favicon" loading="lazy" draggable="false" />
+                {{ end }}
+                {{ if eq .Section "log" }} <time>{{ .Date.Format "January 2006" }}</time> {{
                 else }} {{ .Title }} {{ end }}
             </a>
 

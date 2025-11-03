@@ -3,6 +3,7 @@ title = 'Millions Could Be Using Your App on Flip Phones'
 date = 2025-03-25T00:00:00-00:00
 draft = false
 externalLink = 'https://hackernoon.com/millions-could-be-using-your-app-on-flip-phones'
+favicon = 'https://hackernoon.imgix.net/hn-icon.png?auto=format&fit=max&w=64'
 categories = ['Software Engineering']
 tags = ['PWA', 'JavaScript', 'Hackernoon', 'Flip Phone']
 +++

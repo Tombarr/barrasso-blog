@@ -229,7 +229,7 @@ The footer has been customized to include:
 
 **Implementation:**
 - `layouts/_partials/footer.html` - Custom footer override with canvas and copyright
-- Copyright text configured in `config/_default/hugo.toml` under `params.copyright`
+- Copyright text configured in `config/hugo.toml` under `params.copyright`
 - Tree rendering: `getTreeColor()` function in `tree-landscape.js` (always returns white)
 - Theme adaptation: CSS invert filter in `assets/css/input.css` handles color switching
 

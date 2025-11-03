@@ -2,7 +2,7 @@
 
 {{ if .Params.externalLink }}
     <!-- External link - use redirect template -->
-    {{ template "_default/redirect.html" . }}
+    {{ template "redirect.html" . }}
 {{ else }}
 <!-- Regular post rendering -->
 {{ partial "single-before.html" . }}
@@ -22,8 +22,8 @@
 
         <h4 class="post-author md:pt-1 text-sm text-ht-light font-bold italic">
             {{ if or (eq .Section "log") (.Params.timeless) }} {{ partial
-            "get-authors.html" . }} {{ else if not (eq .Type "shorts") }} {{
-            .Date.Format "January 2, 2006" }} {{ end }}
+            "get-authors.html" . }} {{ else if not (eq .Type "shorts") }} <time>{{
+            .Date.Format "January 2, 2006" }}</time> {{ end }}
         </h4>
     </header>
 

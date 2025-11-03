@@ -3,6 +3,7 @@ title = 'Resumes in HTML, CSS, and JS'
 date = 2018-06-29T00:00:00-00:00
 draft = false
 externalLink = 'https://medium.com/@tbarrasso/resumes-in-html-css-and-js-f9662d9d6477'
+favicon = 'https://miro.medium.com/v2/5d8de952517e8160e40ef9841c781cdc14a5db313057fa3c3de41c6f5b494b19'
 categories = ['Web Development', 'Career']
 tags = ['HTML', 'CSS', 'JavaScript', 'Medium', 'Resume']
 +++

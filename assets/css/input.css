@@ -21,6 +21,22 @@
   position: absolute;
 }
 
+img.external-favicon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-inline-end: 0.1em;
+}
+
+a img.external-favicon {
+  opacity: 0.65;
+  transition: opacity 0.1s ease-in-out;
+}
+
+a:hover img.external-favicon {
+  opacity: 1;
+}
+
 /* Custom styles */
 @layer components {
   /* Add left padding to article to make room for portrait */
