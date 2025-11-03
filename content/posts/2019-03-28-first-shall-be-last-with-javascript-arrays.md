@@ -8,4 +8,4 @@ categories = ['JavaScript']
 tags = ['JavaScript', 'Arrays', 'Medium', 'Data Structures']
 +++
 
-So the last shall be [0], and the first [length - 1]
+So the last shall be `[0]`, and the first `[length - 1]`

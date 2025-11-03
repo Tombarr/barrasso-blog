@@ -27,7 +27,7 @@ run-caddy: ## [def] run on caddy server
 site:		## hugo compile build
 	@hugo \
 		build \
-		--cleanDestinationDir --gc --minify --printI18nWarnings --buildDrafts \
+		--cleanDestinationDir --gc --minify --printI18nWarnings \
 		--logLevel $(log)
 
 css:		## compile Tailwind CSS with PostCSS
@@ -48,7 +48,7 @@ run-site:	## run Hugo server
 	@hugo \
 		server \
 		--port=1313 --disableFastRender \
-		--cleanDestinationDir --gc --minify --printI18nWarnings --buildDrafts \
+		--cleanDestinationDir --gc --minify --printI18nWarnings \
 		--logLevel $(log) --noHTTPCache
 
 caddy: 		## copy local Caddyfile and start Caddy server

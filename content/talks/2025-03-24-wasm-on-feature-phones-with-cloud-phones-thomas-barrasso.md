@@ -8,4 +8,4 @@ categories = ['Software Engineering']
 tags = ['PWA', 'JavaScript', 'WasmAssembly', 'Flip Phone']
 +++
 
-Feature phones? Yes, they still make them. And they run Wasm! In this WasmAssembly podcast, Thomas Steiner hosts Thomas Barrasso from CloudMosa to talk about the Cloud Phone platform and what it takes to run WebAssembly on tiny feature phones by streaming Web apps from a remote server that runs Chromium.
+Feature phones? Yes, they still make them. And they run Wasm! In this WasmAssembly podcast, Thomas Steiner hosts Thomas Barrasso from [CloudMosa](https://puffin.com) to talk about the Cloud Phone platform and what it takes to run WebAssembly on tiny feature phones by streaming Web apps from a remote server that runs Chromium.

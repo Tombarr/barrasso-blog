@@ -245,7 +245,7 @@ A `.devcontainer.json` is configured with:
 ## Key Technical Details
 
 - Hugo runs on port 1313 by default
-- Builds use: `--cleanDestinationDir --gc --minify --printI18nWarnings --buildDrafts`
+- Builds use: `--cleanDestinationDir --gc --minify --printI18nWarnings`
 - Server uses: `--disableFastRender` for accurate rebuilds
 - Draft posts are included in builds (via `--buildDrafts`)
 - Production URL: https://barrasso.me/

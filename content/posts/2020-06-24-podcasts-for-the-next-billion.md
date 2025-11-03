@@ -8,4 +8,4 @@ categories = ['Mobile', 'Design']
 tags = ['KaiOS', 'Podcasting', 'Medium', 'Mobile', 'UX']
 +++
 
-Designing a podcast client for KaiOS smart feature phones
+Designing a podcast client for [KaiOS](https://kaiostech.com) smart feature phones
