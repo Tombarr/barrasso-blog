@@ -1,0 +1,37 @@
+topics = "Topics"
+about = "About"
+tags = "Tags"
+posts = "Posts"
+talks = "Talks"
+
+# Footer sections
+[footer.about.title]
+other = "Tom Barrasso"
+
+[footer.about.description]
+other = "Code, Culture, Creativity"
+
+[footer.contact.title]
+other = "Contact"
+
+[footer.contact.email]
+other = "Email"
+
+[footer.social.title]
+other = "Social"
+
+[footer.social.github]
+other = "GitHub"
+
+[footer.social.medium]
+other = "Medium"
+
+[footer.social.linkedin]
+other = "LinkedIn"
+
+# Copyright
+[footer.copyright.text]
+other = "Copyright © {{ .Year }}. {{ .Holder }}."
+
+[footer.copyright.license]
+other = "Except as otherwise noted, the content of this page is licensed under the {{ .ContentLicense }}, and code samples are licensed under the {{ .CodeLicense }}."

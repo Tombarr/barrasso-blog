@@ -36,7 +36,9 @@
       ]
     }
   },
+  "postCreateCommand": "bash .devcontainer/install-typos.sh",
   "postAttachCommand": {
-    "hugo-version": "hugo version"
+    "hugo-version": "hugo version",
+    "setup-hooks": "bash .devcontainer/setup-git-hooks.sh"
   }
 }

@@ -15,7 +15,9 @@ enablePagination = true
 avatar = "/images/portraits.jpg"
 sitename = "barrasso.me"
 github = "https://github.com/tombarr"
+linkedin = "https://linkedin.com/in/tombarrasso/"
 enableRobotsTXT = true
+reshare = false
 
 [params.search]
 enabled = true

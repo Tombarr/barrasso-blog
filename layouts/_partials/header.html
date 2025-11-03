@@ -17,20 +17,20 @@
                            {{ if .IsHome}} text-ht {{ end }}">
                     {{ $.Param "sitename" }}
                 </a> <span class="font-normal">|</span>
-                <a  href="/blog/"
+                <a  href="/talks/"
                     class='no-underline
-                           {{ if eq .Name "Blogs" }} text-ht {{ end }}'>
-                    posts
+                           {{ if eq .Name "Talks" }} text-ht {{ end }}'>
+                    {{ i18n "talks" }}
                 </a><span class="font-normal">|</span>
                 <a  href="/tags/"
                     class='no-underline
                            {{ if eq .Name "Tags" }} text-ht {{ end }}'>
-                    topics
+                    {{ i18n "tags" }}
                 </a><span class="font-normal">|</span>
                 <a  href="/about/"
                     class='no-underline
                            {{ if eq .RelPermalink "/about/" }} text-ht {{ end }}'>
-                    about
+                    {{ i18n "about" }}
                 </a>
 
                 <!-- intelligently show section -->

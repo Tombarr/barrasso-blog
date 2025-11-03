@@ -71,6 +71,65 @@
         "reveal": "always",
         "panel": "dedicated"
       }
+    },
+    {
+      "label": "Check Typos",
+      "type": "shell",
+      "command": "typos",
+      "problemMatcher": {
+        "owner": "typos",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+`(.*)` should be `(.*)`",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "group": "checks"
+      }
+    },
+    {
+      "label": "Watch Typos",
+      "type": "shell",
+      "command": "while true; do clear; typos; sleep 5; done",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "typos",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+`(.*)` should be `(.*)`",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\s*$",
+          "endsPattern": ".*"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "checks"
+      }
+    },
+    {
+      "label": "Fix Typos",
+      "type": "shell",
+      "command": "typos --write-changes",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "group": "checks"
+      }
     }
   ]
 }

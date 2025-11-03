@@ -26,7 +26,7 @@
     <!-- custom content included in header page -->
     {{ if .Content }}
         <h1 class="
-            text-3xl font-title font-semibold">
+            text-3xl font-title font-semibold mb-4">
             {{ .Title }}
         </h1>
 
@@ -43,7 +43,7 @@
         </div>
     {{ end }}
 
-    {{ if ne .Kind "page" }}
+    {{ if and (ne .Type "tags") (ne .Kind "page") }}
     {{ range $groupedPages }}
 
 
@@ -102,7 +102,7 @@
     {{ end }} <!-- if ne .Kind "page" -->
 
 
-    {{ if and (not $isTaxonomy) $shouldPaginate }}
+    {{ if and (ne .Type "tags") (and (not $isTaxonomy) $shouldPaginate) }}
     <div class="pagination">{{ template "_internal/pagination.html" . }}</div>
     {{ end }}
 

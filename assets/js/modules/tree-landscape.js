@@ -7,8 +7,8 @@
  * @returns {string} Color hex code - always white
  */
 function getTreeColor() {
-  // Always draw in white - CSS will invert to black for light theme
-  return '#ffffff';
+  // Always draw in black - CSS will invert to white for light theme
+  return '#000000';
 }
 
 function secureRandomFloat() {

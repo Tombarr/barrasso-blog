@@ -64,7 +64,7 @@
         </div>
     {{ end }}
 
-    {{ if ne .Kind "page" }}
+    {{ if and (ne .Type "tags") (ne .Kind "page") }}
     {{ range $groupedPages }}
 
 

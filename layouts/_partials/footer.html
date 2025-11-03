@@ -1,17 +1,61 @@
-<section class="tree-divider-container">
-  <canvas class="tree-divider" width="1200" height="240" style="overflow: hidden;" title="A random forest"></canvas>
-</section>
+<!-- Footer wrapper with unified background -->
+<div class="footer-wrapper pt-6">
+  <section class="tree-divider-container mt-4">
+    <canvas class="tree-divider" width="1200" height="240" style="overflow: hidden;" title="A random forest"></canvas>
+  </section>
 
-<div class="m-8 text-start text-ht-lighter text-xs blog-content-width">
-  {{- with .Site.Params.copyright -}}
-  <p class="mb-2">
-    Copyright &copy; {{ .year }}. {{ .holder }}.
-  </p>
-  <p>
-    Except as otherwise noted, the content of this page is licensed under the
-    <a href="{{ .contentLicense.url }}" target="_blank" rel="noopener noreferrer" class="decoration-ht-lightest">{{ .contentLicense.name }}</a>,
-    and code samples are licensed under the
-    <a href="{{ .codeLicense.url }}" target="_blank" rel="noopener noreferrer" class="decoration-ht-lightest">{{ .codeLicense.name }}</a>.
-  </p>
-  {{- end -}}
+  <!-- Footer content section with three columns -->
+  <div class="footer-content">
+    <div class="footer-columns blog-content-width">
+      <!-- Column 1: About -->
+      <div class="footer-column">
+        <h3 class="footer-column-title">{{ i18n "footer.about.title" }}</h3>
+        <p class="footer-column-text">{{ .Site.Params.summary }}</p>
+      </div>
+
+      <!-- Column 2: Contact -->
+      <div class="footer-column">
+        <h3 class="footer-column-title">{{ i18n "footer.contact.title" }}</h3>
+        {{- with .Site.Params.author.email -}}
+        <a href="mailto:{{ . }}" role="button" class="footer-email-button inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full border text-white border-white bg-transparent hover:bg-white hover:text-black transition-colors duration-200 no-underline hover:no-underline">
+          {{- with resources.Get "images/email-icon.svg" -}}
+            {{ .Content | safeHTML }}
+          {{- end -}}
+          <span>{{ i18n "footer.contact.email" }}</span>
+        </a>
+        {{- end -}}
+      </div>
+
+      <!-- Column 3: Social -->
+      <div class="footer-column">
+        <h3 class="footer-column-title">{{ i18n "footer.social.title" }}</h3>
+        <p class="footer-column-text footer-social-links">
+          {{- with .Site.Params.github -}}
+          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="footer-link">{{ i18n "footer.social.github" }}</a>
+          {{- end -}}
+          <a href="https://medium.com/@tbarrasso" target="_blank" rel="noopener noreferrer" class="footer-link">{{ i18n "footer.social.medium" }}</a>
+          {{- with .Site.Params.linkedin -}}
+          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="footer-link">{{ i18n "footer.social.linkedin" }}</a>
+          {{- end -}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright section -->
+  <div class="footer-copyright">
+    <div class="blog-content-width">
+      {{- with .Site.Params.copyright -}}
+      <p class="mb-2">
+        {{ i18n "footer.copyright.text" (dict "Year" .year "Holder" .holder) }}
+      </p>
+      <p>
+        Except as otherwise noted, the content of this page is licensed under the
+        <a href="{{ .contentLicense.url }}" target="_blank" rel="noopener noreferrer" class="footer-copyright-link">{{ .contentLicense.name }}</a>,
+        and code samples are licensed under the
+        <a href="{{ .codeLicense.url }}" target="_blank" rel="noopener noreferrer" class="footer-copyright-link">{{ .codeLicense.name }}</a>.
+      </p>
+      {{- end -}}
+    </div>
+  </div>
 </div>
