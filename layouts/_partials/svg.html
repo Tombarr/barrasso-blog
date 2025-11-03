@@ -1,0 +1,5 @@
+{{- $svg := resources.Get (print "images/" . ".svg") -}}
+{{- $title := index (last 1 (strings.Split . "/" )) 0 -}}
+<span class="inline-svg" title="{{ title $title }}">
+  {{ $svg.Content | safeHTML }}
+</span>

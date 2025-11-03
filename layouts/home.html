@@ -57,6 +57,22 @@
         </article>
     {{ end }}
 
+</div>
+
+<!-- Scrolling logos banner -->
+{{ if .IsHome }}
+<div class="flex flex-col
+            blog-content-width
+            mb-2">
+    <h2 class="font-semibold md:font-bold leading-tight text-lg lg:text-3xl">{{ i18n "worked_with" }}</h2>
+</div>
+{{ partial "logo-scroll.html" . }}
+{{ end }}
+
+<div class="flex flex-col
+            blog-content-width
+            pb-12">
+
     <!-- Show tag cloud for main tags taxonomy page -->
     {{ if and (eq .Kind "taxonomy") (eq .Type "tags") }}
         <div class = "mb-10">

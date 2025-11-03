@@ -12,6 +12,107 @@
 @import "../../themes/henry/assets/css/theme.css";
 @import "../../themes/henry/assets/css/henry.css";
 
+/* Scrolling logos banner */
+.logo-scroll-container {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  padding: 2rem 0;
+  position: relative;
+  margin: 2rem 0;
+}
+
+html.dark .logo-scroll-container {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.logo-scroll-track {
+  display: flex;
+  width: fit-content;
+  animation: scroll-logos 40s linear infinite;
+  align-items: center;
+}
+
+.logo-scroll-track:hover {
+  animation-play-state: paused;
+}
+
+.logo-scroll-set {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+  padding: 0 2rem;
+  height: 4rem;
+}
+
+.logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.logo-item .inline-svg {
+  transform: scale(1.01);
+  transition: transform 0.2s ease-in-out;
+}
+
+.logo-item .inline-svg:hover {
+  transform: scale(1.1);
+}
+
+.logo-item .inline-svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-height: 4rem;
+}
+
+.logo-item svg {
+  max-height: 3rem;
+  width: auto;
+  max-width: 10rem;
+  object-fit: contain;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  color: #9b9b9b;
+}
+
+.logo-scroll-track:hover .logo-item svg {
+  opacity: 0.9;
+}
+
+/* Light theme: dark logos */
+.logo-scroll-container svg {
+  filter: brightness(0.5) saturate(100%) invert(0);
+}
+
+.logo-scroll-container svg g[fill] path,
+.logo-scroll-container svg path[fill] {
+  fill: currentColor;
+}
+
+.logo-scroll-container svg g[stroke] path,
+.logo-scroll-container svg path[stroke] {
+  stroke: currentColor;
+}
+
+/* Dark theme: light logos */
+html.dark .logo-scroll-container svg {
+  filter: brightness(0.5) saturate(100%) invert(1);
+}
+
+@keyframes scroll-logos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 :root .hero.post-content > :not(figure.full-bleed) {
   margin: 0;
   width: 100%;
@@ -74,7 +175,7 @@ a:hover img.external-favicon {
   .hero-centered-portrait #portrait .portrait-variation {
     margin-inline: auto;
     transform: scale(1.5);
-    margin-block: 1rem 4rem;
+    margin-block: 1rem 6rem;
   }
 
   .hero-centered-portrait .about-content {

@@ -4,6 +4,8 @@ tags = "Tags"
 posts = "Posts"
 talks = "Talks"
 
+worked_with = "Who I've Worked With"
+
 # Footer sections
 [footer.about.title]
 other = "Tom Barrasso"
