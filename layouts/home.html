@@ -37,19 +37,117 @@
             <div class="metaball-container">
                 <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <linearGradient id="metaball-gradient" x1="0%" y1="0%" x2="0%" y2="100%" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" style="stop-color:rgb(236,235,227);stop-opacity:1" />
-                            <stop offset="30%" style="stop-color:rgb(147,147,146);stop-opacity:1" />
-                            <stop offset="60%" style="stop-color:rgb(111,140,255);stop-opacity:1" />
+                        <!-- Aurora Gradient Definition -->
+                        <linearGradient id="auroraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" style="stop-color:#001a33;stop-opacity:1">
+                            <animate attributeName="stop-color"
+                                     values="#001a33;#1a0033;#003333;#001a33"
+                                     dur="20s"
+                                     repeatCount="indefinite"/>
+                          </stop>
+                          <stop offset="25%" style="stop-color:#0d4d4d;stop-opacity:1">
+                            <animate attributeName="stop-color"
+                                     values="#0d4d4d;#4d0d4d;#0d4d66;#0d4d4d"
+                                     dur="18s"
+                                     repeatCount="indefinite"/>
+                          </stop>
+                          <stop offset="50%" style="stop-color:#1a8080;stop-opacity:1">
+                            <animate attributeName="stop-color"
+                                     values="#1a8080;#801a80;#1a8099;#1a8080"
+                                     dur="22s"
+                                     repeatCount="indefinite"/>
+                          </stop>
+                          <stop offset="75%" style="stop-color:#26b3b3;stop-opacity:1">
+                            <animate attributeName="stop-color"
+                                     values="#26b3b3;#b326b3;#2680b3;#26b3b3"
+                                     dur="16s"
+                                     repeatCount="indefinite"/>
+                          </stop>
+                          <stop offset="100%" style="stop-color:#33e6e6;stop-opacity:1">
+                            <animate attributeName="stop-color"
+                                     values="#33e6e6;#e633e6;#3399e6;#33e6e6"
+                                     dur="24s"
+                                     repeatCount="indefinite"/>
+                          </stop>
+
+                          <!-- Animate gradient position/angle -->
+                          <animateTransform attributeName="gradientTransform"
+                                            type="rotate"
+                                            from="0 0.5 0.5"
+                                            to="360 0.5 0.5"
+                                            dur="30s"
+                                            repeatCount="indefinite"/>
                         </linearGradient>
 
-                        <filter id="metaball-light">
-                            <feDiffuseLighting in="SourceGraphic" result="light" lighting-color="white">
-                                <fePointLight x="400px" y="300px" z="100" />
-                            </feDiffuseLighting>
-                            <feComposite in="SourceGraphic" in2="light" operator="arithmetic" k1="1" k2="1" k3="0" k4="0"/>
+                        <!-- Radial gradient overlay for glow effect -->
+                        <radialGradient id="auroraGlow" cx="50%" cy="50%" r="50%">
+                          <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3">
+                            <animate attributeName="stop-opacity"
+                                     values="0.3;0.5;0.2;0.3"
+                                     dur="15s"
+                                     repeatCount="indefinite"/>
+                          </stop>
+                          <stop offset="50%" style="stop-color:#99ffff;stop-opacity:0.2">
+                            <animate attributeName="stop-opacity"
+                                     values="0.2;0.4;0.1;0.2"
+                                     dur="12s"
+                                     repeatCount="indefinite"/>
+                          </stop>
+                          <stop offset="100%" style="stop-color:#000000;stop-opacity:0"/>
+
+                          <animateTransform attributeName="gradientTransform"
+                                            type="translate"
+                                            values="0 0; 0.2 0.1; -0.1 0.2; 0 0"
+                                            dur="25s"
+                                            repeatCount="indefinite"/>
+                        </radialGradient>
+
+                        <!-- Blur filter for soft aurora effect -->
+                        <filter id="auroraBlur" x="-50%" y="-50%" width="200%" height="200%">
+                          <feGaussianBlur in="SourceGraphic" stdDeviation="8">
+                            <animate attributeName="stdDeviation"
+                                     values="8;12;6;8"
+                                     dur="10s"
+                                     repeatCount="indefinite"/>
+                          </feGaussianBlur>
                         </filter>
-                    </defs>
+
+                        <!-- Turbulence filter for organic movement -->
+                        <filter id="auroraTurbulence" x="-50%" y="-50%" width="200%" height="200%">
+                          <feTurbulence type="fractalNoise" baseFrequency="0.01 0.02" numOctaves="3" seed="1">
+                            <animate attributeName="baseFrequency"
+                                     values="0.01 0.02; 0.015 0.025; 0.01 0.02"
+                                     dur="20s"
+                                     repeatCount="indefinite"/>
+                          </feTurbulence>
+                          <feDisplacementMap in="SourceGraphic" scale="50">
+                            <animate attributeName="scale"
+                                     values="50;80;50"
+                                     dur="15s"
+                                     repeatCount="indefinite"/>
+                          </feDisplacementMap>
+                          <feGaussianBlur stdDeviation="5"/>
+                        </filter>
+
+                        <!-- Combined filter with turbulence and blur -->
+                        <filter id="auroraCombined" x="-50%" y="-50%" width="200%" height="200%">
+                          <feTurbulence type="fractalNoise" baseFrequency="0.01 0.015" numOctaves="4" seed="2">
+                            <animate attributeName="baseFrequency"
+                                     values="0.01 0.015; 0.02 0.025; 0.01 0.015"
+                                     dur="30s"
+                                     repeatCount="indefinite"/>
+                          </feTurbulence>
+                          <feColorMatrix type="hueRotate" values="0">
+                            <animate attributeName="values"
+                                     values="0;180;360;0"
+                                     dur="40s"
+                                     repeatCount="indefinite"/>
+                          </feColorMatrix>
+                          <feDisplacementMap in="SourceGraphic" scale="40"/>
+                          <feGaussianBlur stdDeviation="10"/>
+                          <feBlend mode="screen" in2="SourceGraphic"/>
+                        </filter>
+                      </defs>
                 </svg>
             </div>
 

@@ -480,11 +480,12 @@ a:hover img.external-favicon {
     height: 600px;
     max-width: 100vw;
     opacity: 0.15;
-    filter: grayscale(1);
+    filter: invert(0) brightness(150%);
+    transition: filter 0.2s ease-in-out;
   }
 
   :root.dark .metaball-container svg {
-    filter: invert(1) grayscale(1) brightness(200%);
+    filter: invert(1) brightness(200%);
   }
 
   /* Ensure hero content appears above metaball */
@@ -512,8 +513,8 @@ a:hover img.external-favicon {
     /* henry contrast - keep existing light mode contrast colors */
     --color-hc-lightest: var(--color-yellow-100);
     --color-hc-lighter:  var(--color-yellow-200);
-    --color-hc:          var(--color-yellow-300);
-    --color-hc-dark:     var(--color-yellow-500);
+    --color-hc:          var(--color-yellow-500);
+    --color-hc-dark:     var(--color-yellow-300);
   }
 
   /* Dark mode - dark background with light text */
@@ -532,7 +533,7 @@ a:hover img.external-favicon {
     /* henry contrast - orange for dark mode */
     --color-hc-lightest: var(--color-orange-100);
     --color-hc-lighter:  var(--color-orange-200);
-    --color-hc:          var(--color-orange-300);
-    --color-hc-dark:     var(--color-orange-500);
+    --color-hc:          var(--color-orange-500);
+    --color-hc-dark:     var(--color-orange-300);
   }
 }

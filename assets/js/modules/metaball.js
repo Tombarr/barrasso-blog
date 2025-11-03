@@ -281,8 +281,8 @@ export function initMetaball() {
 
     // Create group for metaball shapes
     const group = createSVGElement('g', {
-        fill: 'url(#metaball-gradient)',
-        filter: 'url(#metaball-light)',
+        fill: 'url(#auroraGradient)',
+        filter: 'url(#auroraGlow)',
         class: 'metaball-group'
     });
 
