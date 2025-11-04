@@ -8,4 +8,4 @@ categories = ['JavaScript']
 tags = ['JavaScript', 'Medium', 'Programming', 'Language Design']
 +++
 
-Why so negative zero? JavaScript has two zeroes and they're both the same and different.
+Why so negative zero? JavaScript has two zeroes and they're both the same and different

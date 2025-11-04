@@ -8,4 +8,4 @@ categories = ['Software Engineering', 'Humor']
 tags = ['Development', 'Medium', 'Satire', 'Methodologies']
 +++
 
-Instagram Driven Development, and other commonly employed strategies for crafting digital experiences.
+Instagram Driven Development, and other commonly employed strategies for crafting digital experiences

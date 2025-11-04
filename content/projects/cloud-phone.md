@@ -21,7 +21,7 @@ githubUrl = ''
 {{< youtube "u_OwAl8r6nY" >}}
 
 {{< br >}}
-Cloud Phone is a Chromium-based remote browser from CloudMosa, the company behind the [Puffin](https://puffin.com) browser. Cloud Phone lets users watch YouTube and TikTok on budget features phones with as little as 16MB RAM! As the Head of Developer Relations, I designed, authored, and built the [Cloud Phone for Developers](https://developer.cloudfone.com) website, made [guest appearances]({{< relref "talks" >}}) on podcasts, filmed and published content, developed reference applications, and supported many Cloud Phone developers.
+Cloud Phone is a Chromium-based remote browser from CloudMosa, the company behind the [Puffin](https://puffin.com) browser. Cloud Phone lets users watch YouTube and TikTok on budget features phones with as little as 16MB RAM! As the **Head of Developer Relations**, I designed, authored, and built the [Cloud Phone for Developers](https://developer.cloudfone.com) website, made [guest appearances]({{< relref "talks" >}}) on podcasts, filmed and [published content](https://www.youtube.com/@CloudPhone-CloudMosa/shorts), developed [reference applications](https://github.com/cloudmosa/cloudphone-currency), and supported many Cloud Phone developers.
 
 {{< br >}}
-Cloud Phone for Developers is a static website generated using [Hugo](https://gohugo.io/) using a custom [Doks](https://getdoks.org/)-based theme.
+Cloud Phone for Developers is a static website generated using [Hugo](https://gohugo.io/) using a custom [Doks](https://getdoks.org/)-based theme and [Algolia DocSearch](https://docsearch.algolia.com/).

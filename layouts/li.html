@@ -68,6 +68,10 @@
                 {{ if (isset .Params "favicon") }}
                     <img src="{{ .Params.favicon }}" alt="favicon" width="16" height="16" class="external-favicon" loading="lazy" draggable="false" />
                 {{ end }}
+                {{ if (isset .Params "icon") }}
+                    {{- $icon := resources.Get .Params.icon -}}
+                    <img src="{{ $icon.RelPermalink }}" alt="{{ .Title }}" width="16" height="16" class="external-favicon" loading="lazy" draggable="false" />
+                {{ end }}
                 {{ if eq .Section "log" }} <time>{{ .Date.Format "January 2006" }}</time> {{
                 else }} {{ .Title }} {{ end }}
             </a>

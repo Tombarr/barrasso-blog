@@ -8,4 +8,4 @@ categories = ['Networking', 'Podcasting']
 tags = ['IPv6', 'Podcasting', 'Medium', 'Networking', 'Infrastructure']
 +++
 
-The world has been running out of IPv4 addresses for some time. Podcasting may not be prepared for the inevitable IPv6 future.
+The world has been running out of IPv4 addresses for some time. Podcasting may not be prepared for the inevitable IPv6 future
