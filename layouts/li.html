@@ -58,7 +58,7 @@
             {{ $linkUrl := cond .Params.externalLink .Params.externalLink .RelPermalink }}
             {{ $linkTarget := cond .Params.externalLink "_blank" "_self" }}
             {{ $linkRel := cond .Params.externalLink "noopener noreferrer" "" }}
-            <a class="no-underline
+            <a class="no-underline transition-colors duration-200
                 {{ if (eq $postType "link") }}
                  external-link
                 {{ end }}"

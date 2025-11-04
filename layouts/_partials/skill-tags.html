@@ -1,0 +1,18 @@
+{{- $allSkills := slice -}}
+{{- with .Site.Params.skills -}}
+  {{- $allSkills = $allSkills | append .languages -}}
+  {{- $allSkills = $allSkills | append .frontend -}}
+  {{- $allSkills = $allSkills | append .backend -}}
+  {{- $allSkills = $allSkills | append .devops -}}
+  {{- $allSkills = $allSkills | append .databases -}}
+  {{- $allSkills = $allSkills | append .practices -}}
+{{- end -}}
+{{- $allSkills := collections.Shuffle $allSkills -}}
+
+<div class="w-full my-4">
+  <div class="flex flex-wrap gap-3 items-center">
+    {{- range $allSkills }}
+    <span class="skill-tag">{{ . }}</span>
+    {{- end }}
+  </div>
+</div>

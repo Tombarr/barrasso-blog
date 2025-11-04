@@ -48,3 +48,11 @@ url = "https://creativecommons.org/licenses/by/4.0/"
 [params.copyright.codeLicense]
 name = "Apache 2.0 License"
 url = "https://www.apache.org/licenses/LICENSE-2.0"
+
+[params.skills]
+languages = ["TypeScript", "JavaScript", "Java", "Go", "Ruby on Rails", "Bash"]
+frontend = ["React", "Svelte", "Vue.js", "HTML", "CSS"]
+backend = ["Node.js", "Next.js", "tRPC", "WebSockets", "WebRTC"]
+devops = ["Docker", "AWS", "Cloudflare", "CI/CD", "Linux", "Git"]
+databases = ["SQLite", "PostgreSQL", "DynamoDB", "Redis"]
+practices = ["Program Management", "Product Management", "Technical Communication", "Data Visualization", "Threat Modeling"]

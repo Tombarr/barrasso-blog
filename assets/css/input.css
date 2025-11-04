@@ -12,6 +12,21 @@
 @import "../../themes/henry/assets/css/theme.css";
 @import "../../themes/henry/assets/css/henry.css";
 
+/* Skill tags - minimal custom styles, mostly using Tailwind */
+@layer components {
+  .skill-tag {
+    @apply inline-block px-4 py-2 rounded-full text-xs font-medium transition-all duration-200;
+    @apply bg-black/5 border border-black/10 cursor-default;
+    @apply hover:bg-yellow-500 hover:text-white hover:border-yellow-500;
+    @apply hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  html.dark .skill-tag {
+    @apply bg-white/8 border-white/15;
+    @apply hover:bg-orange-500 hover:text-slate-900 hover:border-orange-500;
+  }
+}
+
 /* Scrolling logos banner */
 .logo-scroll-container {
   width: 100%;
@@ -151,6 +166,10 @@ a:hover img.external-favicon {
   display: none;
 }
 
+:root:not(.dark) body {
+  background-color: oklch(0.967 0.003 264.542);
+}
+
 /* Custom styles */
 @layer components {
   /* Add left padding to article to make room for portrait */
@@ -170,6 +189,15 @@ a:hover img.external-favicon {
   .hero-centered-portrait #portrait {
     text-align: center;
     margin-bottom: 2rem;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   .hero-centered-portrait #portrait .portrait-variation {
@@ -215,18 +243,8 @@ a:hover img.external-favicon {
     background-size: 400% 400%;
     background-position: inherit;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
     pointer-events: none;
-  }
-
-  /* On hover/tap: fade in the color layer */
-  .portrait-variation:hover::before,
-  .portrait-variation:active::before {
-    opacity: 1;
-  }
-
-  .hero-with-portrait:hover .portrait-variation::before {
-    opacity: 1;
+    animation: fadeIn 5s ease-in forwards;
   }
 
   /* Light mode portrait border */
