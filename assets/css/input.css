@@ -513,6 +513,18 @@ a:hover img.external-favicon {
   }
 }
 
+.project-card img.w-6 {
+  transform: scale(1.3);
+}
+
+.object-contain {
+  object-fit: contain;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
 /* Theme color fixes for proper contrast */
 @layer theme {
   /* Light mode - white background with dark text */

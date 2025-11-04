@@ -1,0 +1,88 @@
+{{- $project := . -}}
+
+{{- /* Validate and get feature image resource */ -}}
+{{- $featureImage := "" -}}
+{{- if .Params.featureImage -}}
+  {{- $featureImage = resources.Get .Params.featureImage -}}
+  {{- if not $featureImage -}}
+    {{- errorf "Feature image not found: %s (in %s)" .Params.featureImage .File.Path -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Validate and get icon resource */ -}}
+{{- $icon := "" -}}
+{{- if .Params.icon -}}
+  {{- $icon = resources.Get .Params.icon -}}
+  {{- if not $icon -}}
+    {{- errorf "Icon not found: %s (in %s)" .Params.icon .File.Path -}}
+  {{- end -}}
+{{- end -}}
+
+<article class="project-card group relative flex flex-col overflow-hidden rounded-lg border border-black/10 bg-white/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700 dark:bg-slate-400/90">
+  <a href="{{ .RelPermalink }}" class="flex flex-col h-full no-underline" title="{{ .Title }}">
+    {{- if $featureImage }}
+    <div class="aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-900">
+      {{- with ($featureImage.Resize "600x").Crop "500x400 Center" -}}
+      <img
+        src="{{ .RelPermalink | safeURL }}"
+        alt="{{ $project.Title }}"
+        width="{{ .Width }}"
+        height="{{ .Height }}"
+        class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
+        loading="lazy"
+      />
+      {{- end -}}
+    </div>
+    {{- end }}
+
+    <div class="flex flex-1 flex-col p-6">
+      <div class="flex items-start justify-between gap-4 mb-3">
+        <div class="flex items-center gap-3">
+          {{- if $icon }}
+          <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700">
+            <img
+              src="{{ $icon.RelPermalink }}"
+              alt="{{ .Title }}"
+              width="{{ $icon.Width }}"
+              height="{{ $icon.Height }}"
+              loading="lazy"
+              draggable="false"
+              class="h-6 w-6"
+            />
+          </div>
+          {{- end }}
+          <h3 class="text-xl font-semibold leading-tight text-slate-900 dark:text-slate-50">
+            {{ .Title }}
+          </h3>
+        </div>
+      </div>
+
+      {{- if .Params.dateRange }}
+      <div class="mb-3 text-sm text-slate-500 dark:text-slate-300">
+        {{ .Params.dateRange }}
+      </div>
+      {{- end }}
+
+      {{- if .Params.summary }}
+      <p class="mb-4 text-sm text-slate-600 dark:text-slate-200 line-clamp-3">
+        {{ .Params.summary }}
+      </p>
+      {{- end }}
+
+      {{- if .Params.technologies }}
+      <div class="mt-auto flex flex-wrap gap-2">
+        {{- range first 5 .Params.technologies }}
+        <span class="inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-200">
+          {{ . }}
+        </span>
+        {{- end }}
+        {{- if gt (len .Params.technologies) 5 }}
+        <span class="inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-200">
+          +{{ sub (len .Params.technologies) 5 }}
+        </span>
+        {{- end }}
+      </div>
+      {{- end }}
+    </div>
+  </a>
+</article>

@@ -131,6 +131,26 @@
 {{ partial "logo-scroll.html" . }}
 {{ end }}
 
+<!-- Projects section -->
+{{ if .IsHome }}
+{{- $projects := where .Site.RegularPages "Type" "projects" -}}
+{{- if $projects }}
+<div class="flex flex-col blog-content-width my-12">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="font-semibold md:font-bold leading-tight text-lg lg:text-3xl">{{ i18n "projects" }}</h2>
+    <a href="/projects/" class="text-sm font-medium text-slate-600 hover:text-yellow-500 dark:text-slate-400 dark:hover:text-orange-500 transition-colors">
+      {{ i18n "view_all" }} →
+    </a>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {{- range first 6 (where $projects ".Params.featured" "!=" false).ByDate.Reverse }}
+      {{ partial "project-card.html" . }}
+    {{- end }}
+  </div>
+</div>
+{{- end }}
+{{ end }}
+
 <div class="flex flex-col
             blog-content-width
             pb-12">

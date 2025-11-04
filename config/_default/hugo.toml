@@ -52,7 +52,12 @@ url = "https://www.apache.org/licenses/LICENSE-2.0"
 [params.skills]
 languages = ["TypeScript", "JavaScript", "Java", "Go", "Ruby on Rails", "Bash"]
 frontend = ["React", "Svelte", "Vue.js", "HTML", "CSS"]
-backend = ["Node.js", "Next.js", "tRPC", "WebSockets", "WebRTC"]
+backend = ["Node.js", "Next.js", "tRPC", "WebSockets"]
 devops = ["Docker", "AWS", "Cloudflare", "CI/CD", "Linux", "Git"]
 databases = ["SQLite", "PostgreSQL", "DynamoDB", "Redis"]
 practices = ["Program Management", "Product Management", "Technical Communication", "Data Visualization", "Threat Modeling"]
+
+[privacy]
+  [privacy.youTube]
+    disable = false
+    privacyEnhanced = true

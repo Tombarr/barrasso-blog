@@ -7,6 +7,9 @@ tom = "Tom"
 
 skills = "Skills & Technologies"
 worked_with = "Who I've Worked With"
+projects = "Projects"
+view = "View"
+view_all = "View all"
 
 # Footer sections
 [footer.about.title]
