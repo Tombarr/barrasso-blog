@@ -5,11 +5,23 @@ posts = "Posts"
 talks = "Talks"
 tom = "Tom"
 
-skills = "Skills & Technologies"
+skills = "Skills"
 worked_with = "Who I've Worked With"
 projects = "Projects"
 view = "View"
 view_all = "View all"
+
+# Resume sections
+work_experience = "Work Experience"
+education = "Education"
+technologies = "Technologies"
+links = "Links"
+resume_typeset = "Resume typeset in HTML + CSS"
+
+# Paper size options
+paper_size = "Paper Size"
+letter = "Letter"
+a4 = "A4"
 
 # Footer sections
 [footer.about.title]

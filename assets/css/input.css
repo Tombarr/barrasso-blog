@@ -571,3 +571,317 @@ body > article.blog-content-width:first-child img.w-12 {
     --color-hc-dark:     var(--color-orange-300);
   }
 }
+
+/* ================================================
+   Resume Styles
+   ================================================ */
+
+/* Home button (screen only, left side) */
+.home-button {
+  @apply fixed top-4 left-4 z-50 flex items-center justify-center;
+  @apply w-12 h-12 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm;
+  @apply rounded-lg shadow-lg border border-slate-200 dark:border-slate-700;
+  @apply text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100;
+  @apply transition-colors duration-200;
+}
+
+.home-button .inline-svg {
+  @apply w-6 h-6;
+}
+
+.home-button .inline-svg svg {
+  @apply w-full h-full;
+  fill: currentColor;
+}
+
+/* Paper size toggle (screen only, right side) */
+.paper-size-toggle-container {
+  @apply fixed top-4 right-4 z-50 flex flex-col;
+  @apply bg-white/90 backdrop-blur-sm;
+  @apply px-3 py-3 rounded-lg shadow-lg border border-slate-200;
+  width: auto;
+  max-width: 240px;
+}
+
+.paper-size-toggle-container label .inline-svg {
+  @apply w-4 h-4;
+}
+
+.paper-size-toggle-container label .inline-svg svg {
+  @apply w-full h-full;
+  fill: currentColor;
+}
+
+.print-button .inline-svg {
+  @apply w-4 h-4;
+}
+
+.print-button .inline-svg svg {
+  @apply w-full h-full;
+  fill: currentColor;
+}
+
+.screen-only {
+  @apply print:hidden;
+}
+
+/* Force light mode for resume pages */
+html.resume-light-mode {
+  /* Override any dark mode that might be set */
+  color-scheme: light;
+}
+
+/* Force specific font for resume */
+@layer base {
+  :root.resume-light-mode {
+    font-family: "Calibri", "Arial", sans-serif;
+  }
+}
+
+html.resume-light-mode .resume-page {
+  @apply bg-slate-100;
+}
+
+html.resume-light-mode .resume-container {
+  @apply bg-white text-slate-900;
+}
+
+html.resume-light-mode .home-button {
+  @apply bg-white/90 border-slate-200 text-slate-700;
+}
+
+html.resume-light-mode .home-button:hover {
+  @apply text-slate-900;
+}
+
+html.resume-light-mode .paper-size-toggle-container {
+  @apply bg-white/90 border-slate-200;
+}
+
+html.resume-light-mode #paper-size-select {
+  @apply bg-white border-slate-300 text-slate-900;
+}
+
+html.resume-light-mode label[for="paper-size-select"] {
+  @apply inline-block w-4 h-4 align-middle;
+}
+
+html.resume-light-mode .print-button {
+  @apply bg-slate-700 text-white;
+}
+
+html.resume-light-mode .print-button:hover {
+  @apply bg-slate-800;
+}
+
+/* Resume page container */
+.resume-page {
+  @apply min-h-screen bg-slate-100 dark:bg-slate-900 py-8;
+}
+
+/* Resume container - paper-like appearance on screen */
+.resume-container {
+  @apply mx-auto bg-white dark:bg-slate-800 shadow-xl;
+  @apply px-12 py-10;
+  transition: width 0.3s ease, max-width 0.3s ease, min-height 0.3s ease;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Paper size dimensions - ensure always full page height */
+.resume-container[data-paper-size="letter"] {
+  width: 8.5in;
+  max-width: 8.5in;
+  min-height: 11in;
+}
+
+.resume-container[data-paper-size="a4"] {
+  width: 210mm;
+  max-width: 210mm;
+  min-height: 297mm;
+}
+
+/* Resume content grid - two column layout */
+.resume-content-grid {
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-8;
+  display: grid;
+  align-items: start;
+  flex: 1;
+}
+
+.resume-main-content {
+  @apply lg:col-span-2;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* Push last section in main content to bottom */
+.resume-main-content > :last-child {
+  margin-top: auto;
+}
+
+.resume-sidebar {
+  @apply lg:col-span-1 flex flex-col;
+  min-height: 100%;
+}
+
+/* Resume header - don't let it flex */
+.resume-header {
+  flex-shrink: 0;
+}
+
+.resume-header > div + p {
+  margin-top: -1.5em;
+  padding-right: 10em;
+}
+
+/* Resume sections */
+.resume-section {
+  page-break-inside: avoid;
+}
+
+.resume-section + .resume-section.mb-6:last-of-type {
+  margin-bottom: 0;
+  margin-block-end: 0;
+}
+
+/* Icon sizing in resume context */
+.resume-header .inline-svg,
+.job-entry .inline-svg,
+.degree-entry .inline-svg,
+.project-entry .inline-svg,
+.sidebar-section .inline-svg {
+  @apply inline-block w-3 h-3 align-text-bottom;
+}
+
+/* Ensure icons use current text color */
+.resume-container .inline-svg svg {
+  @apply w-full h-full;
+  fill: currentColor;
+}
+
+/* Remove default list styles in resume */
+.resume-container ul {
+  @apply list-none;
+  padding-left: 0;
+}
+
+/* Prose content styling overrides for smaller resume text */
+.resume-container .prose {
+  @apply text-xs leading-relaxed;
+}
+
+.resume-container .prose ul {
+  @apply list-disc pl-4 my-1;
+}
+
+.resume-container .prose li {
+  @apply my-0.5;
+}
+
+.resume-container .prose p {
+  @apply my-1;
+}
+
+/* Print media queries - maintain screen layout, just hide UI elements */
+@media print {
+  /* Hide UI chrome and site footer (but not resume sidebar footer) */
+  .screen-only,
+  .footer-wrapper {
+    display: none !important;
+  }
+
+  /* Keep page background for print */
+  body {
+    @apply bg-white;
+  }
+
+  .resume-page {
+    @apply bg-white py-8;
+  }
+
+  /* Maintain paper size dimensions and styling */
+  .resume-container {
+    @apply shadow-none bg-white mx-auto;
+    /* Keep the paper size dimensions from screen */
+  }
+
+  .resume-container[data-paper-size="letter"] {
+    width: 8.5in;
+    max-width: 8.5in;
+    min-height: 11in;
+  }
+
+  .resume-container[data-paper-size="a4"] {
+    width: 210mm;
+    max-width: 210mm;
+    min-height: 297mm;
+  }
+
+  /* Page margins for print */
+  @page {
+    margin: 0.5in;
+    size: auto;
+  }
+
+  /* Maintain two-column layout in print */
+  .resume-content-grid {
+    @apply grid grid-cols-3 gap-8;
+    display: grid;
+    flex: 1;
+    align-items: start;
+  }
+
+  .resume-main-content {
+    @apply col-span-2;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .resume-main-content > :last-child {
+    margin-top: auto;
+  }
+
+  .resume-sidebar {
+    @apply col-span-1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .resume-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Prevent page breaks inside important sections */
+  .job-entry,
+  .degree-entry,
+  .project-entry,
+  .sidebar-section {
+    page-break-inside: avoid;
+  }
+
+  .resume-section {
+    page-break-inside: avoid;
+  }
+
+  /* Ensure links don't break */
+  a {
+    text-decoration: none;
+  }
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 1024px) {
+  .resume-container {
+    @apply w-full max-w-full;
+  }
+
+  .paper-size-toggle-container {
+    @apply relative top-0 right-0 mb-4;
+  }
+}

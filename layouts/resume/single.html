@@ -1,0 +1,148 @@
+{{ define "content" }}
+<article class="resume-page">
+  {{- /* Home button (screen only, left side) */ -}}
+  <a href="/" class="home-button screen-only" title="Return to home">
+    {{- partial "svg.html" "icons/fontawesome/house" -}}
+  </a>
+
+  {{- /* Paper size toggle (screen only, right side) */ -}}
+  <div class="paper-size-toggle-container screen-only">
+    <div class="flex items-center gap-2 mb-2">
+      <label for="paper-size-select" class="text-slate-700">
+        {{- partial "svg.html" "icons/fontawesome/file-lines" -}}
+      </label>
+      <select id="paper-size-select" class="px-3 py-1 text-sm border border-slate-300 rounded bg-white text-slate-900">
+        <option value="letter">{{ i18n "letter" | default "Letter" }} (8.5" × 11")</option>
+        <option value="a4">{{ i18n "a4" | default "A4" }} (210mm × 297mm)</option>
+      </select>
+    </div>
+    <button data-action="print" role="button" class="print-button flex items-center justify-center gap-2 w-full px-3 py-2 text-sm font-medium rounded bg-slate-700 text-white hover:bg-slate-800 transition-colors cursor-pointer">
+      {{- partial "svg.html" "icons/fontawesome/print" -}}
+      <span>Print</span>
+    </button>
+  </div>
+
+  {{- /* Resume container with paper styling */ -}}
+  <div class="resume-container" data-paper-size="letter">
+    {{- /* Header Section */ -}}
+    <header class="resume-header mb-6">
+      <div class="flex items-start justify-between">
+        <h1 class="text-4xl font-bold text-slate-900">
+          {{ .Params.name | default .Title }}
+        </h1>
+
+        <div class="contact-info flex flex-col items-end gap-1 text-sm text-slate-700">
+          {{- if .Params.email }}
+          <a href="mailto:{{ .Params.email }}" class="inline-flex items-center gap-1 hover:text-slate-900 no-underline">
+            {{- partial "svg.html" "icons/fontawesome/envelope" -}}
+            {{ .Params.email }}
+          </a>
+          {{- end }}
+
+          {{- if .Params.phone }}
+          <a href="tel:{{ .Params.phone }}" class="inline-flex items-center gap-1 hover:text-slate-900 no-underline">
+            {{- partial "svg.html" "icons/fontawesome/phone" -}}
+            {{ .Params.phone }}
+          </a>
+          {{- end }}
+
+          {{- if .Params.location }}
+          <span class="inline-flex items-center gap-1">
+            {{- partial "svg.html" "icons/fontawesome/location-dot" -}}
+            {{ .Params.location }}
+          </span>
+          {{- end }}
+        </div>
+      </div>
+
+      {{- if .Params.summary }}
+      <p class="text-sm text-slate-700 leading-relaxed">
+        {{ .Params.summary }}
+      </p>
+      {{- end }}
+    </header>
+
+    {{- /* Two-column layout */ -}}
+    <div class="resume-content-grid">
+      {{- /* Main Content (left column, 66%) */ -}}
+      <main class="resume-main-content">
+        {{ .Content }}
+      </main>
+
+      {{- /* Sidebar (right column, 33%) */ -}}
+      <aside class="resume-sidebar">
+        {{- /* Skills Section */ -}}
+        {{- if and .Params.showSkills .Params.skills }}
+        <section class="sidebar-section mb-4">
+          <h2 class="text-base font-semibold mb-2 pb-1 border-b border-slate-300">
+            {{ i18n "skills" | default "Skills" }}
+          </h2>
+          <ul class="space-y-0.5 text-xs text-slate-700 list-none">
+            {{- range .Params.skills }}
+            <li>{{ . }}</li>
+            {{- end }}
+          </ul>
+        </section>
+        {{- end }}
+
+        {{- /* Technologies Section */ -}}
+        {{- if and .Params.showTechnologies .Params.technologies }}
+        <section class="sidebar-section mb-8">
+          <h2 class="text-base font-semibold mb-2 pb-1 border-b border-slate-300">
+            {{ i18n "technologies" | default "Technologies" }}
+          </h2>
+          <ul class="space-y-0.5 text-xs text-slate-700 list-none">
+            {{- range .Params.technologies }}
+            <li>{{ . }}</li>
+            {{- end }}
+          </ul>
+        </section>
+        {{- end }}
+
+        {{- /* Links Section */ -}}
+        {{- if .Params.showLinks }}
+        <section class="sidebar-section mb-8">
+          <h2 class="text-base font-semibold mb-2 pb-1 border-b border-slate-300">
+            {{ i18n "links" | default "Links" }}
+          </h2>
+          <div class="space-y-1 text-xs">
+            {{- with .Params.links }}
+              {{- if .github }}
+              <a href="{{ .github }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-700 hover:text-slate-900 no-underline">
+                {{- partial "svg.html" "icons/fontawesome/github" -}}
+                <span>GitHub</span>
+              </a>
+              {{- end }}
+
+              {{- if .linkedin }}
+              <a href="{{ .linkedin }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-700 hover:text-slate-900 no-underline">
+                {{- partial "svg.html" "icons/fontawesome/linkedin" -}}
+                <span>LinkedIn</span>
+              </a>
+              {{- end }}
+
+              {{- if .portfolio }}
+              <a href="{{ .portfolio }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-700 hover:text-slate-900 no-underline">
+                {{- partial "svg.html" "icons/fontawesome/globe" -}}
+                <span>Portfolio</span>
+              </a>
+              {{- end }}
+            {{- end }}
+          </div>
+        </section>
+        {{- end }}
+
+        {{- /* Footer with typeset note */ -}}
+        <footer class="sidebar-footer mt-auto pt-4 border-t border-slate-300">
+          <p class="text-xs text-slate-500 leading-relaxed">
+            {{ i18n "resume_typeset" | default "Resume typeset in HTML + CSS" }},
+            <a href="https://{{ .Params.resumeGitLink | default "git.io/resume" }}" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-slate-900">
+              {{ .Params.resumeGitLink | default "git.io/resume" }}
+            </a>
+          </p>
+        </footer>
+      </aside>
+    </div>
+  </div>
+</article>
+{{ end }}

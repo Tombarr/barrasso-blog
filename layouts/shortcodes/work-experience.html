@@ -1,0 +1,10 @@
+{{- if .Page.Params.showWorkExperience -}}
+<section class="resume-section mb-6">
+  <h2 class="text-lg font-semibold mb-3 pb-1 border-b border-slate-300">
+    {{ i18n "work_experience" | default "Work Experience" }}
+  </h2>
+  <div class="space-y-4">
+    {{ .Inner }}
+  </div>
+</section>
+{{- end -}}
