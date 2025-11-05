@@ -76,7 +76,7 @@
 
   {{- /* Render feature image in "top" position (after technologies, before content) */ -}}
   {{- if and $featureImage (eq $featureImagePosition "top") }}
-  <div class="aspect-video w-full overflow-hidden rounded-lg mb-8 bg-slate-100 dark:bg-slate-800">
+  <div class="aspect-video w-full overflow-hidden rounded-lg mb-8">
     <img
       src="{{ $featureImage.RelPermalink }}"
       alt="{{ .Title }}"
@@ -93,7 +93,7 @@
 
   {{- /* Render feature image in "bottom" position (after content, before screenshots) */ -}}
   {{- if and $featureImage (eq $featureImagePosition "bottom") }}
-  <div class="aspect-video w-full overflow-hidden rounded-lg mb-8 bg-slate-100 dark:bg-slate-800">
+  <div class="aspect-video w-full overflow-hidden rounded-lg mb-8">
     <img
       src="{{ $featureImage.RelPermalink }}"
       alt="{{ .Title }}"

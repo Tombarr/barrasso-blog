@@ -71,14 +71,14 @@
 
       {{- if .Params.technologies }}
       <div class="mt-auto flex flex-wrap gap-2">
-        {{- range first 5 .Params.technologies }}
-        <span class="inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-200">
+        {{- range first 2 .Params.technologies }}
+        <span class="inline-block rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-200">
           {{ . }}
         </span>
         {{- end }}
-        {{- if gt (len .Params.technologies) 5 }}
-        <span class="inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-200">
-          +{{ sub (len .Params.technologies) 5 }}
+        {{- if gt (len .Params.technologies) 2 }}
+        <span class="inline-block rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-200">
+          +{{ sub (len .Params.technologies) 2 }}
         </span>
         {{- end }}
       </div>

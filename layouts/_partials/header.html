@@ -37,7 +37,7 @@
                 {{ if .IsSection }}
                     <!-- Section list page: kau.sh / section -->
                     {{ if and (ne .RelPermalink "/blog/") (ne .RelPermalink "/letter/") }}
-                        | <span class="text-ht">{{ .Section }}</span>
+                        | <span class="text-ht">{{ strings.Title .Section }}</span>
                     {{ end }}
                 {{ else if eq .Kind "taxonomy" }}
                     <!-- Taxonomy list page: kau.sh / tags -->
