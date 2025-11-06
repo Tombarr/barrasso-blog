@@ -22,6 +22,7 @@ resume_typeset = "Resume typeset in HTML + CSS"
 paper_size = "Paper Size"
 letter = "Letter"
 a4 = "A4"
+download_pdf = "Download PDF"
 
 # Footer sections
 [footer.about.title]

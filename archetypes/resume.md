@@ -44,6 +44,8 @@ resumeGitLink = 'git.io/resume'
   company="Company Name"
   location="City, State"
   dates="Jan 2020 - Present"
+  employerUrl="https://example.com"
+  companyIcon="meta"
 >}}
 - Led development of key features
 - Improved system performance by 50%

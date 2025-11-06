@@ -1,25 +1,32 @@
 {{ define "content" }}
 <article class="resume-page">
-  {{- /* Home button (screen only, left side) */ -}}
-  <a href="/" class="home-button screen-only" title="Return to home">
-    {{- partial "svg.html" "icons/fontawesome/house" -}}
-  </a>
+  {{- /* Resume controls (home button + paper size toggle, screen only) */ -}}
+  <div class="resume-controls screen-only">
+    {{- /* Home button */ -}}
+    <a href="/" class="home-button" title="Return to home">
+      {{- partial "svg.html" "icons/fontawesome/house" -}}
+    </a>
 
-  {{- /* Paper size toggle (screen only, right side) */ -}}
-  <div class="paper-size-toggle-container screen-only">
-    <div class="flex items-center gap-2 mb-2">
-      <label for="paper-size-select" class="text-slate-700">
-        {{- partial "svg.html" "icons/fontawesome/file-lines" -}}
-      </label>
-      <select id="paper-size-select" class="px-3 py-1 text-sm border border-slate-300 rounded bg-white text-slate-900">
-        <option value="letter">{{ i18n "letter" | default "Letter" }} (8.5" × 11")</option>
-        <option value="a4">{{ i18n "a4" | default "A4" }} (210mm × 297mm)</option>
-      </select>
+    {{- /* Paper size toggle and action buttons */ -}}
+    <div class="paper-size-toggle-container">
+      <div class="flex items-center gap-2 mb-2">
+        <label for="paper-size-select" class="text-slate-700">
+          {{- partial "svg.html" "icons/fontawesome/file-lines" -}}
+        </label>
+        <select id="paper-size-select" class="px-3 py-1 text-sm border border-slate-300 rounded bg-white text-slate-900">
+          <option value="letter">{{ i18n "letter" | default "Letter" }} (8.5" × 11")</option>
+          <option value="a4">{{ i18n "a4" | default "A4" }} (210mm × 297mm)</option>
+        </select>
+      </div>
+      <button data-action="print" role="button" class="print-button flex items-center justify-center gap-2 w-full px-3 py-2 text-sm font-medium rounded bg-slate-700 text-white hover:bg-slate-800 transition-colors cursor-pointer">
+        {{- partial "svg.html" "icons/fontawesome/print" -}}
+        <span>Print</span>
+      </button>
+      <a href="/resume.pdf" download class="pdf-download-button flex items-center justify-center gap-2 w-full px-3 py-2 text-sm font-medium rounded bg-slate-700 text-white hover:bg-slate-800 transition-colors cursor-pointer no-underline mt-2">
+        {{- partial "svg.html" "icons/fontawesome/download" -}}
+        <span>{{ i18n "download_pdf" | default "Download PDF" }}</span>
+      </a>
     </div>
-    <button data-action="print" role="button" class="print-button flex items-center justify-center gap-2 w-full px-3 py-2 text-sm font-medium rounded bg-slate-700 text-white hover:bg-slate-800 transition-colors cursor-pointer">
-      {{- partial "svg.html" "icons/fontawesome/print" -}}
-      <span>Print</span>
-    </button>
   </div>
 
   {{- /* Resume container with paper styling */ -}}
@@ -74,7 +81,7 @@
         {{- /* Skills Section */ -}}
         {{- if and .Params.showSkills .Params.skills }}
         <section class="sidebar-section mb-4">
-          <h2 class="text-base font-semibold mb-2 pb-1 border-b border-slate-300">
+          <h2 class="text-lg font-semibold mb-2 pb-1 border-b border-slate-300">
             {{ i18n "skills" | default "Skills" }}
           </h2>
           <ul class="space-y-0.5 text-xs text-slate-700 list-none">

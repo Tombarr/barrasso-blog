@@ -98,11 +98,79 @@ function handlePaperSizeChange(event) {
   document.dispatchEvent(new CustomEvent('paperSizeChanged', {
     detail: { size: newSize }
   }));
+
+  // Recalculate page spacers after paper size change
+  // Use setTimeout to allow layout to settle
+  setTimeout(() => insertPageSpacers(), 100);
 }
 
 function doPrint(e) {
   e.preventDefault();
   return window.print();
+}
+
+/**
+ * Calculate page break positions and insert visual spacers
+ * Creates gaps between pages on screen (hidden in print)
+ */
+function insertPageSpacers() {
+  const container = document.querySelector('.resume-container');
+  if (!container) return;
+
+  // Remove existing spacers
+  const existingSpacers = container.querySelectorAll('.page-spacer');
+  existingSpacers.forEach(spacer => spacer.remove());
+
+  // Get paper size and calculate page height in pixels
+  const paperSize = container.getAttribute('data-paper-size') || SIZE_LETTER;
+
+  // Convert to pixels (96 DPI standard)
+  // Letter: 11 inches = 1056px, A4: 297mm ≈ 1122px
+  const pageHeightPx = paperSize === SIZE_A4
+    ? 297 * 3.7795275591  // mm to px conversion
+    : 11 * 96;              // inches to px
+
+  // Get total container height
+  const containerHeight = container.scrollHeight;
+
+  // Calculate number of page breaks needed
+  const numPages = Math.ceil(containerHeight / pageHeightPx);
+
+  if (numPages <= 1) {
+    // Single page, no spacers needed
+    return;
+  }
+
+  // Insert spacers at page boundaries
+  for (let page = 1; page < numPages; page++) {
+    const breakPosition = page * pageHeightPx;
+
+    // Find the best insertion point near the break position
+    const allElements = Array.from(container.querySelectorAll('.resume-header, .resume-content-grid > *, .job-entry, .degree-entry, .project-entry, .sidebar-section'));
+
+    let insertBeforeElement = null;
+    let minDistance = Infinity;
+
+    for (const element of allElements) {
+      const rect = element.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      const elementTop = rect.top - containerRect.top + container.scrollTop;
+      const distance = Math.abs(elementTop - breakPosition);
+
+      if (elementTop > breakPosition && distance < minDistance) {
+        minDistance = distance;
+        insertBeforeElement = element;
+      }
+    }
+
+    // Create and insert spacer
+    if (insertBeforeElement) {
+      const spacer = document.createElement('div');
+      spacer.className = 'page-spacer screen-only';
+      spacer.setAttribute('data-page', page);
+      insertBeforeElement.parentNode.insertBefore(spacer, insertBeforeElement);
+    }
+  }
 }
 
 /**
@@ -130,4 +198,15 @@ export function initPaperSizeToggle() {
 
   // Set up select dropdown listener
   paperSizeSelect.addEventListener('change', handlePaperSizeChange);
+
+  // Insert page spacers after initial load
+  // Wait for layout to settle before calculating positions
+  setTimeout(() => insertPageSpacers(), 300);
+
+  // Recalculate spacers on window resize (debounced)
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => insertPageSpacers(), 300);
+  });
 }

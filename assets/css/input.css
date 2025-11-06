@@ -576,9 +576,15 @@ body > article.blog-content-width:first-child img.w-12 {
    Resume Styles
    ================================================ */
 
-/* Home button (screen only, left side) */
+/* Resume controls container (static, above resume) */
+.resume-controls {
+  @apply flex items-start justify-between mb-4 mx-auto;
+  max-width: 8.5in; /* Match resume width */
+}
+
+/* Home button */
 .home-button {
-  @apply fixed top-4 left-4 z-50 flex items-center justify-center;
+  @apply flex items-center justify-center;
   @apply w-12 h-12 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm;
   @apply rounded-lg shadow-lg border border-slate-200 dark:border-slate-700;
   @apply text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100;
@@ -594,9 +600,9 @@ body > article.blog-content-width:first-child img.w-12 {
   fill: currentColor;
 }
 
-/* Paper size toggle (screen only, right side) */
+/* Paper size toggle */
 .paper-size-toggle-container {
-  @apply fixed top-4 right-4 z-50 flex flex-col;
+  @apply flex flex-col;
   @apply bg-white/90 backdrop-blur-sm;
   @apply px-3 py-3 rounded-lg shadow-lg border border-slate-200;
   width: auto;
@@ -612,11 +618,13 @@ body > article.blog-content-width:first-child img.w-12 {
   fill: currentColor;
 }
 
-.print-button .inline-svg {
+.print-button .inline-svg,
+.pdf-download-button .inline-svg {
   @apply w-4 h-4;
 }
 
-.print-button .inline-svg svg {
+.print-button .inline-svg svg,
+.pdf-download-button .inline-svg svg {
   @apply w-full h-full;
   fill: currentColor;
 }
@@ -666,11 +674,13 @@ html.resume-light-mode label[for="paper-size-select"] {
   @apply inline-block w-4 h-4 align-middle;
 }
 
-html.resume-light-mode .print-button {
+html.resume-light-mode .print-button,
+html.resume-light-mode .pdf-download-button {
   @apply bg-slate-700 text-white;
 }
 
-html.resume-light-mode .print-button:hover {
+html.resume-light-mode .print-button:hover,
+html.resume-light-mode .pdf-download-button:hover {
   @apply bg-slate-800;
 }
 
@@ -689,29 +699,67 @@ html.resume-light-mode .print-button:hover {
   flex-direction: column;
 }
 
-/* Paper size dimensions - ensure always full page height */
-.resume-container[data-paper-size="letter"] {
+/* Paper size dimensions - allow natural overflow for multi-page content */
+.resume-container[data-paper-size="letter"],
+.resume-container[data-paper-size="letter"] .page-spacer {
   width: 8.5in;
   max-width: 8.5in;
-  min-height: 11in;
 }
 
-.resume-container[data-paper-size="a4"] {
+.resume-container[data-paper-size="a4"],
+.resume-container[data-paper-size="a4"] .page-spacer {
   width: 210mm;
   max-width: 210mm;
-  min-height: 297mm;
 }
 
-/* Resume content grid - two column layout */
+/* Page spacer elements - physical gaps between pages on screen */
+.page-spacer {
+  @apply my-8;
+  height: 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -3rem;
+  margin-right: -3rem;
+}
+
+/* Visual indicator line within spacer */
+.page-spacer::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #cbd5e1 0,
+    #cbd5e1 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  transform: translateY(-50%);
+}
+
+/* Optional: Page number indicator */
+.page-spacer::after {
+  content: 'Page ' attr(data-page);
+  @apply text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded;
+  position: relative;
+  z-index: 1;
+}
+
+/* Resume content grid - two column layout (70/30 split, all screen sizes) */
 .resume-content-grid {
-  @apply grid grid-cols-1 lg:grid-cols-3 gap-8;
+  @apply grid gap-8;
   display: grid;
+  grid-template-columns: 75% 25%;
   align-items: start;
   flex: 1;
 }
 
 .resume-main-content {
-  @apply lg:col-span-2;
   display: flex;
   flex-direction: column;
   min-height: 100%;
@@ -723,7 +771,7 @@ html.resume-light-mode .print-button:hover {
 }
 
 .resume-sidebar {
-  @apply lg:col-span-1 flex flex-col;
+  @apply flex flex-col;
   min-height: 100%;
 }
 
@@ -805,19 +853,17 @@ html.resume-light-mode .print-button:hover {
   /* Maintain paper size dimensions and styling */
   .resume-container {
     @apply shadow-none bg-white mx-auto;
-    /* Keep the paper size dimensions from screen */
+    /* Keep the paper size dimensions from screen, allow multi-page overflow */
   }
 
   .resume-container[data-paper-size="letter"] {
     width: 8.5in;
     max-width: 8.5in;
-    min-height: 11in;
   }
 
   .resume-container[data-paper-size="a4"] {
     width: 210mm;
     max-width: 210mm;
-    min-height: 297mm;
   }
 
   /* Page margins for print */
@@ -826,35 +872,48 @@ html.resume-light-mode .print-button:hover {
     size: auto;
   }
 
-  /* Maintain two-column layout in print */
+  /* Maintain two-column layout in print (70/30 split) */
   .resume-content-grid {
-    @apply grid grid-cols-3 gap-8;
+    @apply grid gap-8;
     display: grid;
-    flex: 1;
+    grid-template-columns: 75% 25%;
     align-items: start;
+    /* Allow grid to break across pages */
+    break-inside: auto;
+    page-break-inside: auto;
   }
 
   .resume-main-content {
-    @apply col-span-2;
     display: flex;
     flex-direction: column;
-    min-height: 100%;
+    /* Remove min-height for print to allow natural page breaks */
+    min-height: auto;
   }
 
+  /* Remove bottom-alignment in print - let content flow naturally */
   .resume-main-content > :last-child {
-    margin-top: auto;
+    margin-top: 0;
   }
 
   .resume-sidebar {
-    @apply col-span-1;
     display: flex;
     flex-direction: column;
-    min-height: 100%;
+    /* Remove min-height for print to allow natural page breaks */
+    min-height: auto;
   }
 
   .resume-container {
     display: flex;
     flex-direction: column;
+  }
+
+  /* Allow header and grid to flow together */
+  .resume-header {
+    break-after: auto;
+    page-break-after: auto;
+    /* Encourage keeping header with at least some content */
+    orphans: 3;
+    widows: 3;
   }
 
   /* Prevent page breaks inside important sections */
@@ -863,10 +922,20 @@ html.resume-light-mode .print-button:hover {
   .project-entry,
   .sidebar-section {
     page-break-inside: avoid;
+    break-inside: avoid;
   }
 
+  /* Allow resume-section to break in print if needed */
   .resume-section {
-    page-break-inside: avoid;
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+
+  /* Prevent breaks between headers and their immediate content */
+  .resume-section > h2,
+  .sidebar-section > h2 {
+    break-after: avoid;
+    page-break-after: avoid;
   }
 
   /* Ensure links don't break */
@@ -881,7 +950,7 @@ html.resume-light-mode .print-button:hover {
     @apply w-full max-w-full;
   }
 
-  .paper-size-toggle-container {
-    @apply relative top-0 right-0 mb-4;
+  .resume-controls {
+    @apply w-full max-w-full px-4;
   }
 }
