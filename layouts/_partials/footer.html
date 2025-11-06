@@ -51,10 +51,9 @@
         {{ i18n "footer.copyright.text" (dict "Year" .year "Holder" .holder) }}
       </p>
       <p>
-        Except as otherwise noted, the content of this page is licensed under the
-        <a href="{{ .contentLicense.url }}" target="_blank" rel="noopener noreferrer" class="footer-copyright-link">{{ .contentLicense.name }}</a>,
-        and code samples are licensed under the
-        <a href="{{ .codeLicense.url }}" target="_blank" rel="noopener noreferrer" class="footer-copyright-link">{{ .codeLicense.name }}</a>.
+        {{- $contentLicenseLink := printf "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer-copyright-link\">%s</a>" .contentLicense.url .contentLicense.name -}}
+        {{- $codeLicenseLink := printf "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer-copyright-link\">%s</a>" .codeLicense.url .codeLicense.name -}}
+        {{ i18n "footer.copyright.license" (dict "ContentLicense" $contentLicenseLink "CodeLicense" $codeLicenseLink) | safeHTML }}
       </p>
       {{- end -}}
     </div>

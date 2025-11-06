@@ -612,6 +612,11 @@ a:hover img.external-favicon {
 
 .project-card img.w-6 {
   transform: scale(1.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.project-card > a:hover img.w-6 {
+  transform: scale(1.6);
 }
 
 body > article.blog-content-width:first-child img.w-12 {
