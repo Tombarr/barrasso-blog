@@ -178,6 +178,95 @@ a:hover img.external-favicon {
 
 /* Custom styles */
 @layer components {
+  @keyframes walk {
+    0% {
+      background-position: 0px 0px; /* Frame 1: Row 1, Col 1 */
+    }
+    8.33% {
+      background-position: -12px 0px; /* Frame 2: Row 1, Col 2 */
+    }
+    16.66% {
+      background-position: -24px 0px; /* Frame 3: Row 1, Col 3 */
+    }
+    25% {
+      background-position: -36px 0px; /* Frame 4: Row 1, Col 4 */
+    }
+    33.33% {
+      background-position: 0px -13px; /* Frame 5: Row 2, Col 1 */
+    }
+    41.66% {
+      background-position: -12px -13px; /* Frame 6: Row 2, Col 2 */
+    }
+    50% {
+      background-position: -24px -13px; /* Frame 7: Row 2, Col 3 */
+    }
+    58.33% {
+      background-position: -36px -12px; /* Frame 8: Row 2, Col 4 */
+    }
+    66.66% {
+      background-position: 0px -24px; /* Frame 9: Row 3, Col 1 */
+    }
+    75% {
+      background-position: -12px -24px; /* Frame 10: Row 3, Col 2 */
+    }
+    83.33% {
+      background-position: -22px -24px; /* Frame 11: Row 3, Col 3 */
+    }
+    91.66% {
+      background-position: -36px -24px; /* Frame 12: Row 3, Col 4 */
+    }
+    100% {
+      background-position: 0px 0px; /* Back to frame 1 */
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  @keyframes moveForward {
+    from {
+      transform: scale(2) translateX(100%);
+    }
+    to {
+      transform: scale(2) translateX(600%);
+    }
+  }
+
+  /* Easter Egg */
+  #bigfoot {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    bottom: 11px;
+    opacity: 0;
+    visibility: hidden;
+    background-image: url("/images/bigfoot.png");
+    background-size: 48px 36px;
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    animation: walk 2.5s steps(1) infinite,
+      moveForward 6s linear forwards,
+      fadeOut 6s steps(1) forwards;
+    animation-play-state: paused;
+    transform: scale(2);
+  }
+
+  html:not(.dark) #bigfoot {
+    filter: invert(1);
+  }
+
+  .tree-divider-container:hover #bigfoot {
+    animation-play-state: running;
+    visibility: visible;
+  }
+
   /* Add left padding to article to make room for portrait */
   .hero-with-portrait {
     position: relative;
@@ -325,6 +414,7 @@ a:hover img.external-favicon {
   .tree-divider-container {
     transform: scale(1.2);
     transform-origin: center;
+    position: relative;
   }
 
   /*
