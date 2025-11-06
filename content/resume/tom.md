@@ -15,15 +15,9 @@ summary = 'Impact-oriented technical program & product leader with independent, 
 showWorkExperience = true
 showEducation = true
 showProjects = true
-showSkills = true
-showTechnologies = true
+showSkills = false
+showTechnologies = false
 showLinks = true
-
-# Skills (displayed in sidebar)
-skills = ['Software Architecture', 'Leadership', 'Technical Writing']
-
-# Technologies
-technologies = ["JavaScript", "React", "Node.js", "Python", "Docker"]
 
 # Links (displayed in sidebar with icons)
 [links]
@@ -44,6 +38,8 @@ resumeGitLink = 'git.io/resume'
   company="CloudMosa"
   location="Remote"
   dates="Sept 2024 - Present"
+  employerUrl="https://cloudphone.tech"
+  companyIcon="cloudmosa"
 >}}
 * Authored and developed Cloud Phone for Developers website
 * Supported developers, outreach, made podcast guest appearances, ...
@@ -117,7 +113,7 @@ tems to mitigate risk and improve end-to-end data integrity
 {{< job
   title="CSAIL Teaching Fellow"
   company="Harvard University"
-  location="Cambridge, CA"
+  location="Cambridge, MA"
   dates="Sept 2011 - June 2012"
 >}}
 {{< /job >}}
@@ -127,10 +123,9 @@ tems to mitigate risk and improve end-to-end data integrity
 {{< education >}}
 
 {{< degree
-  school="University of Massachusetts, Amherst"
-  subject="Chemistry, B.S."
+  school="University of Massachusetts Amherst"
+  subject="Chemistry, BS"
   location="Amherst, MA"
-  dates="2012 - 2016"
 />}}
 
 {{< /education >}}
@@ -152,3 +147,20 @@ Built 6 apps esp. StatusBar+, ChargeBar, and Noyze totalling 5M+ installs, sold 
 {{< /resume-project >}}
 
 {{< /resume-projects >}}
+
+ {{< sidebar >}}
+
+{{< sidebar-section title="Skills" style="list" headingSize="lg" >}}
+Software Architecture
+Technical Writing
+{{< /sidebar-section >}}
+
+{{< sidebar-section title="Technologies" style="pills" >}}
+TypeScript
+JavaScript
+Java
+Svelte
+React
+{{< /sidebar-section >}}
+
+{{< /sidebar >}}

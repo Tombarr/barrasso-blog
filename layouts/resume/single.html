@@ -78,32 +78,42 @@
 
       {{- /* Sidebar (right column, 33%) */ -}}
       <aside class="resume-sidebar">
-        {{- /* Skills Section */ -}}
-        {{- if and .Params.showSkills .Params.skills }}
-        <section class="sidebar-section mb-4">
-          <h2 class="text-lg font-semibold mb-2 pb-1 border-b border-slate-300">
-            {{ i18n "skills" | default "Skills" }}
-          </h2>
-          <ul class="space-y-0.5 text-xs text-slate-700 list-none">
-            {{- range .Params.skills }}
-            <li>{{ . }}</li>
-            {{- end }}
-          </ul>
-        </section>
-        {{- end }}
+        {{- /* Check for shortcode-based sidebar content first */ -}}
+        {{- $sidebarContent := .Scratch.Get "sidebar-content" -}}
 
-        {{- /* Technologies Section */ -}}
-        {{- if and .Params.showTechnologies .Params.technologies }}
-        <section class="sidebar-section mb-8">
-          <h2 class="text-base font-semibold mb-2 pb-1 border-b border-slate-300">
-            {{ i18n "technologies" | default "Technologies" }}
-          </h2>
-          <ul class="space-y-0.5 text-xs text-slate-700 list-none">
-            {{- range .Params.technologies }}
-            <li>{{ . }}</li>
-            {{- end }}
-          </ul>
-        </section>
+        {{- if $sidebarContent }}
+          {{- /* Render sidebar sections from shortcodes */ -}}
+          {{ $sidebarContent | safeHTML }}
+        {{- else }}
+          {{- /* Fallback: Render from frontmatter (backwards compatibility) */ -}}
+
+          {{- /* Skills Section */ -}}
+          {{- if and .Params.showSkills .Params.skills }}
+          <section class="sidebar-section mb-4">
+            <h2 class="text-lg font-semibold mb-2 pb-1 border-b border-slate-300">
+              {{ i18n "skills" | default "Skills" }}
+            </h2>
+            <ul class="space-y-0.5 text-xs text-slate-700 list-none">
+              {{- range .Params.skills }}
+              <li>{{ . }}</li>
+              {{- end }}
+            </ul>
+          </section>
+          {{- end }}
+
+          {{- /* Technologies Section */ -}}
+          {{- if and .Params.showTechnologies .Params.technologies }}
+          <section class="sidebar-section mb-8">
+            <h2 class="text-base font-semibold mb-2 pb-1 border-b border-slate-300">
+              {{ i18n "technologies" | default "Technologies" }}
+            </h2>
+            <ul class="space-y-0.5 text-xs text-slate-700 list-none">
+              {{- range .Params.technologies }}
+              <li>{{ . }}</li>
+              {{- end }}
+            </ul>
+          </section>
+          {{- end }}
         {{- end }}
 
         {{- /* Links Section */ -}}

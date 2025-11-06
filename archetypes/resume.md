@@ -37,6 +37,30 @@ resumeGitLink = 'git.io/resume'
 
 <!-- Use shortcodes to structure your resume content -->
 
+<!-- Sidebar content (Skills, Technologies, etc.) -->
+<!-- You can use the new shortcode-based approach OR the legacy frontmatter approach above -->
+{{< sidebar >}}
+
+{{< sidebar-section title="Skills" style="list" headingSize="lg" spacing="compact" >}}
+JavaScript
+TypeScript
+React
+Node.js
+Python
+{{< /sidebar-section >}}
+
+{{< sidebar-section title="Technologies" style="pills" >}}
+PostgreSQL
+Docker
+Kubernetes
+AWS
+Git
+{{< /sidebar-section >}}
+
+{{< /sidebar >}}
+
+<!-- Main content sections -->
+
 {{< work-experience >}}
 
 {{< job

@@ -25,6 +25,12 @@
     @apply bg-white/8 border-white/15;
     @apply hover:bg-orange-500 hover:text-slate-900 hover:border-orange-500;
   }
+
+  /* Resume-specific skill tags - compact, print-friendly */
+  .skill-tag-resume {
+    @apply inline-block px-2 py-1 rounded text-xs font-medium;
+    @apply bg-slate-100 border border-slate-300 text-slate-700;
+  }
 }
 
 /* Scrolling logos banner */
@@ -348,6 +354,7 @@ a:hover img.external-favicon {
     background-color: #152027;
     color: #ffffff;
     margin-top: 0;
+    margin-block-start: 0;
   }
 
   html.dark .footer-wrapper {
@@ -759,15 +766,19 @@ html.resume-light-mode .pdf-download-button:hover {
   flex: 1;
 }
 
-.resume-main-content {
+.resume-main-content,
+.resume-sidebar {
   display: flex;
   flex-direction: column;
   min-height: 100%;
 }
 
 /* Push last section in main content to bottom */
-.resume-main-content > :last-child {
+.resume-main-content > :last-child,
+.resume-sidebar > :last-child,
+.resume-sidebar > .sidebar-footer {
   margin-top: auto;
+  margin-block-start: auto;
 }
 
 .resume-sidebar {
@@ -782,12 +793,9 @@ html.resume-light-mode .pdf-download-button:hover {
 
 .resume-header > div + p {
   margin-top: -1.5em;
+  margin-block-start: -1.5em;
   padding-right: 10em;
-}
-
-/* Resume sections */
-.resume-section {
-  page-break-inside: avoid;
+  padding-inline-end: 10em;
 }
 
 .resume-section + .resume-section.mb-6:last-of-type {
@@ -825,10 +833,6 @@ html.resume-light-mode .pdf-download-button:hover {
   @apply list-disc pl-4 my-1;
 }
 
-.resume-container .prose li {
-  @apply my-0.5;
-}
-
 .resume-container .prose p {
   @apply my-1;
 }
@@ -842,8 +846,31 @@ html.resume-light-mode .pdf-download-button:hover {
   }
 
   /* Keep page background for print */
-  body {
+  :root, body {
     @apply bg-white;
+  }
+
+  @page {
+    margin: 0.18in;
+    size: auto;
+    page-orientation: upright;
+  }
+
+  @page :blank {
+    display: none;
+    margin: 0.5in;
+  }
+
+  .resume-container {
+    padding-block: 0;
+  }
+
+  .resume-container[data-paper-size="letter"] {
+    width: 100%;
+  }
+
+  .resume-container[data-paper-size="a4"] {
+    width: 100%;
   }
 
   .resume-page {
@@ -866,12 +893,6 @@ html.resume-light-mode .pdf-download-button:hover {
     max-width: 210mm;
   }
 
-  /* Page margins for print */
-  @page {
-    margin: 0.5in;
-    size: auto;
-  }
-
   /* Maintain two-column layout in print (70/30 split) */
   .resume-content-grid {
     @apply grid gap-8;
@@ -881,6 +902,8 @@ html.resume-light-mode .pdf-download-button:hover {
     /* Allow grid to break across pages */
     break-inside: auto;
     page-break-inside: auto;
+    break-before: avoid;
+    page-break-before: avoid;
   }
 
   .resume-main-content {
@@ -888,11 +911,6 @@ html.resume-light-mode .pdf-download-button:hover {
     flex-direction: column;
     /* Remove min-height for print to allow natural page breaks */
     min-height: auto;
-  }
-
-  /* Remove bottom-alignment in print - let content flow naturally */
-  .resume-main-content > :last-child {
-    margin-top: 0;
   }
 
   .resume-sidebar {
@@ -907,10 +925,18 @@ html.resume-light-mode .pdf-download-button:hover {
     flex-direction: column;
   }
 
+  /* Resume sections */
+  .resume-section + .resume-section {
+    break-before: auto;
+    page-break-before: auto;
+  }
+
   /* Allow header and grid to flow together */
   .resume-header {
-    break-after: auto;
-    page-break-after: auto;
+    break-after: avoid;
+    page-break-after: avoid;
+    break-inside: avoid;
+    page-break-inside: avoid;
     /* Encourage keeping header with at least some content */
     orphans: 3;
     widows: 3;
@@ -925,8 +951,16 @@ html.resume-light-mode .pdf-download-button:hover {
     break-inside: avoid;
   }
 
+  .resume-section > div:only-of-type {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
   /* Allow resume-section to break in print if needed */
-  .resume-section {
+  .resume-section,
+  .resume-sidebar,
+  /* Contains collection of .job-entry sections */
+  .resume-main-content > .resume-section:first-of-type > div:first-of-type {
     page-break-inside: auto;
     break-inside: auto;
   }
@@ -938,9 +972,35 @@ html.resume-light-mode .pdf-download-button:hover {
     page-break-after: avoid;
   }
 
+  .resume-section > h2 + div,
+  .sidebar-section > h2 + div {
+    break-before: avoid;
+    page-break-before: avoid;
+  }
+
   /* Ensure links don't break */
   a {
     text-decoration: none;
+  }
+
+  p, ul, ol {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Basic Reset */
+  *,
+  *:before,
+  *:after,
+  *:first-letter,
+  p:first-line,
+  div:first-line,
+  blockquote:first-line,
+  li:first-line {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
   }
 }
 
