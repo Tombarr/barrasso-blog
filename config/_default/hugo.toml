@@ -14,10 +14,12 @@ enableSearch = true
 enablePagination = true
 avatar = "/images/portraits.jpg"
 sitename = "barrasso.me"
-github = "https://github.com/tombarr"
-linkedin = "https://linkedin.com/in/tombarrasso/"
+github = "https://github.barrasso.me"
+medium = "https://medium.barrasso.me"
+linkedin = "https://linkedin.barrasso.me"
 enableRobotsTXT = true
 reshare = false
+invisibleTypes = ["resume"]
 
 [params.search]
 enabled = true

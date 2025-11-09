@@ -34,7 +34,12 @@
           {{- with .Site.Params.github -}}
           <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="footer-link">{{ i18n "footer.social.github" }}</a>
           {{- end -}}
-          <a href="https://medium.com/@tbarrasso" target="_blank" rel="noopener noreferrer" class="footer-link">{{ i18n "footer.social.medium" }}</a>
+          {{- with .Site.Params.medium -}}
+          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="footer-link">{{ i18n "footer.social.medium" }}</a>
+          {{- end -}}
+          {{- with .Site.Params.stackoverflow -}}
+          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="footer-link">{{ i18n "footer.social.stackoverflow" }}</a>
+          {{- end -}}
           {{- with .Site.Params.linkedin -}}
           <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="footer-link">{{ i18n "footer.social.linkedin" }}</a>
           {{- end -}}

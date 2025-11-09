@@ -21,8 +21,8 @@ showLinks = true
 
 # Links (displayed in sidebar with icons)
 [links]
-github = 'https://github.com/Tombarr'
-linkedin = 'https://linkedin.com/in.tombarrasso'
+github = 'https://github.barrasso.me'
+linkedin = 'https://linkedin.barrasso.me'
 portfolio = 'https://barrasso.me'
 
 # Footer

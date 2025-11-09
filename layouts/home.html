@@ -111,16 +111,6 @@
 
 </div>
 
-<!-- Skills tag cloud -->
-{{ if .IsHome }}
-<div class="flex flex-col
-            blog-content-width
-            mb-8">
-    <h2 class="font-semibold md:font-bold leading-tight text-lg lg:text-3xl mb-4">{{ i18n "skills" }}</h2>
-    {{ partial "skill-tags.html" . }}
-</div>
-{{ end }}
-
 <!-- Scrolling logos banner -->
 {{ if .IsHome }}
 <div class="flex flex-col
@@ -149,6 +139,16 @@
   </div>
 </div>
 {{- end }}
+{{ end }}
+
+<!-- Skills tag cloud -->
+{{ if .IsHome }}
+<div class="flex flex-col
+            blog-content-width
+            mb-8">
+    <h2 class="font-semibold md:font-bold leading-tight text-lg lg:text-3xl mb-4">{{ i18n "skills" }}</h2>
+    {{ partial "skill-tags.html" . }}
+</div>
 {{ end }}
 
 <div class="flex flex-col

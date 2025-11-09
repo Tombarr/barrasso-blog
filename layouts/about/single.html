@@ -17,7 +17,7 @@
         {{- partial "avatar.html" . -}}
 
         <div class="about-content text-start">
-            {{ replace .Content "\n" "<br/>" | safeHTML }}
+            {{ .Content | safeHTML }}
         </div>
     </article>
 

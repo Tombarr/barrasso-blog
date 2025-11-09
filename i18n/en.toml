@@ -46,6 +46,9 @@ other = "GitHub"
 [footer.social.medium]
 other = "Medium"
 
+[footer.social.stackoverflow]
+other = "StackOverflow"
+
 [footer.social.linkedin]
 other = "LinkedIn"
 
