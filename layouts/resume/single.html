@@ -22,7 +22,7 @@
         {{- partial "svg.html" "icons/fontawesome/print" -}}
         <span>Print</span>
       </button>
-      <a href="/resume.pdf" download class="pdf-download-button flex items-center justify-center gap-2 w-full px-3 py-2 text-sm font-medium rounded bg-slate-700 text-white hover:bg-slate-800 transition-colors cursor-pointer no-underline mt-2">
+      <a href="/resume.pdf" download="tom-barrasso-resume-{{ .Date.Format "2006" }}.pdf" class="pdf-download-button flex items-center justify-center gap-2 w-full px-3 py-2 text-sm font-medium rounded bg-slate-700 text-white hover:bg-slate-800 transition-colors cursor-pointer no-underline mt-2">
         {{- partial "svg.html" "icons/fontawesome/download" -}}
         <span>{{ i18n "download_pdf" | default "Download PDF" }}</span>
       </a>

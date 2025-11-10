@@ -14,7 +14,7 @@ featured = false
 
 # Images
 featureImage = '/images/features/textmyfood-feature.jpg'
-featureImageCaption = 'Screenshot of the TextMyFood message center on an iPad, 2011'  # Optional caption displayed below the feature image
+featureImageCaption = 'Screenshot of the TextMyFood message center on a tablet, 2011'  # Optional caption displayed below the feature image
 featureImagePosition = 'top'  # Options: 'top' (before content), 'bottom' (after content), 'none' (not rendered on single page)
 screenshots = []  # Array of image paths (loaded as Hugo resources with width, height, and alt attributes)
 

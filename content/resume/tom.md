@@ -101,6 +101,14 @@ tems to mitigate risk and improve end-to-end data integrity
 {{< /job >}}
 
 {{< job
+  title="Research Assistant"
+  company="UMass Biogeochemistry"
+  location="Amherst, MA"
+  dates="Sept 2014 - May 2016"
+>}}
+{{< /job >}}
+
+{{< job
   title="Software Engineer"
   company="PlanGrid"
   location="San Francisco, CA"
@@ -108,6 +116,7 @@ tems to mitigate risk and improve end-to-end data integrity
   employerUrl="https://plangrid.com"
   companyIcon="plangrid"
 >}}
+* Developed the first version of the PlanGrid blueprint reader for Android
 {{< /job >}}
 
 {{< job
@@ -116,6 +125,17 @@ tems to mitigate risk and improve end-to-end data integrity
   location="Cambridge, MA"
   dates="Sept 2011 - June 2012"
 >}}
+* Lectured for CS50 & CS75 introductory courses on computer science and web development
+{{< /job >}}
+
+{{< job
+  title="Software Intern"
+  company="inTouch Corp"
+  location="Cambridge, MA"
+  dates="May 2010 - Aug 2011"
+  employerUrl="https://www.intouchcorp.com/"
+>}}
+* Built a prototype of TextMyFood, a service for restaurants to receive customer feedback via SMS
 {{< /job >}}
 
 {{< /work-experience >}}
@@ -126,6 +146,7 @@ tems to mitigate risk and improve end-to-end data integrity
   school="University of Massachusetts Amherst"
   subject="Chemistry, BS"
   location="Amherst, MA"
+  dates="2012 - 2016"
 />}}
 
 {{< /education >}}
