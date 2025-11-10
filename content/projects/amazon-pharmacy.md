@@ -1,5 +1,6 @@
 +++
 title = 'Amazon Pharmacy'
+company = 'Amazon'
 date = 2020-11-17
 draft = false
 type = 'projects'
@@ -13,6 +14,7 @@ featured = true
 
 # Images
 featureImage = '/images/features/amazon-pharmacy-hero.jpg'
+featureImageCaption = 'Promotion image from the launch of Amazon Pharmacy, 2020'
 featureImagePosition = 'top'  # Options: 'top' (before content), 'bottom' (after content), 'none' (not rendered on single page)
 screenshots = []
 

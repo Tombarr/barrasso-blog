@@ -9,12 +9,14 @@ summary = ''
 icon = ''
 technologies = []
 dateRange = ''
+company = ''
 featured = false
 
 # Images
 featureImage = ''
+featureImageCaption = ''  # Optional caption displayed below the feature image
 featureImagePosition = 'top'  # Options: 'top' (before content), 'bottom' (after content), 'none' (not rendered on single page)
-screenshots = []
+screenshots = []  # Array of image paths (loaded as Hugo resources with width, height, and alt attributes)
 
 # External links
 projectUrl = ''

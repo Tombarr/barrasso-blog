@@ -1,0 +1,72 @@
+{{/*
+GetFeaturedImage
+
+This partial gets the url for featured image for a given page.
+
+If a featured_image or featureImage was set in the page's front matter, then that will be used.
+
+If not set, this will search page resources to find an image that contains the word
+"cover", and if found, returns the path to that resource.
+
+If no featured_image was set, and there's no "cover" image in page resources, then
+this partial returns the site's default featured image from config, or an empty string.
+
+@return Permalink to featured image, or an empty string if not found.
+
+*/}}
+
+{{/* Declare a new string variable, $linkToCover */}}
+{{ $linkToCover := "" }}
+{{ $imageKeys := slice "featured_image" "featureImage" "cover" "banner" }}
+
+{{/* Check for any of the specified keys in front matter */}}
+{{ range $imageKeys }}
+{{ $paramValue := index $.Params . }}
+{{ with $paramValue }}
+{{ $cleanPath := strings.TrimPrefix "/" . }}
+{{/* Try to get as Hugo resource first */}}
+{{ $resource := resources.Get $cleanPath }}
+{{ if $resource }}
+{{ $linkToCover = $resource.Permalink }}
+{{ else }}
+{{ $linkToCover = trim . "/" | absURL }}
+{{/* If we find a Page Resource matching the exact value, we use it instead. */}}
+{{ with $.Resources.GetMatch . }}
+{{ $linkToCover = .Permalink }}
+{{ end }}
+{{ end }}
+{{ break }}
+{{ end }}
+{{ end }}
+
+{{/* If no image found in front matter, search in page resources */}}
+{{ if not $linkToCover }}
+{{ with .Resources.ByType "image" }}
+{{ $resourceMatch := .GetMatch (printf "**{%s}*" (delimit $imageKeys ",")) }}
+{{ range $imageKeys }}
+{{ $exactMatch := $.Resources.GetMatch . }}
+{{ if $exactMatch }}
+{{ $linkToCover = $exactMatch.Permalink }}
+{{ break }}
+{{ end }}
+{{ end }}
+{{ if and (not $linkToCover) $resourceMatch }}
+{{ $linkToCover = $resourceMatch.Permalink }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* If no cover image is found, use the site's default featured image from config */}}
+{{ if not $linkToCover }}
+{{ with .Site.Params.defaultFeaturedImage }}
+{{ $linkToCover = (printf "%v/%v" $.Site.BaseURL (trim . "/")) }}
+{{ else }}
+{{/* Fallback to site avatar if no default featured image is configured */}}
+{{ with $.Site.Params.avatar }}
+{{ $linkToCover = (printf "%v/%v" $.Site.BaseURL (trim . "/")) }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* return either a permalink, or an empty string. */}}
+{{ return $linkToCover }}

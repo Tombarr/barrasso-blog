@@ -1,18 +1,20 @@
 {{- $project := . -}}
 
-{{- /* Validate and get feature image resource */ -}}
+{{- /* Validate and get feature image resource (trim leading slash if present) */ -}}
 {{- $featureImage := "" -}}
 {{- if .Params.featureImage -}}
-  {{- $featureImage = resources.Get .Params.featureImage -}}
+  {{- $cleanFeaturePath := strings.TrimPrefix "/" .Params.featureImage -}}
+  {{- $featureImage = resources.Get $cleanFeaturePath -}}
   {{- if not $featureImage -}}
     {{- errorf "Feature image not found: %s (in %s)" .Params.featureImage .File.Path -}}
   {{- end -}}
 {{- end -}}
 
-{{- /* Validate and get icon resource */ -}}
+{{- /* Validate and get icon resource (trim leading slash if present) */ -}}
 {{- $icon := "" -}}
 {{- if .Params.icon -}}
-  {{- $icon = resources.Get .Params.icon -}}
+  {{- $cleanIconPath := strings.TrimPrefix "/" .Params.icon -}}
+  {{- $icon = resources.Get $cleanIconPath -}}
   {{- if not $icon -}}
     {{- errorf "Icon not found: %s (in %s)" .Params.icon .File.Path -}}
   {{- end -}}
@@ -57,9 +59,17 @@
         </div>
       </div>
 
-      {{- if .Params.dateRange }}
+      {{- if or .Params.dateRange .Params.company }}
       <div class="mb-3 text-sm text-slate-500 dark:text-slate-300">
-        {{ .Params.dateRange }}
+        {{- if .Params.dateRange -}}
+          <span>{{ .Params.dateRange }}</span>
+        {{- end -}}
+        {{- if and .Params.dateRange .Params.company -}}
+          <span class="px-2">•</span>
+        {{- end -}}
+        {{- if .Params.company -}}
+          <span class="font-medium">{{ .Params.company }}</span>
+        {{- end -}}
       </div>
       {{- end }}
 

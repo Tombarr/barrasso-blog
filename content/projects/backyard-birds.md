@@ -1,5 +1,6 @@
 +++
 title = 'Backyard Birds'
+company = 'Yoto'
 date = 2025-09-01
 draft = false
 type = 'projects'

@@ -1,0 +1,45 @@
+<div class="mb-4 md:mb-10">
+    <aside class="post-metadata">
+        <div class="tags flex flex-row gap-2 mb-1 md:mb-4">
+            {{ if .Draft }}
+            <div class="draft pill-hc2-solid">Draft</div>
+            {{ end }}
+        </div>
+
+        <h1 class="post-link-url font-semibold md:font-bold leading-tight text-lg lg:text-3xl">
+            <a class="no-underline" href="{{ .RelPermalink }}">
+                {{ if (isset .Params "icon") }}
+                    {{- $cleanIconPath := strings.TrimPrefix "/" .Params.icon -}}
+                    {{- $icon := resources.Get $cleanIconPath -}}
+                    {{- if $icon -}}
+                    <img src="{{ $icon.RelPermalink }}" alt="{{ .Title }}" width="{{ $icon.Width }}" height="{{ $icon.Height }}" class="external-favicon" loading="lazy" draggable="false" />
+                    {{- else -}}
+                    {{- warnf "Icon resource not found: %s (in %s)" .Params.icon .File.Path -}}
+                    {{- end -}}
+                {{ end }}
+                {{ .Title }}
+            </a>
+        </h1>
+
+        {{- /* Display date range and company if available */ -}}
+        {{- if or .Params.dateRange .Params.company }}
+        <div class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+            {{- if .Params.dateRange -}}
+                <span>{{ .Params.dateRange }}</span>
+            {{- end -}}
+            {{- if and .Params.dateRange .Params.company -}}
+                <span class="px-2">•</span>
+            {{- end -}}
+            {{- if .Params.company -}}
+                <span class="font-medium">{{ .Params.company }}</span>
+            {{- end -}}
+        </div>
+        {{- end }}
+
+        <article class="post-summary hidden md:block line-clamp-3">
+            <div class="hidden md:block text-ht-lighter line-clamp-3 mt-2 text-base md:text-lg leading-tight">
+                {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Summary }}{{ end }}
+            </div>
+        </article>
+    </aside>
+</div>

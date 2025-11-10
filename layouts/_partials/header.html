@@ -22,12 +22,12 @@
                            {{ if eq .Name "Talks" }} text-ht {{ end }}'>
                     {{ i18n "talks" }}
                 </a><span class="font-normal">|</span>
-                <a  href="/tags/"
+                <a  href="{{ relref . "/resume/tom" }}"
                     class='no-underline
-                           {{ if eq .Name "Tags" }} text-ht {{ end }}'>
-                    {{ i18n "tags" }}
+                           {{ if eq .RelPermalink "/resume/tom" }} text-ht {{ end }}'>
+                    {{ i18n "resume" }}
                 </a><span class="font-normal">|</span>
-                <a  href="/about/"
+                <a  href="{{ relref . "/about/" }}"
                     class='no-underline
                            {{ if eq .RelPermalink "/about/" }} text-ht {{ end }}'>
                     {{ i18n "tom" }}
@@ -57,7 +57,7 @@
                 {{ end }}
                 {{ if and .IsPage .Section (ne .Section "blog") }}
                     | <a href="/{{ .Section }}/" class="no-underline">
-                        {{ .Section }}
+                        {{ strings.Title .Section }}
                     </a>
                 {{ end }}
 

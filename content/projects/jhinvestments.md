@@ -1,5 +1,6 @@
 +++
 title = 'John Hancock Investments'
+company = 'MAARK'
 date = 2018-09-10
 draft = false
 type = 'projects'
@@ -13,6 +14,7 @@ featured = false
 
 # Images
 featureImage = '/images/features/jhinvestments.png'
+featureImageCaption = 'Screenshot of the hypothetical growth of $10k chart on the Fund Compare tool on JHInvestments.com'
 featureImagePosition = 'top'  # Options: 'top' (before content), 'bottom' (after content), 'none' (not rendered on single page)
 screenshots = []
 

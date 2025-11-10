@@ -2,10 +2,11 @@
 {{- /* Get feature image position parameter, default to "top" */ -}}
 {{- $featureImagePosition := .Params.featureImagePosition | default "top" -}}
 
-{{- /* Validate and get feature image resource if needed */ -}}
+{{- /* Validate and get feature image resource if needed (trim leading slash if present) */ -}}
 {{- $featureImage := "" -}}
 {{- if and .Params.featureImage (ne $featureImagePosition "none") -}}
-  {{- $featureImage = resources.Get .Params.featureImage -}}
+  {{- $cleanFeaturePath := strings.TrimPrefix "/" .Params.featureImage -}}
+  {{- $featureImage = resources.Get $cleanFeaturePath -}}
   {{- if not $featureImage -}}
     {{- errorf "Feature image not found: %s (in %s)" .Params.featureImage .File.Path -}}
   {{- end -}}
@@ -15,7 +16,8 @@
 
   <div class="flex items-center gap-4 mb-6">
     {{- if .Params.icon }}
-      {{- $icon := resources.Get .Params.icon -}}
+      {{- $cleanIconPath := strings.TrimPrefix "/" .Params.icon -}}
+      {{- $icon := resources.Get $cleanIconPath -}}
       {{- if not $icon -}}
         {{- errorf "Icon not found: %s (in %s)" .Params.icon .File.Path -}}
       {{- else -}}
@@ -27,7 +29,7 @@
             height="{{ $icon.Height }}"
             loading="lazy"
             draggable="false"
-            class="h-12 w-12"/>
+            class="h-12 w-12 object-contain"/>
         </div>
       {{- end -}}
     {{- end -}}
@@ -35,9 +37,17 @@
       <h1 class="text-3xl md:text-4xl font-title font-semibold mb-2">
         {{ .Title }}
       </h1>
-      {{- if .Params.dateRange }}
+      {{- if or .Params.dateRange .Params.company }}
       <div class="text-sm text-slate-500 dark:text-slate-400">
-        {{ .Params.dateRange }}
+        {{- if .Params.dateRange -}}
+          <span>{{ .Params.dateRange }}</span>
+        {{- end -}}
+        {{- if and .Params.dateRange .Params.company -}}
+          <span class="px-2">•</span>
+        {{- end -}}
+        {{- if .Params.company -}}
+          <span class="font-medium">{{ .Params.company }}</span>
+        {{- end -}}
       </div>
       {{- end }}
     </div>
@@ -76,15 +86,22 @@
 
   {{- /* Render feature image in "top" position (after technologies, before content) */ -}}
   {{- if and $featureImage (eq $featureImagePosition "top") }}
-  <div class="aspect-video w-full overflow-hidden rounded-lg mb-8">
-    <img
-      src="{{ $featureImage.RelPermalink }}"
-      alt="{{ .Title }}"
-      class="h-full w-full object-contain"
-      loading="lazy"
-      draggable="false"
-    />
-  </div>
+  <figure class="mb-8">
+    <div class="aspect-video w-full overflow-hidden rounded-lg">
+      <img
+        src="{{ $featureImage.RelPermalink }}"
+        alt="{{ .Title }}"
+        class="h-full w-full object-contain"
+        loading="lazy"
+        draggable="false"
+      />
+    </div>
+    {{- if .Params.featureImageCaption }}
+    <figcaption class="mt-3 text-sm text-center text-slate-600 dark:text-slate-400 italic">
+      {{ .Params.featureImageCaption }}
+    </figcaption>
+    {{- end }}
+  </figure>
   {{- end }}
 
   <div class="prose prose-slate dark:prose-invert max-w-none mb-8">
@@ -93,25 +110,47 @@
 
   {{- /* Render feature image in "bottom" position (after content, before screenshots) */ -}}
   {{- if and $featureImage (eq $featureImagePosition "bottom") }}
-  <div class="aspect-video w-full overflow-hidden rounded-lg mb-8">
-    <img
-      src="{{ $featureImage.RelPermalink }}"
-      alt="{{ .Title }}"
-      class="h-full w-full object-contain"
-      loading="lazy"
-      draggable="false"
-    />
-  </div>
+  <figure class="mb-8">
+    <div class="aspect-video w-full overflow-hidden rounded-lg">
+      <img
+        src="{{ $featureImage.RelPermalink }}"
+        alt="{{ .Title }}"
+        class="h-full w-full object-contain"
+        loading="lazy"
+        draggable="false"
+      />
+    </div>
+    {{- if .Params.featureImageCaption }}
+    <figcaption class="mt-3 text-sm text-center text-slate-600 dark:text-slate-400 italic">
+      {{ .Params.featureImageCaption }}
+    </figcaption>
+    {{- end }}
+  </figure>
   {{- end }}
 
   {{- if .Params.screenshots }}
   <div class="mb-8">
     <h2 class="text-2xl font-semibold mb-4">Screenshots</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {{- range .Params.screenshots }}
-      <div class="overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700">
-        <img src="{{ . }}" alt="Screenshot" class="w-full h-auto" />
-      </div>
+      {{- range $index, $screenshotPath := .Params.screenshots }}
+        {{- /* Load screenshot as resource (trim leading slash if present) */ -}}
+        {{- $cleanPath := strings.TrimPrefix "/" $screenshotPath -}}
+        {{- $screenshot := resources.Get $cleanPath -}}
+        {{- if $screenshot -}}
+        <div class="overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700">
+          <img
+            src="{{ $screenshot.RelPermalink }}"
+            alt="{{ $.Title }} - Screenshot {{ add $index 1 }}"
+            width="{{ $screenshot.Width }}"
+            height="{{ $screenshot.Height }}"
+            loading="lazy"
+            draggable="false"
+            class="w-full h-auto"
+          />
+        </div>
+        {{- else -}}
+          {{- warnf "Screenshot not found: %s (in %s)" $screenshotPath $.File.Path -}}
+        {{- end -}}
       {{- end }}
     </div>
   </div>

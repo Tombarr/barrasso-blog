@@ -3,11 +3,13 @@ about = "About"
 tags = "Tags"
 posts = "Posts"
 talks = "Talks"
+resume = "Resume"
 tom = "Tom"
 
 skills = "Skills"
 worked_with = "Who I've Worked With"
 projects = "Projects"
+articles = "Articles"
 view = "View"
 view_all = "View all"
 

@@ -11,6 +11,7 @@ dateRange = '2020 - Present'
 featured = true
 
 featureImage = '/images/features/podlp-kaios-promotion.png'
+featureImageCaption = 'Promotional image from the official KaiOS Blog, 2024'
 featureImagePosition = 'bottom'
 screenshots = []
 

@@ -15,3 +15,22 @@
 {{/* Meta refresh for external link posts - redirects immediately */}}
 <meta http-equiv="refresh" content="0; url={{ .Params.externalLink }}" />
 {{ end }}
+
+{{/* Override favicon for external articles if favicon is set */}}
+{{ if .Params.favicon }}
+  {{- $favicon := .Params.favicon -}}
+  {{- if or (hasPrefix $favicon "http://") (hasPrefix $favicon "https://") -}}
+    <link rel="icon" href="{{ $favicon }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ $favicon }}">
+  {{- else -}}
+    {{- warnf "Invalid favicon URL (must be external http/https): %s (in %s)" $favicon .File.Path -}}
+  {{- end -}}
+{{/* Override favicon for project pages if project icon is set */}}
+{{ else if and (eq .Type "projects") .Params.icon }}
+  {{- $cleanIconPath := strings.TrimPrefix "/" .Params.icon -}}
+  {{- $icon := resources.Get $cleanIconPath -}}
+  {{- if $icon -}}
+    <link rel="icon" href="{{ $icon.RelPermalink }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ $icon.RelPermalink }}">
+  {{- end -}}
+{{ end }}

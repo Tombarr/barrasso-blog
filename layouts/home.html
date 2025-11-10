@@ -32,7 +32,11 @@
         </h1>
         {{ end }}
 
-        <article class="post-content hero my-4 hero-with-metaball">
+        <article class="post-content hero my-4 hero-with-metaball {{ if .IsHome }}flex hero-with-portrait{{ end }}">
+            {{ if .IsHome }}
+            <!-- Avatar positioned to the left of hero text -->
+            {{ partial "avatar.html" . }}
+            {{ end }}
             <!-- Metaball SVG background -->
             <div class="metaball-container">
                 <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
@@ -112,7 +116,7 @@
 </div>
 
 <!-- Scrolling logos banner -->
-{{ if .IsHome }}
+{{ if and .IsHome (or (not .Paginator) (eq .Paginator.PageNumber 1)) }}
 <div class="flex flex-col
             blog-content-width
             mb-2">
@@ -122,7 +126,7 @@
 {{ end }}
 
 <!-- Projects section -->
-{{ if .IsHome }}
+{{ if and .IsHome (or (not .Paginator) (eq .Paginator.PageNumber 1)) }}
 {{- $projects := where .Site.RegularPages "Type" "projects" -}}
 {{- if $projects }}
 <div class="flex flex-col blog-content-width my-12">
@@ -142,12 +146,21 @@
 {{ end }}
 
 <!-- Skills tag cloud -->
-{{ if .IsHome }}
+{{ if and .IsHome (or (not .Paginator) (eq .Paginator.PageNumber 1)) }}
 <div class="flex flex-col
             blog-content-width
             mb-8">
     <h2 class="font-semibold md:font-bold leading-tight text-lg lg:text-3xl mb-4">{{ i18n "skills" }}</h2>
     {{ partial "skill-tags.html" . }}
+</div>
+{{ end }}
+
+<!-- Articles header -->
+{{ if .IsHome }}
+<div class="flex flex-col
+            blog-content-width
+            mb-8">
+    <h2 class="font-semibold md:font-bold leading-tight text-lg lg:text-3xl mt-4">{{ i18n "articles" }}</h2>
 </div>
 {{ end }}
 

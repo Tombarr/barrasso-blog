@@ -1,5 +1,6 @@
 +++
 title = 'Vipaso'
+company = 'Vipaso'
 date = 2024-05-01
 draft = false
 type = 'projects'
