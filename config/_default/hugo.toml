@@ -4,6 +4,9 @@ title = 'Tom Barrasso'
 theme = 'henry'
 disableHugoGeneratorInject = true
 
+[markup.goldmark.renderer]
+unsafe = true
+
 [outputs]
 home = ["HTML", "RSS", "JSON", "SEARCH"]
 

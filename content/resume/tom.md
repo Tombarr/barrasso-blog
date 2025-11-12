@@ -38,23 +38,29 @@ resumeGitLink = 'git.io/resume'
   company="CloudMosa"
   location="Remote"
   dates="Sept 2024 - Present"
-  employerUrl="https://cloudphone.tech"
+  employerUrl="https://www.cloudphone.tech"
   companyIcon="cloudmosa"
 >}}
-* Authored and developed Cloud Phone for Developers website
-* Supported developers, outreach, made podcast guest appearances, ...
+
+* Authored, designed, and developed the [Cloud Phone for Developers]({{< relref "projects/cloud-phone" >}}) website including 4 open source reference applications and tutorials
+* Expanded platform reach with 4 podcast guest appearances, 4 promotional videos, 4 guest articles, and 3 presentations at developer Meetups
+* Supported dozens of companies and developers via email, Discord, Zoom, and in-person
+* Created and grew online communities across Reddit, Discord, Bluesky, and X
+* Prospected several regional brands resulting in 6 significant apps published
 {{< /job >}}
 
 {{< job
   title="Staff Technical Program Manager"
   company="Meta"
-  location="Seattle, WA"
+  location="Bellevue, WA"
   dates="Feb 2022 - Sept 2024"
   employerUrl="https://meta.com"
   companyIcon="meta"
 >}}
-- Executed company-wide privacy data use programs
-- Reduced regulatory burden by 75% YoY
+
+* Executed company-wide data use programs supporting compliance with international privacy regulations like {{< abbr title="General Data Protection Regulation" >}}GDPR{{< /abbr >}}, {{< abbr title="Digital Markets Act" >}}DMA{{< /abbr >}} & {{< abbr title="Digital Services Act" >}}DSA{{< /abbr >}}, {{< abbr title="California Consumer Privacy Act" >}}CCPA{{< /abbr >}}, and {{< abbr title="ePrivacy Directive" >}}ePD{{< /abbr >}}
+* Led execution to pilot and scale [Privacy Aware Infrastructure]({{< relref "projects/policy-zones" >}}) (PAI) across 150+ use cases in under 1 year resulting in €14+ billion in fine avoidance
+* Promoted in 1{{< sup >}}st{{< /sup >}} year following automation of annual audits to reduce operational cosy by 75% {{< abbr title="Year-on-Year" >}}YoY{{< /abbr >}}
 {{< /job >}}
 
 {{< job
@@ -65,22 +71,24 @@ resumeGitLink = 'git.io/resume'
   employerUrl="https://amazon.com"
   companyIcon="amazon"
 >}}
-* Unblocked Amazon Pharmacy launch by organizing security certification
-for 54 services across 25 teams in 4 months
-* Prioritized and coordinated maintenance of real-time data replication sys-
-tems to mitigate risk and improve end-to-end data integrity
+
+* Unblocked [Amazon Pharmacy]({{< relref "projects/amazon-pharmacy" >}}) launch by orchestrating and executing security certification for 54 services spanning 25 teams and an external vendor in a single quarter
+* Prioritized and coordinated maintenance of real-time data replication systems to mitigate data loss
+* Led development of [Supply Chain Standards](https://sustainability.aboutamazon.com/amazon-supply-chain-standards-english.pdf) auditing tool within Amazon Sustainability
+
 {{< /job >}}
 
 {{< job
   title="Software Development Engineer II"
-  company="Amazon Pharmacy"
+  company="PillPack/ Amazon Pharmacy"
   location="Boston, MA"
   dates="Dec 2018 - Apr 2020"
   employerUrl="https://pharmacy.amazon.com"
   companyIcon="amazon"
 >}}
-* Architected & developed pharmacy sales & use tax calculation engine and reporting tools, processing 10M+ monthly transactions
-* Refactored insurance claim adjudication service for 99.99% availability
+
+* Architected pharmacy sales tax calculation and reporting engine, processing 10M+ {{< abbr title="Transactions per Month" >}}txn/month{{< /abbr >}}
+* Refactored insurance claim adjudication service for high availability (five nines: 99.999%)
 {{< /job >}}
 
 {{< job
@@ -88,8 +96,13 @@ tems to mitigate risk and improve end-to-end data integrity
   company="MAARK"
   location="Boston, MA"
   dates="Aug 2017 - Dec 2018"
+  employerUrl="https://maark.com"
+  companyIcon="maark"
 >}}
-* Led front-end engineer launching JHInvestments.com
+
+* Lead front-end engineer launching the redesigned [John Hancock Investments]({{< relref "projects/jhinvestments" >}}) website
+* Developed components and interactive prototypes for clients like Marriott, Manulife, and Merck
+
 {{< /job >}}
 
 {{< job
@@ -98,6 +111,8 @@ tems to mitigate risk and improve end-to-end data integrity
   location="Boston, MA"
   dates="Jan 2017 - Aug 2017"
 >}}
+
+* Developed and standardized methods for short-chain fatty acid (SCFA) analysis using {{< abbr title="Gas Chromatography-Mass Spectrometry" >}}GC-MS{{< /abbr >}}
 {{< /job >}}
 
 {{< job
@@ -106,6 +121,8 @@ tems to mitigate risk and improve end-to-end data integrity
   location="Amherst, MA"
   dates="Sept 2014 - May 2016"
 >}}
+
+* Culminated in [undergraduate thesis](https://gsa.confex.com/gsa/2016NE/webprogram/Paper272194.html) linking fecal biomarkers to paleoclimate and human habitation
 {{< /job >}}
 
 {{< job
@@ -116,7 +133,8 @@ tems to mitigate risk and improve end-to-end data integrity
   employerUrl="https://plangrid.com"
   companyIcon="plangrid"
 >}}
-* Developed the first version of the PlanGrid blueprint reader for Android
+
+* Developed the first version of the blueprint reader [PlanGrid for Android]({{< relref "projects/plangrid" >}}) tablets
 {{< /job >}}
 
 {{< job
@@ -125,7 +143,8 @@ tems to mitigate risk and improve end-to-end data integrity
   location="Cambridge, MA"
   dates="Sept 2011 - June 2012"
 >}}
-* Lectured for CS50 & CS75 introductory courses on computer science and web development
+
+* Lectured and graded for CS50 & CS75: Introduction to Computer Science and Web Development
 {{< /job >}}
 
 {{< job
@@ -135,7 +154,8 @@ tems to mitigate risk and improve end-to-end data integrity
   dates="May 2010 - Aug 2011"
   employerUrl="https://www.intouchcorp.com/"
 >}}
-* Built a prototype of TextMyFood, a service for restaurants to receive customer feedback via SMS
+
+* Developed the [TextMyFood]({{< relref "projects/textmyfood" >}}) prototype, a service for restaurants to receive orders via {{< abbr title="Short Message Service" >}}SMS{{< /abbr >}}
 {{< /job >}}
 
 {{< /work-experience >}}
@@ -157,14 +177,14 @@ tems to mitigate risk and improve end-to-end data integrity
   title="Founder, PodLP"
   dates="2020 - Present"
 >}}
-Podcast app for flip phones with 10M+ installs, $100k+ lifetime revenue, etc...
+Developed & monetized [PodLP]({{< relref "projects/podlp" >}}), a flip phone podcast app surpassing **10M+ installs** and **>$100k** {{< abbr title="Lifetime Revenue" >}}**LTR**{{< /abbr >}}
 {{< /resume-project >}}
 
 {{< resume-project
   title="Android Developer"
-  dates="2011 - 2015"
+  dates="2010 - 2015"
 >}}
-Built 6 apps esp. StatusBar+, ChargeBar, and Noyze totalling 5M+ installs, sold 2 apps on Apptopia marketplace, made stuff
+Built 12+ apps, notably [StatusBar+]({{< relref "projects/statusbarplus" >}}), [ChargeBar]({{< relref "projects/chargebar" >}}), & [Noyze]({{< relref "projects/noyze" >}}) totalling **2M+ installs**; **2 apps acquired**
 {{< /resume-project >}}
 
 {{< /resume-projects >}}
@@ -172,16 +192,41 @@ Built 6 apps esp. StatusBar+, ChargeBar, and Noyze totalling 5M+ installs, sold 
  {{< sidebar >}}
 
 {{< sidebar-section title="Skills" style="list" headingSize="lg" >}}
-Software Architecture
-Technical Writing
+{{< abbr title="Cross-Functional" >}}XFN{{< /abbr >}} Program Management
+Product Strategy & Roadmapping
+Documentation Writing
+Developer Relations & Advocacy
+Cloud Architecture
+Security & Privacy Compliance
+Agile Development
+Development & Mentorship
+Change Management
+Agentic Coding
 {{< /sidebar-section >}}
 
 {{< sidebar-section title="Technologies" style="pills" >}}
 TypeScript
 JavaScript
+Node.js
 Java
+PHP
+Ruby on Rails
+RSpec
 Svelte
 React
+REST
+Vite
+Playwright
+SQL
+Babel
+GraphQL
+AWS
+Cloudflare
+Docker
+Git
+CI/CD
+HTML
+CSS
 {{< /sidebar-section >}}
 
 {{< /sidebar >}}

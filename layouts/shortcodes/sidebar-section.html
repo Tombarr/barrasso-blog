@@ -30,7 +30,9 @@
 
 {{- /* Parse inner content into array (split by newlines, trim whitespace) */ -}}
 {{- $items := slice -}}
-{{- range split .Inner "\n" -}}
+{{- /* Allows us to keep inline tags like <abbr> and <sup> */ -}}
+{{- $content := replaceRE ">\\n" "> " .Inner -}}
+{{- range split $content "\n" -}}
   {{- $item := trim . " \t\r\n" -}}
   {{- if $item -}}
     {{- $items = $items | append $item -}}
@@ -55,7 +57,7 @@
     {{- /* List display */ -}}
     <ul class="space-y-0.5 text-xs text-slate-700 list-none">
       {{- range $items }}
-      <li>{{ . }}</li>
+      <li>{{ . | markdownify }}</li>
       {{- end }}
     </ul>
   {{- end -}}
