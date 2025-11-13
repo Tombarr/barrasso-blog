@@ -1,0 +1,39 @@
+{{- $url := .Get 0 -}}
+{{- with resources.GetRemote $url -}}
+  {{- with .Content -}}
+    {{- $content := . -}}
+
+    {{- /* Extract width and height from SVG root element */ -}}
+    {{- $widthMatch := findRE `<svg[^>]*\swidth="([^"]+)"` $content 1 -}}
+    {{- $heightMatch := findRE `<svg[^>]*\sheight="([^"]+)"` $content 1 -}}
+
+    {{- $width := "" -}}
+    {{- $height := "" -}}
+
+    {{- if $widthMatch -}}
+      {{- $width = replaceRE `<svg[^>]*\swidth="([^"]+)".*` "$1" (index $widthMatch 0) -}}
+    {{- end -}}
+
+    {{- if $heightMatch -}}
+      {{- $height = replaceRE `<svg[^>]*\sheight="([^"]+)".*` "$1" (index $heightMatch 0) -}}
+    {{- end -}}
+
+    {{- /* If both width and height exist, add/set viewBox */ -}}
+    {{- if and $width $height -}}
+      {{- $viewBox := printf "0 0 %s %s" $width $height -}}
+
+      {{- /* Check if viewBox already exists */ -}}
+      {{- $hasViewBox := findRE `<svg[^>]*\sviewBox=` $content 1 -}}
+
+      {{- if $hasViewBox -}}
+        {{- /* Replace existing viewBox */ -}}
+        {{- $content = replaceRE `(<svg[^>]*\s)viewBox="[^"]*"` (printf `${1}viewBox="%s"` $viewBox) $content -}}
+      {{- else -}}
+        {{- /* Add viewBox to svg tag */ -}}
+        {{- $content = replaceRE `(<svg[^>]*)>` (printf `${1} viewBox="%s">` $viewBox) $content 1 -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{ $content | safeHTML }}
+  {{- end -}}
+{{- end -}}

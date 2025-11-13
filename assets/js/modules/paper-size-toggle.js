@@ -151,9 +151,9 @@ function insertPageSpacers() {
 
   // Convert to pixels (96 DPI standard)
   // Letter: 11 inches = 1056px, A4: 297mm ≈ 1122px
-  const pageHeightPx = paperSize === SIZE_A4
+  const pageHeightPx = ((paperSize === SIZE_A4)
     ? 297 * 3.7795275591  // mm to px conversion
-    : 11 * 96;              // inches to px
+    : 11 * 96) - 164;      // inches to px
 
   // Get total container height
   const containerHeight = container.scrollHeight;
@@ -171,7 +171,7 @@ function insertPageSpacers() {
     const breakPosition = page * pageHeightPx;
 
     // Find the best insertion point near the break position
-    const allElements = Array.from(container.querySelectorAll('.resume-header, .resume-content-grid > *, .job-entry, .degree-entry, .project-entry, .sidebar-section'));
+    const allElements = Array.from(container.querySelectorAll('.resume-header, .resume-content-grid > *, .job-entry, .degree-entry, .project-entry'));
 
     let insertBeforeElement = null;
     let minDistance = Infinity;

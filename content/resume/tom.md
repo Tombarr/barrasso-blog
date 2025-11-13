@@ -9,7 +9,7 @@ name = 'Tom Barrasso'
 email = 'tom@barrasso.me'
 phone = '(617) 894-7466'
 location = 'Boston, MA'
-summary = 'Veteran technologist with a track record launching multiple successful projects and driving cross-functional big tech initiatives. I’ve worked every layer of the software development lifecycle (SDLC) where I bring technical depth, empathetic leadership, and a passion for connecting people with purpose-built technology.'
+summary = 'Technologist who has successfully launched multiple zero-to-one projects at scale. I work across the software development lifecycle where I bring technical depth, empathetic leadership, and a passion for connecting people with purpose-built technology.'
 
 # Section Toggles
 showWorkExperience = true
@@ -26,7 +26,7 @@ linkedin = 'https://linkedin.barrasso.me'
 portfolio = 'https://barrasso.me'
 
 # Footer
-resumeGitLink = 'git.io/resume'
+resumeGitLink = 'resume.barrasso.me'
 +++
 
 <!-- Use shortcodes to structure your resume content -->
@@ -60,7 +60,7 @@ resumeGitLink = 'git.io/resume'
 
 * Executed company-wide data use programs supporting compliance with international privacy regulations like {{< abbr title="General Data Protection Regulation" >}}GDPR{{< /abbr >}}, {{< abbr title="Digital Markets Act" >}}DMA{{< /abbr >}} & {{< abbr title="Digital Services Act" >}}DSA{{< /abbr >}}, {{< abbr title="California Consumer Privacy Act" >}}CCPA{{< /abbr >}}, and {{< abbr title="ePrivacy Directive" >}}ePD{{< /abbr >}}
 * Led execution to pilot and scale [Privacy Aware Infrastructure]({{< relref "projects/policy-zones" >}}) (PAI) across 150+ use cases in under 1 year resulting in €14+ billion in fine avoidance
-* Promoted in first year after automation of annual audits reducing operational cost by 75% {{< abbr title="Year-on-Year" >}}YoY{{< /abbr >}}
+* Promoted in first year; automated annual audits reducing operational cost by 75% {{< abbr title="Year-on-Year" >}}YoY{{< /abbr >}}
 {{< /job >}}
 
 {{< job
@@ -73,7 +73,7 @@ resumeGitLink = 'git.io/resume'
 >}}
 
 * Unblocked [Amazon Pharmacy]({{< relref "projects/amazon-pharmacy" >}}) launch by orchestrating and executing security certification for 54 services spanning 25 teams and an external vendor in a single quarter
-* Prioritized & coordinated maintenance of real-time data replication system to mitigate data loss
+* Prioritized & coordinated maintenance of data replication system to mitigate data loss
 * Led development of [Supply Chain Standards](https://sustainability.aboutamazon.com/amazon-supply-chain-standards-english.pdf) auditing tool within Amazon Sustainability
 
 {{< /job >}}
@@ -87,7 +87,7 @@ resumeGitLink = 'git.io/resume'
   companyIcon="amazon"
 >}}
 
-* Architected pharmacy sales tax calculation and reporting engine, processing 10M+ {{< abbr title="Transactions per Month" >}}txn/month{{< /abbr >}}
+* Architected sales tax calculation and reporting engine, processing 10M+ {{< abbr title="Transactions per Month" >}}txn/month{{< /abbr >}}
 * Refactored insurance claim adjudication service for high availability (five nines: 99.999%)
 {{< /job >}}
 
@@ -101,9 +101,11 @@ resumeGitLink = 'git.io/resume'
 >}}
 
 * Lead front-end engineer launching the redesigned [John Hancock Investments]({{< relref "projects/jhinvestments" >}}) website
-* Developed components and interactive prototypes for clients like Marriott, Manulife, and Merck
+* Developed components & interactive prototypes for clients like Marriott, Manulife & Merck
 
 {{< /job >}}
+
+{{< section class="new-page print-only" >}} {{< / section >}}
 
 {{< job
   title="Research Associate"
@@ -112,7 +114,7 @@ resumeGitLink = 'git.io/resume'
   dates="Jan 2017 - Aug 2017"
 >}}
 
-* Developed and standardized methods for short-chain fatty acid (SCFA) analysis using {{< abbr title="Gas Chromatography-Mass Spectrometry" >}}GC-MS{{< /abbr >}}
+* Developed and standardized methods for {{< abbr title="Gas Chromatography-Mass Spectrometry" >}}GC-MS{{< /abbr >}} short-chain fatty acid (SCFA) analysis
 {{< /job >}}
 
 {{< job
@@ -204,6 +206,7 @@ Security & Privacy Compliance
 Agile Development
 Development & Mentorship
 Change Management
+Test-Driven Development
 Agentic Coding
 {{< /sidebar-section >}}
 
@@ -217,19 +220,29 @@ Ruby on Rails
 RSpec
 Svelte
 React
+SQL
 REST
 Vite
+Git
 Playwright
-SQL
 Babel
 GraphQL
 AWS
 Cloudflare
 Docker
-Git
 CI/CD
 HTML
 CSS
+{{< /sidebar-section >}}
+
+{{< section class="new-page print-only" >}} {{< / section >}}
+
+{{< sidebar-section title="Interests" style="list" >}}
+Privacy by design
+Digital accessibility (a11y)
+Sustainable computation
+Responsible innovation
+Attention resilience
 {{< /sidebar-section >}}
 
 {{< /sidebar >}}

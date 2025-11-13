@@ -161,13 +161,18 @@
         </section>
         {{- end }}
 
+        {{- /* Spacer to push footer to bottom */ -}}
+        <div class="sidebar-spacer"></div>
+
         {{- /* Footer with typeset note */ -}}
-        <footer class="sidebar-footer mt-auto pt-4 border-t border-slate-300">
+        <footer class="sidebar-footer pt-4 border-t border-slate-300">
           <p class="text-xs text-slate-500 leading-relaxed">
-            {{ i18n "resume_typeset" | default "Resume typeset in HTML + CSS" }},
-            <a href="https://{{ .Params.resumeGitLink | default "git.io/resume" }}" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-slate-900">
-              {{ .Params.resumeGitLink | default "git.io/resume" }}
+            {{ i18n "resume_typeset" | default "Resume typeset in HTML + CSS" }}<br />
+            {{- with .Params.links -}}
+            <a href="https://{{ .resumeGitLink | default "git.io/resume" }}" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-slate-900 resume-typeset-link https-before">
+              {{ .resumeGitLink | default "git.io/resume" }}
             </a>
+            {{- end -}}
           </p>
         </footer>
       </aside>

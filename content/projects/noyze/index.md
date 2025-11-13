@@ -30,7 +30,7 @@ With more than **500,000+ installs**, Noyze was featured on [Gadget Hacks](https
 {{< img src="noyze-nexus.png" alt="Noyze Volume Panel" >}}
 
 {{< br >}}
-### Themes
+### **Themes**
 
 {{< br >}}
 A key feature of Noyze was the extensive catalog of customizable themes designed to mirror modern and nostalgic styles, from the minimalistic status bar theme to multi-channel controls. Extensive research was done across a variety of systems and interfaces to understand which designs and features resonated most with users.

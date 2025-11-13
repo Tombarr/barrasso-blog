@@ -31,7 +31,7 @@
 {{- /* Parse inner content into array (split by newlines, trim whitespace) */ -}}
 {{- $items := slice -}}
 {{- /* Allows us to keep inline tags like <abbr> and <sup> */ -}}
-{{- $content := replaceRE ">\\n" "> " .Inner -}}
+{{- $content := replaceRE ">\\n" ">" .Inner -}}
 {{- range split $content "\n" -}}
   {{- $item := trim . " \t\r\n" -}}
   {{- if $item -}}

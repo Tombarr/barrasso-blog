@@ -14,6 +14,11 @@ I'm a software engineer passionate about code, culture, and creativity. This blo
 When I'm not writing code or blog posts, you can find me exploring new technologies, contributing to open source, or thinking about the intersection of technology and human experience.
 
 {{< br >}}
+{{< section class="w-full svg-container gh-charts" >}}
+  {{< remote-svg "https://ghchart.rshah.org/496390/tombarr" >}}
+{{< /section >}}
+
+{{< br >}}
 ## Tools
 
 {{< br >}}
@@ -43,6 +48,13 @@ When I'm not writing code or blog posts, you can find me exploring new technolog
 * [DevPod](https://devpod.sh/) (DevContainers)
 * [Signal](https://signal.org/) (Messaging)
 * [PodLP](https://podlp.com) (Podcasts)
+
+{{< br >}}
+## Other Sites
+
+* [PodLP](https://podlp.com)
+* [KaiOS.dev](https://kaios.dev)
+* [KaiOS.app](https://kaios.app)
 
 {{< br >}}
 ## Contact

@@ -18,7 +18,7 @@ work_experience = "Work Experience"
 education = "Education"
 technologies = "Technologies"
 links = "Links"
-resume_typeset = "Resume typeset in HTML + CSS"
+resume_typeset = "Typeset in HTML + CSS"
 
 # Paper size options
 paper_size = "Paper Size"
