@@ -21,6 +21,11 @@ const initSite = () => {
 
   // Initialize paper size toggle (resume pages only)
   initPaperSizeToggle();
+
+  // Mark page as loaded
+  requestAnimationFrame(() => {
+    document.documentElement.classList.add("loaded");
+  });
 };
 
 document.addEventListener('DOMContentLoaded', initSite);

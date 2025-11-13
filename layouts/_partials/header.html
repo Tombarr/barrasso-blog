@@ -107,7 +107,7 @@
     <script src="{{ $search.RelPermalink }}" type="module"></script>
     {{ else }}
     {{ $search = $search | fingerprint }}
-    <script src="{{ $search.RelPermalink }}" type="module"></script>
+    <script src="{{ $search.RelPermalink }}" type="module" integrity="{{ $search.Data.Integrity }}" nonce="{{ $search.Data.Nonce }}"></script>
     {{ end }}
 
     <!-- Searchbar -->

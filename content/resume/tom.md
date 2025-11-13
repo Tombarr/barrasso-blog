@@ -9,7 +9,7 @@ name = 'Tom Barrasso'
 email = 'tom@barrasso.me'
 phone = '(617) 894-7466'
 location = 'Boston, MA'
-summary = 'Impact-oriented technical program & product leader with independent, start-up, agency, and big tech experience taking digital products from concept to market.'
+summary = 'Veteran technologist with a track record launching multiple successful projects and driving cross-functional big tech initiatives. I’ve worked every layer of the software development lifecycle (SDLC) where I bring technical depth, empathetic leadership, and a passion for connecting people with purpose-built technology.'
 
 # Section Toggles
 showWorkExperience = true
@@ -60,7 +60,7 @@ resumeGitLink = 'git.io/resume'
 
 * Executed company-wide data use programs supporting compliance with international privacy regulations like {{< abbr title="General Data Protection Regulation" >}}GDPR{{< /abbr >}}, {{< abbr title="Digital Markets Act" >}}DMA{{< /abbr >}} & {{< abbr title="Digital Services Act" >}}DSA{{< /abbr >}}, {{< abbr title="California Consumer Privacy Act" >}}CCPA{{< /abbr >}}, and {{< abbr title="ePrivacy Directive" >}}ePD{{< /abbr >}}
 * Led execution to pilot and scale [Privacy Aware Infrastructure]({{< relref "projects/policy-zones" >}}) (PAI) across 150+ use cases in under 1 year resulting in €14+ billion in fine avoidance
-* Promoted in 1{{< sup >}}st{{< /sup >}} year following automation of annual audits to reduce operational cosy by 75% {{< abbr title="Year-on-Year" >}}YoY{{< /abbr >}}
+* Promoted in first year after automation of annual audits reducing operational cost by 75% {{< abbr title="Year-on-Year" >}}YoY{{< /abbr >}}
 {{< /job >}}
 
 {{< job
@@ -73,7 +73,7 @@ resumeGitLink = 'git.io/resume'
 >}}
 
 * Unblocked [Amazon Pharmacy]({{< relref "projects/amazon-pharmacy" >}}) launch by orchestrating and executing security certification for 54 services spanning 25 teams and an external vendor in a single quarter
-* Prioritized and coordinated maintenance of real-time data replication systems to mitigate data loss
+* Prioritized & coordinated maintenance of real-time data replication system to mitigate data loss
 * Led development of [Supply Chain Standards](https://sustainability.aboutamazon.com/amazon-supply-chain-standards-english.pdf) auditing tool within Amazon Sustainability
 
 {{< /job >}}
@@ -122,7 +122,7 @@ resumeGitLink = 'git.io/resume'
   dates="Sept 2014 - May 2016"
 >}}
 
-* Culminated in [undergraduate thesis](https://gsa.confex.com/gsa/2016NE/webprogram/Paper272194.html) linking fecal biomarkers to paleoclimate and human habitation
+* Researched [undergraduate thesis](https://gsa.confex.com/gsa/2016NE/webprogram/Paper272194.html) linking fecal biomarkers to paleoclimate & human habitation
 {{< /job >}}
 
 {{< job
@@ -141,10 +141,12 @@ resumeGitLink = 'git.io/resume'
   title="CSAIL Teaching Fellow"
   company="Harvard University"
   location="Cambridge, MA"
+  companyIcon="harvard"
   dates="Sept 2011 - June 2012"
+  employerUrl="https://pll.harvard.edu/course/cs50-introduction-computer-science"
 >}}
 
-* Lectured and graded for CS50 & CS75: Introduction to Computer Science and Web Development
+* Lectured & graded for CS50 & CS75: Introduction to Computer Science and Web Development
 {{< /job >}}
 
 {{< job
@@ -152,6 +154,7 @@ resumeGitLink = 'git.io/resume'
   company="inTouch Corp"
   location="Cambridge, MA"
   dates="May 2010 - Aug 2011"
+  companyIcon="intouch"
   employerUrl="https://www.intouchcorp.com/"
 >}}
 
@@ -177,7 +180,7 @@ resumeGitLink = 'git.io/resume'
   title="Founder, PodLP"
   dates="2020 - Present"
 >}}
-Developed & monetized [PodLP]({{< relref "projects/podlp" >}}), a flip phone podcast app surpassing **10M+ installs** and **>$100k** {{< abbr title="Lifetime Revenue" >}}**LTR**{{< /abbr >}}
+Developed & monetized [PodLP]({{< relref "projects/podlp" >}}), a flip phone podcast app surpassing **10M+ installs**; **>$100k** {{< abbr title="Lifetime Revenue" >}}**LTR**{{< /abbr >}}
 {{< /resume-project >}}
 
 {{< resume-project

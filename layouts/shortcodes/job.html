@@ -13,7 +13,7 @@
         {{- if $employerUrl }}
         <a href="{{ $employerUrl }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 hover:text-slate-900 no-underline no-arrow">
           {{- if $companyIcon }}
-          <img src="/images/company-logos/{{ $companyIcon }}.svg" alt="{{ $company }}" class="inline-block w-3 h-3" />
+          <img src="/images/company-logos/{{ $companyIcon }}.svg" alt="{{ $company }}" class="inline-block w-3 h-3" width="12" height="12" draggable="false" loading="eager" />
           {{- else }}
           {{- partial "svg.html" "icons/fontawesome/building" -}}
           {{- end }}

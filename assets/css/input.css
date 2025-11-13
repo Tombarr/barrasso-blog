@@ -94,6 +94,7 @@
 html,
 body {
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 /* Scrolling logos banner */
@@ -1028,13 +1029,16 @@ html.resume-light-mode .pdf-download-button:hover {
 .resume-container {
     @apply mx-auto bg-white dark:bg-slate-800 shadow-xl;
     @apply px-12 py-10;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+:root.loaded .resume-container {
     transition:
         width 0.3s ease,
         max-width 0.3s ease,
         min-height 0.3s ease;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
 }
 
 /* Paper size dimensions - allow natural overflow for multi-page content */
@@ -1102,6 +1106,11 @@ html.resume-light-mode .pdf-download-button:hover {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+}
+
+/* Smaller font for A4 to fit the page */
+.resume-container[data-paper-size="a4"] .resume-sidebar .sidebar-section ul > li {
+    font-size: 90%;
 }
 
 /* Push last section in main content to bottom */

@@ -22,7 +22,13 @@
         {{- partial "svg.html" "icons/fontawesome/print" -}}
         <span>Print</span>
       </button>
-      <a href="/resume.pdf" download="tom-barrasso-resume-{{ .Date.Format "2006" }}.pdf" class="pdf-download-button flex items-center justify-center gap-2 w-full px-3 py-2 text-sm font-medium rounded bg-slate-700 text-white hover:bg-slate-800 transition-colors cursor-pointer no-underline mt-2">
+      <a href="/resume-letter.pdf"
+         download="tom-barrasso-resume-letter-{{ .Date.Format "2006" }}.pdf"
+         data-pdf-letter="/resume-letter.pdf"
+         data-pdf-a4="/resume-a4.pdf"
+         data-filename-base="tom-barrasso-resume"
+         data-filename-year="{{ .Date.Format "2006" }}"
+         class="pdf-download-button flex items-center justify-center gap-2 w-full px-3 py-2 text-sm font-medium rounded bg-slate-700 text-white hover:bg-slate-800 transition-colors cursor-pointer no-underline mt-2">
         {{- partial "svg.html" "icons/fontawesome/download" -}}
         <span>{{ i18n "download_pdf" | default "Download PDF" }}</span>
       </a>
@@ -30,7 +36,13 @@
   </div>
 
   {{- /* Resume container with paper styling */ -}}
-  <div class="resume-container" data-paper-size="letter">
+  <div class="resume-container" id="resume-container" data-paper-size="letter">
+    <script type="text/javascript">
+      let paperSize = localStorage.getItem("resume-paper-size");
+      if (paperSize) {
+        document.getElementById("resume-container").dataset.paperSize = paperSize;
+      }
+    </script>
     {{- /* Header Section */ -}}
     <header class="resume-header mb-6">
       <div class="flex items-start justify-between">

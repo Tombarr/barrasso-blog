@@ -61,6 +61,28 @@ function getPaperSizePreference() {
 }
 
 /**
+ * Update PDF download link based on paper size
+ */
+function updatePdfDownloadLink(size) {
+  const downloadButton = document.querySelector('.pdf-download-button');
+
+  if (!downloadButton) return;
+
+  const pdfLetter = downloadButton.getAttribute('data-pdf-letter');
+  const pdfA4 = downloadButton.getAttribute('data-pdf-a4');
+  const filenameBase = downloadButton.getAttribute('data-filename-base');
+  const filenameYear = downloadButton.getAttribute('data-filename-year');
+
+  if (size === SIZE_A4) {
+    downloadButton.href = pdfA4;
+    downloadButton.setAttribute('download', `${filenameBase}-a4-${filenameYear}.pdf`);
+  } else {
+    downloadButton.href = pdfLetter;
+    downloadButton.setAttribute('download', `${filenameBase}-letter-${filenameYear}.pdf`);
+  }
+}
+
+/**
  * Apply paper size to the resume container
  */
 function applyPaperSize(size) {
@@ -74,6 +96,9 @@ function applyPaperSize(size) {
   if (select) {
     select.value = size;
   }
+
+  // Update PDF download link to match paper size
+  updatePdfDownloadLink(size);
 }
 
 /**

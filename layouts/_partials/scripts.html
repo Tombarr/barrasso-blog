@@ -5,5 +5,5 @@
   {{- if hugo.IsProduction -}}
     {{- $built = $built | fingerprint -}}
   {{- end -}}
-  <script src="{{ $built.RelPermalink }}" defer></script>
+  <script src="{{ $built.RelPermalink }}" integrity="{{ $built.Data.Integrity }}" nonce="{{ $built.Data.Nonce }}" defer></script>
 {{- end -}}
