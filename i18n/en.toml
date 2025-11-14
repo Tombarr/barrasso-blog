@@ -12,6 +12,7 @@ projects = "Projects"
 articles = "Articles"
 view = "View"
 view_all = "View all"
+view_raw = "view raw"
 
 # Resume sections
 work_experience = "Work Experience"

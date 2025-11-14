@@ -99,9 +99,46 @@ Two content types with date-based slugs:
 - `frontpage: true` - Pin to frontpage
 - `externalLink` - Daring Fireball-style external links
 - `canonicalUrl` - For cross-posted content
-- `banner` - Header images
+- `banner` - Header images (used for meta/og tags and optional display)
+- `showBanner: true` - Display banner image below post title
+- `bannerCaption` - Optional caption for banner image (supports markdown)
 - `aliases` - URL redirects
 - `bsky` - Bluesky integration
+
+### Shortcodes
+
+Custom shortcodes available for content creation:
+
+#### GitHub Gist Embed
+
+Embed GitHub Gists with local rendering and syntax highlighting.
+
+**Usage:**
+```markdown
+{{</* gist username gist-id */>}}
+{{</* gist username gist-id filename.js */>}}
+```
+
+**Parameters:**
+- `username` (required) - GitHub username
+- `gist-id` (required) - Gist ID (from the gist URL)
+- `filename` (optional) - Specific file to display if gist contains multiple files
+
+**Features:**
+- Fetches gist content via GitHub API
+- Server-side syntax highlighting using Hugo's Chroma
+- Line numbers displayed in table format
+- GitHub-like UI with header and footer
+- Dark mode support
+- "View raw" link to original gist file
+- Error handling for missing gists or files
+
+**Example:**
+```markdown
+{{</* gist torvalds 1f09b4096abc7310fb435f6e6c32ae13 */>}}
+```
+
+**Note:** Requires internet connection during build time to fetch gist content.
 
 ### CSS/Styling
 

@@ -103,6 +103,143 @@
         @apply text-sm italic text-center;
         @apply text-slate-600 dark:text-slate-400;
     }
+
+    /* GitHub Gist embed styles */
+    .gist-embed {
+        @apply rounded-lg overflow-hidden;
+        @apply border border-slate-300 dark:border-slate-700;
+        @apply bg-white dark:bg-slate-900;
+    }
+
+    .gist-header {
+        @apply px-4 py-3 border-b border-slate-300 dark:border-slate-700;
+        @apply bg-slate-50 dark:bg-slate-800;
+    }
+
+    .gift-file {
+        @apply border-slate-400 border-1;
+    }
+
+    .gist-filename {
+        @apply text-sm font-semibold;
+        @apply text-slate-700 dark:text-slate-300;
+        @apply flex items-center gap-2;
+    }
+
+    .gist-filename .inline-svg {
+        @apply w-4 h-4;
+        @apply text-slate-500 dark:text-slate-400;
+    }
+
+    .gist-code-container {
+        @apply relative;
+        overflow-x: auto;
+        overflow-y: visible;
+        @apply bg-white dark:bg-slate-900;
+    }
+
+    /* Remove overflow from wrapper div */
+    .gist-code-container > div {
+        display: block;
+    }
+
+    .gist-code-container pre {
+        @apply m-0 bg-transparent text-sm;
+        border: none;
+        padding: 0;
+    }
+
+    .gist-code-container .chroma {
+        @apply bg-transparent;
+        display: block;
+    }
+
+    /* Line numbers table styling */
+    .gist-code-container .chroma .lntable {
+        border-spacing: 0;
+        border-collapse: separate;
+        width: 100%;
+        display: table;
+        table-layout: auto;
+    }
+
+    .gist-code-container .chroma .lntd {
+        padding: 0;
+        vertical-align: top;
+        border: none !important;
+    }
+
+    /* Fixed line numbers column - must have explicit background */
+    .gist-code-container .chroma .lntd:first-child {
+        position: -webkit-sticky;
+        position: sticky;
+        left: 0;
+        z-index: 10;
+        @apply bg-white dark:bg-slate-900;
+        padding: 1rem 0.5rem 1rem 1rem;
+        border-right: 1px solid theme('colors.slate.200');
+        width: 1%;
+        white-space: nowrap;
+    }
+
+    html.dark .gist-code-container .chroma .lntd:first-child {
+        border-right-color: theme('colors.slate.700');
+    }
+
+    /* Code content column */
+    .gist-code-container .chroma .lntd:last-child {
+        padding: 1rem;
+    }
+
+    /* Line number styling */
+    .gist-code-container .chroma .lnt,
+    .gist-code-container .chroma .ln {
+        @apply text-slate-400 dark:text-slate-500 select-none;
+        display: block;
+        text-align: right;
+        padding-right: 0.75rem;
+        user-select: none;
+    }
+
+    /* Code lines */
+    .gist-code-container .chroma .lntd:last-child pre {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Ensure monospace font for code */
+    .gist-code-container .chroma code,
+    .gist-code-container .chroma pre {
+        font-family: var(--font-mono), 'Source Code Pro', 'Courier New', monospace;
+    }
+
+    .gist-footer {
+        @apply px-4 py-2 border-t border-slate-300 dark:border-slate-700;
+        @apply bg-slate-50 dark:bg-slate-800;
+        @apply flex justify-between items-center;
+        @apply text-xs;
+    }
+
+    .gist-footer-left {
+        @apply text-slate-600 dark:text-slate-400;
+        @apply font-mono;
+    }
+
+    .gist-footer-right {
+        @apply text-slate-600 dark:text-slate-400;
+    }
+
+    .gist-raw-link {
+        @apply text-slate-600 dark:text-slate-400;
+        @apply hover:text-slate-900 dark:hover:text-slate-200;
+        @apply no-underline;
+        @apply transition-colors;
+    }
+
+    /* Error styling for gist */
+    .gist-error {
+        @apply my-6 px-4 py-3 rounded-lg;
+    }
 }
 
 :root,
@@ -233,7 +370,8 @@ img.border-none,
 article a.no-arrow[href*='//']::after,
 a.no-arrow.external-link::after,
 article .resume-main-content a[href*='//']::after,
-article .gist-file a[href*='//']::after {
+article .gist-file a[href*='//']::after,
+article .gist-embed a[href*='//']::after {
     display: none;
     visibility: hidden;
     width: 0;
