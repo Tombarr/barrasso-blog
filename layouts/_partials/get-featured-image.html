@@ -24,15 +24,18 @@ this partial returns the site's default featured image from config, or an empty 
 {{ $paramValue := index $.Params . }}
 {{ with $paramValue }}
 {{ $cleanPath := strings.TrimPrefix "/" . }}
-{{/* Try to get as Hugo resource first */}}
+{{/* First check local page resources (content directory) */}}
+{{ $pageResource := $.Resources.GetMatch . }}
+{{ if $pageResource }}
+{{ $linkToCover = $pageResource.Permalink }}
+{{ else }}
+{{/* Then try global site-wide assets */}}
 {{ $resource := resources.Get $cleanPath }}
 {{ if $resource }}
 {{ $linkToCover = $resource.Permalink }}
 {{ else }}
+{{/* Fallback to absolute URL */}}
 {{ $linkToCover = trim . "/" | absURL }}
-{{/* If we find a Page Resource matching the exact value, we use it instead. */}}
-{{ with $.Resources.GetMatch . }}
-{{ $linkToCover = .Permalink }}
 {{ end }}
 {{ end }}
 {{ break }}

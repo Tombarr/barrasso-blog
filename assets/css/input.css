@@ -88,6 +88,21 @@
     .abbr-tooltip:hover::after {
         @apply opacity-100;
     }
+
+    /* Post banner image */
+    .post-banner {
+        @apply overflow-hidden;
+    }
+
+    .post-banner img {
+        @apply w-full h-auto object-cover;
+        @apply shadow-md;
+    }
+
+    .post-banner figcaption {
+        @apply text-sm italic text-center;
+        @apply text-slate-600 dark:text-slate-400;
+    }
 }
 
 :root,

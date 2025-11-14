@@ -5,6 +5,9 @@ draft = false
 categories = ['JavaScript', 'AWS', 'Cloudfront']
 tags = ['AWS', 'JavaScript', 'Cloudfront']
 summary = 'How to use Cloudfront Functions to rotate content daily at (roughly) midnight local time.'
+banner = 'time-zone-offsets.png'
+bannerCaption = 'Mapping IANA time zone names to UTC offsets in a Cloudfront Function'
+showBanner = false
 +++
 
 How to use Cloudfront Functions to rotate content daily at _roughly_ midnight local time.

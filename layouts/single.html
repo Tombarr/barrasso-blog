@@ -27,6 +27,21 @@
         </h4>
     </header>
 
+    {{- /* Optional banner image display */ -}}
+    {{ if .Params.showBanner }}
+    {{ $featuredImage := partial "get-featured-image.html" . }}
+    {{ if $featuredImage }}
+    <figure class="post-banner blog-content-width mb-8">
+        <img src="{{ $featuredImage }}" alt="{{ .Title }}" class="w-full h-auto rounded-lg" />
+        {{ with .Params.bannerCaption }}
+        <figcaption class="text-sm text-ht-light italic mt-2 text-center">
+            {{ . | markdownify }}
+        </figcaption>
+        {{ end }}
+    </figure>
+    {{ end }}
+    {{ end }}
+
     {{ if eq .Type "shorts" }}
     <!-- Shorts layout -->
     <article
