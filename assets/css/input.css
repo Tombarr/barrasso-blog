@@ -217,7 +217,8 @@ img.border-none,
 
 article a.no-arrow[href*='//']::after,
 a.no-arrow.external-link::after,
-article .resume-main-content a[href*='//']::after {
+article .resume-main-content a[href*='//']::after,
+article .gist-file a[href*='//']::after {
     display: none;
     visibility: hidden;
     width: 0;
