@@ -19,7 +19,7 @@
 
         <!-- show Tags  -->
         {{ range $t := .Params.Tags }}
-        <li class="tag-page"><a class="pill-slate text-xs" href="/tags/{{ $t | urlize }}">#{{$t}}</a></li>
+        <li class="tag-page"><a class="pill-hc text-xs" href="/tags/{{ $t | urlize }}">#{{$t}}</a></li>
         {{ end }}
 
         {{ end }}
@@ -60,16 +60,6 @@
         {{ if eq .Kind "term" }}
         <li class="term"><a class="pill-slate text-xs" href="/{{.Section}}">{{.Section}}</a></li>
         {{ end }}
-
-
-        {{ range $c := .Params.categories }}
-        <!-- skip the parent section if exists-->
-        {{ if ne ($c | urlize) $currentSection }}
-        <li class="category"><a class="pill-hc text-xs" href="/categories/{{ $c | urlize }}">{{ $c }}</a></li>
-        {{ end }}
-        {{ end }}
-
-
 
         {{- partial "nav-after.html" . -}}
     </ul>
