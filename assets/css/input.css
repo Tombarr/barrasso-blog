@@ -104,6 +104,13 @@
         @apply text-slate-600 dark:text-slate-400;
     }
 
+    .post-content > table:not(figure.full-bleed) {
+        font-size: 75%;
+        border-spacing: 0.5em;
+        border-color: transparent;
+        border-collapse: separate;
+    }
+
     /* GitHub Gist embed styles */
     .gist-embed {
         @apply rounded-lg overflow-hidden;
