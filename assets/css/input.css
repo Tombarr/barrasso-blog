@@ -254,6 +254,7 @@ html,
 body {
     overflow-x: hidden;
     scroll-behavior: smooth;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Scrolling logos banner */
@@ -594,7 +595,7 @@ a:hover img.external-favicon {
 
     .hero-centered-portrait #portrait .portrait-variation {
         margin-inline: auto;
-        transform: scale(1.5);
+        transform: scale(1.3);
         margin-block: 1rem 6rem;
     }
 
@@ -613,8 +614,8 @@ a:hover img.external-favicon {
         background-image: var(--portrait-dithered);
         background-repeat: no-repeat, no-repeat;
         background-size:
-            400% 400%,
-            400% 400%;
+            400% 600%,
+            400% 600%;
         background-origin: content-box, content-box;
         background-position:
             0% 0%,
@@ -636,11 +637,12 @@ a:hover img.external-favicon {
         height: 100%;
         background-image: var(--portrait-color);
         background-repeat: no-repeat;
-        background-size: 400% 400%;
+        background-size: 400% 600%;
         background-position: inherit;
         opacity: 0;
         pointer-events: none;
         animation: fadeIn 5s ease-in forwards;
+        transform: scale(1.02);
     }
 
     /* Light mode portrait border */
@@ -653,7 +655,7 @@ a:hover img.external-favicon {
         border-color: rgba(255, 255, 255, 0.3);
     }
 
-    /* 16 portrait positions (4x4 grid) - explicitly defined */
+    /* 24 portrait positions (4x6 grid) - explicitly defined */
     /* Row 0 */
     .portrait-variation[data-portrait="0"] {
         background-position:
@@ -691,102 +693,170 @@ a:hover img.external-favicon {
     /* Row 1 */
     .portrait-variation[data-portrait="4"] {
         background-position:
-            0% 33.333333%,
-            0% 33.333333%;
+            0% 20%,
+            0% 20%;
     }
     .portrait-variation[data-portrait="4"]::before {
-        background-position: 0% 33.333333%;
+        background-position: 0% 20%;
     }
     .portrait-variation[data-portrait="5"] {
         background-position:
-            33.333333% 33.333333%,
-            33.333333% 33.333333%;
+            33.333333% 20%,
+            33.333333% 20%;
     }
     .portrait-variation[data-portrait="5"]::before {
-        background-position: 33.333333% 33.333333%;
+        background-position: 33.333333% 20%;
     }
     .portrait-variation[data-portrait="6"] {
         background-position:
-            66.666667% 33.333333%,
-            66.666667% 33.333333%;
+            66.666667% 20%,
+            66.666667% 20%;
     }
     .portrait-variation[data-portrait="6"]::before {
-        background-position: 66.666667% 33.333333%;
+        background-position: 66.666667% 20%;
     }
     .portrait-variation[data-portrait="7"] {
         background-position:
-            100% 33.333333%,
-            100% 33.333333%;
+            100% 20%,
+            100% 20%;
     }
     .portrait-variation[data-portrait="7"]::before {
-        background-position: 100% 33.333333%;
+        background-position: 100% 20%;
     }
 
     /* Row 2 */
     .portrait-variation[data-portrait="8"] {
         background-position:
-            0% 66.666667%,
-            0% 66.666667%;
+            0% 40%,
+            0% 40%;
     }
     .portrait-variation[data-portrait="8"]::before {
-        background-position: 0% 66.666667%;
+        background-position: 0% 40%;
     }
     .portrait-variation[data-portrait="9"] {
         background-position:
-            33.333333% 66.666667%,
-            33.333333% 66.666667%;
+            33.5% 40%,
+            33.5% 40%;
     }
     .portrait-variation[data-portrait="9"]::before {
-        background-position: 33.333333% 66.666667%;
+        background-position: 33.5% 40%;
     }
     .portrait-variation[data-portrait="10"] {
         background-position:
-            66.666667% 66.666667%,
-            66.666667% 66.666667%;
+            66.666667% 40%,
+            66.666667% 40%;
     }
     .portrait-variation[data-portrait="10"]::before {
-        background-position: 66.666667% 66.666667%;
+        background-position: 66.666667% 40%;
     }
     .portrait-variation[data-portrait="11"] {
         background-position:
-            100% 66.666667%,
-            100% 66.666667%;
+            100% 40%,
+            100% 40%;
     }
     .portrait-variation[data-portrait="11"]::before {
-        background-position: 100% 66.666667%;
+        background-position: 100% 40%;
     }
 
     /* Row 3 */
     .portrait-variation[data-portrait="12"] {
         background-position:
+            0% 60%,
+            0% 60%;
+    }
+    .portrait-variation[data-portrait="12"]::before {
+        background-position: 0% 60%;
+    }
+    .portrait-variation[data-portrait="13"] {
+        background-position:
+            33.333333% 60%,
+            33.333333% 60%;
+    }
+    .portrait-variation[data-portrait="13"]::before {
+        background-position: 33.333333% 60%;
+    }
+    .portrait-variation[data-portrait="14"] {
+        background-position:
+            66.666667% 60%,
+            66.666667% 60%;
+    }
+    .portrait-variation[data-portrait="14"]::before {
+        background-position: 66.666667% 60%;
+    }
+    .portrait-variation[data-portrait="15"] {
+        background-position:
+            100% 60%,
+            100% 60%;
+    }
+    .portrait-variation[data-portrait="15"]::before {
+        background-position: 100% 60%;
+    }
+
+    /* Row 4 */
+    .portrait-variation[data-portrait="16"] {
+        background-position:
+            0% 80.1%,
+            0% 80.1%;
+    }
+    .portrait-variation[data-portrait="16"]::before {
+        background-position: 0% 80.1%;
+    }
+    .portrait-variation[data-portrait="17"] {
+        background-position:
+            33.333333% 80%,
+            33.333333% 80%;
+    }
+    .portrait-variation[data-portrait="17"]::before {
+        background-position: 33.333333% 80%;
+    }
+    .portrait-variation[data-portrait="18"] {
+        background-position:
+            66.666667% 80%,
+            66.666667% 80%;
+    }
+    .portrait-variation[data-portrait="18"]::before {
+        background-position: 66.666667% 80%;
+    }
+    .portrait-variation[data-portrait="19"] {
+        background-position:
+            100% 80.1%,
+            100% 80.1%;
+    }
+    .portrait-variation[data-portrait="19"]::before {
+        background-position: 100% 80.1%;
+    }
+
+    /* Row 5 */
+    .portrait-variation[data-portrait="20"] {
+        background-position:
             0% 100%,
             0% 100%;
     }
-    .portrait-variation[data-portrait="12"]::before {
+    .portrait-variation[data-portrait="20"]::before {
         background-position: 0% 100%;
     }
-    .portrait-variation[data-portrait="13"] {
+    .portrait-variation[data-portrait="21"] {
         background-position:
             33.333333% 100%,
             33.333333% 100%;
     }
-    .portrait-variation[data-portrait="13"]::before {
+    .portrait-variation[data-portrait="21"]::before {
         background-position: 33.333333% 100%;
     }
-    .portrait-variation[data-portrait="14"] {
+    .portrait-variation[data-portrait="22"] {
         background-position:
             66.666667% 100%,
             66.666667% 100%;
     }
-    .portrait-variation[data-portrait="14"]::before {
+    .portrait-variation[data-portrait="22"]::before {
         background-position: 66.666667% 100%;
     }
-    .portrait-variation[data-portrait="15"] {
+    .portrait-variation[data-portrait="23"] {
         background-position:
             100% 100%,
             100% 100%;
     }
-    .portrait-variation[data-portrait="15"]::before {
+    .portrait-variation[data-portrait="23"]::before {
         background-position: 100% 100%;
     }
 
@@ -1391,6 +1461,35 @@ html.resume-light-mode .pdf-download-button:hover {
         display: none;
         visibility: hidden;
     }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+svg.spiral-knot {
+    position: absolute;
+    height: 100px;
+    object-fit: contain;
+    transform: rotate(0deg);
+    animation: spin 10s linear infinite;
+    will-change: transform;
+}
+
+svg.spiral-knot path {
+    fill: currentColor;
+}
+
+.spiral-container {
+    height: 100px;
+    width: 100px;
+    margin: 0 auto;
+    position: relative;
 }
 
 /* Print media queries - maintain screen layout, just hide UI elements */

@@ -11,7 +11,28 @@
       <!-- Column 1: About -->
       <div class="footer-column">
         <h3 class="footer-column-title">{{ i18n "footer.about.title" }}</h3>
-        <p class="footer-column-text">{{ .Site.Params.summary }}</p>
+        <p class="footer-column-text" id="footer-tagline">{{ .Site.Params.summary }}</p>
+        <script type="text/javascript">
+          (function() {
+            const taglines = [
+              "People, Process, Programming",
+              "Code, Culture, Creativity",
+              "Hacking, Writing, Learning",
+              "Code with Purpose<br />Design with Intention",
+              "Equal Parts Art & Science"
+            ];
+            const taglineEl = document.getElementById('footer-tagline');
+            if (taglineEl) {
+              const previousR = Number.parseInt(localStorage.getItem('tr'), 10);
+              let r = previousR;
+              while (r === previousR || Number.isNaN(r)) {
+                r = Math.floor(Math.random() * taglines.length);
+              }
+              taglineEl.innerHTML = taglines[r];
+              localStorage.setItem('tr', r.toString());
+            }
+          })();
+        </script>
         {{- if ne .Type "resume" -}}
         <p class="footer-column-text mt-2">
           <a href="{{ relref . "/resume/tom" }}" class="footer-link inline-flex items-center gap-2">
@@ -68,7 +89,8 @@
       <p>
         {{- $contentLicenseLink := printf "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer-copyright-link\">%s</a>" .contentLicense.url .contentLicense.name -}}
         {{- $codeLicenseLink := printf "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer-copyright-link\">%s</a>" .codeLicense.url .codeLicense.name -}}
-        {{ i18n "footer.copyright.license" (dict "ContentLicense" $contentLicenseLink "CodeLicense" $codeLicenseLink) | safeHTML }}
+        {{ i18n "footer.copyright.license" (dict "ContentLicense" $contentLicenseLink "CodeLicense" $codeLicenseLink) | safeHTML }}<br />
+        {{ i18n "footer.copyright.last_updated" }} <time datetime="{{ now.Format "2006-01-02" }}">{{ now.Format "2006-01-02" }}</time>
       </p>
       {{- end -}}
     </div>

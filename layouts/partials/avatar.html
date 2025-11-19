@@ -15,15 +15,16 @@
 
 <script type="text/javascript">
     (function() {
-        var figure = document.querySelector('#portrait');
-        var el = document.querySelector('.portrait-variation');
+        const NUM_PORTRAITS = 24;
+        const figure = document.querySelector('#portrait');
+        const el = document.querySelector('.portrait-variation');
         if (el && figure) {
             // Set random portrait
-            el.setAttribute('data-portrait', Math.floor(Math.random() * 16));
+            el.setAttribute('data-portrait', Math.floor(Math.random() * NUM_PORTRAITS));
 
             // Set CSS custom properties for dithered and color images
-            var ditheredUrl = figure.getAttribute('data-dithered-url');
-            var colorUrl = figure.getAttribute('data-color-url');
+            const ditheredUrl = figure.getAttribute('data-dithered-url');
+            const colorUrl = figure.getAttribute('data-color-url');
             if (ditheredUrl && colorUrl) {
                 el.style.setProperty('--portrait-dithered', 'url(' + ditheredUrl + ')');
                 el.style.setProperty('--portrait-color', 'url(' + colorUrl + ')');

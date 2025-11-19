@@ -32,7 +32,7 @@ download_pdf = "Download PDF"
 other = "Tom Barrasso"
 
 [footer.about.description]
-other = "Code, Culture, Creativity"
+other = "People, Process, Programming"
 
 [footer.contact.title]
 other = "Contact"
@@ -61,3 +61,6 @@ other = "Copyright © {{ .Year }}. {{ .Holder }}."
 
 [footer.copyright.license]
 other = "Except as otherwise noted, the content of this page is licensed under the {{ .ContentLicense }}, and code samples are licensed under the {{ .CodeLicense }}. The opinions expressed are solely those of the author and do not necessarily reflect those of current or previous employers. All trademarks are property of their respective owners and are used for identification purposes only."
+
+[footer.copyright.last_updated]
+other = "Last updated on"

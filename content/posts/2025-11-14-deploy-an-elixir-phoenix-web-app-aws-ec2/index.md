@@ -1,6 +1,6 @@
 +++
 title = 'Deploy an Elixir + Phoenix web app on AWS EC2'
-date = 2025-11-14T00:00:00-00:00
+date = 2025-09-09
 draft = false
 categories = ['Elixir', 'Phoenix', 'AWS']
 tags = ['Elixir', 'Phoenix', 'AWS', 'EC2']

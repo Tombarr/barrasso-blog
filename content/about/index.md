@@ -5,14 +5,36 @@ timeless: true
 noindex: true
 ---
 
-Hi, I'm Tom Barrasso. Welcome to my corner of the internet.
+# Hi, I'm Tom Barrasso 👋
 
 {{< br >}}
-I'm a software engineer passionate about code, culture, and creativity. This blog is where I share my thoughts on technology, development practices, and the occasional creative experiment.
+I’ve been building digital experiences for years. I have launched products for some of the biggest and most respected brands, managed and mentored engineers and program managers, and ran cross-functional programs across large-scale organizations.
 
 {{< br >}}
-When I'm not writing code or blog posts, you can find me exploring new technologies, contributing to open source, or thinking about the intersection of technology and human experience.
+I code, write, speak, climb, mentor, practice, listen, read, run, encourage, travel, and much more.
 
+{{< br >}}
+## My process
+
+{{< br >}}
+{{< section class="svg-container spiral-container" >}}
+  {{< svg path="images/celtic-knot.svg" class="spiral-knot" >}}
+{{< /section >}}
+
+{{< br >}}
+Like this Celtic spiral knot, triads, triplicities, and the [rule of three](https://www.flowresearchcollective.com/blog/the-rule-of-three-the-brain) shows up in many places. The Holy Trinity in Catholicism: the father, son, and holy spirit. The Trimurti in Hinduism: Brahma, Vishnu, and Shiva. In space: x, y, and z, and in time: past, present, and future.
+
+{{< br >}}
+**People • Process • Programming**. I start with People: their interests, inspirations, and incentives that connect and motivate individual action. Then I focus on Process: the rules, rituals, and repetitions that foster cooperation and collective action. Lastly, I turn my attention to Programming: code (dev environment), compilation (build, test + deploy), and cloud (runtime & execution).
+
+{{< br >}}
+## About this site
+
+{{< br >}}
+The blob on the homepage is a [metaball](https://medium.com/@tbarrasso/pretty-svg-metaballs-f8d2a4c6f594), something I built back in 2017 at Maark while building data visualizations like the [Morningstar™ Style Box](https://www.morningstar.com/content/dam/marketing/apac/au/pdfs/Legal/Stylebox_Factsheet.pdf) in the Fund Compare Tool on [John Hancock Investments]({{< relref "projects/jhinvestments" >}}). My [resume]({{< relref "resume/tom" >}}) is [typeset in HTML](https://github.com/Tombarr/html-resume-template), based on a version I created in 2018. Although this is a static website built using [Hugo](https://gohugo.io), much of this website explores randomness. So the version you are experiencing will likely never exist exactly as it does right now.
+
+{{< br >}}
+### {{< year >}} GitHub Contributions
 {{< br >}}
 {{< section class="w-full svg-container gh-charts" >}}
   {{< remote-svg "https://ghchart.rshah.org/496390/tombarr" >}}
@@ -43,8 +65,8 @@ When I'm not writing code or blog posts, you can find me exploring new technolog
 * [Proton](https://pr.tn/ref/99YW7K4C4K40) (Email + VPN)
 * [Ghostty](https://ghostty.org/) (Terminal)
 * [Waterfox Classic](https://classic.waterfox.net/) (KaiOS)
-* [VSCode](https://code.visualstudio.com/) & [Zed](https://zed.dev/) (IDE)
-  * [Claude Code](https://www.claude.com/product/claude-code) (agentic coding)
+* [VSCode](https://code.visualstudio.com/) (IDE)
+* [Claude Code](https://www.claude.com/product/claude-code) & [OpenCode](https://opencode.ai/) (agentic coding)
 * [DevPod](https://devpod.sh/) (DevContainers)
 * [Signal](https://signal.org/) (Messaging)
 * [PodLP](https://podlp.com) (Podcasts)
@@ -52,9 +74,12 @@ When I'm not writing code or blog posts, you can find me exploring new technolog
 {{< br >}}
 ## Other Sites
 
-* [PodLP](https://podlp.com)
+{{< br >}}
+* [PodLP.com](https://podlp.com)
 * [KaiOS.dev](https://kaios.dev)
 * [KaiOS.app](https://kaios.app)
+* [PodCal.app](https://podcal.app)
+* [Yoto.fm](https://yoto.fm)
 
 {{< br >}}
 ## Contact

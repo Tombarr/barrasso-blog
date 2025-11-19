@@ -12,7 +12,7 @@ home = ["HTML", "RSS", "JSON", "SEARCH"]
 
 [params]
 bioUrl = "https://barrasso.me"
-summary = "Code, Culture, Creativity"
+summary = "People, Process, Programming"
 enableSearch = true
 enablePagination = true
 avatar = "/images/portraits.jpg"
