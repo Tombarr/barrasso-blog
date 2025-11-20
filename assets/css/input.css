@@ -904,9 +904,15 @@ a:hover img.external-favicon {
         @apply bg-slate-100 dark:bg-slate-900;
     }
 
+    .project-card-image-container picture,
+    .project-card-image-container img {
+        @apply h-full w-full object-cover;
+        @apply scale-115 transition-transform duration-200 hover:scale-120;
+    }
+
     .project-card-image {
         @apply h-full w-full object-cover;
-        @apply transition-transform duration-200 group-hover:scale-105;
+        @apply transition-transform duration-200 hover:scale-105;
     }
 
     .project-card-content {
