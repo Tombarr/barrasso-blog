@@ -1,0 +1,19 @@
+{{- /* Alias for responsive-image with simpler syntax */ -}}
+{{- $src := .Get "src" | default (.Get 0) -}}
+{{- $alt := .Get "alt" | default (.Get 1) | default "" -}}
+{{- $class := .Get "class" | default "" -}}
+{{- $sizes := .Get "sizes" | default "100vw" -}}
+{{- $widths := .Get "widths" | default "320,640,1024,1920" -}}
+{{- $loading := .Get "loading" | default "lazy" -}}
+{{- $quality := .Get "quality" | default 85 -}}
+
+{{ partial "responsive-image.html" (dict
+  "Page" .Page
+  "src" $src
+  "alt" $alt
+  "class" $class
+  "sizes" $sizes
+  "widths" $widths
+  "loading" $loading
+  "quality" $quality
+) }}

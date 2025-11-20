@@ -88,13 +88,16 @@
   {{- if and $featureImage (eq $featureImagePosition "top") }}
   <figure class="mb-8">
     <div class="aspect-video w-full overflow-hidden rounded-lg">
-      <img
-        src="{{ $featureImage.RelPermalink }}"
-        alt="{{ .Title }}"
-        class="h-full w-full object-contain"
-        loading="lazy"
-        draggable="false"
-      />
+      {{- partial "responsive-image.html" (dict
+        "Page" .
+        "src" .Params.featureImage
+        "alt" .Title
+        "class" "h-full w-full object-contain"
+        "sizes" "(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+        "widths" (slice 640 1024 1600 2048)
+        "loading" "lazy"
+        "quality" 85
+      ) -}}
     </div>
     {{- if .Params.featureImageCaption }}
     <figcaption class="mt-3 text-sm text-center text-slate-600 dark:text-slate-400 italic">
@@ -112,13 +115,16 @@
   {{- if and $featureImage (eq $featureImagePosition "bottom") }}
   <figure class="mb-8">
     <div class="aspect-video w-full overflow-hidden rounded-lg">
-      <img
-        src="{{ $featureImage.RelPermalink }}"
-        alt="{{ .Title }}"
-        class="h-full w-full object-contain"
-        loading="lazy"
-        draggable="false"
-      />
+      {{- partial "responsive-image.html" (dict
+        "Page" .
+        "src" .Params.featureImage
+        "alt" .Title
+        "class" "h-full w-full object-contain"
+        "sizes" "(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+        "widths" (slice 640 1024 1600 2048)
+        "loading" "lazy"
+        "quality" 85
+      ) -}}
     </div>
     {{- if .Params.featureImageCaption }}
     <figcaption class="mt-3 text-sm text-center text-slate-600 dark:text-slate-400 italic">
@@ -138,15 +144,16 @@
         {{- $screenshot := resources.Get $cleanPath -}}
         {{- if $screenshot -}}
         <div class="overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700">
-          <img
-            src="{{ $screenshot.RelPermalink }}"
-            alt="{{ $.Title }} - Screenshot {{ add $index 1 }}"
-            width="{{ $screenshot.Width }}"
-            height="{{ $screenshot.Height }}"
-            loading="lazy"
-            draggable="false"
-            class="w-full h-auto"
-          />
+          {{- partial "responsive-image.html" (dict
+            "Page" $
+            "src" $screenshotPath
+            "alt" (printf "%s - Screenshot %d" $.Title (add $index 1))
+            "class" "w-full h-auto"
+            "sizes" "(max-width: 768px) 100vw, 50vw"
+            "widths" (slice 400 800 1200)
+            "loading" "lazy"
+            "quality" 85
+          ) -}}
         </div>
         {{- else -}}
           {{- warnf "Screenshot not found: %s (in %s)" $screenshotPath $.File.Path -}}

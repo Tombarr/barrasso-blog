@@ -1,0 +1,121 @@
+{{- /*
+  Responsive Image Partial
+
+  Generates responsive images with multiple sizes and formats (WebP + original)
+
+  Context must include:
+    .Page - Page context
+    .src - Image source path
+    .alt - Alt text (optional)
+    .class - CSS classes (optional)
+    .sizes - sizes attribute (optional, default "100vw")
+    .widths - Array or comma-separated widths (optional, default "320,640,1024,1920")
+    .loading - "lazy" or "eager" (optional, default "lazy")
+    .quality - 1-100 (optional, default 85)
+*/ -}}
+
+{{- $src := .src -}}
+{{- $alt := .alt | default "" -}}
+{{- $class := .class | default "" -}}
+{{- $sizes := .sizes | default "100vw" -}}
+{{- $widthsInput := .widths | default "320,640,1024,1920" -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $quality := .quality | default 85 -}}
+
+{{- if not $src -}}
+  {{- errorf "responsive-image partial: src parameter is required" -}}
+{{- end -}}
+
+{{- /* Get the image resource */ -}}
+{{- $image := "" -}}
+{{- $imagePath := strings.TrimPrefix "/" $src -}}
+
+{{- /* Try page resources first */ -}}
+{{- with .Page.Resources.GetMatch $imagePath -}}
+  {{- $image = . -}}
+{{- else -}}
+  {{- /* Try global assets */ -}}
+  {{- with resources.Get $imagePath -}}
+    {{- $image = . -}}
+  {{- else -}}
+    {{- errorf "responsive-image: image not found: %s (tried page resources and assets/)" $src -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Parse widths - handle both string and array */ -}}
+{{- $widthsList := slice -}}
+{{- if reflect.IsSlice $widthsInput -}}
+  {{- $widthsList = $widthsInput -}}
+{{- else -}}
+  {{- $widths := split (string $widthsInput) "," -}}
+  {{- range $widths -}}
+    {{- $widthsList = $widthsList | append (int (trim . " ")) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Generate responsive images */ -}}
+{{- $originalFormat := $image.MediaType.SubType -}}
+{{- $webpImages := slice -}}
+{{- $originalImages := slice -}}
+
+{{- range $widthsList -}}
+  {{- $width := . -}}
+  {{- /* Only resize if image is larger than target width */ -}}
+  {{- if ge $image.Width $width -}}
+    {{- /* Generate WebP version */ -}}
+    {{- $webp := $image.Resize (printf "%dx webp q%d" $width $quality) -}}
+    {{- $webpImages = $webpImages | append (dict "url" $webp.RelPermalink "width" $webp.Width) -}}
+
+    {{- /* Generate original format version */ -}}
+    {{- $resized := $image.Resize (printf "%dx q%d" $width $quality) -}}
+    {{- $originalImages = $originalImages | append (dict "url" $resized.RelPermalink "width" $resized.Width) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* If no resized images (original is smaller than all widths), use original */ -}}
+{{- if eq (len $originalImages) 0 -}}
+  {{- $webp := $image.Resize (printf "%dx webp q%d" $image.Width $quality) -}}
+  {{- $webpImages = $webpImages | append (dict "url" $webp.RelPermalink "width" $image.Width) -}}
+  {{- $originalImages = $originalImages | append (dict "url" $image.RelPermalink "width" $image.Width) -}}
+{{- end -}}
+
+{{- /* Build srcset strings */ -}}
+{{- $webpSrcset := slice -}}
+{{- range $webpImages -}}
+  {{- $webpSrcset = $webpSrcset | append (printf "%s %dw" .url .width) -}}
+{{- end -}}
+
+{{- $originalSrcset := slice -}}
+{{- range $originalImages -}}
+  {{- $originalSrcset = $originalSrcset | append (printf "%s %dw" .url .width) -}}
+{{- end -}}
+
+{{- /* Use smallest image as fallback src */ -}}
+{{- $fallbackSrc := (index $originalImages 0).url -}}
+{{- $fallbackWidth := (index $originalImages 0).width -}}
+{{- $fallbackHeight := div (mul $image.Height $fallbackWidth) $image.Width -}}
+
+<picture>
+  {{- /* WebP source */ -}}
+  <source
+    type="image/webp"
+    srcset="{{ delimit $webpSrcset ", " }}"
+    sizes="{{ $sizes }}"
+  >
+  {{- /* Original format source */ -}}
+  <source
+    type="image/{{ $originalFormat }}"
+    srcset="{{ delimit $originalSrcset ", " }}"
+    sizes="{{ $sizes }}"
+  >
+  {{- /* Fallback img */ -}}
+  <img
+    src="{{ $fallbackSrc }}"
+    alt="{{ $alt }}"
+    {{- with $class }} class="{{ . }}"{{ end }}
+    width="{{ $fallbackWidth }}"
+    height="{{ $fallbackHeight }}"
+    loading="{{ $loading }}"
+    decoding="async"
+  >
+</picture>

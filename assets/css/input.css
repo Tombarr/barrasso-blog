@@ -3,7 +3,6 @@
 /* Tell Tailwind where to look for classes */
 @source "../../themes/henry/layouts/**/*.html";
 @source "../../layouts/**/*.html";
-@source "../../content/**/*.md";
 
 /* Import self-hosted fonts (replaces Google Fonts) */
 @import "./fonts-local.css";
@@ -655,209 +654,18 @@ a:hover img.external-favicon {
         border-color: rgba(255, 255, 255, 0.3);
     }
 
-    /* 24 portrait positions (4x6 grid) - explicitly defined */
-    /* Row 0 */
-    .portrait-variation[data-portrait="0"] {
+    /* Portrait positioning using CSS variables (4x6 grid = 24 variants)
+     * Much more efficient than 48 explicit selectors (saved ~200 lines)
+     * JavaScript calculates position based on data-portrait and sets CSS variables
+     */
+    .portrait-variation {
         background-position:
-            0% 0%,
-            0% 0%;
-    }
-    .portrait-variation[data-portrait="0"]::before {
-        background-position: 0% 0%;
-    }
-    .portrait-variation[data-portrait="1"] {
-        background-position:
-            33.333333% 0%,
-            33.333333% 0%;
-    }
-    .portrait-variation[data-portrait="1"]::before {
-        background-position: 33.333333% 0%;
-    }
-    .portrait-variation[data-portrait="2"] {
-        background-position:
-            66.666667% 0%,
-            66.666667% 0%;
-    }
-    .portrait-variation[data-portrait="2"]::before {
-        background-position: 66.666667% 0%;
-    }
-    .portrait-variation[data-portrait="3"] {
-        background-position:
-            100% 0%,
-            100% 0%;
-    }
-    .portrait-variation[data-portrait="3"]::before {
-        background-position: 100% 0%;
+            var(--portrait-x, 0%) var(--portrait-y, 0%),
+            var(--portrait-x, 0%) var(--portrait-y, 0%);
     }
 
-    /* Row 1 */
-    .portrait-variation[data-portrait="4"] {
-        background-position:
-            0% 20%,
-            0% 20%;
-    }
-    .portrait-variation[data-portrait="4"]::before {
-        background-position: 0% 20%;
-    }
-    .portrait-variation[data-portrait="5"] {
-        background-position:
-            33.333333% 20%,
-            33.333333% 20%;
-    }
-    .portrait-variation[data-portrait="5"]::before {
-        background-position: 33.333333% 20%;
-    }
-    .portrait-variation[data-portrait="6"] {
-        background-position:
-            66.666667% 20%,
-            66.666667% 20%;
-    }
-    .portrait-variation[data-portrait="6"]::before {
-        background-position: 66.666667% 20%;
-    }
-    .portrait-variation[data-portrait="7"] {
-        background-position:
-            100% 20%,
-            100% 20%;
-    }
-    .portrait-variation[data-portrait="7"]::before {
-        background-position: 100% 20%;
-    }
-
-    /* Row 2 */
-    .portrait-variation[data-portrait="8"] {
-        background-position:
-            0% 40%,
-            0% 40%;
-    }
-    .portrait-variation[data-portrait="8"]::before {
-        background-position: 0% 40%;
-    }
-    .portrait-variation[data-portrait="9"] {
-        background-position:
-            33.5% 40%,
-            33.5% 40%;
-    }
-    .portrait-variation[data-portrait="9"]::before {
-        background-position: 33.5% 40%;
-    }
-    .portrait-variation[data-portrait="10"] {
-        background-position:
-            66.666667% 40%,
-            66.666667% 40%;
-    }
-    .portrait-variation[data-portrait="10"]::before {
-        background-position: 66.666667% 40%;
-    }
-    .portrait-variation[data-portrait="11"] {
-        background-position:
-            100% 40%,
-            100% 40%;
-    }
-    .portrait-variation[data-portrait="11"]::before {
-        background-position: 100% 40%;
-    }
-
-    /* Row 3 */
-    .portrait-variation[data-portrait="12"] {
-        background-position:
-            0% 60%,
-            0% 60%;
-    }
-    .portrait-variation[data-portrait="12"]::before {
-        background-position: 0% 60%;
-    }
-    .portrait-variation[data-portrait="13"] {
-        background-position:
-            33.333333% 60%,
-            33.333333% 60%;
-    }
-    .portrait-variation[data-portrait="13"]::before {
-        background-position: 33.333333% 60%;
-    }
-    .portrait-variation[data-portrait="14"] {
-        background-position:
-            66.666667% 60%,
-            66.666667% 60%;
-    }
-    .portrait-variation[data-portrait="14"]::before {
-        background-position: 66.666667% 60%;
-    }
-    .portrait-variation[data-portrait="15"] {
-        background-position:
-            100% 60%,
-            100% 60%;
-    }
-    .portrait-variation[data-portrait="15"]::before {
-        background-position: 100% 60%;
-    }
-
-    /* Row 4 */
-    .portrait-variation[data-portrait="16"] {
-        background-position:
-            0% 80.1%,
-            0% 80.1%;
-    }
-    .portrait-variation[data-portrait="16"]::before {
-        background-position: 0% 80.1%;
-    }
-    .portrait-variation[data-portrait="17"] {
-        background-position:
-            33.333333% 80%,
-            33.333333% 80%;
-    }
-    .portrait-variation[data-portrait="17"]::before {
-        background-position: 33.333333% 80%;
-    }
-    .portrait-variation[data-portrait="18"] {
-        background-position:
-            66.666667% 80%,
-            66.666667% 80%;
-    }
-    .portrait-variation[data-portrait="18"]::before {
-        background-position: 66.666667% 80%;
-    }
-    .portrait-variation[data-portrait="19"] {
-        background-position:
-            100% 80.1%,
-            100% 80.1%;
-    }
-    .portrait-variation[data-portrait="19"]::before {
-        background-position: 100% 80.1%;
-    }
-
-    /* Row 5 */
-    .portrait-variation[data-portrait="20"] {
-        background-position:
-            0% 100%,
-            0% 100%;
-    }
-    .portrait-variation[data-portrait="20"]::before {
-        background-position: 0% 100%;
-    }
-    .portrait-variation[data-portrait="21"] {
-        background-position:
-            33.333333% 100%,
-            33.333333% 100%;
-    }
-    .portrait-variation[data-portrait="21"]::before {
-        background-position: 33.333333% 100%;
-    }
-    .portrait-variation[data-portrait="22"] {
-        background-position:
-            66.666667% 100%,
-            66.666667% 100%;
-    }
-    .portrait-variation[data-portrait="22"]::before {
-        background-position: 66.666667% 100%;
-    }
-    .portrait-variation[data-portrait="23"] {
-        background-position:
-            100% 100%,
-            100% 100%;
-    }
-    .portrait-variation[data-portrait="23"]::before {
-        background-position: 100% 100%;
+    .portrait-variation::before {
+        background-position: var(--portrait-x, 0%) var(--portrait-y, 0%);
     }
 
     /* Clear float after hero section */
@@ -1077,13 +885,88 @@ a:hover img.external-favicon {
     }
 }
 
-.project-card img.w-6 {
-    transform: scale(1.3);
-    transition: transform 0.2s ease-in-out;
-}
+/* Project Card Components */
+@layer components {
+    .project-card {
+        @apply relative flex flex-col overflow-hidden rounded-lg;
+        @apply border border-black/10 bg-white/50;
+        @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
+        @apply dark:border-slate-700 dark:bg-slate-400/90;
+        contain: layout paint;
+    }
 
-.project-card > a:hover img.w-6 {
-    transform: scale(1.6);
+    .project-card-link {
+        @apply flex flex-col h-full no-underline;
+    }
+
+    .project-card-image-container {
+        @apply aspect-video w-full overflow-hidden;
+        @apply bg-slate-100 dark:bg-slate-900;
+    }
+
+    .project-card-image {
+        @apply h-full w-full object-cover;
+        @apply transition-transform duration-200 group-hover:scale-105;
+    }
+
+    .project-card-content {
+        @apply flex flex-1 flex-col p-6;
+    }
+
+    .project-card-header {
+        @apply flex items-start justify-between gap-4 mb-3;
+    }
+
+    .project-card-title-wrapper {
+        @apply flex items-center gap-3;
+    }
+
+    .project-card-icon-wrapper {
+        @apply flex h-10 w-10 flex-shrink-0 items-center justify-center;
+        @apply rounded-lg bg-slate-100 dark:bg-slate-700;
+    }
+
+    .project-card-icon {
+        @apply h-6 w-6;
+        transform: scale(1.3);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .project-card:hover .project-card-icon {
+        transform: scale(1.6);
+    }
+
+    .project-card-title {
+        @apply text-xl font-semibold leading-tight;
+        @apply text-slate-900 dark:text-slate-50;
+    }
+
+    .project-card-meta {
+        @apply mb-3 text-sm text-slate-500 dark:text-slate-300;
+    }
+
+    .project-card-meta-separator {
+        @apply px-2;
+    }
+
+    .project-card-meta-company {
+        @apply font-medium;
+    }
+
+    .project-card-summary {
+        @apply mb-4 text-sm text-slate-600 dark:text-slate-200;
+        @apply line-clamp-3;
+    }
+
+    .project-card-tech-wrapper {
+        @apply mt-auto flex flex-wrap gap-2;
+    }
+
+    .project-card-tech-tag {
+        @apply inline-block rounded-full px-2 py-1;
+        @apply bg-slate-100 text-xs font-medium text-slate-700;
+        @apply dark:bg-slate-700 dark:text-slate-200;
+    }
 }
 
 body > article.blog-content-width:first-child img.w-12 {
@@ -1360,6 +1243,7 @@ html.resume-light-mode .pdf-download-button:hover {
     flex: 1;
     word-break: break-word;
     hyphens: auto;
+    contain: layout;
 }
 
 .resume-main-content,

@@ -6,18 +6,21 @@ import { initThemeToggle } from './modules/theme-toggle.js';
 import { initMetaball } from './modules/metaball.js';
 import { initShuffleSkills } from './modules/shuffle-skills.js';
 import { initPaperSizeToggle } from './modules/paper-size-toggle.js';
+import { initServiceWorker } from './modules/sw-register.js';
 
 // Initialize theme IMMEDIATELY (before DOMContentLoaded to prevent flash)
 initThemeToggle();
 initShuffleSkills();
 
+// Initialize service worker for offline support and caching
+initServiceWorker();
+
 // Initialize site features
 const initSite = () => {
-  // Initialize the tree landscape canvas
-  initTreeLandscape();
-
-  // Initialize metaball SVG
-  initMetaball();
+  // Initialize metaball SVG (only on pages that have .metaball-container)
+  if (document.querySelector('.metaball-container')) {
+    initMetaball();
+  }
 
   // Initialize paper size toggle (resume pages only)
   initPaperSizeToggle();
@@ -26,6 +29,15 @@ const initSite = () => {
   requestAnimationFrame(() => {
     document.documentElement.classList.add("loaded");
   });
+
+  // Defer tree landscape initialization (footer is below fold, not critical)
+  // Use requestIdleCallback for better performance
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => initTreeLandscape(), { timeout: 2000 });
+  } else {
+    // Fallback for browsers without requestIdleCallback
+    setTimeout(initTreeLandscape, 1000);
+  }
 };
 
 document.addEventListener('DOMContentLoaded', initSite);

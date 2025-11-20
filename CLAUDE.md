@@ -140,6 +140,68 @@ Embed GitHub Gists with local rendering and syntax highlighting.
 
 **Note:** Requires internet connection during build time to fetch gist content.
 
+#### Responsive Images
+
+Automatically generate responsive images with multiple sizes and modern formats (WebP + original).
+
+**Usage:**
+```markdown
+{{</* responsive-image src="images/photo.jpg" alt="Description" */>}}
+{{</* responsive-image src="images/photo.jpg" alt="Description" class="my-class" */>}}
+{{</* img "images/photo.jpg" "Alt text" */>}}
+```
+
+**Parameters:**
+- `src` (required) - Path to image in `assets/` or page resources (e.g., `images/photo.jpg`)
+- `alt` (optional) - Alt text for accessibility
+- `class` (optional) - CSS classes to add to `<img>` element
+- `sizes` (optional) - `sizes` attribute for responsive images (default: `"100vw"`)
+- `widths` (optional) - Comma-separated widths to generate (default: `"320,640,1024,1920"`)
+- `loading` (optional) - `"lazy"` (default) or `"eager"`
+- `quality` (optional) - JPEG/WebP quality 1-100 (default: 85)
+
+**Features:**
+- **Automatic WebP generation** - Creates WebP versions alongside original format
+- **Multiple sizes** - Generates srcset with 320w, 640w, 1024w, 1920w (customizable)
+- **Picture element** - Uses `<picture>` with format fallbacks
+- **Lazy loading** - Enabled by default with native `loading="lazy"`
+- **Proper dimensions** - Includes `width` and `height` to prevent layout shift
+- **Hugo image processing** - Works with images in `assets/` or page bundles
+
+**Example:**
+```markdown
+{{</* responsive-image
+  src="images/screenshot.png"
+  alt="Application screenshot"
+  class="border rounded-lg"
+  sizes="(max-width: 768px) 100vw, 50vw"
+  widths="400,800,1200"
+*/>}}
+```
+
+**Shortcode alias:**
+- `img` - Simpler syntax: `{{</* img "path/to/image.jpg" "Alt text" */>}}`
+
+**Output:**
+```html
+<picture>
+  <source type="image/webp" srcset="/images/photo_320.webp 320w, /images/photo_640.webp 640w, ..." sizes="100vw">
+  <source type="image/jpeg" srcset="/images/photo_320.jpg 320w, /images/photo_640.jpg 640w, ..." sizes="100vw">
+  <img src="/images/photo_320.jpg" alt="Description" width="320" height="240" loading="lazy" decoding="async">
+</picture>
+```
+
+**Performance benefits:**
+- **30-50% smaller** - WebP format reduces file size significantly
+- **Responsive** - Correct image size loaded for each viewport
+- **Lazy loading** - Images only load when needed
+- **No layout shift** - Explicit dimensions prevent CLS
+
+**Implementation:**
+- Shortcode: `layouts/shortcodes/responsive-image.html`
+- Partial: `layouts/partials/responsive-image.html` (reusable in templates)
+- Used in: Project cards, feature images, content images
+
 ### CSS/Styling
 
 Tailwind CSS v4 workflow:
