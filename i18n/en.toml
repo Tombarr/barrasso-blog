@@ -7,12 +7,14 @@ resume = "Resume"
 tom = "Tom"
 
 skills = "Skills"
+many_more = "And many more…"
 worked_with = "Who I've Worked With"
 projects = "Projects"
 articles = "Articles"
 view = "View"
 view_all = "View all"
 view_raw = "view raw"
+version = "Version"
 
 # Resume sections
 work_experience = "Work Experience"
