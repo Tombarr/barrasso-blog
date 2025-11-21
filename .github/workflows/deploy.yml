@@ -17,6 +17,14 @@ jobs:
       pull-requests: write
 
     steps:
+      - name: Whoami Check
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: whoami
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -53,12 +61,13 @@ jobs:
             --logLevel info
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-          directory: public
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          # Deploy only on main branch, create preview deployments for PRs
-          branch: ${{ github.head_ref || github.ref_name }}
+          environment: production
+          command: |
+            pages deploy public \
+              --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }} \
+              --branch=${{ github.head_ref || github.ref_name }}
