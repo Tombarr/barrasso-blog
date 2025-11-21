@@ -1163,7 +1163,7 @@ html.resume-light-mode .pdf-download-button:hover {
 
 /* Resume container - paper-like appearance on screen */
 .resume-container {
-    @apply mx-auto bg-white dark:bg-slate-800 shadow-xl;
+    @apply relative mx-auto bg-white dark:bg-slate-800 shadow-xl;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -1174,6 +1174,10 @@ html.resume-light-mode .pdf-download-button:hover {
         width 0.3s ease,
         max-width 0.3s ease,
         min-height 0.3s ease;
+}
+
+.resume-page footer.resume-version-footer {
+    @apply absolute bottom-4 w-full text-center text-xs text-slate-500;
 }
 
 /* Paper size dimensions - allow natural overflow for multi-page content */
@@ -1486,10 +1490,22 @@ svg.spiral-knot path {
         /* Keep the paper size dimensions from screen, allow multi-page overflow */
     }
 
+    .resume-page footer.resume-version-footer {
+        @apply fixed bottom-4;
+    }
+
+    .resume-container[data-paper-size="letter"] footer.resume-version-footer {
+        width: calc(8.5in - var(--spacing) * 8);
+    }
+
     .resume-container[data-paper-size="letter"] {
         @apply px-4 py-8;
         max-width: 8.5in;
         width: calc(8.5in - var(--spacing) * 8);
+    }
+
+    .resume-container[data-paper-size="a4"] footer.resume-version-footer {
+        width: calc(210mm - var(--spacing) * 8);
     }
 
     .resume-container[data-paper-size="a4"] {
@@ -1655,7 +1671,11 @@ svg.spiral-knot path {
     }
 
     .resume-container {
-        @apply px-8 py-8;
+        @apply px-8 py-8 pb-16;
+    }
+
+    .resume-page footer.resume-version-footer {
+        max-width: calc(100% - var(--spacing) * 16);
     }
 }
 
