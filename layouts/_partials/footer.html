@@ -86,10 +86,12 @@
       <p class="mb-2">
         {{ i18n "footer.copyright.text" (dict "Year" .year "Holder" .holder) }}
       </p>
-      <p>
+      <p class="mb-2">
         {{- $contentLicenseLink := printf "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer-copyright-link\">%s</a>" .contentLicense.url .contentLicense.name -}}
         {{- $codeLicenseLink := printf "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer-copyright-link\">%s</a>" .codeLicense.url .codeLicense.name -}}
-        {{ i18n "footer.copyright.license" (dict "ContentLicense" $contentLicenseLink "CodeLicense" $codeLicenseLink) | safeHTML }}<br />
+        {{ i18n "footer.copyright.license" (dict "ContentLicense" $contentLicenseLink "CodeLicense" $codeLicenseLink) | safeHTML }}
+      </p>
+      <p>
         {{ i18n "footer.copyright.last_updated" }} <time datetime="{{ now.Format "2006-01-02" }}">{{ now.Format "2006-01-02" }}</time>
       </p>
       {{- end -}}
