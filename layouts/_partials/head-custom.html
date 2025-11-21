@@ -12,8 +12,10 @@
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c2b33">
 
 {{/* Preload critical fonts for faster text rendering */}}
+{{ if not .IsHome }}
 <link rel="preload" as="font" type="font/woff2" href="/fonts/figtree-normal.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-normal.woff2" crossorigin>
+{{ end}}
 
 {{/* Resource hints for external domains */}}
 <link rel="preconnect" href="https://github.com" crossorigin>
