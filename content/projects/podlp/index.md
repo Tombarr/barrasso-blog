@@ -34,4 +34,4 @@ PodLP was a [2020 KaiOS Staff Pick](https://www.kaiostech.com/discover-podlp-the
 PodLP has branched out into experiments like [PodCal](https://podcal.app/), a tool to subscribe to podcasts in your calendar app, an NPM package to parse RSS feeds called [`podparse`](https://www.npmjs.com/package/podparse), and feature suggestions for the [Podcast Index](https://github.com/Podcastindex-org/podcast-namespace/issues/174) XML namespace.
 
 {{< br >}}
-{{< img src="podcal-promo.png" alt="PodCal" >}}
+{{< responsive-image src="podcal-promo.png" alt="PodCal" class="w-full contain" >}}

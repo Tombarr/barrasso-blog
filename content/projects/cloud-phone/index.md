@@ -31,7 +31,7 @@ Cloud Phone for Developers is a static website generated using [Hugo](https://go
 ## **Reference Applications**
 
 {{< br >}}
-{{< img src="currency-converter.png" alt="Cloud Phone Currency Converter" >}}
+{{< responsive-image src="currency-converter.png" alt="Cloud Phone Currency Converter" class="w-full contain" >}}
 
 {{< br >}}
 I built open-source reference applications like a [Currency Converter](https://github.com/cloudmosa/cloudphone-currency), wrote [companion tutorials](https://developer.cloudfone.com/docs/walkthroughs/currency-converter/), and published them on Cloud Phone. This expands the app catalog for users with valuable utilities while providing a real-world codebase to showcase an effective, platform-specific user experience for developers.
