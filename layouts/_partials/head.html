@@ -5,6 +5,9 @@
 
     {{- partial "script.html" . -}}
     {{- partial "styles.html" . -}}
+    {{- if eq .Type "resume" -}}
+    {{- partial "resume-styles.html" . -}}
+    {{- end -}}
     {{- partial "seo.html" . -}}
 
     {{/* Optimized favicon - SVG first (smallest), then PNG fallback, then ICO */}}
