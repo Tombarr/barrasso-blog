@@ -68,6 +68,6 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           environment: production
           command: |
-            pages deploy public \
-              --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }} \
+            pages deploy public
+              --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }}
               --branch=${{ github.head_ref || github.ref_name }}
