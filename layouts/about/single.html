@@ -1,16 +1,16 @@
 {{ define "content" }} {{ partial "single-before.html" . }}
 
 <section class="post flex flex-col items-center pt-20 md:pt-30 pb-4 md:pb-6">
-    <!-- About page content with centered avatar -->
-    <article class="post-content hero hero-centered-portrait blog-content-width my-4">
-        {{- partial "avatar.html" . -}}
+  <!-- About page content with centered avatar -->
+  <article
+    class="post-content hero hero-centered-portrait blog-content-width my-4"
+  >
+    {{- partial "avatar.html" . -}}
 
-        <div class="about-content text-start">
-            {{ .Content | safeHTML }}
-        </div>
-    </article>
+    <div class="about-content text-start">{{ .Content | safeHTML }}</div>
+  </article>
 
-    {{- partial "nav.html" . -}}
+  {{- partial "nav.html" . -}}
 </section>
 
 {{end}}

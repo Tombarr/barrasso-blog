@@ -28,4 +28,4 @@ githubUrl = ''
 Get ready for the acronyms! As a Staff Technical Program Manager (TPM), I led the adoption of Privacy Aware Infrastructure (PAI) for privacy regulations like GDPR, DMA, CCPA, and ePD. I met with dozens of teams across Meta to pilot and scale information flow control (IFC) systems like Policy Zones to **enforce flow restrictions at runtime**. Programs I led ensured robust data protections across dozens of databases and processors at **exabyte scale**, including my principal domain focused on Artificial Intelligence (AI) data collection, model training, and inference serving systems.
 
 {{< br >}}
-Basically, I was a digital janitor making sure data was appropriately stored, processed, and eventually, deleted.
+Basically, I was a digital janitor making sure data was appropriately stored, processed, and deleted.

@@ -10,266 +10,272 @@
 
 /* Resume controls container (static, above resume) */
 .resume-controls {
-    @apply flex items-start justify-between mb-4 mx-auto;
-    max-width: 8.5in; /* Match resume width */
+  @apply flex items-start justify-between mb-4 mx-auto;
+  max-width: 8.5in; /* Match resume width */
 }
 
 /* Home button */
 .home-button {
-    @apply flex items-center justify-center;
-    @apply w-12 h-12 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm;
-    @apply rounded-lg shadow-lg border border-slate-200 dark:border-slate-700;
-    @apply text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100;
-    @apply transition-colors duration-200;
+  @apply flex items-center justify-center;
+  @apply w-12 h-12 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm;
+  @apply rounded-lg shadow-lg border border-slate-200 dark:border-slate-700;
+  @apply text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100;
+  @apply transition-colors duration-200;
 }
 
 .home-button .inline-svg {
-    @apply w-6 h-6;
+  @apply w-6 h-6;
 }
 
 .home-button .inline-svg svg {
-    @apply w-full h-full;
-    fill: currentColor;
+  @apply w-full h-full;
+  fill: currentColor;
 }
 
 /* Paper size toggle */
 .paper-size-toggle-container {
-    @apply flex flex-col;
-    @apply bg-white/90 backdrop-blur-sm;
-    @apply px-3 py-3 rounded-lg shadow-lg border border-slate-200;
-    width: auto;
-    max-width: 240px;
+  @apply flex flex-col;
+  @apply bg-white/90 backdrop-blur-sm;
+  @apply px-3 py-3 rounded-lg shadow-lg border border-slate-200;
+  width: auto;
+  max-width: 240px;
 }
 
 .paper-size-toggle-container label .inline-svg {
-    @apply w-4 h-4;
+  @apply w-4 h-4;
 }
 
 .paper-size-toggle-container label .inline-svg svg {
-    @apply w-full h-full;
-    fill: currentColor;
+  @apply w-full h-full;
+  fill: currentColor;
 }
 
 .print-button .inline-svg,
 .pdf-download-button .inline-svg {
-    @apply w-4 h-4;
+  @apply w-4 h-4;
 }
 
 .print-button .inline-svg svg,
 .pdf-download-button .inline-svg svg {
-    @apply w-full h-full;
-    fill: currentColor;
+  @apply w-full h-full;
+  fill: currentColor;
 }
 
 .screen-only {
-    @apply print:hidden;
+  @apply print:hidden;
 }
 
 .print-only {
-    @apply print:visible;
+  @apply print:visible;
 }
 
 /* Force light mode for resume pages */
 html.resume-light-mode {
-    /* Override any dark mode that might be set */
-    color-scheme: light;
+  /* Override any dark mode that might be set */
+  color-scheme: light;
 }
 
 /* Force specific font for resume */
 @layer base {
-    :root.resume-light-mode {
-        font-family: "Calibri", "Arial", sans-serif;
-    }
+  :root.resume-light-mode {
+    font-family: "Calibri", "Arial", sans-serif;
+  }
 }
 
 html.resume-light-mode .resume-page {
-    @apply bg-slate-100;
+  @apply bg-slate-100;
 }
 
 html.resume-light-mode .resume-container {
-    @apply bg-white text-slate-900;
+  @apply bg-white text-slate-900;
 }
 
 html.resume-light-mode .home-button {
-    @apply bg-white/90 border-slate-200 text-slate-700;
+  @apply bg-white/90 border-slate-200 text-slate-700;
 }
 
 html.resume-light-mode .home-button:hover {
-    @apply text-slate-900;
+  @apply text-slate-900;
 }
 
 html.resume-light-mode .paper-size-toggle-container {
-    @apply bg-white/90 border-slate-200;
+  @apply bg-white/90 border-slate-200;
 }
 
 html.resume-light-mode #paper-size-select {
-    @apply bg-white border-slate-300 text-slate-900;
+  @apply bg-white border-slate-300 text-slate-900;
 }
 
 html.resume-light-mode label[for="paper-size-select"] {
-    @apply inline-block w-4 h-4 align-middle;
+  @apply inline-block w-4 h-4 align-middle;
 }
 
 html.resume-light-mode .print-button,
 html.resume-light-mode .pdf-download-button {
-    @apply bg-slate-700 text-white;
+  @apply bg-slate-700 text-white;
 }
 
 html.resume-light-mode .print-button:hover,
 html.resume-light-mode .pdf-download-button:hover {
-    @apply bg-slate-800;
+  @apply bg-slate-800;
 }
 
 /* Resume page container */
 .resume-page {
-    @apply min-h-screen bg-slate-100 dark:bg-slate-900;
+  @apply min-h-screen bg-slate-100 dark:bg-slate-900;
 }
 
 /* Resume container - paper-like appearance on screen */
 .resume-container {
-    @apply relative mx-auto bg-white dark:bg-slate-800 shadow-xl;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
+  @apply relative mx-auto bg-white dark:bg-slate-800 shadow-xl;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 :root.loaded .resume-container {
-    transition:
-        width 0.3s ease,
-        max-width 0.3s ease,
-        min-height 0.3s ease;
+  transition:
+    width 0.3s ease,
+    max-width 0.3s ease,
+    min-height 0.3s ease;
 }
 
 .resume-page footer.resume-version-footer {
-    @apply absolute bottom-4 w-full text-center text-xs text-slate-500;
+  @apply absolute bottom-4 w-full text-center text-xs text-slate-500;
 }
 
 /* Paper size dimensions - allow natural overflow for multi-page content */
 .resume-container[data-paper-size="letter"],
 .resume-container[data-paper-size="letter"] .page-spacer {
-    width: 8.5in;
-    max-width: 8.5in;
+  width: 8.5in;
+  max-width: 8.5in;
 }
 
 .resume-container[data-paper-size="a4"],
 .resume-container[data-paper-size="a4"] .page-spacer {
-    width: 210mm;
-    max-width: 210mm;
+  width: 210mm;
+  max-width: 210mm;
 }
 
 .resume-container .page-spacer {
-    transform: translateX(-16px);
+  transform: translateX(-16px);
 }
 
 /* Paper size dimensions - allow natural overflow for multi-page content */
 .resume-container[data-paper-size="letter"] .page-spacer {
-    width: calc(8.5in - var(--spacing) * 8);
+  width: calc(8.5in - var(--spacing) * 8);
 }
 
 .resume-container[data-paper-size="a4"] .page-spacer {
-    width: calc(210mm - var(--spacing) * 8);
+  width: calc(210mm - var(--spacing) * 8);
 }
 
 /* Page spacer elements - physical gaps between pages on screen */
 .page-spacer {
-    @apply my-8;
-    height: 2rem;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-inline-start: -3rem;
-    margin-inline-end: -3rem;
+  @apply my-8;
+  height: 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-start: -3rem;
+  margin-inline-end: -3rem;
 }
 
 /* Visual indicator line within spacer */
 .page-spacer::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: repeating-linear-gradient(
-        90deg,
-        #cbd5e1 0,
-        #cbd5e1 10px,
-        transparent 10px,
-        transparent 20px
-    );
-    transform: translateY(-50%);
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #cbd5e1 0,
+    #cbd5e1 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  transform: translateY(-50%);
 }
 
 /* Optional: Page number indicator */
 .page-spacer::after {
-    content: "Page " attr(data-page);
-    @apply text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded;
-    position: relative;
-    z-index: 1;
+  content: "Page " attr(data-page);
+  @apply text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded;
+  position: relative;
+  z-index: 1;
 }
 
 /* Resume content grid - two column layout (70/30 split, all screen sizes) */
 .resume-content-grid {
-    @apply grid gap-8;
-    grid-template-columns: calc(75% - (var(--spacing) * 4)) calc(25% - (var(--spacing) * 4));
-    display: grid;
-    align-items: start;
-    flex: 1;
-    word-break: break-word;
-    hyphens: auto;
-    contain: layout;
+  @apply grid gap-8;
+  grid-template-columns: calc(75% - (var(--spacing) * 4)) calc(
+      25% - (var(--spacing) * 4)
+    );
+  display: grid;
+  align-items: start;
+  flex: 1;
+  word-break: break-word;
+  hyphens: auto;
+  contain: layout;
 }
 
 .resume-main-content,
 .resume-sidebar {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 /* Smaller font for A4 to fit the page */
-.resume-container[data-paper-size="a4"] .resume-sidebar .sidebar-section ul > li {
-    font-size: 90%;
+.resume-container[data-paper-size="a4"]
+  .resume-sidebar
+  .sidebar-section
+  ul
+  > li {
+  font-size: 90%;
 }
 
 /* Push last section in main content to bottom */
 .resume-main-content > :last-child,
 .resume-sidebar > :last-child,
 .resume-sidebar > .sidebar-footer {
-    margin-block-start: auto;
-    margin-block-start: auto;
+  margin-block-start: auto;
+  margin-block-start: auto;
 }
 
 .resume-sidebar {
-    @apply flex flex-col;
-    min-height: 100%;
+  @apply flex flex-col;
+  min-height: 100%;
 }
 
 /* Spacer to push footer to bottom of page (screen only) */
 .sidebar-spacer {
-    flex: 1 1 auto;
-    min-height: 0;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .sidebar-footer {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 /* Resume header - don't let it flex */
 .resume-header {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .resume-header > div + p {
-    margin-block-start: -1.5em;
-    margin-block-start: -1.5em;
-    padding-inline-end: 10em;
-    padding-inline-end: 10em;
+  margin-block-start: -1.5em;
+  margin-block-start: -1.5em;
+  padding-inline-end: 10em;
+  padding-inline-end: 10em;
 }
 
 .resume-section + .resume-section.mb-6:last-of-type {
-    margin-block-end: 0;
-    margin-block-end: 0;
+  margin-block-end: 0;
+  margin-block-end: 0;
 }
 
 /* Icon sizing in resume context */
@@ -278,402 +284,376 @@ html.resume-light-mode .pdf-download-button:hover {
 .degree-entry .inline-svg,
 .project-entry .inline-svg,
 .sidebar-section .inline-svg {
-    @apply inline-block w-3 h-3 align-text-bottom;
+  @apply inline-block w-3 h-3 align-text-bottom;
 }
 
 /* Ensure icons use current text color */
 .resume-container .inline-svg svg {
-    @apply w-full h-full;
-    fill: currentColor;
+  @apply w-full h-full;
+  fill: currentColor;
 }
 
 /* Remove default list styles in resume */
 .resume-container ul {
-    @apply list-none;
-    padding-inline-start: 0;
+  @apply list-none;
+  padding-inline-start: 0;
 }
 
 /* Prose content styling overrides for smaller resume text */
 .resume-container .prose {
-    @apply text-xs leading-relaxed;
+  @apply text-xs leading-relaxed;
 }
 
 .resume-container .prose ul {
-    @apply list-disc pl-4 my-1;
+  @apply list-disc pl-4 my-1;
 }
 
 .resume-container .prose p {
-    @apply my-1;
+  @apply my-1;
 }
 
 /* Page spacer - creates vertical space and page break */
 .page-spacer {
-    min-height: 1.5rem;
-    margin: 1rem 0;
-    background-color: transparent;
-    border: none;
+  min-height: 1.5rem;
+  margin: 1rem 0;
+  background-color: transparent;
+  border: none;
 }
 
 @media screen {
-    .print-only {
-        display: none;
-        visibility: hidden;
-    }
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-svg.spiral-knot {
-    position: absolute;
-    height: 100px;
-    object-fit: contain;
-    transform: rotate(0deg);
-    animation: spin 10s linear infinite;
-    will-change: transform;
-}
-
-svg.spiral-knot path {
-    fill: currentColor;
-}
-
-.spiral-container {
-    height: 100px;
-    width: 100px;
-    margin: 0 auto;
-    position: relative;
+  .print-only {
+    display: none;
+    visibility: hidden;
+  }
 }
 
 /* Print media queries - maintain screen layout, just hide UI elements */
 @media print {
-    html, body {
-        max-width: 8.5in;
-    }
+  html,
+  body {
+    max-width: 8.5in;
+  }
 
-    html:has(#resume-container[data-paper-size="a4"]),
-    body:has(#resume-container[data-paper-size="a4"]) {
-        max-width: 210mm;
-    }
+  html:has(#resume-container[data-paper-size="a4"]),
+  body:has(#resume-container[data-paper-size="a4"]) {
+    max-width: 210mm;
+  }
 
-    .print-only {
-        display: block;
-        visibility: visible;
-    }
+  .print-only {
+    display: block;
+    visibility: visible;
+  }
 
-    .new-page {
-        page-break-before: always;
-        break-before: all;
-        break-before: page;
-        break-after: avoid;
-        page-break-after: avoid;
-        height: calc(var(--spacing) * 8);
-        display: block;
-        clear: both;
-        width: 100%;
-    }
+  .new-page {
+    page-break-before: always;
+    break-before: all;
+    break-before: page;
+    break-after: avoid;
+    page-break-after: avoid;
+    height: calc(var(--spacing) * 8);
+    display: block;
+    clear: both;
+    width: 100%;
+  }
 
-    /* Hide UI chrome and site footer (but not resume sidebar footer) */
-    .screen-only,
-    .footer-wrapper {
-        display: none !important;
-    }
+  /* Hide UI chrome and site footer (but not resume sidebar footer) */
+  .screen-only,
+  .footer-wrapper {
+    display: none !important;
+  }
 
-    /* Keep page background for print */
-    :root,
-    body {
-        @apply bg-white;
-    }
+  /* Keep page background for print */
+  :root,
+  body {
+    @apply bg-white;
+  }
 
-    *:not(li) {
-        box-sizing: border-box;
-        overflow-x: hidden;
-    }
+  *:not(li) {
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
 
-    @page {
-        margin: 0mm;
-        size: auto;
-        page-orientation: upright;
-    }
+  @page {
+    margin: 0mm;
+    size: auto;
+    page-orientation: upright;
+  }
 
-    @page :blank {
-        display: none;
-        margin: 0.5in;
-    }
+  @page :blank {
+    display: none;
+    margin: 0.5in;
+  }
 
-    @page :first {
-        margin-bottom: 0.25in;
-    }
+  @page :first {
+    margin-bottom: 0.25in;
+  }
 
-    @page :last {
-        margin-top: 0.5in;
-    }
+  @page :last {
+    margin-top: 0.5in;
+  }
 
-    .page-break {
-        break-after: always;
-        page-break-after: always;
-        background-color: transparent;
-        border-color: transparent;
-        display: table;
-        clear: both;
-    }
+  .page-break {
+    break-after: always;
+    page-break-after: always;
+    background-color: transparent;
+    border-color: transparent;
+    display: table;
+    clear: both;
+  }
 
-    .page-spacer {
-        break-after: always;
-        page-break-after: always;
-        padding-top: 0.18in;
-        min-height: 0.18in;
-        background-color: transparent;
-        border: none;
-    }
+  .page-spacer {
+    break-after: always;
+    page-break-after: always;
+    padding-top: 0.18in;
+    min-height: 0.18in;
+    background-color: transparent;
+    border: none;
+  }
 
-    .resume-container {
-        padding-block: 0;
-    }
+  .resume-container {
+    padding-block: 0;
+  }
 
-    .resume-container[data-paper-size="letter"] {
-        width: 100%;
-    }
+  .resume-container[data-paper-size="letter"] {
+    width: 100%;
+  }
 
-    .resume-container[data-paper-size="a4"] {
-        width: 100%;
-    }
+  .resume-container[data-paper-size="a4"] {
+    width: 100%;
+  }
 
-    .resume-page {
-        @apply bg-white;
-    }
+  .resume-page {
+    @apply bg-white;
+  }
 
-    /* Maintain paper size dimensions and styling */
-    .resume-container {
-        @apply shadow-none bg-white mx-auto;
-        /* Keep the paper size dimensions from screen, allow multi-page overflow */
-    }
+  /* Maintain paper size dimensions and styling */
+  .resume-container {
+    @apply shadow-none bg-white mx-auto;
+    /* Keep the paper size dimensions from screen, allow multi-page overflow */
+  }
 
-    .resume-page footer.resume-version-footer {
-        @apply fixed bottom-4;
-    }
+  .resume-page footer.resume-version-footer {
+    @apply fixed bottom-4;
+  }
 
-    .resume-container[data-paper-size="letter"] footer.resume-version-footer {
-        width: calc(8.5in - var(--spacing) * 8);
-    }
+  .resume-container[data-paper-size="letter"] footer.resume-version-footer {
+    width: calc(8.5in - var(--spacing) * 8);
+  }
 
-    .resume-container[data-paper-size="letter"] {
-        @apply px-4 py-8;
-        max-width: 8.5in;
-        width: calc(8.5in - var(--spacing) * 8);
-    }
+  .resume-container[data-paper-size="letter"] {
+    @apply px-4 py-8;
+    max-width: 8.5in;
+    width: calc(8.5in - var(--spacing) * 8);
+  }
 
-    .resume-container[data-paper-size="a4"] footer.resume-version-footer {
-        width: calc(210mm - var(--spacing) * 8);
-    }
+  .resume-container[data-paper-size="a4"] footer.resume-version-footer {
+    width: calc(210mm - var(--spacing) * 8);
+  }
 
-    .resume-container[data-paper-size="a4"] {
-        @apply px-4 py-8;
-        max-width: 210mm;
-        width: calc(210mm - var(--spacing) * 8);
-    }
+  .resume-container[data-paper-size="a4"] {
+    @apply px-4 py-8;
+    max-width: 210mm;
+    width: calc(210mm - var(--spacing) * 8);
+  }
 
-    /* Maintain two-column layout in print (70/30 split) */
-    .resume-content-grid {
-        @apply grid gap-8;
-        display: grid;
-        grid-template-columns: calc(75% - (var(--spacing) * 4)) calc(25% - (var(--spacing) * 4));
-        align-items: start;
-        /* Allow grid to break across pages */
-        break-inside: auto;
-        page-break-inside: auto;
-        break-before: avoid;
-        page-break-before: avoid;
-    }
+  /* Maintain two-column layout in print (70/30 split) */
+  .resume-content-grid {
+    @apply grid gap-8;
+    display: grid;
+    grid-template-columns: calc(75% - (var(--spacing) * 4)) calc(
+        25% - (var(--spacing) * 4)
+      );
+    align-items: start;
+    /* Allow grid to break across pages */
+    break-inside: auto;
+    page-break-inside: auto;
+    break-before: avoid;
+    page-break-before: avoid;
+  }
 
-    .resume-main-content {
-        display: flex;
-        flex-direction: column;
-        /* Remove min-height for print to allow natural page breaks */
-        min-height: auto;
-    }
+  .resume-main-content {
+    display: flex;
+    flex-direction: column;
+    /* Remove min-height for print to allow natural page breaks */
+    min-height: auto;
+  }
 
-    .resume-sidebar {
-        display: flex;
-        flex-direction: column;
-        /* Remove min-height for print to allow natural page breaks */
-        min-height: auto;
-    }
+  .resume-sidebar {
+    display: flex;
+    flex-direction: column;
+    /* Remove min-height for print to allow natural page breaks */
+    min-height: auto;
+  }
 
-    /* Collapse spacer in print - don't push footer down */
-    .sidebar-spacer {
-        flex: 0 0 auto;
-        min-height: 0;
-        height: 0;
-        display: none;
-    }
+  /* Collapse spacer in print - don't push footer down */
+  .sidebar-spacer {
+    flex: 0 0 auto;
+    min-height: 0;
+    height: 0;
+    display: none;
+  }
 
-    /* Ensure footer is visible in print */
-    .sidebar-footer {
-        display: block;
-        break-inside: avoid;
-        page-break-inside: avoid;
-    }
+  /* Ensure footer is visible in print */
+  .sidebar-footer {
+    display: block;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 
-    .https-before {
-        text-decoration: underline;
-    }
+  .https-before {
+    text-decoration: underline;
+  }
 
-    .https-before::before {
-        content: "https://";
-        display: inline;
-    }
+  .https-before::before {
+    content: "https://";
+    display: inline;
+  }
 
-    .resume-container {
-        display: flex;
-        flex-direction: column;
-    }
+  .resume-container {
+    display: flex;
+    flex-direction: column;
+  }
 
-    /* Resume sections */
-    .resume-section + .resume-section {
-        break-before: auto;
-        page-break-before: auto;
-    }
+  /* Resume sections */
+  .resume-section + .resume-section {
+    break-before: auto;
+    page-break-before: auto;
+  }
 
-    /* Allow header and grid to flow together */
-    .resume-header {
-        padding-block-start: calc(var(--spacing) * 4);
-        max-width: 100%;
-        break-after: avoid;
-        page-break-after: avoid;
-        break-inside: avoid;
-        page-break-inside: avoid;
-        /* Encourage keeping header with at least some content */
-        orphans: 3;
-        widows: 3;
-    }
+  /* Allow header and grid to flow together */
+  .resume-header {
+    padding-block-start: calc(var(--spacing) * 4);
+    max-width: 100%;
+    break-after: avoid;
+    page-break-after: avoid;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    /* Encourage keeping header with at least some content */
+    orphans: 3;
+    widows: 3;
+  }
 
-    /* Prevent page breaks inside important sections */
-    .job-entry,
-    .degree-entry,
-    .project-entry,
-    .sidebar-section {
-        break-inside: avoid;
-        page-break-inside: avoid;
-        break-before: auto;
-        page-break-before: auto;
-    }
+  /* Prevent page breaks inside important sections */
+  .job-entry,
+  .degree-entry,
+  .project-entry,
+  .sidebar-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    break-before: auto;
+    page-break-before: auto;
+  }
 
-    .resume-section > div:only-of-type {
-        break-inside: avoid;
-        page-break-inside: avoid;
-    }
+  .resume-section > div:only-of-type {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 
-    /* Allow resume-section to break in print if needed */
-    .resume-section,
+  /* Allow resume-section to break in print if needed */
+  .resume-section,
     .resume-sidebar,
     /* Contains collection of .job-entry sections */
     .resume-main-content > .resume-section:first-of-type > div:first-of-type {
-        page-break-inside: auto;
-        break-inside: auto;
-    }
+    page-break-inside: auto;
+    break-inside: auto;
+  }
 
-    /* Prevent breaks between headers and their immediate content */
-    .resume-section > h2,
-    .sidebar-section > h2 {
-        break-after: avoid;
-        page-break-after: avoid;
-    }
+  /* Prevent breaks between headers and their immediate content */
+  .resume-section > h2,
+  .sidebar-section > h2 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
 
-    .resume-section > h2 + div,
-    .sidebar-section > h2 + div {
-        break-before: avoid;
-        page-break-before: avoid;
-    }
+  .resume-section > h2 + div,
+  .sidebar-section > h2 + div {
+    break-before: avoid;
+    page-break-before: avoid;
+  }
 
-    /* Ensure links don't break */
-    a {
-        text-decoration: none;
-    }
+  /* Ensure links don't break */
+  a {
+    text-decoration: none;
+  }
 
-    p,
-    ul,
-    ol {
-        break-inside: avoid;
-        page-break-inside: avoid;
-    }
+  p,
+  ul,
+  ol {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 
-    /* Basic Reset */
-    *,
-    *:before,
-    *:after,
-    *:first-letter,
-    p:first-line,
-    div:first-line,
-    blockquote:first-line,
-    li:first-line {
-        background: transparent !important;
-        color: #000 !important;
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
+  /* Basic Reset */
+  *,
+  *:before,
+  *:after,
+  *:first-letter,
+  p:first-line,
+  div:first-line,
+  blockquote:first-line,
+  li:first-line {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
 
-    .abbr-tooltip {
-        border-block-end-color: transparent;
-        border-block-end: none;
-    }
+  .abbr-tooltip {
+    border-block-end-color: transparent;
+    border-block-end: none;
+  }
 
-    .abbr-tooltip::before,
-    .abbr-tooltip::after {
-        display: none;
-    }
+  .abbr-tooltip::before,
+  .abbr-tooltip::after {
+    display: none;
+  }
 }
 
 @media screen {
-    .resume-page {
-        @apply py-8;
-    }
+  .resume-page {
+    @apply py-8;
+  }
 
-    .resume-container {
-        @apply px-8 py-8 pb-16;
-    }
+  .resume-container {
+    @apply px-8 py-8 pb-16;
+  }
 
-    .resume-page footer.resume-version-footer {
-        max-width: calc(100% - var(--spacing) * 16);
-    }
+  .resume-page footer.resume-version-footer {
+    max-width: calc(100% - var(--spacing) * 16);
+  }
 }
 
-@media print and (-webkit-min-device-pixel-ratio:0) {
-    .sidebar-footer {
-        position: fixed;
-        bottom: 0;
-    }
+@media print and (-webkit-min-device-pixel-ratio: 0) {
+  .sidebar-footer {
+    position: fixed;
+    bottom: 0;
+  }
 }
 
-@media print and (min--moz-device-pixel-ratio:0) {
-    .sidebar-footer {
-        position: relative;
-        bottom: unset;
-    }
+@media print and (min--moz-device-pixel-ratio: 0) {
+  .sidebar-footer {
+    position: relative;
+    bottom: unset;
+  }
 
-    .sidebar-section {
-        break-inside: avoid;
-        page-break-inside: avoid;
-    }
+  .sidebar-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 
-    .sidebar-section + .new-page {
-        display: none;
-    }
+  .sidebar-section + .new-page {
+    display: none;
+  }
 }
 
 /* Responsive adjustments for smaller screens */
 @media screen and (max-width: 1024px) {
-    .resume-container {
-        @apply w-full max-w-full;
-        @apply px-12 py-10;
-    }
+  .resume-container {
+    @apply w-full max-w-full;
+    @apply px-12 py-10;
+  }
 
-    .resume-controls {
-        @apply w-full max-w-full px-4;
-    }
+  .resume-controls {
+    @apply w-full max-w-full px-4;
+  }
 }

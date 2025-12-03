@@ -1,12 +1,12 @@
-{{- $school := .Get "school" -}}
-{{- $subject := .Get "subject" -}}
-{{- $location := .Get "location" -}}
-{{- $dates := .Get "dates" -}}
+{{- $school := .Get "school" -}} {{- $subject := .Get "subject" -}} {{-
+$location := .Get "location" -}} {{- $dates := .Get "dates" -}}
 
 <div class="degree-entry">
   <div class="flex flex-row md:items-start md:justify-between mb-1">
     <div class="flex-1">
-      <h3 class="text-base font-semibold text-slate-900 mb-0.5">{{ $school }}</h3>
+      <h3 class="text-base font-semibold text-slate-900 mb-0.5">
+        {{ $school }}
+      </h3>
       <div class="flex items-center gap-2 text-sm text-slate-700">
         <span class="inline-flex items-center gap-1">
           {{- partial "svg.html" "icons/fontawesome/graduation-cap" -}}
@@ -15,16 +15,15 @@
         {{- if $location }}
         <span class="text-slate-500">•</span>
         <span class="inline-flex items-center gap-1 text-xs text-slate-600">
-          {{- partial "svg.html" "icons/fontawesome/location-dot" -}}
-          {{ $location }}
+          {{- partial "svg.html" "icons/fontawesome/location-dot" -}} {{
+          $location }}
         </span>
         {{- end }}
       </div>
     </div>
     {{- if $dates }}
     <div class="text-xs text-slate-600 mt-1 md:mt-0 flex items-center gap-1">
-      {{- partial "svg.html" "icons/fontawesome/graduation-cap" -}}
-      {{ $dates }}
+      {{- partial "svg.html" "icons/fontawesome/graduation-cap" -}} {{ $dates }}
     </div>
     {{- end }}
   </div>

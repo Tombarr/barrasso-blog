@@ -3,8 +3,19 @@
   <div class="text-center py-12">
     <!-- Offline icon -->
     <div class="mb-6">
-      <svg class="w-24 h-24 mx-auto text-slate-400 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414"></path>
+      <svg
+        class="w-24 h-24 mx-auto text-slate-400 dark:text-slate-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414"
+        ></path>
       </svg>
     </div>
 
@@ -12,31 +23,67 @@
     <h1 class="text-4xl font-bold mb-4">{{ .Title }}</h1>
 
     <!-- Message -->
-    <div class="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
+    <div
+      class="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto"
+    >
       {{ .Content }}
     </div>
 
     <!-- Helpful tips -->
-    <div class="bg-slate-100 dark:bg-slate-800 rounded-lg p-6 max-w-2xl mx-auto text-left">
+    <div
+      class="bg-slate-100 dark:bg-slate-800 rounded-lg p-6 max-w-2xl mx-auto text-left"
+    >
       <h2 class="text-xl font-semibold mb-4">What you can do:</h2>
       <ul class="space-y-3 text-slate-700 dark:text-slate-300">
         <li class="flex items-start">
-          <svg class="w-5 h-5 mr-2 mt-1 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          <svg
+            class="w-5 h-5 mr-2 mt-1 text-green-500 flex-shrink-0"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"
+            ></path>
           </svg>
-          <span>Visit pages you've already viewed - they're cached for offline reading</span>
+          <span
+            >Visit pages you've already viewed - they're cached for offline
+            reading</span
+          >
         </li>
         <li class="flex items-start">
-          <svg class="w-5 h-5 mr-2 mt-1 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          <svg
+            class="w-5 h-5 mr-2 mt-1 text-green-500 flex-shrink-0"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"
+            ></path>
           </svg>
-          <span>Use your browser's back button to return to the previous page</span>
+          <span
+            >Use your browser's back button to return to the previous page</span
+          >
         </li>
         <li class="flex items-start">
-          <svg class="w-5 h-5 mr-2 mt-1 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          <svg
+            class="w-5 h-5 mr-2 mt-1 text-green-500 flex-shrink-0"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"
+            ></path>
           </svg>
-          <span>Check your internet connection and reload this page when you're back online</span>
+          <span
+            >Check your internet connection and reload this page when you're
+            back online</span
+          >
         </li>
       </ul>
     </div>
@@ -47,8 +94,18 @@
         onclick="window.location.reload()"
         class="inline-flex items-center px-6 py-3 bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 rounded-lg font-medium hover:bg-slate-700 dark:hover:bg-slate-300 transition-colors duration-200"
       >
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+        <svg
+          class="w-5 h-5 mr-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+          ></path>
         </svg>
         Try Again
       </button>
@@ -66,15 +123,16 @@
 <script>
   // Monitor connection status
   function updateConnectionStatus() {
-    const statusEl = document.getElementById('connection-status');
+    const statusEl = document.getElementById("connection-status");
     if (!statusEl) return;
 
     if (navigator.onLine) {
-      statusEl.innerHTML = '✓ Connection restored! <a href="/" class="underline ml-2">Go to homepage</a>';
-      statusEl.className = 'text-green-600 dark:text-green-400 font-medium';
+      statusEl.innerHTML =
+        '✓ Connection restored! <a href="/" class="underline ml-2">Go to homepage</a>';
+      statusEl.className = "text-green-600 dark:text-green-400 font-medium";
     } else {
-      statusEl.innerHTML = '✗ You are currently offline';
-      statusEl.className = 'text-red-600 dark:text-red-400';
+      statusEl.innerHTML = "✗ You are currently offline";
+      statusEl.className = "text-red-600 dark:text-red-400";
     }
   }
 
@@ -82,7 +140,7 @@
   updateConnectionStatus();
 
   // Listen for connection changes
-  window.addEventListener('online', updateConnectionStatus);
-  window.addEventListener('offline', updateConnectionStatus);
+  window.addEventListener("online", updateConnectionStatus);
+  window.addEventListener("offline", updateConnectionStatus);
 </script>
 {{ end }}

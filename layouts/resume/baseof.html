@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#" lang="{{ .Language }}" class="no-js resume-light-mode" moznomarginboxes mozdisallowselectionprint>
-{{- partial "head.html" . -}}
+<!doctype html>
+<html
+  prefix="og: http://ogp.me/ns#"
+  lang="{{ .Language }}"
+  class="no-js resume-light-mode"
+  moznomarginboxes
+  mozdisallowselectionprint
+>
+  {{- partial "head.html" . -}}
 
-<body class="min-h-screen bg-slate-100 text-slate-900">
+  <body class="min-h-screen bg-slate-100 text-slate-900">
     {{- block "content" . }}
     <!-- Blocks may include default content. -->
-    {{- end }}
+    {{- end }} {{- /* No header for resume pages */ -}} {{- partial
+    "scripts.html" . -}}
+  </body>
 
-    {{- /* No header for resume pages */ -}}
-
-    {{- partial "scripts.html" . -}}
-</body>
-
-{{- partial "footer.html" . -}}
-
+  {{- partial "footer.html" . -}}
 </html>

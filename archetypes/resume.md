@@ -39,6 +39,7 @@ resumeGitLink = 'git.io/resume'
 
 <!-- Sidebar content (Skills, Technologies, etc.) -->
 <!-- You can use the new shortcode-based approach OR the legacy frontmatter approach above -->
+
 {{< sidebar >}}
 
 {{< sidebar-section title="Skills" style="list" headingSize="lg" spacing="compact" >}}
@@ -64,49 +65,55 @@ Git
 {{< work-experience >}}
 
 {{< job
-  title="Senior Software Engineer"
-  company="Company Name"
-  location="City, State"
-  dates="Jan 2020 - Present"
-  employerUrl="https://example.com"
-  companyIcon="meta"
->}}
+title="Senior Software Engineer"
+company="Company Name"
+location="City, State"
+dates="Jan 2020 - Present"
+employerUrl="https://example.com"
+companyIcon="meta"
+
+> }}
+
 - Led development of key features
 - Improved system performance by 50%
 - Mentored junior developers
-{{< /job >}}
+  {{< /job >}}
 
 {{< job
-  title="Software Engineer"
-  company="Previous Company"
-  location="City, State"
-  dates="Jun 2018 - Dec 2019"
->}}
+title="Software Engineer"
+company="Previous Company"
+location="City, State"
+dates="Jun 2018 - Dec 2019"
+
+> }}
+
 - Built scalable web applications
 - Implemented CI/CD pipelines
 - Collaborated with cross-functional teams
-{{< /job >}}
+  {{< /job >}}
 
 {{< /work-experience >}}
 
 {{< education >}}
 
 {{< degree
-  school="University Name"
-  subject="Computer Science, B.S."
-  location="City, State"
-  dates="2014 - 2018"
->}}
+school="University Name"
+subject="Computer Science, B.S."
+location="City, State"
+dates="2014 - 2018"
+
+> }}
 
 {{< /education >}}
 
 {{< resume-projects >}}
 
 {{< resume-project
-  title="Open Source Contribution"
-  dates="2023"
->}}
-Contributed features and bug fixes to popular open-source projects
-{{< /resume-project >}}
+title="Open Source Contribution"
+dates="2023"
+
+> }}
+> Contributed features and bug fixes to popular open-source projects
+> {{< /resume-project >}}
 
 {{< /resume-projects >}}

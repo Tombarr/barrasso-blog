@@ -8,4 +8,4 @@ categories = ['JavaScript']
 tags = ['JavaScript', 'Iterators', 'Medium', 'ES6', 'Programming']
 +++
 
-I'm so f****in' grateful for this spec. Modular iteration without cloning or modifying in-place
+I'm so f\*\*\*\*in' grateful for this spec. Modular iteration without cloning or modifying in-place

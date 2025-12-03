@@ -14,29 +14,29 @@
                 <!-- Home link -->
                 <a  href="/"
                     class="no-underline
-                           {{ if .IsHome}} text-ht {{ end }}">
+                           {{ if .IsHome}} font-bold {{ end }}">
                     {{ $.Param "sitename" }}
                 </a> <span class="font-normal">|</span>
-                <a  href="/talks/"
+                <a  href="{{ relref . "projects" }}"
                     class='no-underline
-                           {{ if eq .Name "Talks" }} text-ht {{ end }}'>
-                    {{ i18n "talks" }}
+                           {{ if eq .Name "Projects" }} font-bold {{ end }}'>
+                    {{ i18n "projects" }}
                 </a><span class="font-normal">|</span>
-                <a  href="{{ relref . "/resume/tom" }}"
+                <a  href="{{ relref . "resume/tom" }}"
                     class='no-underline
-                           {{ if eq .RelPermalink "/resume/tom" }} text-ht {{ end }}'>
+                           {{ if eq .RelPermalink "/resume/tom" }} font-bold {{ end }}'>
                     {{ i18n "resume" }}
                 </a><span class="font-normal">|</span>
-                <a  href="{{ relref . "/about/" }}"
+                <a  href="{{ relref . "about" }}"
                     class='no-underline
-                           {{ if eq .RelPermalink "/about/" }} text-ht {{ end }}'>
+                           {{ if eq .RelPermalink "/about/" }} font-bold {{ end }}'>
                     {{ i18n "tom" }}
                 </a>
 
                 <!-- intelligently show section -->
                 {{ if .IsSection }}
                     <!-- Section list page: kau.sh / section -->
-                    {{ if and (ne .RelPermalink "/blog/") (ne .RelPermalink "/letter/") }}
+                    {{ if and (ne .RelPermalink "/blog/") (ne .RelPermalink "/letter/") (ne .Name "Projects") }}
                         | <span class="text-ht">{{ strings.Title .Section }}</span>
                     {{ end }}
                 {{ else if eq .Kind "taxonomy" }}

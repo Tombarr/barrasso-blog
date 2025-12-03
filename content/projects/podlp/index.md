@@ -35,3 +35,6 @@ PodLP has branched out into experiments like [PodCal](https://podcal.app/), a to
 
 {{< br >}}
 {{< responsive-image src="podcal-promo.png" alt="PodCal" class="w-full contain" >}}
+
+{{< br >}}
+Alongside PodLP, I authored [KaiOS.dev](https://kaios.dev) to share lessons from 5+ years of experience building, launching, and scaling apps on feature phones. I also built [KaiOS.app](https://kaios.app) providing public landing pages with screenshots, and on KaiOS, each page launches the app details page on the KaiStore or JioStore using [Web Activities](https://kaios.dev/2023/02/web-activities-on-kaios/). Both websites are open source on GitHub ([`kaios-dev-blog`](https://github.com/Tombarr/kaios-dev-blog) and [`kaios-app`](https://github.com/Tombarr/kaios-app/)), alongside my NPM package [`kaios-types`](https://www.npmjs.com/package/kaios-types) offering TypeScript type declarations for dozens of non-standard APIs.

@@ -21,10 +21,10 @@ githubUrl = ''
 {{< youtube id="P9W0jKnOMyA" start="654" end="705" >}}
 
 {{< br >}}
-reClock was a small experiment developed in collaboration with [Graham Macphee](https://grahammacphee.com/), designed to be the minimalist clock widget that you actually _have_ to read. Attention is in short supply and this often often leads to a form of amnesia where you forget what you just read. reClock used random offsets to indicate the time in a format like "six until twelve twenty five" or "quarter past nine o'two."
+reClock was a small experiment developed in collaboration with [Graham Macphee](https://grahammacphee.com/), designed to be the minimalist clock widget that you actually _have_ to read. Attention is in short supply and this often leads to a form of amnesia where you forget what you _just_ read. reClock used random offsets to indicate the time in a format like "six until twelve twenty five" or "quarter past nine o'two."
 
 {{< br >}}
-Far from the most complex widget, reClock still presented a challenge both in human psychology and efficient rasterization. At the time, [`JobScheduler`](https://developer.android.com/reference/android/app/job/JobScheduler) was not available and the simplest (but least efficient) way to render a widget was to run a background service. reClock pre-rendered several updates for each minute until the countdown occurred, and simply called into [`AppWidgetManager`](https://developer.android.com/reference/android/appwidget/AppWidgetManager) to cycle through pre-renders.
+Although simple, reClock presented a challenge both in human psychology and efficient rasterization. At the time, [`JobScheduler`](https://developer.android.com/reference/android/app/job/JobScheduler) was not available and the simplest (but less efficient) way to render a widget was to run a background service. reClock pre-rendered several updates for each minute until the countdown occurred, and called [`AppWidgetManager`](https://developer.android.com/reference/android/appwidget/AppWidgetManager) to cycle through renders.
 
 {{< br >}}
 {{< responsive-image src="reclock-panel.png" alt="reClock Screenshots" class="w-full contain"  >}}
