@@ -53,7 +53,9 @@
     <header class="resume-header mb-6">
       <div class="flex items-start justify-between">
         <h1 class="text-4xl font-bold text-slate-900">
-          {{ .Params.name | default .Title }}
+          <a href="{{ site.BaseURL }}" class="no-underline text-slate-900 hover:text-slate-700 transition-colors">
+            {{ .Params.name | default .Title }}
+          </a>
         </h1>
 
         <div class="contact-info flex flex-col items-end gap-1 text-sm text-slate-700">

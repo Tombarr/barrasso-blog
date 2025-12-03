@@ -144,6 +144,12 @@ html.resume-light-mode .pdf-download-button:hover {
   @apply absolute bottom-4 w-full text-center text-xs text-slate-500;
 }
 
+/* Hide auto-generated anchor arrow in resume */
+.resume-page h1 > a::after {
+    display: none;
+    visibility: hidden;
+}
+
 /* Paper size dimensions - allow natural overflow for multi-page content */
 .resume-container[data-paper-size="letter"],
 .resume-container[data-paper-size="letter"] .page-spacer {

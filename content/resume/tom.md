@@ -9,7 +9,7 @@ name = 'Tom Barrasso'
 email = 'tom@barrasso.me'
 phone = '(617) 894-7466'
 location = 'Boston, MA'
-summary = 'Technologist who has successfully launched multiple zero-to-one projects at scale. I work across the software development lifecycle where I bring technical depth, empathetic leadership, and a passion for connecting people with purpose-built technology.'
+summary = 'Technical leader with 10+ years launching zero-to-one products. Proven expertise in software engineering, program management, and developer relations across privacy compliance, healthcare, and consumer applications. Drives measurable impact through cross-functional leadership and scalable cloud architecture.'
 
 # Section Toggles
 showWorkExperience = true
@@ -37,17 +37,18 @@ resumeGitLink = 'resume.barrasso.me'
 title="Head of Developer Relations"
 company="CloudMosa"
 location="Remote"
-dates="Sept 2024 - Present"
+dates="Sept 2024 - Dec 2025"
 employerUrl="https://www.cloudphone.tech"
 companyIcon="cloudmosa"
 
 >}}
 
-- Authored, designed, and developed the [Cloud Phone for Developers]({{< relref "projects/cloud-phone" >}}) website including 4 open source reference applications and tutorials
-- Expanded platform reach with 4 podcast guest appearances, 4 promotional videos, 4 guest articles, and 3 presentations at developer Meetups
-- Supported dozens of companies and developers via email, Discord, Zoom, and in-person
-- Created and grew online communities across Reddit, Discord, Bluesky, and X
-- Prospected several regional brands resulting in 6 significant apps published
+- Authored, designed, and developed the [Cloud Phone for Developers]({{< relref "projects/cloud-phone" >}}) website
+- **Published 5 open-source reference applications**, libraries, and accompanying tutorials
+- Expanded platform reach by speaking on 4 podcasts, producing YouTube videos, publishing guest articles, and presenting at developer Meetups in 3 countries
+- **Supported hundreds of developers** via email, Discord, Zoom, and in-person consultations
+- Built and grew developer communities across Reddit, Discord, Bluesky, and X
+- **Prospected regional brands**, resulting in 6 enterprise applications published to the platform
 
 {{< /job >}}
 
@@ -61,9 +62,10 @@ companyIcon="meta"
 
 >}}
 
-- Executed company-wide data use programs supporting compliance with international privacy regulations like {{< abbr title="General Data Protection Regulation" >}}GDPR{{< /abbr >}}, {{< abbr title="Digital Markets Act" >}}DMA{{< /abbr >}} & {{< abbr title="Digital Services Act" >}}DSA{{< /abbr >}}, {{< abbr title="California Consumer Privacy Act" >}}CCPA{{< /abbr >}}, and {{< abbr title="ePrivacy Directive" >}}ePD{{< /abbr >}}
-- Led execution to pilot and scale [Privacy Aware Infrastructure]({{< relref "projects/policy-zones" >}}) (PAI) across 150+ use cases in under 1 year resulting in €14+ billion in fine avoidance
-- Promoted in first year; automated annual audits reducing operational cost by 75% {{< abbr title="Year-on-Year" >}}YoY{{< /abbr >}}
+- Executed **company-wide data governance programs** ensuring compliance with international privacy regulations including GDPR, DMA, DSA, CCPA, and ePD
+- Led execution to scale [Privacy Aware Infrastructure]({{< relref "projects/policy-zones" >}}) (PAI) across 150+ use cases in under 1 year, **mitigating €14B+ in regulatory risk**
+- Automated annual compliance audits, reducing operational costs by 75% {{< abbr title="Year-on-Year" >}}YoY{{< /abbr >}}
+
   {{< /job >}}
 
 {{< job
@@ -76,9 +78,9 @@ companyIcon="amazon"
 
 >}}
 
-- Unblocked [Amazon Pharmacy]({{< relref "projects/amazon-pharmacy" >}}) launch by orchestrating and executing security certification for 54 services spanning 25 teams and an external vendor in a single quarter
-- Prioritized & coordinated maintenance of data replication system to mitigate data loss
-- Led development of [Supply Chain Standards](https://sustainability.aboutamazon.com/amazon-supply-chain-standards-english.pdf) auditing tool within Amazon Sustainability
+- Unblocked [Amazon Pharmacy]({{< relref "projects/amazon-pharmacy" >}}) launch by **orchestrating security certification** across 54 services, 25 teams, and 1 external vendor in a single quarter
+- Led critical data replication system improvements, resolving longest-running downtime and largest source of customer-facing errors
+- Drove development of [Supply Chain Standards](https://sustainability.aboutamazon.com/amazon-supply-chain-standards-english.pdf) auditing tool for global compliance initiatives
 
 {{< /job >}}
 
@@ -106,8 +108,8 @@ companyIcon="maark"
 
 >}}
 
-- Lead front-end engineer launching the redesigned [John Hancock Investments]({{< relref "projects/jhinvestments" >}}) website
-- Developed components & interactive prototypes for clients like Marriott, Manulife & Merck
+- **Led front-end engineering team** launching redesigned [John Hancock Investments]({{< relref "projects/jhinvestments" >}}) website
+- Developed interactive prototypes and component libraries for Marriott, Manulife, and Merck
 
 {{< /job >}}
 
@@ -121,7 +123,7 @@ dates="Jan 2017 - Aug 2017"
 
 >}}
 
-- Developed and standardized methods for {{< abbr title="Gas Chromatography-Mass Spectrometry" >}}GC-MS{{< /abbr >}} short-chain fatty acid (SCFA) analysis
+- Standardized {{< abbr title="Gas Chromatography-Mass Spectrometry" >}}GC-MS{{< /abbr >}} methodology for short-chain fatty acid (SCFA) analysis, improving analytical consistency and shortening run time by over 80%
   {{< /job >}}
 
 {{< job
@@ -132,7 +134,7 @@ dates="Sept 2014 - May 2016"
 
 >}}
 
-- Researched [undergraduate thesis](https://gsa.confex.com/gsa/2016NE/webprogram/Paper272194.html) linking fecal biomarkers to paleoclimate & human habitation
+- Conducted [undergraduate thesis](https://gsa.confex.com/gsa/2016NE/webprogram/Paper272194.html) research linking fecal biomarkers to paleoclimate patterns and human habitation, presented at [2015 {{< abbr title="Geological Society of America" >}}GSA{{< /abbr >}} Conference](https://gsa.confex.com/gsa/2015NE/webprogram/Paper253007.html)
   {{< /job >}}
 
 {{< job
@@ -145,7 +147,7 @@ companyIcon="plangrid"
 
 >}}
 
-- Developed the first version of the blueprint reader [PlanGrid for Android]({{< relref "projects/plangrid" >}}) tablets
+- Independently developed the first version of the blueprint reader [PlanGrid for Android]({{< relref "projects/plangrid" >}}) tablets
   {{< /job >}}
 
 {{< job
@@ -194,7 +196,7 @@ title="Founder, PodLP"
 dates="2020 - Present"
 
 >}}
-> Developed & monetized [PodLP]({{< relref "projects/podlp" >}}), a flip phone podcast app surpassing **10M+ installs**; **>$100k** {{< abbr title="Lifetime Revenue" >}}**LTR**{{< /abbr >}}
+> Built and monetized [PodLP]({{< relref "projects/podlp" >}}), a podcast app for flip phones surpassing **10M+ installs** across **175+ countries** generating **$100K+ lifetime revenue**
 > {{< /resume-project >}}
 
 {{< resume-project
@@ -202,7 +204,7 @@ title="Android Developer"
 dates="2010 - 2015"
 
 >}}
-> Built 12+ apps, notably [StatusBar+]({{< relref "projects/statusbarplus" >}}), [ChargeBar]({{< relref "projects/chargebar" >}}), & [Noyze]({{< relref "projects/noyze" >}}) totalling **2M+ installs**; **2 apps acquired**
+> Developed and published 12+ Android applications including [StatusBar+]({{< relref "projects/statusbarplus" >}}), [ChargeBar]({{< relref "projects/chargebar" >}}), and [Noyze]({{< relref "projects/noyze" >}}), totaling **2M+ installs** resulting in **2 successful acquisitions**
 > {{< /resume-project >}}
 
 {{< /resume-projects >}}
@@ -210,17 +212,17 @@ dates="2010 - 2015"
 {{< sidebar >}}
 
 {{< sidebar-section title="Skills" style="list" headingSize="lg" >}}
-{{< abbr title="Cross-Functional" >}}XFN{{< /abbr >}} Program Management
+Cross-Functional Program Management
 Product Strategy & Roadmapping
-Documentation Writing
+Technical Documentation
 Developer Relations & Advocacy
 Cloud Architecture
 Security & Privacy Compliance
 Agile Development
-Development & Mentorship
+Team Leadership & Mentorship
 Change Management
 Test-Driven Development
-Agentic Coding
+AI-Assisted Development
 {{< /sidebar-section >}}
 
 {{< sidebar-section title="Technologies" style="pills" >}}
