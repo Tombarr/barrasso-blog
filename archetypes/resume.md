@@ -72,7 +72,7 @@ dates="Jan 2020 - Present"
 employerUrl="https://example.com"
 companyIcon="meta"
 
-> }}
+>}}
 
 - Led development of key features
 - Improved system performance by 50%
@@ -85,7 +85,7 @@ company="Previous Company"
 location="City, State"
 dates="Jun 2018 - Dec 2019"
 
-> }}
+>}}
 
 - Built scalable web applications
 - Implemented CI/CD pipelines
@@ -102,7 +102,7 @@ subject="Computer Science, B.S."
 location="City, State"
 dates="2014 - 2018"
 
-> }}
+>}}
 
 {{< /education >}}
 
@@ -112,7 +112,7 @@ dates="2014 - 2018"
 title="Open Source Contribution"
 dates="2023"
 
-> }}
+>}}
 > Contributed features and bug fixes to popular open-source projects
 > {{< /resume-project >}}
 

@@ -41,14 +41,15 @@ dates="Sept 2024 - Present"
 employerUrl="https://www.cloudphone.tech"
 companyIcon="cloudmosa"
 
-> }}
+>}}
 
 - Authored, designed, and developed the [Cloud Phone for Developers]({{< relref "projects/cloud-phone" >}}) website including 4 open source reference applications and tutorials
 - Expanded platform reach with 4 podcast guest appearances, 4 promotional videos, 4 guest articles, and 3 presentations at developer Meetups
 - Supported dozens of companies and developers via email, Discord, Zoom, and in-person
 - Created and grew online communities across Reddit, Discord, Bluesky, and X
 - Prospected several regional brands resulting in 6 significant apps published
-  {{< /job >}}
+
+{{< /job >}}
 
 {{< job
 title="Staff Technical Program Manager"
@@ -58,7 +59,7 @@ dates="Feb 2022 - Sept 2024"
 employerUrl="https://meta.com"
 companyIcon="meta"
 
-> }}
+>}}
 
 - Executed company-wide data use programs supporting compliance with international privacy regulations like {{< abbr title="General Data Protection Regulation" >}}GDPR{{< /abbr >}}, {{< abbr title="Digital Markets Act" >}}DMA{{< /abbr >}} & {{< abbr title="Digital Services Act" >}}DSA{{< /abbr >}}, {{< abbr title="California Consumer Privacy Act" >}}CCPA{{< /abbr >}}, and {{< abbr title="ePrivacy Directive" >}}ePD{{< /abbr >}}
 - Led execution to pilot and scale [Privacy Aware Infrastructure]({{< relref "projects/policy-zones" >}}) (PAI) across 150+ use cases in under 1 year resulting in €14+ billion in fine avoidance
@@ -73,7 +74,7 @@ dates="Apr 2020 - Jan 2022"
 employerUrl="https://amazon.com"
 companyIcon="amazon"
 
-> }}
+>}}
 
 - Unblocked [Amazon Pharmacy]({{< relref "projects/amazon-pharmacy" >}}) launch by orchestrating and executing security certification for 54 services spanning 25 teams and an external vendor in a single quarter
 - Prioritized & coordinated maintenance of data replication system to mitigate data loss
@@ -89,7 +90,7 @@ dates="Dec 2018 - Apr 2020"
 employerUrl="https://pharmacy.amazon.com"
 companyIcon="amazon"
 
-> }}
+>}}
 
 - Architected sales tax calculation and reporting engine, processing 10M+ {{< abbr title="Transactions per Month" >}}txn/month{{< /abbr >}}
 - Refactored insurance claim adjudication service for high availability (five nines: 99.999%)
@@ -103,7 +104,7 @@ dates="Aug 2017 - Dec 2018"
 employerUrl="https://maark.com"
 companyIcon="maark"
 
-> }}
+>}}
 
 - Lead front-end engineer launching the redesigned [John Hancock Investments]({{< relref "projects/jhinvestments" >}}) website
 - Developed components & interactive prototypes for clients like Marriott, Manulife & Merck
@@ -118,7 +119,7 @@ company="Finch Therapeutics"
 location="Boston, MA"
 dates="Jan 2017 - Aug 2017"
 
-> }}
+>}}
 
 - Developed and standardized methods for {{< abbr title="Gas Chromatography-Mass Spectrometry" >}}GC-MS{{< /abbr >}} short-chain fatty acid (SCFA) analysis
   {{< /job >}}
@@ -129,7 +130,7 @@ company="UMass Biogeochemistry"
 location="Amherst, MA"
 dates="Sept 2014 - May 2016"
 
-> }}
+>}}
 
 - Researched [undergraduate thesis](https://gsa.confex.com/gsa/2016NE/webprogram/Paper272194.html) linking fecal biomarkers to paleoclimate & human habitation
   {{< /job >}}
@@ -142,7 +143,7 @@ dates="July 2012 - July 2013"
 employerUrl="https://plangrid.com"
 companyIcon="plangrid"
 
-> }}
+>}}
 
 - Developed the first version of the blueprint reader [PlanGrid for Android]({{< relref "projects/plangrid" >}}) tablets
   {{< /job >}}
@@ -155,7 +156,7 @@ companyIcon="harvard"
 dates="Sept 2011 - June 2012"
 employerUrl="https://pll.harvard.edu/course/cs50-introduction-computer-science"
 
-> }}
+>}}
 
 - Lectured & graded for CS50 & CS75: Introduction to Computer Science and Web Development
   {{< /job >}}
@@ -168,7 +169,7 @@ dates="May 2010 - Aug 2011"
 companyIcon="intouch"
 employerUrl="https://www.intouchcorp.com/"
 
-> }}
+>}}
 
 - Developed the [TextMyFood]({{< relref "projects/textmyfood" >}}) prototype, a service for restaurants to receive orders via {{< abbr title="Short Message Service" >}}SMS{{< /abbr >}}
   {{< /job >}}
@@ -192,7 +193,7 @@ employerUrl="https://www.intouchcorp.com/"
 title="Founder, PodLP"
 dates="2020 - Present"
 
-> }}
+>}}
 > Developed & monetized [PodLP]({{< relref "projects/podlp" >}}), a flip phone podcast app surpassing **10M+ installs**; **>$100k** {{< abbr title="Lifetime Revenue" >}}**LTR**{{< /abbr >}}
 > {{< /resume-project >}}
 
@@ -200,7 +201,7 @@ dates="2020 - Present"
 title="Android Developer"
 dates="2010 - 2015"
 
-> }}
+>}}
 > Built 12+ apps, notably [StatusBar+]({{< relref "projects/statusbarplus" >}}), [ChargeBar]({{< relref "projects/chargebar" >}}), & [Noyze]({{< relref "projects/noyze" >}}) totalling **2M+ installs**; **2 apps acquired**
 > {{< /resume-project >}}
 

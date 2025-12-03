@@ -1039,3 +1039,23 @@ body > article.blog-content-width:first-child img.w-12 {
     --color-hc-dark: var(--color-orange-300);
   }
 }
+
+svg.spiral-knot {
+    position: absolute;
+    height: 100px;
+    object-fit: contain;
+    transform: rotate(0deg);
+    animation: spin 10s linear infinite;
+    will-change: transform;
+}
+
+.spiral-container {
+    height: 100px;
+    width: 100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+svg.spiral-knot path {
+    fill: currentColor;
+}

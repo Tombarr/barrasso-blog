@@ -11,6 +11,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://barrasso.me
     permissions:
       contents: read
       deployments: write
@@ -40,6 +43,12 @@ jobs:
 
       - name: Build CSS
         run: make css
+
+      - name: Cache Hugo resources
+        uses: actions/cache@v4
+        with:
+          path: resources
+          key: ${{ runner.os }}-hugo-${{ hashFiles('**/*.md') }}
 
       - name: Build Hugo site
         env:
