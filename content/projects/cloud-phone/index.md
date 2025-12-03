@@ -28,10 +28,24 @@ Cloud Phone is a Chromium-based remote browser from CloudMosa, the company behin
 Cloud Phone for Developers is a static website generated using [Hugo](https://gohugo.io/) using a custom [Doks](https://getdoks.org/)-based theme and [Algolia DocSearch](https://docsearch.algolia.com/). It's continuously checked for [typos](https://crates.io/crates/typos) and updated via [GitHub Actions](https://github.com/features/actions). Screenshots, code snippets, and resources are based on the feedback of developers from around the world including India, Nepal, Bangladesh, Pakistan, Vietnam, South Africa, and the United States.
 
 {{< br >}}
+
 ## **Reference Applications**
 
 {{< br >}}
+
+### Currency Converter
+
+{{< br >}}
+
 {{< responsive-image src="currency-converter.png" alt="Cloud Phone Currency Converter" class="w-full contain" >}}
 
 {{< br >}}
-I built open-source reference applications like a [Currency Converter](https://github.com/cloudmosa/cloudphone-currency), wrote [companion tutorials](https://developer.cloudfone.com/docs/walkthroughs/currency-converter/), and published them on Cloud Phone. This expands the app catalog for users with valuable utilities while providing a real-world codebase to showcase an effective, platform-specific user experience for developers.
+
+### Authenticator
+
+{{< br >}}
+
+{{< responsive-image src="mfa-sync.png" alt="Cloud Phone Multi-Factor Authenticator App" class="w-full contain" >}}
+
+{{< br >}}
+I built open-source reference applications like a [Currency Converter](https://github.com/cloudmosa/cloudphone-currency) and Authenticator for time-based one-time passwords (OTP), wrote [companion tutorials](https://developer.cloudfone.com/docs/walkthroughs/currency-converter/), and published them to users on Cloud Phone. This expands the app catalog with valuable utilities while providing a real-world codebase to showcase an effective, platform-specific user experience for developers.
