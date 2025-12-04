@@ -5,13 +5,33 @@
 @source "../../layouts/shortcodes/**/*.html";
 
 /* ================================================
+   Resume CSS Variables
+   ================================================ */
+:root {
+  /* Paper dimensions */
+  --paper-letter-width: 8.5in;
+  --paper-letter-height: 11in;
+  --paper-a4-width: 210mm;
+  --paper-a4-height: 297mm;
+
+  /* Resume spacing */
+  --resume-padding-x: 2rem;
+  --resume-padding-y: 2rem;
+  --resume-grid-gap: 2rem;
+
+  /* Grid column ratios */
+  --resume-main-column: 75%;
+  --resume-sidebar-column: 25%;
+}
+
+/* ================================================
    Resume Styles
    ================================================ */
 
 /* Resume controls container (static, above resume) */
 .resume-controls {
   @apply flex items-start justify-between mb-4 mx-auto;
-  max-width: 8.5in; /* Match resume width */
+  max-width: var(--paper-letter-width); /* Match resume width */
 }
 
 /* Home button */
@@ -153,14 +173,14 @@ html.resume-light-mode .pdf-download-button:hover {
 /* Paper size dimensions - allow natural overflow for multi-page content */
 .resume-container[data-paper-size="letter"],
 .resume-container[data-paper-size="letter"] .page-spacer {
-  width: 8.5in;
-  max-width: 8.5in;
+  width: var(--paper-letter-width);
+  max-width: var(--paper-letter-width);
 }
 
 .resume-container[data-paper-size="a4"],
 .resume-container[data-paper-size="a4"] .page-spacer {
-  width: 210mm;
-  max-width: 210mm;
+  width: var(--paper-a4-width);
+  max-width: var(--paper-a4-width);
 }
 
 .resume-container .page-spacer {
@@ -169,11 +189,11 @@ html.resume-light-mode .pdf-download-button:hover {
 
 /* Paper size dimensions - allow natural overflow for multi-page content */
 .resume-container[data-paper-size="letter"] .page-spacer {
-  width: calc(8.5in - var(--spacing) * 8);
+  width: calc(var(--paper-letter-width) - var(--spacing) * 8);
 }
 
 .resume-container[data-paper-size="a4"] .page-spacer {
-  width: calc(210mm - var(--spacing) * 8);
+  width: calc(var(--paper-a4-width) - var(--spacing) * 8);
 }
 
 /* Page spacer elements - physical gaps between pages on screen */
@@ -214,11 +234,11 @@ html.resume-light-mode .pdf-download-button:hover {
   z-index: 1;
 }
 
-/* Resume content grid - two column layout (70/30 split, all screen sizes) */
+/* Resume content grid - two column layout (75/25 split, all screen sizes) */
 .resume-content-grid {
   @apply grid gap-8;
-  grid-template-columns: calc(75% - (var(--spacing) * 4)) calc(
-      25% - (var(--spacing) * 4)
+  grid-template-columns: calc(var(--resume-main-column) - (var(--spacing) * 4)) calc(
+      var(--resume-sidebar-column) - (var(--spacing) * 4)
     );
   display: grid;
   align-items: start;
@@ -337,12 +357,12 @@ html.resume-light-mode .pdf-download-button:hover {
 @media print {
   html,
   body {
-    max-width: 8.5in;
+    max-width: var(--paper-letter-width);
   }
 
   html:has(#resume-container[data-paper-size="a4"]),
   body:has(#resume-container[data-paper-size="a4"]) {
-    max-width: 210mm;
+    max-width: var(--paper-a4-width);
   }
 
   .print-only {
@@ -443,31 +463,31 @@ html.resume-light-mode .pdf-download-button:hover {
   }
 
   .resume-container[data-paper-size="letter"] footer.resume-version-footer {
-    width: calc(8.5in - var(--spacing) * 8);
+    width: calc(var(--paper-letter-width) - var(--spacing) * 8);
   }
 
   .resume-container[data-paper-size="letter"] {
     @apply px-4 py-8;
-    max-width: 8.5in;
-    width: calc(8.5in - var(--spacing) * 8);
+    max-width: var(--paper-letter-width);
+    width: calc(var(--paper-letter-width) - var(--spacing) * 8);
   }
 
   .resume-container[data-paper-size="a4"] footer.resume-version-footer {
-    width: calc(210mm - var(--spacing) * 8);
+    width: calc(var(--paper-a4-width) - var(--spacing) * 8);
   }
 
   .resume-container[data-paper-size="a4"] {
     @apply px-4 py-8;
-    max-width: 210mm;
-    width: calc(210mm - var(--spacing) * 8);
+    max-width: var(--paper-a4-width);
+    width: calc(var(--paper-a4-width) - var(--spacing) * 8);
   }
 
-  /* Maintain two-column layout in print (70/30 split) */
+  /* Maintain two-column layout in print (75/25 split) */
   .resume-content-grid {
     @apply grid gap-8;
     display: grid;
-    grid-template-columns: calc(75% - (var(--spacing) * 4)) calc(
-        25% - (var(--spacing) * 4)
+    grid-template-columns: calc(var(--resume-main-column) - (var(--spacing) * 4)) calc(
+        var(--resume-sidebar-column) - (var(--spacing) * 4)
       );
     align-items: start;
     /* Allow grid to break across pages */
@@ -652,14 +672,86 @@ html.resume-light-mode .pdf-download-button:hover {
   }
 }
 
-/* Responsive adjustments for smaller screens */
+/* Responsive adjustments for tablets */
 @media screen and (max-width: 1024px) {
   .resume-container {
     @apply w-full max-w-full;
-    @apply px-12 py-10;
+    padding: var(--resume-padding-y) 1.5rem;
   }
 
   .resume-controls {
-    @apply w-full max-w-full px-4;
+    @apply w-full max-w-full;
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 8.5in) {
+  :root .resume-page {
+    overflow-x: auto;
+  }
+}
+
+/* Mobile layout - phones only (767px matches --resume-mobile-breakpoint) */
+@media screen and (max-width: 767px) {
+  /* Hide print controls on mobile */
+  .paper-size-toggle-container {
+    display: none;
+  }
+
+  /* Full width container without paper shadow */
+  :root .resume-container {
+    @apply w-full max-w-full;
+    padding: 1rem;
+    padding-block-end: 3rem;
+    box-shadow: none;
+  }
+
+  :root .resume-page {
+    padding-block-end: 0;
+  }
+
+  :root .resume-header > div + p {
+    margin-block-start: 1rem;
+  }
+
+  .resume-controls {
+    @apply w-full max-w-full;
+    justify-content: flex-start;
+    padding: 0 1rem;
+  }
+
+  /* Single column layout */
+  .resume-content-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Reorder: sidebar below main content */
+  .resume-main-content {
+    order: 1;
+  }
+
+  .resume-sidebar {
+    order: 2;
+  }
+
+  /* Adjust header layout - stack name and contact */
+  .resume-header > div.flex {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .resume-header .contact-info {
+    align-items: flex-start;
+  }
+
+  /* Smaller title on mobile */
+  .resume-header h1 {
+    font-size: 1.75rem;
+  }
+
+  /* Hide page spacers on mobile */
+  .page-spacer {
+    display: none;
   }
 }
