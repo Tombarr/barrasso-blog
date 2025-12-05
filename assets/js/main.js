@@ -7,6 +7,7 @@ import { initMetaball } from "./modules/metaball.js";
 import { initShuffleSkills } from "./modules/shuffle-skills.js";
 import { initPaperSizeToggle } from "./modules/paper-size-toggle.js";
 import { initServiceWorker } from "./modules/sw-register.js";
+import { initAbbrTouch } from "./modules/abbr-touch.js";
 
 // Initialize theme IMMEDIATELY (before DOMContentLoaded to prevent flash)
 initThemeToggle();
@@ -24,6 +25,9 @@ const initSite = () => {
 
   // Initialize paper size toggle (resume pages only)
   initPaperSizeToggle();
+
+  // Initialize ABBR tooltip touch handling
+  initAbbrTouch();
 
   // Mark page as loaded
   requestAnimationFrame(() => {

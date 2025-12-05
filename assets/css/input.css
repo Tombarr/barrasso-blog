@@ -25,16 +25,6 @@
     @apply hover:bg-orange-500 hover:text-slate-900 hover:border-orange-500;
   }
 
-  /* Resume-specific skill tags - compact, print-friendly */
-  .skill-tag-resume {
-    @apply inline-block px-2 py-1 rounded text-xs font-medium;
-    @apply bg-slate-100 border border-slate-300 text-slate-700;
-  }
-
-  article.resume-page p {
-    overflow: visible;
-  }
-
   /* Abbreviation tooltip styling */
   .abbr-tooltip {
     @apply relative cursor-help border-b border-dotted border-slate-400;
@@ -85,6 +75,12 @@
   /* Show tooltip on hover */
   .abbr-tooltip:hover::before,
   .abbr-tooltip:hover::after {
+    @apply opacity-100;
+  }
+
+  /* Show tooltip on tap (touch devices) */
+  .abbr-tooltip.active::before,
+  .abbr-tooltip.active::after {
     @apply opacity-100;
   }
 
@@ -374,6 +370,17 @@ img.border-none,
   height: auto;
 }
 
+/* show external arrow ↗ for external links */
+article a[href*='//'],
+a.external-link {
+  margin-inline-end: 0.75rem;
+}
+
+article a[href*='//']::after,
+a.external-link::after {
+    position: absolute;
+}
+
 article a.no-arrow[href*="//"]::after,
 a.no-arrow.external-link::after,
 article .resume-main-content a[href*="//"]::after,
@@ -524,11 +531,11 @@ a:hover img.external-favicon {
   /* Add left padding to article to make room for portrait */
   .hero-with-portrait {
     position: relative;
-    min-height: 200px;
+    min-height: var(--portrait-size);
   }
 
   .post-content.hero-with-portrait > figure:not(figure.full-bleed) {
-    min-width: 220px;
+    min-width: calc(var(--portrait-size) + 20px);
   }
 
   /* Position portrait on the left, top-aligned */
@@ -541,7 +548,7 @@ a:hover img.external-favicon {
 
   /* Add left padding to content to make room for portrait */
   .hero-with-portrait > * {
-    padding-inline-start: 240px; /* 200px portrait + 40px gap */
+    padding-inline-start: calc(var(--portrait-size) + 40px); /* 200px portrait + 40px gap */
   }
 
   /* Remove padding from the portrait itself */
@@ -603,11 +610,11 @@ a:hover img.external-favicon {
   }
 
   .portrait-variation {
-    width: 200px;
-    height: 200px;
+    width: var(--portrait-size);
+    height: var(--portrait-size);
     position: relative;
     display: block;
-    border-radius: 100px;
+    border-radius: calc(var(--portrait-size) / 2);
     overflow: hidden;
     /* Two background layers: dithered (bottom) and color (top, initially transparent) */
     background-image: var(--portrait-dithered);
@@ -684,6 +691,7 @@ a:hover img.external-favicon {
     margin: 0 auto;
     text-align: center;
     overflow: hidden;
+    height: var(--tree-canvas-height);
   }
 
   .tree-divider-container {
@@ -712,6 +720,48 @@ a:hover img.external-favicon {
   /* In light mode: invert white trees to black */
   html:not(.dark) canvas.tree-divider {
     filter: invert(1);
+  }
+
+  /* Mobile: prevent tree canvas clipping */
+  @media screen and (max-width: 767px) {
+    .tree-divider-container {
+      overflow: visible;
+      transform: scale(1);
+      min-height: var(--tree-canvas-height);
+      max-height: var(--tree-canvas-height);
+      height: var(--tree-canvas-height);
+    }
+
+    /* Prevent breadcrumb overlapping theme toggle */
+    .site-title {
+      max-width: calc(100% - 80px);
+      padding-right: 0;
+    }
+
+    .site-title h1 > span {
+      max-width: 100%;
+    }
+
+    /* Search input expands to full width on focus */
+    #searchbar:has(input:focus) {
+      position: fixed;
+      left: 1rem;
+      right: 1rem;
+      top: 1rem;
+      width: auto;
+      z-index: 100;
+    }
+
+    #searchbar:has(input:focus) input {
+      width: 100%;
+    }
+
+    #searchbar:has(input:focus) #searchbar-results {
+      width: 100%;
+      max-width: 100%;
+      left: 0;
+      right: 0;
+    }
   }
 
   /* Footer wrapper with unified background */
@@ -883,6 +933,20 @@ a:hover img.external-favicon {
     position: relative;
     z-index: 1;
   }
+
+  /* Mobile: simplify metaball rendering for iOS Safari compatibility */
+  @media screen and (max-width: 767px) {
+    .metaball-container svg {
+      filter: none;
+      opacity: 0.12;
+      transform: scale(1.25) translate(-40%, -10%);
+    }
+
+    :root.dark .metaball-container svg {
+      filter: none;
+      opacity: 0.15;
+    }
+  }
 }
 
 /* Project Card Components */
@@ -995,6 +1059,11 @@ body > article.blog-content-width:first-child img.w-12 {
 
 /* Theme color fixes for proper contrast */
 @layer theme {
+  html {
+    --tree-canvas-height: 60px;
+    --portrait-size: 200px;
+  }
+
   /* Light mode - white background with dark text */
   html:not(.dark) {
     /* henry background - white for light mode */

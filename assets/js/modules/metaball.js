@@ -280,9 +280,9 @@ export function initMetaball() {
     }
 
     // Create group for metaball shapes
+    // Note: auroraGlow is a gradient, not a filter, so we don't apply it as filter
     const group = createSVGElement('g', {
         fill: 'url(#auroraGradient)',
-        filter: 'url(#auroraGlow)',
         class: 'metaball-group'
     });
 
