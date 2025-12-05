@@ -19,7 +19,7 @@
                 </a> <span class="font-normal">|</span>
                 <a  href="{{ relref . "projects" }}"
                     class='no-underline
-                           {{ if eq .Name "Projects" }} font-bold {{ end }}'>
+                           {{ if eq .Section "projects" }} font-bold {{ end }}'>
                     {{ i18n "projects" }}
                 </a><span class="font-normal">|</span>
                 <a  href="{{ relref . "resume/tom" }}"
@@ -36,7 +36,7 @@
                 <!-- intelligently show section -->
                 {{ if .IsSection }}
                     <!-- Section list page: kau.sh / section -->
-                    {{ if and (ne .RelPermalink "/blog/") (ne .RelPermalink "/letter/") (ne .Name "Projects") }}
+                    {{ if and (ne .RelPermalink "/blog/") (ne .RelPermalink "/letter/") (ne .Section "projects") }}
                         | <span class="text-ht">{{ strings.Title .Section }}</span>
                     {{ end }}
                 {{ else if eq .Kind "taxonomy" }}
@@ -55,7 +55,7 @@
                     {{ end }}
                     | <span class="text-sm font-bold text-ht-light text-ellipsis max-w-[25vw] md:max-w-none inline-block whitespace-nowrap overflow-hidden">{{ .Title }}</span>
                 {{ end }}
-                {{ if and .IsPage .Section (ne .Section "blog") }}
+                {{ if and .IsPage .Section (ne .Section "blog") (ne .Section "projects") }}
                     | <a href="/{{ .Section }}/" class="no-underline">
                         {{ strings.Title .Section }}
                     </a>
@@ -70,7 +70,7 @@
 <!-- Theme toggle and search container -->
 <div class="{{ if $isPage }}absolute top-4 right-2 md:right-5
             {{ else }}fixed top-5 right-2 md:right-5{{ end }}
-             flex items-center gap-2 z-50">
+             flex items-center gap-2 z-50 fixed-controls">
 
     <!-- Theme toggle button -->
     <button id="theme-toggle"

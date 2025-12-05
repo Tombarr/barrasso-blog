@@ -702,6 +702,10 @@ html.resume-light-mode .pdf-download-button:hover {
   }
 }
 
+:root article .links-section a[href*='//']::after {
+  position: relative;
+}
+
  /* Resume-specific skill tags - compact, print-friendly */
 .skill-tag-resume {
   @apply inline-block px-2 py-1 rounded text-xs font-medium;

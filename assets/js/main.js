@@ -40,7 +40,7 @@ const initSite = () => {
     requestIdleCallback(() => initTreeLandscape(), { timeout: 2000 });
   } else {
     // Fallback for browsers without requestIdleCallback
-    setTimeout(initTreeLandscape, 1000);
+    requestAnimationFrame(initTreeLandscape);
   }
 };
 

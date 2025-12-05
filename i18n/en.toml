@@ -15,6 +15,7 @@ view = "View"
 view_all = "View all"
 view_raw = "view raw"
 version = "Version"
+"view_on_github" = "View on GitHub"
 
 # Resume sections
 work_experience = "Work Experience"

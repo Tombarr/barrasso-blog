@@ -603,11 +603,22 @@ const trees = shuffleArray([
 
 function prepareCanvas(canvas) {
   const ctx = canvas.getContext('2d');
-  ctx.translate(0.5, 0.5);
   const dpi = Math.max(1, window.devicePixelRatio);
   const scale = dpi * 2;
-  const width = canvas.width;
-  const height = canvas.height;
+
+  // Calculate minimum height needed for trees: top (20) + BASE_HEIGHT (32) + margin
+  const requiredHeight = 56;
+  const requiredWidth = 300;
+  const minCanvasHeight = requiredHeight * scale;
+  const minCanvasWidth = requiredWidth * scale;
+
+  // Ensure canvas has enough height for the DPI
+  const width = Math.max(canvas.width, minCanvasWidth);
+  const height = Math.max(canvas.height, minCanvasHeight);
+  canvas.width = width;
+  canvas.height = height;
+
+  ctx.translate(0.5, 0.5);
   canvas.style.width = Math.floor(width / scale) + "px";
   canvas.style.height = Math.floor(height / scale) + "px";
   ctx.width = width * scale;
@@ -623,7 +634,11 @@ function fillCanvas(canvas) {
   // Get theme-appropriate color
   const color = getTreeColor();
 
-  const top = 20;
+  const dpi = Math.max(1, window.devicePixelRatio);
+  const scale = 2 * dpi;
+  const height = Math.floor(canvas.height / scale);
+
+  const top = Math.floor(height / 3);
   const repeatLimit = 20;
 
   let previousX = 0;
@@ -667,5 +682,5 @@ function fillAllCanvases() {
 }
 
 export function initTreeLandscape() {
-  requestAnimationFrame(fillAllCanvases);
+  fillAllCanvases();
 }

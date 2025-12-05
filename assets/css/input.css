@@ -106,6 +106,10 @@
     border-collapse: separate;
   }
 
+  .project-github-link svg {
+    transform: scale(1.25);
+  }
+
   /* GitHub Gist embed styles */
   .gist-embed {
     @apply rounded-lg overflow-hidden;
@@ -370,22 +374,13 @@ img.border-none,
   height: auto;
 }
 
-/* show external arrow ↗ for external links */
-article a[href*='//'],
-a.external-link {
-  margin-inline-end: 0.75rem;
-}
-
-article a[href*='//']::after,
-a.external-link::after {
-    position: absolute;
-}
-
 article a.no-arrow[href*="//"]::after,
 a.no-arrow.external-link::after,
 article .resume-main-content a[href*="//"]::after,
 article .gist-file a[href*="//"]::after,
-article .gist-embed a[href*="//"]::after {
+article .gist-embed a[href*="//"]::after,
+article a[role="button"][href*='//']::after,
+.resume-sidebar.sidebar-section a[href*='//']::after {
   display: none;
   visibility: hidden;
   width: 0;
@@ -743,20 +738,22 @@ a:hover img.external-favicon {
     }
 
     /* Search input expands to full width on focus */
-    #searchbar:has(input:focus) {
+    #searchbar {
       position: fixed;
       left: 1rem;
       right: 1rem;
-      top: 1rem;
-      width: auto;
+      top: 0;
       z-index: 100;
+      border: 1px solid #3E3E3E;
+      border-radius: 8px;
+      width: calc(100vw - 60px);
     }
 
-    #searchbar:has(input:focus) input {
+    #searchbar input {
       width: 100%;
     }
 
-    #searchbar:has(input:focus) #searchbar-results {
+    #searchbar #searchbar-results {
       width: 100%;
       max-width: 100%;
       left: 0;
@@ -949,6 +946,15 @@ a:hover img.external-favicon {
   }
 }
 
+@layer utilities {
+  :root .footer-content .blog-content-width,
+  :root .footer-copyright .blog-content-width {
+    max-width: 100%;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
 /* Project Card Components */
 @layer components {
   .project-card {
@@ -1055,6 +1061,21 @@ body > article.blog-content-width:first-child img.w-12 {
 
 .object-cover {
   object-fit: cover;
+}
+
+@media screen and (max-width: 400px) {
+  #theme-toggle {
+    margin-inline-end: -1rem;
+  }
+
+  .site-title span.flex .no-underline:first-child,
+  .site-title span.flex .no-underline:first-child + span.font-normal {
+    display: none;
+  }
+
+  :root > body > .fixed.fixed-controls {
+    position: absolute !important;
+  }
 }
 
 /* Theme color fixes for proper contrast */
