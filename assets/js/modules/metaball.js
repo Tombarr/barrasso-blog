@@ -298,4 +298,12 @@ export function initMetaball() {
 
     // Append group to SVG
     svg.appendChild(group);
+
+    // Apply random rotation and scale on mobile
+    if (window.innerWidth <= 767) {
+        const randomRotation = Math.random() * 45;
+        const randomScale = 1.25 + Math.random() * 0.75; // Scale between 1 and 1.5
+        svg.style.transformOrigin = 'top left';
+        svg.style.transform = `translate(-50%, -65%) rotate(${randomRotation}deg) scale(${randomScale})`;
+    }
 }
