@@ -42,6 +42,11 @@
                     ></path>
                 </svg>
                 <!-- keep it same as line 46 -->
+                {{- if .Params.externalLink -}}
+                    {{- $parsed := urls.Parse .Params.externalLink -}}
+                    {{- $faviconUrl := printf "https://www.google.com/s2/favicons?domain=%s&sz=32" $parsed.Host -}}
+                    {{- partial "remote-img.html" (dict "url" $faviconUrl "class" "external-favicon mr-2" "width" 16 "height" 16) -}}
+                {{- end -}}
                 <span
                     class="relative pl-4 -ml-4 font-semibold text-xl lg:text-3xl group-hover:underline"
                 >
@@ -65,10 +70,9 @@
                 href="{{ $linkUrl }}"
                 {{ if $linkTarget }}target="{{ $linkTarget }}"{{ end }}
                 {{ if $linkRel }}rel="{{ $linkRel }}"{{ end }}>
-                {{ if (isset .Params "favicon") }}
-                    <img src="{{ .Params.favicon }}" alt="favicon" width="16" height="16" class="external-favicon" loading="lazy" draggable="false" />
-                {{ end }}
-                {{ if (isset .Params "icon") }}
+                {{- if (isset .Params "favicon") -}}
+                    {{- partial "remote-img.html" (dict "url" .Params.favicon "class" "external-favicon mr-2" "width" 16 "height" 16) -}}
+                {{- else if (isset .Params "icon") -}}
                     {{- $cleanIconPath := strings.TrimPrefix "/" .Params.icon -}}
                     {{- $icon := resources.Get $cleanIconPath -}}
                     {{- if $icon -}}
@@ -76,7 +80,11 @@
                     {{- else -}}
                     {{- warnf "Icon resource not found: %s (in %s)" .Params.icon .File.Path -}}
                     {{- end -}}
-                {{ end }}
+                {{- else if .Params.externalLink -}}
+                    {{- $parsed := urls.Parse .Params.externalLink -}}
+                    {{- $faviconUrl := printf "https://www.google.com/s2/favicons?domain=%s&sz=32" $parsed.Host -}}
+                    {{- partial "remote-img.html" (dict "url" $faviconUrl "class" "external-favicon" "width" 16 "height" 16) -}}
+                {{- end -}}
                 {{ if eq .Section "log" }} <time>{{ .Date.Format "January 2006" }}</time> {{
                 else }} {{ .Title }} {{ end }}
             </a>
