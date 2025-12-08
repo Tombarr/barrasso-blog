@@ -3,6 +3,7 @@ title: "You're Offline"
 date: 2024-11-19
 draft: false
 layout: "offline"
+noindex: true
 sitemap:
   priority: 0.1
 robots: noindex, nofollow

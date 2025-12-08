@@ -23,6 +23,7 @@ linkedin = "https://linkedin.barrasso.me"
 enableRobotsTXT = true
 reshare = false
 invisibleTypes = ["resume"]
+invisibleSections = ["offline", "log"]
 
 [params.search]
 enabled = true
