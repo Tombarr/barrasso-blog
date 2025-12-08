@@ -37,7 +37,7 @@ Cloud Phone for Developers is a static website generated using [Hugo](https://go
 
 {{< br >}}
 
-I built open-source reference applications like a [Currency Converter](https://github.com/cloudmosa/cloudphone-currency) and Authenticator for time-based one-time passwords (OTP).
+I built open-source reference applications like a [Currency Converter](https://github.com/cloudmosa/cloudphone-currency) and [Authenticator](https://github.com/cloudmosa/authenticator) for time-based one-time passwords (OTP).
 
 {{< br >}}
 

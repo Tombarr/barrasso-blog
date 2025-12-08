@@ -10,8 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/Tombarr/barrasso-blog.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Hugo",
+    "Blog",
+    "TailwindCSS"
+  ],
+  "author": "Tom Barrasso <tom@barrasso.me> (https://barrasso.me)",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {

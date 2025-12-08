@@ -26,4 +26,7 @@ githubUrl = ''
 As part of [Ashoka Youth Venture](https://www.ashoka.org/en-us/youth-venture), I co-founded the non-profit, [Digital Independence](https://www.facebook.com/DigitalIndependence/), in 2009 alongside Bandhan Zishanuzzaman and Arjun Agarwala. Our mission was to educate and empower Boston residents through **free computer literacy courses**, and to **reduce electronic waste** (e-waste) by offering discounted computer repair services.
 
 {{< br >}}
+{{< responsive-image src="Screen shot 2012-01-09 at 1.50.22 PM.png" alt="Screenshot of mydigitalindependence.com" class="w-full contain" >}}
+
+{{< br >}}
 We repaired, upgraded, and **donated hundreds of desktops**, laptops, and smartphones. In both 2010 and 2011, we received the "Best of the Best" award from the [Mayor's Summer Youth Employment Program](https://www.cambridgema.gov/Services/mayorssummeryouthemploymentprogram) (MYSEP) where we employed and managed nearly a dozen high school students in Cambridge, MA each summer.
