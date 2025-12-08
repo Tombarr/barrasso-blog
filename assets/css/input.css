@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Configure dark mode to use class-based selector instead of media query */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Tell Tailwind where to look for classes */
 @source "../../themes/henry/layouts/**/*.html";
 @source "../../layouts/**/*.html";
