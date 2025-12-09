@@ -12,6 +12,7 @@
     .widths - Array or comma-separated widths (optional, default "320,640,1024,1920")
     .loading - "lazy" or "eager" (optional, default "lazy")
     .quality - 1-100 (optional, default 85)
+    .caption - Figure caption (optional, wraps image in <figure> when provided)
 */ -}}
 
 {{- $src := .src -}}
@@ -21,6 +22,7 @@
 {{- $widthsInput := .widths | default "320,640,1024,1920" -}}
 {{- $loading := .loading | default "lazy" -}}
 {{- $quality := .quality | default 85 -}}
+{{- $caption := .caption | default "" -}}
 
 {{- if not $src -}}
   {{- errorf "responsive-image partial: src parameter is required" -}}
@@ -95,6 +97,9 @@
 {{- $fallbackWidth := (index $originalImages 0).width -}}
 {{- $fallbackHeight := div (mul $image.Height $fallbackWidth) $image.Width -}}
 
+{{- if $caption -}}
+<figure>
+{{- end -}}
 <picture>
   {{- /* WebP source */ -}}
   <source
@@ -120,3 +125,7 @@
     draggable="false"
   >
 </picture>
+{{- if $caption }}
+  <figcaption class="text-sm text-ht-light italic mt-2 text-center">{{ $caption | markdownify }}</figcaption>
+</figure>
+{{- end -}}

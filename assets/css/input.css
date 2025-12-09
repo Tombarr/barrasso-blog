@@ -950,6 +950,10 @@ a:hover img.external-favicon {
 }
 
 @layer utilities {
+  :root .no-border {
+    border: none !important;
+  }
+
   :root .footer-content .blog-content-width,
   :root .footer-copyright .blog-content-width {
     max-width: 100%;
