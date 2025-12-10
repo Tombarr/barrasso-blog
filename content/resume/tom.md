@@ -63,7 +63,7 @@ companyIcon="meta"
 >}}
 
 - Executed **company-wide data governance programs** ensuring compliance with international privacy regulations including GDPR, DMA, DSA, CCPA, and ePD
-- Led execution to scale [Privacy Aware Infrastructure]({{< relref "projects/policy-zones" >}}) (PAI) across 150+ use cases in under 1 year, **mitigating €14B+ in regulatory risk**
+- Led execution to integrate and scale [Privacy Aware Infrastructure]({{< relref "projects/policy-zones" >}}) (PAI) across 150+ use cases in under 1 year, **mitigating €14B+ in regulatory risk**
 - Automated annual compliance audits, reducing operational costs by 75% {{< abbr title="Year-on-Year" >}}YoY{{< /abbr >}}
 
   {{< /job >}}

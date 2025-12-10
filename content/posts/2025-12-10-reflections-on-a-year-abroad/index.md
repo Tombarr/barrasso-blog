@@ -10,9 +10,9 @@ bannerCaption = 'Tom testing a Cloud Phone widget under a tree in New Zealand'
 showBanner = true
 +++
 
-For a year I got to experience **truly "remote" work.**
+For a year I experienced **truly "remote" work.**
 
-Between Summer 2024 to Fall 2025, I spent nearly a year traveling across Peru, Australia, Vietnam, Thailand, India, the United Kingdom, the Netherlands, Switzerland, Italy, Romania, Turkey, Cyprus, and _almost_ half a year living in a van in New Zealand.
+From Summer 2024 to Fall 2025, I spent a year traveling across Peru, Australia, Vietnam, Thailand, India, the United Kingdom, the Netherlands, Switzerland, Italy, Romania, Turkey, Cyprus, and _almost_ half a year living in a van in New Zealand.
 
 During this time, I worked remotely at [CloudMosa](https://puffin.com) as the Head of Developer Relations for [Cloud Phone](https://www.cloudphone.tech). Although my interest in flip phones began in 2020 when I launched [PodLP]({{< relref "projects/podlp" >}}), this was quite the departure from the past 5+ years in Big Tech living in Seattle. This writing is part of the long journey to unpack and make meaning from such a profound experience.
 
@@ -22,11 +22,11 @@ _Isolation, postcard-quality sunsets, striking mountains, flightless birds, soli
 
 {{< responsive-image src="tom-van-life.jpeg" alt="Tom in a 2000 Toyota Hiace" caption="Tom in Hugo, a 2000 Toyota Hiace" class="w-full no-border contain" >}}
 
-I've worked with [Hugo](https://gohugo.io/) (the static site generator) for years. This blog is built with Hugo, and so is [Cloud Phone for Developers]({{< relref "projects/cloud-phone" >}}). Ironically, our van came with the name "Hugo." Fortunately, Hugo survived another 10,000km around the North & South Islands, and thanks to an [Asus 4G-AX56](https://amzn.to/3MygIHE) (powered by rooftop solar), I had WiFi wherever I went using the [Spark](https://www.spark.co.nz/) network.
+I've worked with [Hugo](https://gohugo.io/) (the static site generator) for years. This blog is built with Hugo, and so is [Cloud Phone for Developers]({{< relref "projects/cloud-phone" >}}). Coincidentally, our van also came with the name "Hugo!" Fortunately, Hugo survived another 10,000km around the North & South Islands, and thanks to an [Asus 4G-AX56](https://amzn.to/3MygIHE) (powered by rooftop solar), I had WiFi wherever I went using the [Spark](https://www.spark.co.nz/) network.
 
 {{< responsive-image src="arthurs-pass-bridge.jpeg" alt="Arthur's Pass, South Island" caption="Arthur's Pass, South Island" class="w-full no-border contain" >}}
 
-A 12 hour flight from San Francisco: New Zealand has no dangerous animals, no land borders, and it's often [omitted from maps](https://www.reddit.com/r/MapsWithoutNZ/). I've been to dark-sky preserves, but New Zealand is on another level. This is just a several second exposure on an [iPhone 13 Mini](https://amzn.to/4oTQL3k).
+A 12-hour flight from San Francisco: New Zealand has no dangerous animals, no land borders, and it's often [omitted from maps](https://www.reddit.com/r/MapsWithoutNZ/). I've been to dark-sky preserves, but New Zealand is on another level. This is just a several second exposure on an [iPhone 13 Mini](https://amzn.to/4oTQL3k).
 
 {{< responsive-image src="southern-sky.jpeg" alt="Night sky in the Southern Hemisphere" caption="~3 second exposure of the night sky in the Southern Hemisphere" class="w-full no-border contain" fullBleed="true" >}}
 
@@ -34,11 +34,11 @@ Run by the Department of Conservation (DOC), New Zealand's [Great Walks](https:/
 
 {{< responsive-image src="kiwi-crossing.jpeg" alt="Kiwi crossing sign in Rakiura (Stewart Island)" caption="Kiwi crossing sign in Rakiura (Stewart Island)" class="w-full no-border contain" >}}
 
-No doubt, New Zealand is weird. It's home to hobbits, alpine parrots, spherical [concretions](https://en.wikipedia.org/wiki/Moeraki_Boulders), and [Steampunk HQ](https://www.steampunkoamaru.co.nz/). I saw the world's smallest Pengiuns and walked up the world's [steepest street](https://www.treehugger.com/worlds-steepest-streets-4869323#list-sc__content_1-0). I tried [Amazake](https://en.wikipedia.org/wiki/Amazake), witnessed [glowworms](https://www.newzealand.com/us/glow-worms/), got into [F45](https://f45training.com/), and picked up a few Māori phrases.
+No doubt, New Zealand is weird. It's home to hobbits, alpine parrots, spherical [concretions](https://en.wikipedia.org/wiki/Moeraki_Boulders), and [Steampunk HQ](https://www.steampunkoamaru.co.nz/). I saw the world's smallest penguins and walked up the world's [steepest street](https://www.treehugger.com/worlds-steepest-streets-4869323#list-sc__content_1-0). I tried [Amazake](https://en.wikipedia.org/wiki/Amazake), witnessed [glowworms](https://www.newzealand.com/us/glow-worms/), got into [F45](https://f45training.com/), and picked up a few Māori phrases.
 
 {{< responsive-image src="kea-alpine-parrot.jpeg" alt="Kea parrot on the Milford Track" caption="Kea, an endangered alpine parrot, on the Milford Track" class="w-full no-border contain" >}}
 
-I drove on the left, lived in other people's homes (house sitting), and had my first run-in with rites of passage.
+I drove on the left, lived in other people's homes (house sitting), and had my first run-in with rites of passage where this poems came to life.
 
 > **The Breeze At Dawn**{{< br >}}
 > {{< br >}}
@@ -100,11 +100,11 @@ I'm grateful to [Frontenders Sydney](https://www.meetup.com/vue-sydney/events/30
 
 {{< responsive-image src="frontenders-sydney.jpeg" alt="Tom giving a talk at Frontenders Sydney in May 2025" caption="Tom giving a talk at [Frontenders Sydney](https://www.linkedin.com/posts/frontenders-au_frontendersau-frontendcommunity-devevents-activity-7325651785300201472-BHQQ) in May 2025" class="w-full no-border contain" >}}
 
-I'd love to see America adopt the [democracy sausage](https://en.wikipedia.org/wiki/Democracy_sausage), and aspire to the return of politics summed up as ["boring" and "weird"](https://www.bbc.com/news/videos/cdxgw9x44x8o). Yet I'm not called to return to Australia. Maybe it's the lack of prominent mountains, or abundance of deadly creatures. Maybe it's because I don't surf, or because I'm not interested in their [$1500 coffee](https://www.news.com.au/lifestyle/food/drink/western-sydney-cafe-offers-1500-cup-of-coffee-that-has-brought-people-to-tears/news-story/f8bb288402e3bae2fe75f8e46c83ff0e).
+I'd love to see America adopt the [democracy sausage](https://en.wikipedia.org/wiki/Democracy_sausage), and aspire to the return of politics summed up as ["boring" and "weird"](https://www.bbc.com/news/videos/cdxgw9x44x8o). Yet I'm not called to return to Australia. Maybe it's the lack of prominent mountains, or abundance of deadly creatures. Maybe it's because I don't surf, or because I'm not interested in their [$1500 coffee](https://www.news.com.au/lifestyle/food/drink/western-sydney-cafe-offers-1500-cup-of-coffee-that-has-brought-people-to-tears/news-story/f8bb288402e3bae2fe75f8e46c83ff0e). Or perhaps it felt a bit too much like the parts of home that I'd rather avoid.
 
 ## Vietnam 🇻🇳
 
-_Gastronomic excellence and highly-caffienated huslter culture_
+_Gastronomic excellence and highly caffeinated hustle culture_
 
 {{< responsive-image src="vietnam-rice.jpeg" alt="Rice terraces in Pù Luông, Vietnam" caption="Rice terraces in Pù Luông, Vietnam" class="w-full no-border contain" >}}
 
@@ -118,7 +118,7 @@ Vietnam is where I bought my first Cloud Phone in person, a [Viettel V1S 4G](htt
 
 If America runs on Dunkin, Vietnam runs on [Highland](https://www.highlandscoffee.com.vn/en/coffee.html). You can't escape their strong, sugary drinks. Nor should you. Vietnamese coffee is delicious and its how everyone keeps going day and night.
 
-Outside of the cities, Vietnam's karst landscapes are stunning. Limestone towers jut out of nowhere, and rice terraces sprawl as far as the eye can see. Yet the price of progress goes beyond caffeine addiction. Smog (especially in Hanoi) and serious litter pollution are everywhere. Venture slightly off the beaten path and the ocean hardly looks safe to swim.
+Outside of the cities, Vietnam's karst landscapes are stunning. Limestone towers jut out of nowhere, and rice terraces sprawl as far as the eye can see. Yet the price of progress goes beyond caffeine addiction. Like anywhere growing quickly, smog (especially in Hanoi) and serious litter pollution is common. Venture slightly off the beaten path and the ocean hardly looks safe to swim.
 
 ## Thailand 🇹🇭
 
@@ -130,7 +130,7 @@ My time in Thailand was intentionally slow. I enjoyed [mangosteen-shaped ice cre
 
 ## India 🇮🇳
 
-_Rick Steves favorite and the "keypad mobile" capital_
+_Rick Steves' favorite and the "keypad mobile" capital_
 
 {{< responsive-image src="kochi-monsoon.jpeg" alt="Monsoon season in Kochi, India" caption="Monsoon season in Kochi, India" class="w-full no-border contain" >}}
 
@@ -151,7 +151,7 @@ _Charming and alarmingly expensive_
 
 {{< responsive-image src="swiss-cow.jpeg" alt="Cows in Switzerland" caption="Cows in Switzerland" class="w-full no-border contain" >}}
 
-Switzerland is quaint, peaceful, and anything but flat. It's a place where you're not wanting for views, where trains arrive to the minute, and a $10 lunch no longer exist. Once again I followed Rick Steves' advice and visited Gimmelwald. While the cozy vibes were welcome during a very rainy summer, what made it special was meeting locals on the train who invited us for tea.
+Switzerland is quaint, peaceful, and anything but flat. It's a place where you're not wanting for views, where trains arrive to the minute, and a $10 lunch no longer exists. Once again I followed Rick Steves' advice and visited Gimmelwald. While the cozy vibes were welcome during a very rainy summer, what made it special was meeting locals on the train who invited us for tea.
 
 {{< responsive-image src="chilchbalm.jpeg" alt="Chilchbalm marker" caption="Chilchbalm marker at 1631m" class="w-full no-border contain" >}}
 
@@ -161,7 +161,7 @@ During a downpour, Heinz and Annelies recounted their own travels decades earlie
 
 The hikes throughout Lauterbrunnen and the Alps were incredible, but taking a series of gondolas and trains up several thousand meters feels like cheating. Hard work that leads to **a sense of accomplishment is motivating**. It's more than just the [IKEA effect](https://en.wikipedia.org/wiki/IKEA_effect).
 
-Surprisingly, a last minute hike to Chilchbalm proved more memorable. It's an awesome glacial basin, and one of the view places outside of National Parks like Glacier and the Grand Tetons that make I truly felt small.
+Surprisingly, a last minute hike to Chilchbalm proved more memorable. It's an awesome glacial basin, and one of the view places outside of National Parks like Glacier and the Grand Tetons that I truly felt small.
 
 ## Italy 🇮🇹
 
@@ -197,11 +197,11 @@ _Adorable cats and a return to building_
 
 Cyprus was a place I had no connection to. I'm still not quite sure what drew me there. But the intense daytime heat let me feel less guilty spending time inside building my hackathon project, [Backyard Birds]({{< relref "projects/backyard-birds" >}}), in between sampling wines and visits to ancient ruins.
 
-It turns out [Cyprus cats](https://en.wikipedia.org/wiki/Cyprus_cat) have ruled the island for over 10,000 years since they were apparently brought from Egypt to eradicate snakes. These cats are so cute, I even made a [YouTube Short](https://www.youtube.com/shorts/wj0_vcsJ9AA) that mostly features the hundreds of cats I encountered around Cyprus.
+It turns out [Cyprus cats](https://en.wikipedia.org/wiki/Cyprus_cat) have ruled the island for over 10,000 years since they were apparently brought from Egypt to eradicate snakes. They're are so cute, I made a [montage video](https://www.youtube.com/shorts/wj0_vcsJ9AA) of the many cats I encountered.
 
 {{< responsive-image src="kaios-poster.jpeg" alt="KaiOS poster in Nicosia, Cyprus" caption="KaiOS poster in Nicosia, Cyprus" class="w-full no-border contain" >}}
 
-As a software engineer, there's a sense of excitement snd pride seeing your work in the real world. I am often asked by folks in Africa and South Asia why I work on flip phones when they're mostly for seniors and hipsters in the west. This flyer for the iPRO K2 running [KaiOS](https://www.kaiostech.com/) was probably the first time I encountered an advertisement for KaiOS in real life.
+As a software engineer, there's a sense of excitement and pride seeing your work in the real world. I am often asked by folks in Africa and South Asia why I work on flip phones when they're mostly for seniors and hipsters in the west. This flyer for the iPRO K2 running [KaiOS](https://www.kaiostech.com/) was probably the first time I encountered an advertisement for KaiOS in real life.
 
 From the data, I knew my work reached far flung places. Five and a half years after launch, PodLP has active listeners in over 170+ countries including Cyprus! Despite a $0 marketing budget, PodLP still gets organically mentions and linked on podcasts in places where it's most popular like India.
 
@@ -215,13 +215,13 @@ _Cats, cats, and more cats_
 
 {{< responsive-image src="cat-market-istanbul.jpeg" alt="Cat at a bazaar in Istanbul" caption="Cat at a bazaar in Istanbul" class="w-full no-border contain" >}}
 
-The final stop on my year-long adventure was Turkey, where I experienced life in a different set of rhythms like waking up to the morning adhan (call to prayer). Following their successful invasion of Cyprus, **[cats conquered Istanbul](https://www.bbc.com/travel/article/20251118-istanbul-turkey-inside-the-city-where-cats-rule-the-streets)** where they remain in charge.
+The final stop on my year-long adventure was Turkey, where I experienced life in a different set of rhythms like waking up to the morning adhan (call to prayer) and greeting the local cats. Following their successful invasion of Cyprus, **[cats conquered Istanbul](https://www.bbc.com/travel/article/20251118-istanbul-turkey-inside-the-city-where-cats-rule-the-streets)** where they remain in charge to this day.
 
 {{< responsive-image src="fez-the-cat.png" alt="Fez the Cat" caption="Fez the Cat" class="w-full no-border contain" >}}
 
 With some spare time and an extended deadline, I decided to work on another submission for the Yoto Hackathon: [Fez the Cat](https://yoto.space/developers/post/fez-the-cat-7XbFLVY7sXNlNVA). Clearly inspired by my time in Istanbul, Fez tells 26 stories, one for each letter of the alphabet. Each story is almost a pangram, a sequence that containers every letter of the alphabet from A-Z. Except each story is missing one letter which the listener has to guess.
 
-Fez gave me more time to [explore vibe coding]({{< relref "posts/2025-09-25-cloudfront-function-midnight-local-time" >}}) and tinker with text-to-speech (TTS) voices in ElevenLabs.
+Fez gave me more time to [explore vibe coding]({{< relref "posts/2025-09-25-cloudfront-function-midnight-local-time" >}}) and tinker with text-to-speech (TTS) voices in ElevenLabs. Backyard Birds and Fez the Cat were the start of a return to building that continues by hacking at [Sundai Club](https://www.sundai.club/) and open sourcing many of my projects over the past few years.
 
 ## Returning Home
 
