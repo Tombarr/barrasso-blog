@@ -35,13 +35,16 @@ make help               # List all available commands
 **IMPORTANT:** After cloning the repository or opening in a new environment (like devcontainer), you MUST run `make setup` or `make css` before running Hugo, as the CSS file (`assets/css/output.css`) is git-ignored and needs to be generated.
 
 ### Running with Caddy (optional)
+
 ```bash
 make run-caddy          # Copies Caddyfile and starts Caddy server
 # Stop with: brew services stop caddy
 ```
 
 ### Logging levels
+
 All Hugo commands support optional log levels:
+
 ```bash
 make build log=debug    # Options: debug|info|warn|error (default: warn)
 ```
@@ -51,6 +54,7 @@ make build log=debug    # Options: debug|info|warn|error (default: warn)
 ### Configuration Structure
 
 Hugo uses environment-specific configurations in `config/`:
+
 - `config/_default/hugo.toml` - Base configuration (localhost, theme: henry)
 - `config/production/hugo.toml` - Production overrides (baseURL: https://barrasso.me/)
 - `config/local/hugo.toml` - Local development overrides (if needed)
@@ -58,6 +62,7 @@ Hugo uses environment-specific configurations in `config/`:
 Hugo automatically merges these based on the environment.
 
 **Required parameters in config:**
+
 - `params.authors` - Array of author objects (required by Henry theme)
 - `params.copyright` - Copyright and licensing information
   - `params.copyright.holder` - Copyright holder name
@@ -72,6 +77,7 @@ Hugo automatically merges these based on the environment.
 The site uses the **Henry theme** located in `themes/henry/`. There's also a `themes/dura/` directory, but the active theme is Henry (as set in config).
 
 **Important customization pattern:**
+
 - Theme-level files in `themes/henry/` provide defaults
 - Root-level files override theme files (Hugo's lookup order)
 - Currently customized files in root:
@@ -95,6 +101,7 @@ Two content types with date-based slugs:
    - Has `type: 'shorts'` in frontmatter
 
 **Frontmatter features** (both types support):
+
 - `timeless: true` - Pages without dates
 - `frontpage: true` - Pin to frontpage
 - `externalLink` - Daring Fireball-style external links
@@ -114,17 +121,20 @@ Custom shortcodes available for content creation:
 Embed GitHub Gists with local rendering and syntax highlighting.
 
 **Usage:**
+
 ```markdown
 {{</* gist username gist-id */>}}
 {{</* gist username gist-id filename.js */>}}
 ```
 
 **Parameters:**
+
 - `username` (required) - GitHub username
 - `gist-id` (required) - Gist ID (from the gist URL)
 - `filename` (optional) - Specific file to display if gist contains multiple files
 
 **Features:**
+
 - Fetches gist content via GitHub API
 - Server-side syntax highlighting using Hugo's Chroma
 - Line numbers displayed in table format
@@ -134,6 +144,7 @@ Embed GitHub Gists with local rendering and syntax highlighting.
 - Error handling for missing gists or files
 
 **Example:**
+
 ```markdown
 {{</* gist torvalds 1f09b4096abc7310fb435f6e6c32ae13 */>}}
 ```
@@ -145,6 +156,7 @@ Embed GitHub Gists with local rendering and syntax highlighting.
 Automatically generate responsive images with multiple sizes and modern formats (WebP + original).
 
 **Usage:**
+
 ```markdown
 {{</* responsive-image src="images/photo.jpg" alt="Description" */>}}
 {{</* responsive-image src="images/photo.jpg" alt="Description" class="my-class" */>}}
@@ -152,6 +164,7 @@ Automatically generate responsive images with multiple sizes and modern formats 
 ```
 
 **Parameters:**
+
 - `src` (required) - Path to image in `assets/` or page resources (e.g., `images/photo.jpg`)
 - `alt` (optional) - Alt text for accessibility
 - `class` (optional) - CSS classes to add to `<img>` element
@@ -161,6 +174,7 @@ Automatically generate responsive images with multiple sizes and modern formats 
 - `quality` (optional) - JPEG/WebP quality 1-100 (default: 85)
 
 **Features:**
+
 - **Automatic WebP generation** - Creates WebP versions alongside original format
 - **Multiple sizes** - Generates srcset with 320w, 640w, 1024w, 1920w (customizable)
 - **Picture element** - Uses `<picture>` with format fallbacks
@@ -169,6 +183,7 @@ Automatically generate responsive images with multiple sizes and modern formats 
 - **Hugo image processing** - Works with images in `assets/` or page bundles
 
 **Example:**
+
 ```markdown
 {{</* responsive-image
   src="images/screenshot.png"
@@ -180,24 +195,43 @@ Automatically generate responsive images with multiple sizes and modern formats 
 ```
 
 **Shortcode alias:**
+
 - `img` - Simpler syntax: `{{</* img "path/to/image.jpg" "Alt text" */>}}`
 
 **Output:**
+
 ```html
 <picture>
-  <source type="image/webp" srcset="/images/photo_320.webp 320w, /images/photo_640.webp 640w, ..." sizes="100vw">
-  <source type="image/jpeg" srcset="/images/photo_320.jpg 320w, /images/photo_640.jpg 640w, ..." sizes="100vw">
-  <img src="/images/photo_320.jpg" alt="Description" width="320" height="240" loading="lazy" decoding="async">
+  <source
+    type="image/webp"
+    srcset="/images/photo_320.webp 320w, /images/photo_640.webp 640w, ..."
+    sizes="100vw"
+  />
+  <source
+    type="image/jpeg"
+    srcset="/images/photo_320.jpg 320w, /images/photo_640.jpg 640w, ..."
+    sizes="100vw"
+  />
+  <img
+    src="/images/photo_320.jpg"
+    alt="Description"
+    width="320"
+    height="240"
+    loading="lazy"
+    decoding="async"
+  />
 </picture>
 ```
 
 **Performance benefits:**
+
 - **30-50% smaller** - WebP format reduces file size significantly
 - **Responsive** - Correct image size loaded for each viewport
 - **Lazy loading** - Images only load when needed
 - **No layout shift** - Explicit dimensions prevent CLS
 
 **Implementation:**
+
 - Shortcode: `layouts/shortcodes/responsive-image.html`
 - Partial: `layouts/partials/responsive-image.html` (reusable in templates)
 - Used in: Project cards, feature images, content images
@@ -205,18 +239,21 @@ Automatically generate responsive images with multiple sizes and modern formats 
 ### CSS/Styling
 
 Tailwind CSS v4 workflow:
+
 - **Input**: `assets/css/input.css` - Source CSS with imports and custom styles
 - **Output**: `assets/css/output.css` - Compiled CSS (~48KB, git-ignored)
 - **Build command**: `make css` or `npx @tailwindcss/cli -i ./assets/css/input.css -o ./assets/css/output.css`
 - **Watch mode**: Runs automatically with `make run` (parallel with Hugo server)
 
 **Fonts:**
+
 - **Self-hosted fonts** (no Google Fonts): Figtree (body) and Fraunces (titles)
 - Font files stored in `static/fonts/` (committed to git)
 - Font declarations in `assets/css/fonts-local.css`
 - Total font size: ~305KB (4 files: normal + italic for each font)
 
 **Current configuration in `assets/css/input.css`:**
+
 ```css
 @import "tailwindcss";
 
@@ -239,6 +276,7 @@ Tailwind CSS v4 workflow:
 ```
 
 **How CSS is loaded:**
+
 - Hugo's `styles.html` partial uses `resources.Get "css/output.css"`
 - In production, CSS is minified and fingerprinted for cache-busting
 - The `@source` directives tell Tailwind v4 where to scan for utility classes
@@ -248,6 +286,7 @@ Tailwind CSS v4 workflow:
 ### JavaScript/ESBuild
 
 JavaScript bundling via ESBuild (integrated with Hugo's `js.Build`):
+
 - **Entry point**: `assets/js/main.js`
 - **Modules**: Place reusable modules in `assets/js/modules/`
 - **Output**: Hugo automatically bundles all imports into a single file
@@ -256,22 +295,26 @@ JavaScript bundling via ESBuild (integrated with Hugo's `js.Build`):
 - **Production**: Auto-minified and fingerprinted in production builds
 
 **Current modules:**
+
 - `tree-landscape.js` - Procedural tree canvas generation for footer
 - `theme-toggle.js` - Dark/light mode switching with localStorage persistence
 
 **How to add JavaScript:**
+
 1. Import modules in `assets/js/main.js` (e.g., `import { fn } from './modules/mymodule.js'`)
 2. All imported files are automatically bundled
 3. Hugo's `js.Build` handles ESBuild invocation
 4. No separate build step needed - runs automatically with Hugo
 
 **Template implementation:**
+
 - `layouts/baseof.html` - Overrides theme baseof to include scripts partial
 - `layouts/_partials/scripts.html` - Handles JS bundling with ESBuild options
 
 ### Theme Toggle
 
 A dark/light mode toggle has been added to the header:
+
 - **Location**: Top-right corner, inline with search icon
 - **Icons**: Sun icon (shown in dark mode), Moon icon (shown in light mode)
 - **Persistence**: User preference saved to localStorage
@@ -281,6 +324,7 @@ A dark/light mode toggle has been added to the header:
 - **Template**: `layouts/_partials/header.html` (custom override)
 
 **Theme color customization:**
+
 - Custom color overrides in `assets/css/input.css` for both light and dark modes
 - **Light mode**: White background (#ffffff) with dark text (slate-800)
 - **Dark mode**: Dark background (#1c2b33) with light text (slate-200)
@@ -290,6 +334,7 @@ A dark/light mode toggle has been added to the header:
 ### Homepage Avatar
 
 The homepage includes a circular portrait avatar that randomly displays one of 16 portraits from a 4x4 grid:
+
 - **Image source**: `static/images/portraits.jpg` (4x4 grid of portrait variations)
 - **Display**: 200px × 200px circular avatar, positioned to the left of the hero text, top-aligned
 - **Layout approach**:
@@ -312,6 +357,7 @@ The homepage includes a circular portrait avatar that randomly displays one of 1
 ### Footer Customization
 
 The footer has been customized to include:
+
 - **Tree landscape divider**: Dynamic canvas-based procedural tree generation from Dura theme
   - JavaScript: `assets/js/modules/tree-landscape.js` - Contains tree drawing algorithms
   - Canvas element: Rendered in footer with random forest on each page load
@@ -327,6 +373,7 @@ The footer has been customized to include:
   - All theme attribution removed (no "Powered by" mentions)
 
 **Implementation:**
+
 - `layouts/_partials/footer.html` - Custom footer override with canvas and copyright
 - Copyright text configured in `config/hugo.toml` under `params.copyright`
 - Tree rendering: `getTreeColor()` function in `tree-landscape.js` (always returns white)
@@ -335,6 +382,7 @@ The footer has been customized to include:
 ### Development Container
 
 A `.devcontainer.json` is configured with:
+
 - Debian Trixie base image
 - Hugo Extended (required for SCSS support)
 - Node.js LTS (for Tailwind)
@@ -355,11 +403,13 @@ A `.devcontainer.json` is configured with:
 ## Workflow Tips
 
 When modifying themes:
+
 1. Check if file exists in root first (overrides theme)
 2. If modifying theme directly, consider if it should be in root instead
 3. Current customizations are split between `themes/dura/` (heavily modified) and `themes/henry/` (active theme)
 
 When creating content:
+
 - Always use Makefile commands to ensure proper date prefixes
 - Slug is auto-extracted from filename (date removed)
 - Set `draft: false` to publish (archetype defaults to `true`)
