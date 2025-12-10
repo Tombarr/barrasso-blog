@@ -128,6 +128,8 @@ _Mangosteen, meditation, and mud houses_
 
 My time in Thailand was intentionally slow. I enjoyed [mangosteen-shaped ice cream](https://faerieimps.blogspot.com/2017/09/icedea.html) (my favorite fruit), joined a yoga retreat, and took impromptu lessons on how to build houses out of clay bricks. As Lao Tzu put it, "Nature does not hurry, yet everything is accomplished." While I raced from rice paddy to museum to coffee stand to hawker market in Vietnam, I reconnected and recalibrated in Chiang Mai and Bangkok.
 
+{{< responsive-image src="clay-house.jpeg" alt="Clay brick building in Thailand" caption="Clay brick building in Thailand" class="w-full no-border contain" >}}
+
 ## India 🇮🇳
 
 _Rick Steves' favorite and the "keypad mobile" capital_
