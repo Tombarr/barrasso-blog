@@ -11,9 +11,23 @@ If not set, this will search page resources to find an image that contains the w
 If no featured_image was set, and there's no "cover" image in page resources, then
 this partial returns the site's default featured image from config, or an empty string.
 
-@return Permalink to featured image, or an empty string if not found.
+Usage:
+  {{ partial "get-featured-image.html" . }}                              - Returns relative URL
+  {{ partial "get-featured-image.html" (dict "Page" . "absolute" true) }} - Returns absolute URL
+
+@param Page - The page context (required)
+@param absolute - If true, returns absolute URLs (for SEO meta tags). Default: false
+@return URL to featured image, or an empty string if not found.
 
 */}}
+
+{{/* Handle both direct page context and dict context */}}
+{{ $page := . }}
+{{ $absolute := false }}
+{{ if reflect.IsMap . }}
+  {{ $page = .Page }}
+  {{ $absolute = .absolute | default false }}
+{{ end }}
 
 {{/* Declare a new string variable, $linkToCover */}}
 {{ $linkToCover := "" }}
@@ -21,20 +35,28 @@ this partial returns the site's default featured image from config, or an empty 
 
 {{/* Check for any of the specified keys in front matter */}}
 {{ range $imageKeys }}
-{{ $paramValue := index $.Params . }}
+{{ $paramValue := index $page.Params . }}
 {{ with $paramValue }}
 {{ $cleanPath := strings.TrimPrefix "/" . }}
 {{/* First check local page resources (content directory) */}}
-{{ $pageResource := $.Resources.GetMatch . }}
+{{ $pageResource := $page.Resources.GetMatch . }}
 {{ if $pageResource }}
-{{ $linkToCover = $pageResource.Permalink }}
+  {{ if $absolute }}
+    {{ $linkToCover = $pageResource.Permalink }}
+  {{ else }}
+    {{ $linkToCover = $pageResource.RelPermalink }}
+  {{ end }}
 {{ else }}
 {{/* Then try global site-wide assets */}}
 {{ $resource := resources.Get $cleanPath }}
 {{ if $resource }}
-{{ $linkToCover = $resource.Permalink }}
+  {{ if $absolute }}
+    {{ $linkToCover = $resource.Permalink }}
+  {{ else }}
+    {{ $linkToCover = $resource.RelPermalink }}
+  {{ end }}
 {{ else }}
-{{/* Fallback to absolute URL */}}
+{{/* Fallback to absolute URL (external images are always absolute) */}}
 {{ $linkToCover = trim . "/" | absURL }}
 {{ end }}
 {{ end }}
@@ -44,29 +66,45 @@ this partial returns the site's default featured image from config, or an empty 
 
 {{/* If no image found in front matter, search in page resources */}}
 {{ if not $linkToCover }}
-{{ with .Resources.ByType "image" }}
+{{ with $page.Resources.ByType "image" }}
 {{ $resourceMatch := .GetMatch (printf "**{%s}*" (delimit $imageKeys ",")) }}
 {{ range $imageKeys }}
-{{ $exactMatch := $.Resources.GetMatch . }}
+{{ $exactMatch := $page.Resources.GetMatch . }}
 {{ if $exactMatch }}
-{{ $linkToCover = $exactMatch.Permalink }}
+  {{ if $absolute }}
+    {{ $linkToCover = $exactMatch.Permalink }}
+  {{ else }}
+    {{ $linkToCover = $exactMatch.RelPermalink }}
+  {{ end }}
 {{ break }}
 {{ end }}
 {{ end }}
 {{ if and (not $linkToCover) $resourceMatch }}
-{{ $linkToCover = $resourceMatch.Permalink }}
+  {{ if $absolute }}
+    {{ $linkToCover = $resourceMatch.Permalink }}
+  {{ else }}
+    {{ $linkToCover = $resourceMatch.RelPermalink }}
+  {{ end }}
 {{ end }}
 {{ end }}
 {{ end }}
 
 {{/* If no cover image is found, use the site's default featured image from config */}}
 {{ if not $linkToCover }}
-{{ with .Site.Params.defaultFeaturedImage }}
-{{ $linkToCover = (printf "%v/%v" $.Site.BaseURL (trim . "/")) }}
+{{ with $page.Site.Params.defaultFeaturedImage }}
+  {{ if $absolute }}
+    {{ $linkToCover = (printf "%v/%v" $page.Site.BaseURL (trim . "/")) }}
+  {{ else }}
+    {{ $linkToCover = (printf "/%v" (trim . "/")) }}
+  {{ end }}
 {{ else }}
 {{/* Fallback to site avatar if no default featured image is configured */}}
-{{ with $.Site.Params.avatar }}
-{{ $linkToCover = (printf "%v/%v" $.Site.BaseURL (trim . "/")) }}
+{{ with $page.Site.Params.avatar }}
+  {{ if $absolute }}
+    {{ $linkToCover = (printf "%v/%v" $page.Site.BaseURL (trim . "/")) }}
+  {{ else }}
+    {{ $linkToCover = (printf "/%v" (trim . "/")) }}
+  {{ end }}
 {{ end }}
 {{ end }}
 {{ end }}

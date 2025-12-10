@@ -1,10 +1,10 @@
 +++
-title = 'Reflections on a year abroad (Part 1)'
-date = 2025-12-09
+title = 'Reflections on a year abroad'
+date = 2025-12-10
 draft = false
 categories = ['Travel']
 tags = ['Travel', 'Remote Work']
-summary = 'Thoughts on culture, cats, meaning, progress, Developer Relations, travel, and more'
+summary = 'Thoughts on culture, cats, meaning, the nature of work, progress, Developer Relations, travel, and much more'
 banner = 'tom-remote-work.jpeg'
 bannerCaption = 'Tom testing a Cloud Phone widget under a tree in New Zealand'
 showBanner = true
@@ -28,7 +28,7 @@ I've worked with [Hugo](https://gohugo.io/) (the static site generator) for year
 
 A 12 hour flight from San Francisco: New Zealand has no dangerous animals, no land borders, and it's often [omitted from maps](https://www.reddit.com/r/MapsWithoutNZ/). I've been to dark-sky preserves, but New Zealand is on another level. This is just a several second exposure on an [iPhone 13 Mini](https://amzn.to/4oTQL3k).
 
-{{< responsive-image src="southern-sky.jpeg" alt="Night sky in the Southern Hemisphere" caption="Night sky in the Southern Hemisphere" class="w-full no-border contain" >}}
+{{< responsive-image src="southern-sky.jpeg" alt="Night sky in the Southern Hemisphere" caption="~3 second exposure of the night sky in the Southern Hemisphere" class="w-full no-border contain" fullBleed="true" >}}
 
 Run by the Department of Conservation (DOC), New Zealand's [Great Walks](https://www.doc.govt.nz/parks-and-recreation/things-to-do/walking-and-tramping/great-walks/) were one of the initial draws to visit the islands. Of the 11 Great Walks, I completed 4 and hiked partway across another 5. In between tramping trips I dropped by the [Nelson Dev Group](https://www.meetup.com/nelson-dev-group/) and gave a talk at [Ruby Nights Auckland](https://www.linkedin.com/posts/juan-luis-ramirez_rubynights-aucklandtech-activity-7320402927104274432-LQs0). I launched the [Cloud Phone for Developers](https://developer.cloudphone.tech/) website, was a guest on the [WasmAssembly Podcast](https://www.youtube.com/watch?v=XFXJpbJMFr4), and helped launch the MyGP app for [Grameenphone](https://www.grameenphone.com/), Bangladesh's largest telecommunication company.
 
@@ -141,4 +141,88 @@ Although my time was spent in Kerala (often billed as ["India Lite"](https://www
 
 Much to the chagrin of many a mobile store salesperson, I had no interest in the latest Huawei Mate or iPhone. Eventually I bought what you can't find on eBay: feature phones (mostly called "keypad mobiles" in India) like a [Snexian Guru 4G](https://developer.cloudfone.com/device/snexian_guru_4_g/) and one of the very first Cloud Phone models, an [Itel Super Guru 4G](https://developer.cloudfone.com/device/itel_it9020/).
 
-### To be continued...
+## Europe
+
+A wedding in the United Kingdom kicked off the next phase of my trip, including visits with family and in-person meetings with developers in Germany and the Netherlands. Then it was back to the unfamiliar.
+
+## Switzerland 🇨🇭
+
+_Charming and alarmingly expensive_
+
+{{< responsive-image src="swiss-cow.jpeg" alt="Cows in Switzerland" caption="Cows in Switzerland" class="w-full no-border contain" >}}
+
+Switzerland is quaint, peaceful, and anything but flat. It's a place where you're not wanting for views, where trains arrive to the minute, and a $10 lunch no longer exist. Once again I followed Rick Steves' advice and visited Gimmelwald. While the cozy vibes were welcome during a very rainy summer, what made it special was meeting locals on the train who invited us for tea.
+
+{{< responsive-image src="chilchbalm.jpeg" alt="Chilchbalm marker" caption="Chilchbalm marker at 1631m" class="w-full no-border contain" >}}
+
+During a downpour, Heinz and Annelies recounted their own travels decades earlier during an era when visa applications were made in paper and travelers cheques were still in fashion. By comparison, my own journey was far less harrowing. Agonizing or not, my journey was my own. The world has clearly changed in half a century, and I'm fortunate to be able to be put to productive use anywhere I can secure a somewhat stable internet connection.
+
+{{< responsive-image src="chilchbalm-mountains.jpeg" alt="Chilchbalm marker" caption="Chilchbalm marker at 1631m" class="w-full no-border contain" fullBleed="true" >}}
+
+The hikes throughout Lauterbrunnen and the Alps were incredible, but taking a series of gondolas and trains up several thousand meters feels like cheating. Hard work that leads to **a sense of accomplishment is motivating**. It's more than just the [IKEA effect](https://en.wikipedia.org/wiki/IKEA_effect).
+
+Surprisingly, a last minute hike to Chilchbalm proved more memorable. It's an awesome glacial basin, and one of the view places outside of National Parks like Glacier and the Grand Tetons that make I truly felt small.
+
+## Italy 🇮🇹
+
+_La vita è bella_
+
+{{< responsive-image src="la-madonna-bianca.jpeg" alt="La festa della Madonna Bianca in Portovenere, Italy" caption="La festa della Madonna Bianca in Portovenere, Italy" class="w-full no-border contain" >}}
+
+Some say, "if you fail to plan, you plan to fail." Others believe that, "life happens while you're busy making other plans." As a Technical Program Manager (TPM), you're expected to have Plans A through E for when the inevitable goes wrong.
+
+The [White Madonna Festival](https://discoverportovenere.com/portovenere-white-madonna-procession/) was one of those unplanned highlights that I only learned about day of thanks to flyers on the street. Hiking the Cinque Terre was incredible. So was swimming in the Ligurian Sea and eating lemon gelato in Corniglia. But neither rival the unplanned nighttime visit to the Grotto of Lord Byron celebrating a 14th century plague miracle by lighting more than 2,000 roman candles.
+
+{{< responsive-image src="whatsbar.jpeg" alt="WhatsBar in Ravenna, Italy" caption="WhatsBar in Ravenna, Italy" class="w-full no-border contain" >}}
+
+The rest of Italy (namely Rome) was impressive, but I had high expectations that couldn't be exceeded by the dense crowds, sweltering heat, and fear of pickpockets. I was also perplexed by [WhatsBar](https://restaurantguru.it/WhatsBar-24h-Ravenna), a 24-hour snack vending machine and ATM in Ravenna that appears to combine the names and logos of WhatsApp and the Java programming language.
+
+## Romania 🇷🇴
+
+_A more rugged and affordable Switzerland_
+
+{{< responsive-image src="carpathians.jpeg" alt="The Carpathian Mountains near Cheia, Romania" caption="The Carpathian Mountains near Cheia, Romania" class="w-full no-border contain" fullBleed="true" >}}
+
+Romania was a sleeper hit and another last minute decision. It came on my radar because I met a Romanian at a tech meetup in Auckland. That's all the planning, and it turned out to be incredible.
+
+After reconnecting with my Romanian acquaintance on WhatsApp, I learned it's best to hike in groups because of the prevalence of brown bears. Although no bears were on this hike, it proved to be sound advice for making friends. Plus, I did eventually see bears.
+
+{{< responsive-image src="romania-bear.jpeg" alt="Brown bear near the Transfăgărășan in Romania" caption="Brown bear near the Transfăgărășan in Romania" class="w-full no-border contain" >}}
+
+## Cyprus 🇨🇾
+
+_Adorable cats and a return to building_
+
+{{< responsive-image src="cyprus-cat.jpeg" alt="Calico Cyprus Cat" caption="Calico Cyprus cat sleeping at a cafe" class="w-full no-border contain" >}}
+
+Cyprus was a place I had no connection to. I'm still not quite sure what drew me there. But the intense daytime heat let me feel less guilty spending time inside building my hackathon project, [Backyard Birds]({{< relref "projects/backyard-birds" >}}), in between sampling wines and visits to ancient ruins.
+
+It turns out [Cyprus cats](https://en.wikipedia.org/wiki/Cyprus_cat) have ruled the island for over 10,000 years since they were apparently brought from Egypt to eradicate snakes. These cats are so cute, I even made a [YouTube Short](https://www.youtube.com/shorts/wj0_vcsJ9AA) that mostly features the hundreds of cats I encountered around Cyprus.
+
+{{< responsive-image src="kaios-poster.jpeg" alt="KaiOS poster in Nicosia, Cyprus" caption="KaiOS poster in Nicosia, Cyprus" class="w-full no-border contain" >}}
+
+As a software engineer, there's a sense of excitement snd pride seeing your work in the real world. I am often asked by folks in Africa and South Asia why I work on flip phones when they're mostly for seniors and hipsters in the west. This flyer for the iPRO K2 running [KaiOS](https://www.kaiostech.com/) was probably the first time I encountered an advertisement for KaiOS in real life.
+
+From the data, I knew my work reached far flung places. Five and a half years after launch, PodLP has active listeners in over 170+ countries including Cyprus! Despite a $0 marketing budget, PodLP still gets organically mentions and linked on podcasts in places where it's most popular like India.
+
+{{< responsive-image src="dont-make-drama.jpeg" alt="Stop making drama, you're not Shakespeare" caption="'Stop making drama, you're not Shakespeare' in Nicosia, Cyprus" class="w-full no-border contain" >}}
+
+I have no personal connection to this poster, it's just sage advice.
+
+## Türkiye 🇹🇷
+
+_Cats, cats, and more cats_
+
+{{< responsive-image src="cat-market-istanbul.jpeg" alt="Cat at a bazaar in Istanbul" caption="Cat at a bazaar in Istanbul" class="w-full no-border contain" >}}
+
+The final stop on my year-long adventure was Turkey, where I experienced life in a different set of rhythms like waking up to the morning adhan (call to prayer). Following their successful invasion of Cyprus, **[cats conquered Istanbul](https://www.bbc.com/travel/article/20251118-istanbul-turkey-inside-the-city-where-cats-rule-the-streets)** where they remain in charge.
+
+{{< responsive-image src="fez-the-cat.png" alt="Fez the Cat" caption="Fez the Cat" class="w-full no-border contain" >}}
+
+With some spare time and an extended deadline, I decided to work on another submission for the Yoto Hackathon: [Fez the Cat](https://yoto.space/developers/post/fez-the-cat-7XbFLVY7sXNlNVA). Clearly inspired by my time in Istanbul, Fez tells 26 stories, one for each letter of the alphabet. Each story is almost a pangram, a sequence that containers every letter of the alphabet from A-Z. Except each story is missing one letter which the listener has to guess.
+
+Fez gave me more time to [explore vibe coding]({{< relref "posts/2025-09-25-cloudfront-function-midnight-local-time" >}}) and tinker with text-to-speech (TTS) voices in ElevenLabs.
+
+## Returning Home
+
+It's a strange and disorienting feeling returning home after being away for so long. This post is just one part of processing the journey. I still have much to unfold on the nature of work, the call to wander, and the meaning of "home." But for now I'm intent on building something new that I can feel proud of.

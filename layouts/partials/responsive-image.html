@@ -13,6 +13,7 @@
     .loading - "lazy" or "eager" (optional, default "lazy")
     .quality - 1-100 (optional, default 85)
     .caption - Figure caption (optional, wraps image in <figure> when provided)
+    .fullBleed - If true, adds "full-bleed" class to <figure> (optional, default false)
 */ -}}
 
 {{- $src := .src -}}
@@ -23,6 +24,7 @@
 {{- $loading := .loading | default "lazy" -}}
 {{- $quality := .quality | default 85 -}}
 {{- $caption := .caption | default "" -}}
+{{- $fullBleed := .fullBleed | default false -}}
 
 {{- if not $src -}}
   {{- errorf "responsive-image partial: src parameter is required" -}}
@@ -98,7 +100,7 @@
 {{- $fallbackHeight := div (mul $image.Height $fallbackWidth) $image.Width -}}
 
 {{- if $caption -}}
-<figure>
+<figure{{- if $fullBleed }} class="full-bleed"{{ end -}}>
 {{- end -}}
 <picture>
   {{- /* WebP source */ -}}

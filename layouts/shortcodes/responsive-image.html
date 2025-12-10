@@ -9,6 +9,7 @@
     {{< responsive-image src="images/photo.jpg" alt="Description" class="my-class" sizes="(max-width: 768px) 100vw, 50vw" >}}
     {{< responsive-image src="images/photo.jpg" alt="Description" widths="320,640,1024,1920" >}}
     {{< responsive-image src="images/photo.jpg" alt="Description" caption="Photo by John Doe" >}}
+    {{< responsive-image src="images/photo.jpg" alt="Description" caption="Wide shot" fullBleed="true" >}}
 
   Parameters:
     - src (required): Path to image in assets/ or page resources
@@ -19,6 +20,7 @@
     - loading (optional): "lazy" (default) or "eager"
     - quality (optional): JPEG/WebP quality 1-100 (default: 85)
     - caption (optional): Figure caption (wraps image in <figure> when provided)
+    - fullBleed (optional): If "true", adds "full-bleed" class to <figure> (requires caption)
 */ -}}
 
 {{- $src := .Get "src" | default (.Get 0) -}}
@@ -29,6 +31,7 @@
 {{- $loading := .Get "loading" | default "lazy" -}}
 {{- $quality := .Get "quality" | default 85 -}}
 {{- $caption := .Get "caption" | default "" -}}
+{{- $fullBleed := eq (.Get "fullBleed") "true" -}}
 
 {{- if not $src -}}
   {{- errorf "responsive-image shortcode: src parameter is required" -}}
@@ -44,4 +47,5 @@
   "loading" $loading
   "quality" $quality
   "caption" $caption
+  "fullBleed" $fullBleed
 ) }}
