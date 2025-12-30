@@ -9,11 +9,14 @@
 {{- end -}}
 {{- $allSkills := collections.Shuffle $allSkills -}}
 
+
 <div class="w-full my-4">
   <div class="flex flex-wrap gap-3 items-center">
     {{- range $allSkills }}
-    <span class="skill-tag">{{ . }}</span>
+      <span class="skill-tag">{{ . }}</span>
     {{- end }}
-    <span class="skill-tag ellipsis" title="{{ i18n "many_more" }}">&#8230;</span>
+    <span class="skill-tag ellipsis" title="{{ i18n "many_more" }}"
+      >&#8230;</span
+    >
   </div>
 </div>

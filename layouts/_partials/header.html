@@ -1,101 +1,148 @@
 {{ $isPage := .IsPage }}
 
-<div class="site-title
+
+<div
+  class="site-title
             absolute top-7 md:top-6.5 left-1/2 transform -translate-x-1/2 z-50
             blog-content-width
             mb-8">
-    <div class="w-full">
-        <h1 class="flex flex-col items-start
+  <div class="w-full">
+    <h1
+      class="flex flex-col items-start
                    md:text-xl text-start
                    text-ht-lighter
                    ">
-            <!-- Other pages - breadcrumb navigation -->
-            <span class="flex items-center gap-1 flex-wrap">
-                <!-- Home link -->
-                <a  href="/"
-                    class="no-underline
-                           {{ if .IsHome}} font-bold {{ end }}">
-                    {{ $.Param "sitename" }}
-                </a> <span class="font-normal">|</span>
-                <a  href="{{ relref . "projects" }}"
-                    class='no-underline
-                           {{ if eq .Section "projects" }} font-bold {{ end }}'>
-                    {{ i18n "projects" }}
-                </a><span class="font-normal">|</span>
-                <a  href="{{ relref . "resume/tom" }}"
-                    class='no-underline
-                           {{ if eq .RelPermalink "/resume/tom" }} font-bold {{ end }}'>
-                    {{ i18n "resume" }}
-                </a><span class="font-normal">|</span>
-                <a  href="{{ relref . "about" }}"
-                    class='no-underline
-                           {{ if eq .RelPermalink "/about/" }} font-bold {{ end }}'>
-                    {{ i18n "tom" }}
-                </a>
+      <!-- Other pages - breadcrumb navigation -->
+      <span class="flex items-center gap-1 flex-wrap">
+        <!-- Home link -->
+        <a
+          href="/"
+          class="no-underline
+                           {{ if .IsHome }}font-bold{{ end }}">
+          {{ $.Param "sitename" }}
+        </a>
+        <span class="font-normal">|</span>
+        <a
+          href="{{ relref . "projects" }}"
+          class="no-underline
+                           {{ if eq .Section "projects" }}font-bold{{ end }}">
+          {{ i18n "projects" }}
+        </a>
+        <span class="font-normal">|</span>
+        <a
+          href="{{ relref . "resume/tom" }}"
+          class="no-underline
+                           {{ if eq .RelPermalink "/resume/tom" }}
+            font-bold
+          {{ end }}">
+          {{ i18n "resume" }}
+        </a>
+        <span class="font-normal">|</span>
+        <a
+          href="{{ relref . "about" }}"
+          class="no-underline
+                           {{ if eq .RelPermalink "/about/" }}
+            font-bold
+          {{ end }}">
+          {{ i18n "tom" }}
+        </a>
 
-                <!-- intelligently show section -->
-                {{ if .IsSection }}
-                    <!-- Section list page: kau.sh / section -->
-                    {{ if and (ne .RelPermalink "/blog/") (ne .RelPermalink "/letter/") (ne .Section "projects") }}
-                        | <span class="text-ht">{{ strings.Title .Section }}</span>
-                    {{ end }}
-                {{ else if eq .Kind "taxonomy" }}
-                    <!-- Taxonomy list page: kau.sh / tags -->
-                    {{ $pageTitle := .Params.pageTitle | default .Name }}
-                    {{ if ne $pageTitle "Tags" }}
-                        | <span class="text-ht">{{ .Data.Plural }}</span>
-                    {{ end }}
-                {{ else if eq .Kind "term" }}
-                    <!-- Individual tag/category page: kau.sh / tags / tagname -->
-                    {{ if ne .Data.Plural "tags" }}
-                        |
-                        <a href="/{{ .Data.Plural }}/" class="no-underline">
-                            {{ .Data.Plural }}
-                        </a>
-                    {{ end }}
-                    | <span class="text-sm font-bold text-ht-light text-ellipsis max-w-[25vw] md:max-w-none inline-block whitespace-nowrap overflow-hidden">{{ .Title }}</span>
-                {{ end }}
-                {{ if and .IsPage .Section (ne .Section "blog") (ne .Section "projects") }}
-                    | <a href="/{{ .Section }}/" class="no-underline">
-                        {{ strings.Title .Section }}
-                    </a>
-                {{ end }}
+        <!-- intelligently show section -->
+        {{ if .IsSection }}
+          <!-- Section list page: kau.sh / section -->
+          {{ if and (ne .RelPermalink "/blog/") (ne .RelPermalink "/letter/") (ne .Section "projects") }}
+            |
+            <span class="text-ht">{{ strings.Title .Section }}</span>
+          {{ end }}
+        {{ else if eq .Kind "taxonomy" }}
+          <!-- Taxonomy list page: kau.sh / tags -->
+          {{ $pageTitle := .Params.pageTitle | default .Name }}
+          {{ if ne $pageTitle "Tags" }}
+            |
+            <span class="text-ht">{{ .Data.Plural }}</span>
+          {{ end }}
+        {{ else if eq .Kind "term" }}
+          <!-- Individual tag/category page: kau.sh / tags / tagname -->
+          {{ if ne .Data.Plural "tags" }}
+            |
+            <a href="/{{ .Data.Plural }}/" class="no-underline">
+              {{ .Data.Plural }}
+            </a>
+          {{ end }}
+          |
+          <span
+            class="text-sm font-bold text-ht-light text-ellipsis max-w-[25vw] md:max-w-none inline-block whitespace-nowrap overflow-hidden"
+            >{{ .Title }}</span
+          >
+        {{ end }}
+        {{ if and .IsPage .Section (ne .Section "blog") (ne .Section "projects") }}
+          |
+          <a href="/{{ .Section }}/" class="no-underline">
+            {{ strings.Title .Section }}
+          </a>
+        {{ end }}
 
-
-            </span>
-        </h1>
-    </div>
+      </span>
+    </h1>
+  </div>
 </div>
 
 <!-- Theme toggle and search container -->
-<div class="{{ if $isPage }}absolute top-4 right-2 md:right-5
-            {{ else }}fixed top-5 right-2 md:right-5{{ end }}
+<div
+  class="{{ if $isPage }}
+    absolute top-4 right-2 md:right-5
+  {{ else }}
+    fixed top-5 right-2 md:right-5
+  {{ end }}
              flex items-center gap-2 z-50 fixed-controls">
+  <!-- Theme toggle button -->
+  <button
+    id="theme-toggle"
+    class="cursor-pointer p-2 hover:opacity-70 transition-opacity"
+    aria-label="Toggle dark/light mode"
+    title="Toggle theme">
+    <!-- Sun icon (shown in dark mode) -->
+    <svg
+      id="theme-toggle-sun"
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6 text-ht-lighter hidden"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
+    <!-- Moon icon (shown in light mode) -->
+    <svg
+      id="theme-toggle-moon"
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6 text-ht-lighter"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+    </svg>
+  </button>
 
-    <!-- Theme toggle button -->
-    <button id="theme-toggle"
-            class="cursor-pointer p-2 hover:opacity-70 transition-opacity"
-            aria-label="Toggle dark/light mode"
-            title="Toggle theme">
-        <!-- Sun icon (shown in dark mode) -->
-        <svg id="theme-toggle-sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-ht-lighter hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-        <!-- Moon icon (shown in light mode) -->
-        <svg id="theme-toggle-moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-ht-lighter" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-        </svg>
-    </button>
-
-{{ if $.Param "enableSearch" }}
+  {{ if $.Param "enableSearch" }}
 
     <!-- Search result item template -->
     <template id="search-result-template">
-        <li class="search-result-item">
-            <a href="" class="block px-4 py-2 no-underline text-ht hover:bg-hbg-dark transition-colors duration-150" tabindex="0">
-                <span class="title"></span>
-            </a>
-        </li>
+      <li class="search-result-item">
+        <a
+          href=""
+          class="block px-4 py-2 no-underline text-ht hover:bg-hbg-dark transition-colors duration-150"
+          tabindex="0">
+          <span class="title"></span>
+        </a>
+      </li>
     </template>
 
     <!-- Search related libs (Fuse) -->
@@ -104,18 +151,26 @@
     {{ $search := slice $fuse $fuseSearch | resources.Concat "js/search.js" | resources.Minify }}
 
     {{ if hugo.IsServer }}
-    <script src="{{ $search.RelPermalink }}" type="module"></script>
+      <script src="{{ $search.RelPermalink }}" type="module"></script>
     {{ else }}
-    {{ $search = $search | fingerprint }}
-    <script src="{{ $search.RelPermalink }}" type="module" integrity="{{ $search.Data.Integrity }}" nonce="{{ $search.Data.Nonce }}"></script>
+      {{ $search = $search | fingerprint }}
+      <script
+        src="{{ $search.RelPermalink }}"
+        type="module"
+        integrity="{{ $search.Data.Integrity }}"
+        nonce="{{ $search.Data.Nonce }}"></script>
     {{ end }}
+
 
     <!-- Searchbar -->
     <div id="searchbar" class="mr-2 hidden relative">
-        <input id="searchbar-input"
-            class="px-4 py-2 bg-hbg-dark rounded-lg focus:outline-none text-ht-lighter placeholder-ht-light"
-            placeholder="Search...">
-        <ul id="searchbar-results" class="mt-2
+      <input
+        id="searchbar-input"
+        class="px-4 py-2 bg-hbg-dark rounded-lg focus:outline-none text-ht-lighter placeholder-ht-light"
+        placeholder="Search..." />
+      <ul
+        id="searchbar-results"
+        class="mt-2
                      absolute right-0
                      w-screen max-w-[75vw] min-w-[200px] max-h-[75vh] overflow-y-auto
                      rounded-lg shadow-lg
@@ -125,11 +180,18 @@
 
     <!-- Search icon -->
     <div id="search-icon" class="cursor-pointer p-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-ht-lighter hover:text-ht" fill="none"
-            viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 text-ht-lighter hover:text-ht"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
     </div>
 
     <script type="module">
@@ -155,6 +217,5 @@
             toggleSearchBar();
         });
     </script>
-
-{{ end }}
+  {{ end }}
 </div>

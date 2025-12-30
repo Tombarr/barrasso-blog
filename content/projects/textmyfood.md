@@ -4,7 +4,6 @@ date = 2010-06-01
 draft = false
 type = 'projects'
 
-# Project metadata
 summary = 'Service for restaurant customers to text their waiters'
 icon = '/images/icons/textmyfood-short.png'
 technologies = ['WebSockets', 'Twilio', 'JavaScript', 'Ruby on Rails', 'CSS']
@@ -12,13 +11,11 @@ dateRange = '2010 - 2011'
 company = 'inTouch Corp'
 featured = false
 
-# Images
 featureImage = '/images/features/textmyfood-feature.jpg'
-featureImageCaption = 'Screenshot of the TextMyFood message center on a tablet, 2011'  # Optional caption displayed below the feature image
-featureImagePosition = 'top'  # Options: 'top' (before content), 'bottom' (after content), 'none' (not rendered on single page)
-screenshots = []  # Array of image paths (loaded as Hugo resources with width, height, and alt attributes)
+featureImageCaption = 'Screenshot of the TextMyFood message center on a tablet, 2011'
+featureImagePosition = 'top'
+screenshots = []
 
-# External links
 projectUrl = 'https://www.npr.org/2011/01/17/132493034/chk-plz-restaurants-try-texting-to-speed-service'
 githubUrl = ''
 +++

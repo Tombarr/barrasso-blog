@@ -7,7 +7,15 @@ type = 'projects'
 
 summary = 'AI-generated educational audio content for young birders'
 icon = 'images/icons/backyard-birds.png'
-technologies = ['Elixir', 'OpenAI', 'Gemini', 'ElevenLabs', 'JavaScript', 'EC2', 'Cloudfront']
+technologies = [
+  'Elixir',
+  'OpenAI',
+  'Gemini',
+  'ElevenLabs',
+  'JavaScript',
+  'EC2',
+  'Cloudfront',
+]
 dateRange = '2025'
 featured = true
 

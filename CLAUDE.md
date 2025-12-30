@@ -205,21 +205,18 @@ Automatically generate responsive images with multiple sizes and modern formats 
   <source
     type="image/webp"
     srcset="/images/photo_320.webp 320w, /images/photo_640.webp 640w, ..."
-    sizes="100vw"
-  />
+    sizes="100vw" />
   <source
     type="image/jpeg"
     srcset="/images/photo_320.jpg 320w, /images/photo_640.jpg 640w, ..."
-    sizes="100vw"
-  />
+    sizes="100vw" />
   <img
     src="/images/photo_320.jpg"
     alt="Description"
     width="320"
     height="240"
     loading="lazy"
-    decoding="async"
-  />
+    decoding="async" />
 </picture>
 ```
 
@@ -255,7 +252,7 @@ Tailwind CSS v4 workflow:
 **Current configuration in `assets/css/input.css`:**
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Tell Tailwind where to scan for classes */
 @source "../../themes/henry/layouts/**/*.html";
@@ -263,11 +260,11 @@ Tailwind CSS v4 workflow:
 @source "../../content/**/*.md";
 
 /* Self-hosted fonts (replaces Google Fonts) */
-@import "./fonts-local.css";
+@import './fonts-local.css';
 
 /* Import Henry theme styles */
-@import "../../themes/henry/assets/css/theme.css";
-@import "../../themes/henry/assets/css/henry.css";
+@import '../../themes/henry/assets/css/theme.css';
+@import '../../themes/henry/assets/css/henry.css';
 
 /* Add custom styles in @layer components or utilities */
 @layer components {
@@ -399,6 +396,120 @@ A `.devcontainer.json` is configured with:
 - Tailwind CLI: `@tailwindcss/cli` package (not full Tailwind)
 - ESBuild: Integrated via Hugo's `js.Build` pipe (requires esbuild npm package)
 - Required npm packages: `esbuild`, `@tailwindcss/cli`, `tailwindcss`
+
+## Code Formatting with Prettier
+
+The project uses Prettier with `prettier-hugo-plugin` to format Hugo template files.
+
+### Configuration
+
+- **Config file**: `.prettierrc` with Hugo-specific settings
+- **Ignore file**: `.prettierignore` - excludes generated files and complex partials
+- **Print width**: 200 characters for HTML files (to prevent excessive line wrapping in templates)
+- **Parser**: `go-template` for `*.html` files
+
+### Important: Hugo Template Gotchas
+
+Prettier can break Hugo templates in several ways that cause build errors:
+
+#### 1. Split Comment Delimiters
+
+**Problem**: Comment closing delimiters separated across lines
+
+**Bad** (causes "comment ends before closing delimiter"):
+
+```html
+{{- /* This is a very long comment that gets wrapped */ -}}
+```
+
+**Good**:
+
+```html
+{{- /* This is a very long comment that gets wrapped */ -}}
+```
+
+**Rule**: The `*/` and `-}}` must **always be on the same line**.
+
+#### 2. Split Strings (CRITICAL)
+
+**Problem**: Prettier splits long strings across multiple lines, causing "unterminated quoted string" errors
+
+**Bad** (causes Hugo build failure):
+
+```html
+{{- partial "image.html" (dict "class" "my-class" "sizes" "(max-width: 768px)
+100vw, 50vw") -}}
+```
+
+**Good**:
+
+```html
+{{- partial "image.html" (dict "class" "my-class" "sizes" "(max-width: 768px)
+100vw, 50vw") -}}
+```
+
+**Rule**: All strings in Go template expressions must remain on a single line. This includes:
+
+- Function parameters: `"long string value"`
+- Dict values in `(dict "key" "value")`
+- Conditional expressions
+- Variable assignments
+
+**After Running Prettier**: Always verify templates build with `make site` before committing.
+
+**Prevention**:
+
+- Keep template strings under 200 characters when possible
+- Break complex expressions into variables first, then use short variable names
+- Manually fix any split strings after Prettier formats files
+
+#### 3. Markdown Shortcode Syntax (CRITICAL)
+
+**Problem**: Prettier breaks Hugo shortcode closing syntax in markdown files
+
+**Bad** (causes shortcode parsing errors):
+
+```markdown
+{{< job
+title="My Job"
+company="Company"
+
+> }}
+> Content here
+> {{< /job >}}
+```
+
+**Good**:
+
+```markdown
+<!-- prettier-ignore -->
+{{< job
+title="My Job"
+company="Company" >}}
+Content here
+{{< /job >}}
+```
+
+**Rule**: Hugo shortcode closing syntax `>}}` must not have a space. Prettier treats `>` as blockquote and adds a space.
+
+**Solution**: Add `<!-- prettier-ignore -->` comment before shortcodes with `>}}` closing syntax, OR exclude content markdown files from Prettier (recommended).
+
+### Files Excluded from Prettier
+
+Some files are excluded in `.prettierignore` because the plugin cannot parse them or breaks Hugo-specific syntax:
+
+- `layouts/partials/responsive-image.html` - Complex partial with extensive Go template logic before HTML output (causes "invalid node root" error in the plugin)
+- `content/**/*.md` - **Content markdown files** - Prettier breaks Hugo shortcode syntax like `>}}` by adding spaces
+
+### Running Prettier
+
+```bash
+# Check formatting
+npx prettier --check "layouts/**/*.html"
+
+# Format files
+npx prettier --write "layouts/**/*.html"
+```
 
 ## Workflow Tips
 

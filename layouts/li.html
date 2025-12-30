@@ -1,105 +1,108 @@
+{{- $postType := .Type | singularize -}}
+{{- $postType = replace $postType "ppt" "talk" -}}
+{{- $postType = replace $postType "blog" "post" -}}
+{{- $postType = cond .Params.externalLink "link" $postType -}}
+{{- $linkUrl := cond .Params.externalLink .Params.externalLink .RelPermalink -}}
+{{- $linkTarget := cond .Params.externalLink "_blank" "_self" -}}
+{{- $linkRel := cond .Params.externalLink "noopener noreferrer" "" -}}
+
+
 <div class="mb-4 md:mb-10">
-    <aside class="post-metadata">
-        <div class="tags flex flex-row gap-2 mb-1 md:mb-4">
-            {{ $postType := .Type | singularize }} {{ $postType = replace
-            $postType "ppt" "talk" }} {{ $postType = replace $postType "blog"
-            "post" }} {{ $postType = cond .Params.externalLink "link" $postType
-            }} {{/*
-            <a class="nav-link pill-hc {{ $postType }}" href="/{{.Section}}">
-                {{ $postType }}
-            </a>
-            */}} {{ if .Draft }}
-            <div class="draft pill-hc2-solid">Draft</div>
-            {{ end }}
+  <aside class="post-metadata">
+    <div class="tags flex flex-row gap-2 mb-1 md:mb-4">
+      {{- if .Draft }}
+        <div class="draft pill-hc2-solid">Draft</div>
+      {{- end }}
+    </div>
+
+    {{- if eq .Type "shorts" }}
+      <!-- Shorts layout -->
+      <article class="post-summary text-sm lg:text-lg">
+        <a
+          href="{{ $linkUrl }}"
+          {{- if $linkTarget }}target="{{ $linkTarget }}"{{ end }}
+          {{- if $linkRel }}rel="{{ $linkRel }}"{{ end }}
+          class="relative flex items-center !no-underline group">
+          <svg
+            class="absolute left-[-4px] top-4 md:left-[-10px] md:top-6 w-6 h-6 md:w-10 md:h-10 text-ht-lighter opacity-20 dark:opacity-80 -translate-y-1/2 -translate-x-2 pointer-events-none"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4A8.5 8.5 0 0 1 12 21a8.38 8.38 0 0 1-5.4-1.9L3 21l1.9-5.4A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 1 1 21 11.5z"></path>
+          </svg>
+
+          {{- if .Params.externalLink -}}
+            {{- $parsed := urls.Parse .Params.externalLink -}}
+            {{- $faviconUrl := printf "https://www.google.com/s2/favicons?domain=%s&sz=32" $parsed.Host -}}
+            {{- partial "remote-img.html" (dict "url" $faviconUrl "class" "external-favicon mr-2" "width" 16 "height" 16) -}}
+          {{- end -}}
+
+
+          <span
+            class="relative pl-4 -ml-4 font-semibold text-xl lg:text-3xl group-hover:underline">
+            {{ partial "get-first-paragraph-ellipsised.html" .Content }}
+          </span>
+        </a>
+      </article>
+    {{- else }}
+      <!-- Regular post layout -->
+      <h1
+        class="post-link-url font-semibold md:font-bold leading-tight text-lg lg:text-3xl">
+        <a
+          class="no-underline transition-colors duration-200{{ if (eq $postType "link") }}
+            external-link
+          {{ end }}"
+          href="{{ $linkUrl }}"
+          {{- if $linkTarget }}target="{{ $linkTarget }}"{{ end }}
+          {{- if $linkRel }}rel="{{ $linkRel }}"{{ end }}>
+          {{- if (isset .Params "favicon") -}}
+            {{- partial "remote-img.html" (dict "url" .Params.favicon "class" "external-favicon mr-2" "width" 16 "height" 16) -}}
+          {{- else if (isset .Params "icon") -}}
+            {{- $cleanIconPath := strings.TrimPrefix "/" .Params.icon -}}
+            {{- $icon := resources.Get $cleanIconPath -}}
+            {{- if $icon -}}
+              <img
+                src="{{ $icon.RelPermalink }}"
+                alt="{{ .Title }}"
+                width="{{ $icon.Width }}"
+                height="{{ $icon.Height }}"
+                class="external-favicon"
+                loading="lazy"
+                draggable="false" />
+            {{- else -}}
+              {{- warnf "Icon resource not found: %s (in %s)" .Params.icon .File.Path -}}
+            {{- end -}}
+          {{- else if .Params.externalLink -}}
+            {{- $parsed := urls.Parse .Params.externalLink -}}
+            {{- $faviconUrl := printf "https://www.google.com/s2/favicons?domain=%s&sz=32" $parsed.Host -}}
+            {{- partial "remote-img.html" (dict "url" $faviconUrl "class" "external-favicon" "width" 16 "height" 16) -}}
+          {{- end -}}
+
+          {{- if eq .Section "log" }}
+            <time>{{ .Date.Format "January 2006" }}</time>
+          {{- else }}
+            {{ .Title }}
+          {{- end }}
+        </a>
+      </h1>
+
+      <article class="post-summary block line-clamp-3">
+        <div
+          class="block text-ht-lighter line-clamp-3 mt-2 text-base md:text-lg leading-tight">
+          {{- if .Params.summary }}
+            {{ .Params.summary }}
+          {{ else }}
+            {{ .Summary }}
+          {{ end -}}
         </div>
-
-        {{ if eq .Type "shorts" }}
-        <!-- Shorts layout -->
-        <article class="post-summary text-sm lg:text-lg">
-            {{ $linkUrl := cond .Params.externalLink .Params.externalLink .RelPermalink }}
-            {{ $linkTarget := cond .Params.externalLink "_blank" "_self" }}
-            {{ $linkRel := cond .Params.externalLink "noopener noreferrer" "" }}
-            <a
-                href="{{ $linkUrl }}"
-                {{ if $linkTarget }}target="{{ $linkTarget }}"{{ end }}
-                {{ if $linkRel }}rel="{{ $linkRel }}"{{ end }}
-                class="relative flex items-center !no-underline group"
-            >
-                <svg
-                    class="absolute left-[-4px] top-4 md:left-[-10px] md:top-6 w-6 h-6 md:w-10 md:h-10 text-ht-lighter opacity-20 dark:opacity-80 -translate-y-1/2 -translate-x-2 pointer-events-none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <path
-                        d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4A8.5 8.5 0 0 1 12 21a8.38 8.38 0 0 1-5.4-1.9L3 21l1.9-5.4A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 1 1 21 11.5z"
-                    ></path>
-                </svg>
-                <!-- keep it same as line 46 -->
-                {{- if .Params.externalLink -}}
-                    {{- $parsed := urls.Parse .Params.externalLink -}}
-                    {{- $faviconUrl := printf "https://www.google.com/s2/favicons?domain=%s&sz=32" $parsed.Host -}}
-                    {{- partial "remote-img.html" (dict "url" $faviconUrl "class" "external-favicon mr-2" "width" 16 "height" 16) -}}
-                {{- end -}}
-                <span
-                    class="relative pl-4 -ml-4 font-semibold text-xl lg:text-3xl group-hover:underline"
-                >
-                    {{ partial "get-first-paragraph-ellipsised.html" .Content }}
-                </span>
-            </a>
-        </article>
-
-        {{ else }}
-        <!-- Regular post layout -->
-        <h1
-            class="post-link-url font-semibold md:font-bold leading-tight text-lg lg:text-3xl"
-        >
-            {{ $linkUrl := cond .Params.externalLink .Params.externalLink .RelPermalink }}
-            {{ $linkTarget := cond .Params.externalLink "_blank" "_self" }}
-            {{ $linkRel := cond .Params.externalLink "noopener noreferrer" "" }}
-            <a class="no-underline transition-colors duration-200
-                {{ if (eq $postType "link") }}
-                 external-link
-                {{ end }}"
-                href="{{ $linkUrl }}"
-                {{ if $linkTarget }}target="{{ $linkTarget }}"{{ end }}
-                {{ if $linkRel }}rel="{{ $linkRel }}"{{ end }}>
-                {{- if (isset .Params "favicon") -}}
-                    {{- partial "remote-img.html" (dict "url" .Params.favicon "class" "external-favicon mr-2" "width" 16 "height" 16) -}}
-                {{- else if (isset .Params "icon") -}}
-                    {{- $cleanIconPath := strings.TrimPrefix "/" .Params.icon -}}
-                    {{- $icon := resources.Get $cleanIconPath -}}
-                    {{- if $icon -}}
-                    <img src="{{ $icon.RelPermalink }}" alt="{{ .Title }}" width="{{ $icon.Width }}" height="{{ $icon.Height }}" class="external-favicon" loading="lazy" draggable="false" />
-                    {{- else -}}
-                    {{- warnf "Icon resource not found: %s (in %s)" .Params.icon .File.Path -}}
-                    {{- end -}}
-                {{- else if .Params.externalLink -}}
-                    {{- $parsed := urls.Parse .Params.externalLink -}}
-                    {{- $faviconUrl := printf "https://www.google.com/s2/favicons?domain=%s&sz=32" $parsed.Host -}}
-                    {{- partial "remote-img.html" (dict "url" $faviconUrl "class" "external-favicon" "width" 16 "height" 16) -}}
-                {{- end -}}
-                {{ if eq .Section "log" }} <time>{{ .Date.Format "January 2006" }}</time> {{
-                else }} {{ .Title }} {{ end }}
-            </a>
-
-
-        </h1>
-
-        <article class="post-summary block line-clamp-3">
-            <div
-                class="block text-ht-lighter line-clamp-3 mt-2 text-base md:text-lg leading-tight"
-            >
-                {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{
-                .Summary }}{{ end }}
-            </div>
-        </article>
-        {{ end }}
-    </aside>
+      </article>
+    {{- end }}
+  </aside>
 </div>

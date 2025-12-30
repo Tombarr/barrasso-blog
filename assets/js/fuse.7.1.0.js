@@ -8,15 +8,15 @@
  */
 
 (function (global, factory) {
-  typeof exports === "object" && typeof module !== "undefined"
+  typeof exports === 'object' && typeof module !== 'undefined'
     ? (module.exports = factory())
-    : typeof define === "function" && define.amd
+    : typeof define === 'function' && define.amd
       ? define(factory)
       : ((global =
-          typeof globalThis !== "undefined" ? globalThis : global || self),
+          typeof globalThis !== 'undefined' ? globalThis : global || self),
         (global.Fuse = factory()));
 })(this, function () {
-  "use strict";
+  'use strict';
 
   function ownKeys(object, enumerableOnly) {
     var keys = Object.keys(object);
@@ -53,20 +53,20 @@
     return target;
   }
   function _typeof(obj) {
-    "@babel/helpers - typeof";
+    '@babel/helpers - typeof';
 
     return (
       (_typeof =
-        "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+        'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
           ? function (obj) {
               return typeof obj;
             }
           : function (obj) {
               return obj &&
-                "function" == typeof Symbol &&
+                'function' == typeof Symbol &&
                 obj.constructor === Symbol &&
                 obj !== Symbol.prototype
-                ? "symbol"
+                ? 'symbol'
                 : typeof obj;
             }),
       _typeof(obj)
@@ -74,7 +74,7 @@
   }
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
+      throw new TypeError('Cannot call a class as a function');
     }
   }
   function _defineProperties(target, props) {
@@ -82,14 +82,14 @@
       var descriptor = props[i];
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
+      if ('value' in descriptor) descriptor.writable = true;
       Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor);
     }
   }
   function _createClass(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
-    Object.defineProperty(Constructor, "prototype", {
+    Object.defineProperty(Constructor, 'prototype', {
       writable: false,
     });
     return Constructor;
@@ -109,8 +109,8 @@
     return obj;
   }
   function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-      throw new TypeError("Super expression must either be null or a function");
+    if (typeof superClass !== 'function' && superClass !== null) {
+      throw new TypeError('Super expression must either be null or a function');
     }
     subClass.prototype = Object.create(superClass && superClass.prototype, {
       constructor: {
@@ -119,7 +119,7 @@
         configurable: true,
       },
     });
-    Object.defineProperty(subClass, "prototype", {
+    Object.defineProperty(subClass, 'prototype', {
       writable: false,
     });
     if (superClass) _setPrototypeOf(subClass, superClass);
@@ -142,9 +142,9 @@
     return _setPrototypeOf(o, p);
   }
   function _isNativeReflectConstruct() {
-    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (typeof Reflect === 'undefined' || !Reflect.construct) return false;
     if (Reflect.construct.sham) return false;
-    if (typeof Proxy === "function") return true;
+    if (typeof Proxy === 'function') return true;
     try {
       Boolean.prototype.valueOf.call(
         Reflect.construct(Boolean, [], function () {}),
@@ -163,11 +163,11 @@
     return self;
   }
   function _possibleConstructorReturn(self, call) {
-    if (call && (typeof call === "object" || typeof call === "function")) {
+    if (call && (typeof call === 'object' || typeof call === 'function')) {
       return call;
     } else if (call !== void 0) {
       throw new TypeError(
-        "Derived constructors may only return object or undefined",
+        'Derived constructors may only return object or undefined',
       );
     }
     return _assertThisInitialized(self);
@@ -199,18 +199,18 @@
   }
   function _iterableToArray(iter) {
     if (
-      (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null) ||
-      iter["@@iterator"] != null
+      (typeof Symbol !== 'undefined' && iter[Symbol.iterator] != null) ||
+      iter['@@iterator'] != null
     )
       return Array.from(iter);
   }
   function _unsupportedIterableToArray(o, minLen) {
     if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    if (typeof o === 'string') return _arrayLikeToArray(o, minLen);
     var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(o);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+    if (n === 'Object' && o.constructor) n = o.constructor.name;
+    if (n === 'Map' || n === 'Set') return Array.from(o);
+    if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
       return _arrayLikeToArray(o, minLen);
   }
   function _arrayLikeToArray(arr, len) {
@@ -220,27 +220,27 @@
   }
   function _nonIterableSpread() {
     throw new TypeError(
-      "Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.",
+      'Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.',
     );
   }
   function _toPrimitive(input, hint) {
-    if (typeof input !== "object" || input === null) return input;
+    if (typeof input !== 'object' || input === null) return input;
     var prim = input[Symbol.toPrimitive];
     if (prim !== undefined) {
-      var res = prim.call(input, hint || "default");
-      if (typeof res !== "object") return res;
-      throw new TypeError("@@toPrimitive must return a primitive value.");
+      var res = prim.call(input, hint || 'default');
+      if (typeof res !== 'object') return res;
+      throw new TypeError('@@toPrimitive must return a primitive value.');
     }
-    return (hint === "string" ? String : Number)(input);
+    return (hint === 'string' ? String : Number)(input);
   }
   function _toPropertyKey(arg) {
-    var key = _toPrimitive(arg, "string");
-    return typeof key === "symbol" ? key : String(key);
+    var key = _toPrimitive(arg, 'string');
+    return typeof key === 'symbol' ? key : String(key);
   }
 
   function isArray(value) {
     return !Array.isArray
-      ? getTag(value) === "[object Array]"
+      ? getTag(value) === '[object Array]'
       : Array.isArray(value);
   }
 
@@ -248,20 +248,20 @@
   var INFINITY = 1 / 0;
   function baseToString(value) {
     // Exit early for strings to avoid a performance hit in some environments.
-    if (typeof value == "string") {
+    if (typeof value == 'string') {
       return value;
     }
-    var result = value + "";
-    return result == "0" && 1 / value == -INFINITY ? "-0" : result;
+    var result = value + '';
+    return result == '0' && 1 / value == -INFINITY ? '-0' : result;
   }
   function toString(value) {
-    return value == null ? "" : baseToString(value);
+    return value == null ? '' : baseToString(value);
   }
   function isString(value) {
-    return typeof value === "string";
+    return typeof value === 'string';
   }
   function isNumber(value) {
-    return typeof value === "number";
+    return typeof value === 'number';
   }
 
   // Adapted from: https://github.com/lodash/lodash/blob/master/isBoolean.js
@@ -269,11 +269,11 @@
     return (
       value === true ||
       value === false ||
-      (isObjectLike(value) && getTag(value) == "[object Boolean]")
+      (isObjectLike(value) && getTag(value) == '[object Boolean]')
     );
   }
   function isObject(value) {
-    return _typeof(value) === "object";
+    return _typeof(value) === 'object';
   }
 
   // Checks if `value` is object-like.
@@ -292,22 +292,22 @@
   function getTag(value) {
     return value == null
       ? value === undefined
-        ? "[object Undefined]"
-        : "[object Null]"
+        ? '[object Undefined]'
+        : '[object Null]'
       : Object.prototype.toString.call(value);
   }
 
-  var EXTENDED_SEARCH_UNAVAILABLE = "Extended search is not available";
+  var EXTENDED_SEARCH_UNAVAILABLE = 'Extended search is not available';
   var INCORRECT_INDEX_TYPE = "Incorrect 'index' type";
   var LOGICAL_SEARCH_INVALID_QUERY_FOR_KEY =
     function LOGICAL_SEARCH_INVALID_QUERY_FOR_KEY(key) {
-      return "Invalid value for key ".concat(key);
+      return 'Invalid value for key '.concat(key);
     };
   var PATTERN_LENGTH_TOO_LARGE = function PATTERN_LENGTH_TOO_LARGE(max) {
-    return "Pattern length exceeds max of ".concat(max, ".");
+    return 'Pattern length exceeds max of '.concat(max, '.');
   };
   var MISSING_KEY_PROPERTY = function MISSING_KEY_PROPERTY(name) {
-    return "Missing ".concat(name, " property in key");
+    return 'Missing '.concat(name, ' property in key');
   };
   var INVALID_KEY_WEIGHT_VALUE = function INVALID_KEY_WEIGHT_VALUE(key) {
     return "Property 'weight' in key '".concat(
@@ -338,19 +338,19 @@
     }
     _createClass(KeyStore, [
       {
-        key: "get",
+        key: 'get',
         value: function get(keyId) {
           return this._keyMap[keyId];
         },
       },
       {
-        key: "keys",
+        key: 'keys',
         value: function keys() {
           return this._keys;
         },
       },
       {
-        key: "toJSON",
+        key: 'toJSON',
         value: function toJSON() {
           return JSON.stringify(this._keys);
         },
@@ -369,12 +369,12 @@
       path = createKeyPath(key);
       id = createKeyId(key);
     } else {
-      if (!hasOwn.call(key, "name")) {
-        throw new Error(MISSING_KEY_PROPERTY("name"));
+      if (!hasOwn.call(key, 'name')) {
+        throw new Error(MISSING_KEY_PROPERTY('name'));
       }
       var name = key.name;
       src = name;
-      if (hasOwn.call(key, "weight")) {
+      if (hasOwn.call(key, 'weight')) {
         weight = key.weight;
         if (weight <= 0) {
           throw new Error(INVALID_KEY_WEIGHT_VALUE(name));
@@ -393,10 +393,10 @@
     };
   }
   function createKeyPath(key) {
-    return isArray(key) ? key : key.split(".");
+    return isArray(key) ? key : key.split('.');
   }
   function createKeyId(key) {
-    return isArray(key) ? key.join(".") : key;
+    return isArray(key) ? key.join('.') : key;
   }
 
   function get(obj, path) {
@@ -437,7 +437,7 @@
     };
 
     // Backwards compatibility (since path used to be a string)
-    deepGet(obj, isString(path) ? path.split(".") : path, 0);
+    deepGet(obj, isString(path) ? path.split('.') : path, 0);
     return arr ? list : list[0];
   }
 
@@ -566,7 +566,7 @@
     }
     _createClass(FuseIndex, [
       {
-        key: "setSources",
+        key: 'setSources',
         value: function setSources() {
           var docs =
             arguments.length > 0 && arguments[0] !== undefined
@@ -576,7 +576,7 @@
         },
       },
       {
-        key: "setIndexRecords",
+        key: 'setIndexRecords',
         value: function setIndexRecords() {
           var records =
             arguments.length > 0 && arguments[0] !== undefined
@@ -586,7 +586,7 @@
         },
       },
       {
-        key: "setKeys",
+        key: 'setKeys',
         value: function setKeys() {
           var _this = this;
           var keys =
@@ -601,7 +601,7 @@
         },
       },
       {
-        key: "create",
+        key: 'create',
         value: function create() {
           var _this2 = this;
           if (this.isCreated || !this.docs.length) {
@@ -625,7 +625,7 @@
         // Adds a doc to the end of the index
       },
       {
-        key: "add",
+        key: 'add',
         value: function add(doc) {
           var idx = this.size();
           if (isString(doc)) {
@@ -637,7 +637,7 @@
         // Removes the doc at the specified index of the index
       },
       {
-        key: "removeAt",
+        key: 'removeAt',
         value: function removeAt(idx) {
           this.records.splice(idx, 1);
 
@@ -648,19 +648,19 @@
         },
       },
       {
-        key: "getValueForItemAtKeyId",
+        key: 'getValueForItemAtKeyId',
         value: function getValueForItemAtKeyId(item, keyId) {
           return item[this._keysMap[keyId]];
         },
       },
       {
-        key: "size",
+        key: 'size',
         value: function size() {
           return this.records.length;
         },
       },
       {
-        key: "_addString",
+        key: '_addString',
         value: function _addString(doc, docIndex) {
           if (!isDefined(doc) || isBlank(doc)) {
             return;
@@ -674,7 +674,7 @@
         },
       },
       {
-        key: "_addObject",
+        key: '_addObject',
         value: function _addObject(doc, docIndex) {
           var _this3 = this;
           var record = {
@@ -734,7 +734,7 @@
         },
       },
       {
-        key: "toJSON",
+        key: 'toJSON',
         value: function toJSON() {
           return {
             keys: this.keys,
@@ -1039,10 +1039,10 @@
   var stripDiacritics = String.prototype.normalize
     ? function (str) {
         return str
-          .normalize("NFD")
+          .normalize('NFD')
           .replace(
             /[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u07FD\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08D3-\u08E1\u08E3-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u09FE\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0AFA-\u0AFF\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C04\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D00-\u0D03\u0D3B\u0D3C\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u1885\u1886\u18A9\u1920-\u192B\u1930-\u193B\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF7-\u1CF9\u1DC0-\u1DF9\u1DFB-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69E\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C5\uA8E0-\uA8F1\uA8FF\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2F]/g,
-            "",
+            '',
           );
       }
     : function (str) {
@@ -1138,7 +1138,7 @@
     }
     _createClass(BitmapSearch, [
       {
-        key: "searchIn",
+        key: 'searchIn',
         value: function searchIn(text) {
           var _this$options = this.options,
             isCaseSensitive = _this$options.isCaseSensitive,
@@ -1220,19 +1220,19 @@
       BaseMatch,
       [
         {
-          key: "search",
+          key: 'search',
           value: function search(/*text*/) {},
         },
       ],
       [
         {
-          key: "isMultiMatch",
+          key: 'isMultiMatch',
           value: function isMultiMatch(pattern) {
             return getMatch(pattern, this.multiRegex);
           },
         },
         {
-          key: "isSingleMatch",
+          key: 'isSingleMatch',
           value: function isSingleMatch(pattern) {
             return getMatch(pattern, this.singleRegex);
           },
@@ -1257,7 +1257,7 @@
       ExactMatch,
       [
         {
-          key: "search",
+          key: 'search',
           value: function search(text) {
             var isMatch = text === this.pattern;
             return {
@@ -1270,19 +1270,19 @@
       ],
       [
         {
-          key: "type",
+          key: 'type',
           get: function get() {
-            return "exact";
+            return 'exact';
           },
         },
         {
-          key: "multiRegex",
+          key: 'multiRegex',
           get: function get() {
             return /^="(.*)"$/;
           },
         },
         {
-          key: "singleRegex",
+          key: 'singleRegex',
           get: function get() {
             return /^=(.*)$/;
           },
@@ -1303,7 +1303,7 @@
       InverseExactMatch,
       [
         {
-          key: "search",
+          key: 'search',
           value: function search(text) {
             var index = text.indexOf(this.pattern);
             var isMatch = index === -1;
@@ -1317,19 +1317,19 @@
       ],
       [
         {
-          key: "type",
+          key: 'type',
           get: function get() {
-            return "inverse-exact";
+            return 'inverse-exact';
           },
         },
         {
-          key: "multiRegex",
+          key: 'multiRegex',
           get: function get() {
             return /^!"(.*)"$/;
           },
         },
         {
-          key: "singleRegex",
+          key: 'singleRegex',
           get: function get() {
             return /^!(.*)$/;
           },
@@ -1350,7 +1350,7 @@
       PrefixExactMatch,
       [
         {
-          key: "search",
+          key: 'search',
           value: function search(text) {
             var isMatch = text.startsWith(this.pattern);
             return {
@@ -1363,19 +1363,19 @@
       ],
       [
         {
-          key: "type",
+          key: 'type',
           get: function get() {
-            return "prefix-exact";
+            return 'prefix-exact';
           },
         },
         {
-          key: "multiRegex",
+          key: 'multiRegex',
           get: function get() {
             return /^\^"(.*)"$/;
           },
         },
         {
-          key: "singleRegex",
+          key: 'singleRegex',
           get: function get() {
             return /^\^(.*)$/;
           },
@@ -1396,7 +1396,7 @@
       InversePrefixExactMatch,
       [
         {
-          key: "search",
+          key: 'search',
           value: function search(text) {
             var isMatch = !text.startsWith(this.pattern);
             return {
@@ -1409,19 +1409,19 @@
       ],
       [
         {
-          key: "type",
+          key: 'type',
           get: function get() {
-            return "inverse-prefix-exact";
+            return 'inverse-prefix-exact';
           },
         },
         {
-          key: "multiRegex",
+          key: 'multiRegex',
           get: function get() {
             return /^!\^"(.*)"$/;
           },
         },
         {
-          key: "singleRegex",
+          key: 'singleRegex',
           get: function get() {
             return /^!\^(.*)$/;
           },
@@ -1442,7 +1442,7 @@
       SuffixExactMatch,
       [
         {
-          key: "search",
+          key: 'search',
           value: function search(text) {
             var isMatch = text.endsWith(this.pattern);
             return {
@@ -1455,19 +1455,19 @@
       ],
       [
         {
-          key: "type",
+          key: 'type',
           get: function get() {
-            return "suffix-exact";
+            return 'suffix-exact';
           },
         },
         {
-          key: "multiRegex",
+          key: 'multiRegex',
           get: function get() {
             return /^"(.*)"\$$/;
           },
         },
         {
-          key: "singleRegex",
+          key: 'singleRegex',
           get: function get() {
             return /^(.*)\$$/;
           },
@@ -1488,7 +1488,7 @@
       InverseSuffixExactMatch,
       [
         {
-          key: "search",
+          key: 'search',
           value: function search(text) {
             var isMatch = !text.endsWith(this.pattern);
             return {
@@ -1501,19 +1501,19 @@
       ],
       [
         {
-          key: "type",
+          key: 'type',
           get: function get() {
-            return "inverse-suffix-exact";
+            return 'inverse-suffix-exact';
           },
         },
         {
-          key: "multiRegex",
+          key: 'multiRegex',
           get: function get() {
             return /^!"(.*)"\$$/;
           },
         },
         {
-          key: "singleRegex",
+          key: 'singleRegex',
           get: function get() {
             return /^!(.*)\$$/;
           },
@@ -1588,7 +1588,7 @@
       FuzzyMatch,
       [
         {
-          key: "search",
+          key: 'search',
           value: function search(text) {
             return this._bitmapSearch.searchIn(text);
           },
@@ -1596,19 +1596,19 @@
       ],
       [
         {
-          key: "type",
+          key: 'type',
           get: function get() {
-            return "fuzzy";
+            return 'fuzzy';
           },
         },
         {
-          key: "multiRegex",
+          key: 'multiRegex',
           get: function get() {
             return /^"(.*)"$/;
           },
         },
         {
-          key: "singleRegex",
+          key: 'singleRegex',
           get: function get() {
             return /^(.*)$/;
           },
@@ -1629,7 +1629,7 @@
       IncludeMatch,
       [
         {
-          key: "search",
+          key: 'search',
           value: function search(text) {
             var location = 0;
             var index;
@@ -1652,19 +1652,19 @@
       ],
       [
         {
-          key: "type",
+          key: 'type',
           get: function get() {
-            return "include";
+            return 'include';
           },
         },
         {
-          key: "multiRegex",
+          key: 'multiRegex',
           get: function get() {
             return /^'"(.*)"$/;
           },
         },
         {
-          key: "singleRegex",
+          key: 'singleRegex',
           get: function get() {
             return /^'(.*)$/;
           },
@@ -1689,7 +1689,7 @@
 
   // Regex to split by spaces, but keep anything in quotes together
   var SPACE_RE = / +(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/;
-  var OR_TOKEN = "|";
+  var OR_TOKEN = '|';
 
   // Return a 2D array representation of the query, for simpler parsing.
   // Example:
@@ -1835,7 +1835,7 @@
       ExtendedSearch,
       [
         {
-          key: "searchIn",
+          key: 'searchIn',
           value: function searchIn(text) {
             var query = this.query;
             if (!query) {
@@ -1914,7 +1914,7 @@
       ],
       [
         {
-          key: "condition",
+          key: 'condition',
           value: function condition(_, options) {
             return options.useExtendedSearch;
           },
@@ -1939,12 +1939,12 @@
   }
 
   var LogicalOperator = {
-    AND: "$and",
-    OR: "$or",
+    AND: '$and',
+    OR: '$or',
   };
   var KeyType = {
-    PATH: "$path",
-    PATTERN: "$val",
+    PATH: '$path',
+    PATTERN: '$val',
   };
   var isExpression = function isExpression(query) {
     return !!(query[LogicalOperator.AND] || query[LogicalOperator.OR]);
@@ -2110,7 +2110,7 @@
     }
     _createClass(Fuse, [
       {
-        key: "setCollection",
+        key: 'setCollection',
         value: function setCollection(docs, index) {
           this._docs = docs;
           if (index && !(index instanceof FuseIndex)) {
@@ -2125,7 +2125,7 @@
         },
       },
       {
-        key: "add",
+        key: 'add',
         value: function add(doc) {
           if (!isDefined(doc)) {
             return;
@@ -2135,7 +2135,7 @@
         },
       },
       {
-        key: "remove",
+        key: 'remove',
         value: function remove() {
           var predicate =
             arguments.length > 0 && arguments[0] !== undefined
@@ -2157,20 +2157,20 @@
         },
       },
       {
-        key: "removeAt",
+        key: 'removeAt',
         value: function removeAt(idx) {
           this._docs.splice(idx, 1);
           this._myIndex.removeAt(idx);
         },
       },
       {
-        key: "getIndex",
+        key: 'getIndex',
         value: function getIndex() {
           return this._myIndex;
         },
       },
       {
-        key: "search",
+        key: 'search',
         value: function search(query) {
           var _ref =
               arguments.length > 1 && arguments[1] !== undefined
@@ -2205,7 +2205,7 @@
         },
       },
       {
-        key: "_searchStringList",
+        key: '_searchStringList',
         value: function _searchStringList(query) {
           var searcher = createSearcher(query, this.options);
           var records = this._myIndex.records;
@@ -2242,7 +2242,7 @@
         },
       },
       {
-        key: "_searchLogical",
+        key: '_searchLogical',
         value: function _searchLogical(query) {
           var _this = this;
           var expression = parse(query, this.options);
@@ -2311,7 +2311,7 @@
         },
       },
       {
-        key: "_searchObjectList",
+        key: '_searchObjectList',
         value: function _searchObjectList(query) {
           var _this2 = this;
           var searcher = createSearcher(query, this.options);
@@ -2354,7 +2354,7 @@
         },
       },
       {
-        key: "_findMatches",
+        key: '_findMatches',
         value: function _findMatches(_ref6) {
           var key = _ref6.key,
             value = _ref6.value,
@@ -2410,7 +2410,7 @@
     return Fuse;
   })();
 
-  Fuse$1.version = "7.1.0";
+  Fuse$1.version = '7.1.0';
   Fuse$1.createIndex = createIndex;
   Fuse$1.parseIndex = parseIndex;
   Fuse$1.config = Config;

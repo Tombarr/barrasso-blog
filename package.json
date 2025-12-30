@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Barrasso.me Blog",
   "main": "index.js",
+  "prettier": "@hugomods/prettier-config",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,12 +24,14 @@
   },
   "homepage": "https://github.com/Tombarr/barrasso-blog#readme",
   "devDependencies": {
+    "@hugomods/prettier-config": "^0.2.0",
     "@tailwindcss/cli": "^4.1.18",
     "autoprefixer": "^10.4.23",
     "esbuild": "^0.27.2",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
     "prettier": "^3.7.4",
+    "prettier-hugo-plugin": "^0.2.2",
     "tailwindcss": "^4.1.18",
     "wrangler": "^4.56.0"
   }

@@ -1,77 +1,97 @@
 {{ define "content" }}
-<div class="flex flex-col blog-content-width pt-20 md:pt-30 pb-12">
-  {{ $pages := partial "get-posts.html" . }} {{ $groupedPages := slice }} {{
-  $isListType := in (slice "home" "section" "taxonomy" "term") .Kind }} {{
-  $shouldPaginate := and $isListType (.Site.Params.enablePagination | default
-  false) }} {{ $isTaxonomy := false }} {{ if $shouldPaginate }} {{ $paginator :=
-  .Paginate $pages }} {{ $groupedPages = $paginator.Pages.GroupByDate "2006" }}
-  {{ else if .Data.Terms }} {{ $groupedPages = .Data.Terms.Alphabetical }} {{
-  $isTaxonomy = true }} {{ else if eq .Kind "page" }}
-  <!-- For single pages, just render the content without pagination -->
-  <!-- The single.html template should handle these pages normally -->
-  {{ else }} {{ $groupedPages = $pages.GroupByDate "2006" }} {{ end }}
+  <div class="flex flex-col blog-content-width pt-20 md:pt-30 pb-12">
+    {{ $pages := partial "get-posts.html" . }}
+    {{ $groupedPages := slice }}
+    {{ $isListType := in (slice "home" "section" "taxonomy" "term") .Kind }}
+    {{ $shouldPaginate := and $isListType (.Site.Params.enablePagination | default
+      false)
+    }}
+    {{ $isTaxonomy := false }}
+    {{ if $shouldPaginate }}
+      {{ $paginator :=
+        .Paginate $pages
+      }}
+      {{ $groupedPages = $paginator.Pages.GroupByDate "2006" }}
+    {{ else if .Data.Terms }}
+      {{ $groupedPages = .Data.Terms.Alphabetical }}
+      {{ $isTaxonomy = true }}
+    {{ else if eq .Kind "page" }}
+      <!-- For single pages, just render the content without pagination -->
+      <!-- The single.html template should handle these pages normally -->
+    {{ else }}
+      {{ $groupedPages = $pages.GroupByDate "2006" }}
+    {{ end }}
 
-  <!-- custom content included in header page -->
-  {{ if .Content }}
-  <h1 class="text-3xl font-title font-semibold mb-4">{{ .Title }}</h1>
 
-  <article class="post-content my-4">{{ .Content }}</article>
-  {{ end }}
+    <!-- custom content included in header page -->
+    {{ if .Content }}
+      <h1 class="text-3xl font-title font-semibold mb-4">{{ .Title }}</h1>
 
-  <!-- Show tag cloud for main tags taxonomy page -->
-  {{ if and (eq .Kind "taxonomy") (eq .Type "tags") }}
-  <div class="mb-10">
-    {{ partial "tag-cloud.html" (dict "Site" .Site "count" -1 "sort"
-    "alphabetical") }}
+      <article class="post-content my-4">{{ .Content }}</article>
+    {{ end }}
+
+
+    <!-- Show tag cloud for main tags taxonomy page -->
+    {{ if and (eq .Kind "taxonomy") (eq .Type "tags") }}
+      <div class="mb-10">
+        {{ partial "tag-cloud.html" (dict "Site" .Site "count" -1 "sort" "alphabetical") }}
+      </div>
+    {{ end }}
+    {{ if and (ne .Kind "page") (not (and (eq .Type "tags") (eq .Kind "taxonomy"))) }}
+      {{ range $groupedPages }}
+        {{ if $isTaxonomy }}
+          <!-- inside a taxonomy page | no pagination-->
+          {{ $key := .Name }}
+          {{ $groupPages := .Pages }}
+          <h2 class="post-list-key term mt-10 font-bold" id="{{ $key }}">
+            <a class="pill-slate" href="{{ $key }}/">#{{ $key }}</a>
+          </h2>
+          <div class="post-list-content">
+            {{ range $groupPages }}{{ .Render "li" }}{{ end }}
+          </div>
+        {{ else if $shouldPaginate }}
+          <!-- inside a regular list page | pagination -->
+          {{ if ne .Key "0001" }}
+            <!-- if key is 0001 skip h2 -->
+            <h2
+              class="post-list-key year mt-4 text-ht-light font-bold"
+              id="{{ .Key }}">
+              {{ .Key }}
+            </h2>
+          {{ end }}
+
+
+          <div class="post-list-content">
+            {{ range .Pages }}{{ .Render "li" }}{{ end }}
+          </div>
+        {{ else }}
+          <!-- inside a regular list page | no pagination -->
+          {{ $key := .Key }}
+          {{ $groupPages := .Pages }}
+
+
+          <h2
+            class="post-list-key group not-first:mt-10 font-bold text-ht-lighter"
+            id="{{ $key }}">
+            #{{ $key }}
+          </h2>
+          <div class="post-list-content">
+            {{ range $groupPages }}{{ .Render "li" }}{{ end }}
+          </div>
+        {{ end }}
+      {{ end }}
+      <!-- range end $groupedPages -->
+    {{ end }}
+    <!-- if ne .Kind "page" -->
+
+    {{ if and (not (and (eq .Type "tags") (eq .Kind "taxonomy"))) (and (not
+      $isTaxonomy) $shouldPaginate)
+    }}
+      <div class="pagination">{{ template "_internal/pagination.html" . }}</div>
+    {{ end }}
+
+
+    <!-- show RHS navbar content -->
+    {{- partial "nav.html" . -}}
   </div>
-  {{ end }} {{ if and (ne .Kind "page") (not (and (eq .Type "tags") (eq .Kind
-  "taxonomy"))) }} {{ range $groupedPages }} {{ if $isTaxonomy }}
-  <!-- inside a taxonomy page | no pagination-->
-  {{ $key := .Name }} {{ $groupPages := .Pages }}
-  <h2 class="post-list-key term mt-10 font-bold" id="{{ $key }}">
-    <a class="pill-slate" href="{{ $key }}/">#{{ $key }}</a>
-  </h2>
-  <div class="post-list-content">
-    {{ range $groupPages }} {{ .Render "li" }} {{ end }}
-  </div>
-
-  {{ else if $shouldPaginate }}
-  <!-- inside a regular list page | pagination -->
-  {{ if ne .Key "0001" }}
-  <!-- if key is 0001 skip h2 -->
-  <h2 class="post-list-key year mt-4 text-ht-light font-bold" id="{{ .Key }}">
-    {{ .Key }}
-  </h2>
-  {{ end }}
-
-  <div class="post-list-content">
-    {{ range .Pages }} {{ .Render "li" }} {{ end }}
-  </div>
-
-  {{ else }}
-  <!-- inside a regular list page | no pagination -->
-  {{ $key := .Key }} {{ $groupPages := .Pages }}
-
-  <h2
-    class="post-list-key group not-first:mt-10 font-bold text-ht-lighter"
-    id="{{ $key }}"
-  >
-    #{{ $key }}
-  </h2>
-  <div class="post-list-content">
-    {{ range $groupPages }} {{ .Render "li" }} {{ end }}
-  </div>
-  {{ end }} {{ end }}
-  <!-- range end $groupedPages -->
-  {{ end }}
-  <!-- if ne .Kind "page" -->
-
-  {{ if and (not (and (eq .Type "tags") (eq .Kind "taxonomy"))) (and (not
-  $isTaxonomy) $shouldPaginate) }}
-  <div class="pagination">{{ template "_internal/pagination.html" . }}</div>
-  {{ end }}
-
-  <!-- show RHS navbar content -->
-  {{- partial "nav.html" . -}}
-</div>
 {{ end }}

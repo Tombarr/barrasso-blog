@@ -25,7 +25,7 @@ function setupSearch() {
 /* Core search class containing logic for the search engine */
 class FuseSearch {
   isInit = false;
-  index = "/search.json";
+  index = '/search.json';
   fuse = null;
   maxResults = 20;
   fuseConfig = {
@@ -34,7 +34,7 @@ class FuseSearch {
     distance: 100,
     threshold: 0.4,
     minMatchCharLength: 2,
-    keys: ["title", "permalink", "contents"],
+    keys: ['title', 'permalink', 'contents'],
   };
 
   constructor() {}
@@ -52,7 +52,7 @@ class FuseSearch {
       this.fuse = new Fuse(data, this.fuseConfig);
       this.isInit = true;
     } catch (error) {
-      console.warn("hugo-fuse-search: cannot retrieve search index");
+      console.warn('hugo-fuse-search: cannot retrieve search index');
       console.error(error);
     }
   }
@@ -62,7 +62,7 @@ class FuseSearch {
   }
 
   toString() {
-    return "FuseSearch";
+    return 'FuseSearch';
   }
 }
 
@@ -71,10 +71,10 @@ class FuseSearch {
 class Searchbar {
   constructor(fusesearch) {
     this.search = fusesearch;
-    this.element_main = document.getElementById("searchbar");
-    this.element_input = document.getElementById("searchbar-input");
-    this.element_results = document.getElementById("searchbar-results");
-    this.template = document.getElementById("search-result-template");
+    this.element_main = document.getElementById('searchbar');
+    this.element_input = document.getElementById('searchbar-input');
+    this.element_results = document.getElementById('searchbar-results');
+    this.template = document.getElementById('search-result-template');
     this.initPromise = this.search.init();
     this.init();
   }
@@ -82,13 +82,13 @@ class Searchbar {
   createItemElement(item, isFirst, isLast) {
     // Clone the template
     const template = this.template.content.cloneNode(true);
-    const li = template.querySelector("li");
-    const a = template.querySelector("a");
-    const titleSpan = template.querySelector(".title");
+    const li = template.querySelector('li');
+    const a = template.querySelector('a');
+    const titleSpan = template.querySelector('.title');
 
     // Add conditional classes
-    if (isFirst) li.classList.add("pt-4");
-    if (isLast) li.classList.add("pb-4");
+    if (isFirst) li.classList.add('pt-4');
+    if (isLast) li.classList.add('pb-4');
 
     // Set content
     a.href = item.permalink;
@@ -103,25 +103,25 @@ class Searchbar {
     this.selectedIndex = -1;
 
     // Handle keyboard navigation
-    this.element_input.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowDown") {
+    this.element_input.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
         e.preventDefault();
         this.navigateResults(1);
-      } else if (e.key === "ArrowUp") {
+      } else if (e.key === 'ArrowUp') {
         e.preventDefault();
         this.navigateResults(-1);
-      } else if (e.key === "Enter") {
+      } else if (e.key === 'Enter') {
         e.preventDefault();
         this.selectResult();
-      } else if (e.key === "Escape") {
-        this.element_main.classList.add("hidden");
+      } else if (e.key === 'Escape') {
+        this.element_main.classList.add('hidden');
       }
     });
 
     // Renew search whenever the user types
-    this.element_input.addEventListener("keyup", (e) => {
+    this.element_input.addEventListener('keyup', (e) => {
       // Skip navigation keys
-      if (["ArrowDown", "ArrowUp", "Enter", "Escape"].includes(e.key)) {
+      if (['ArrowDown', 'ArrowUp', 'Enter', 'Escape'].includes(e.key)) {
         return;
       }
       this.executeSearch(this.element_input.value);
@@ -132,15 +132,15 @@ class Searchbar {
     if (!this.resultsAvailable) return;
 
     const results = this.element_results.querySelectorAll(
-      ".search-result-item",
+      '.search-result-item',
     );
     if (results.length === 0) return;
 
     // Remove previous selection
     if (this.selectedIndex >= 0 && this.selectedIndex < results.length) {
       results[this.selectedIndex]
-        .querySelector("a")
-        .classList.remove("bg-hbg-dark");
+        .querySelector('a')
+        .classList.remove('bg-hbg-dark');
     }
 
     // Update selected index
@@ -154,19 +154,19 @@ class Searchbar {
     }
 
     // Add selection to new item
-    const selectedLink = results[this.selectedIndex].querySelector("a");
-    selectedLink.classList.add("bg-hbg-dark");
-    selectedLink.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    const selectedLink = results[this.selectedIndex].querySelector('a');
+    selectedLink.classList.add('bg-hbg-dark');
+    selectedLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   }
 
   selectResult() {
     if (!this.resultsAvailable || this.selectedIndex < 0) return;
 
     const results = this.element_results.querySelectorAll(
-      ".search-result-item",
+      '.search-result-item',
     );
     if (this.selectedIndex < results.length) {
-      const link = results[this.selectedIndex].querySelector("a");
+      const link = results[this.selectedIndex].querySelector('a');
       if (link) {
         window.location.href = link.href;
       }
@@ -187,13 +187,13 @@ class Searchbar {
       const results = this.search.fuse.search(term);
 
       // Clear previous results and reset selection
-      this.element_results.innerHTML = "";
+      this.element_results.innerHTML = '';
       this.selectedIndex = -1;
 
       if (results.length === 0) {
         // no results based on what was typed into the input box
         this.resultsAvailable = false;
-        this.element_results.classList.remove("border", "border-ht-lightest");
+        this.element_results.classList.remove('border', 'border-ht-lightest');
       } else {
         // we got results
         const slicedResults = results
@@ -221,10 +221,10 @@ class Searchbar {
 
         this.element_results.appendChild(fragment);
         this.resultsAvailable = true;
-        this.element_results.classList.add("border", "border-ht-lightest");
+        this.element_results.classList.add('border', 'border-ht-lightest');
       }
     } catch (err) {
-      console.warn("hugo-fuse-search: search failed");
+      console.warn('hugo-fuse-search: search failed');
       console.error(err);
     }
   }
@@ -250,7 +250,7 @@ function fetchJSONFile(path) {
         }
       }
     };
-    httpRequest.open("GET", path);
+    httpRequest.open('GET', path);
     httpRequest.send();
   });
 }

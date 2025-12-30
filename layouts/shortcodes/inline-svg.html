@@ -1,31 +1,43 @@
-{{- /* Inline SVG Shortcode Usage: {{< inline-svg "path/to/file.svg" >}} {{<
-inline-svg path="path/to/file.svg" class="my-class" >}} Parameters: - path
-(positional 0 or named): Path to SVG file - class (optional): CSS class name(s)
-to add to the SVG element Searches for SVG in this order: 1. Page resources
-(content directory) 2. Assets directory 3. Static directory */ -}} {{- $path :=
-.Get 0 | default (.Get "path") -}} {{- $class := .Get "class" -}} {{- $svg := ""
--}} {{- $found := false -}} {{- if $path -}} {{- /* Try page resources first
-(files in same directory as content) */ -}} {{- with .Page.Resources.GetMatch
-$path -}} {{- $svg = .Content -}} {{- $found = true -}} {{- end -}} {{- /* Try
-assets directory */ -}} {{- if not $found -}} {{- with resources.Get $path -}}
-{{- $svg = .Content -}} {{- $found = true -}} {{- end -}} {{- end -}} {{- /* Try
-static directory */ -}} {{- if not $found -}} {{- $staticPath := $path -}} {{-
-/* Remove leading slash if present */ -}} {{- $staticPath = strings.TrimPrefix
-"/" $staticPath -}} {{- if fileExists (printf "static/%s" $staticPath) -}} {{-
-$svg = readFile (printf "static/%s" $staticPath) -}} {{- $found = true -}} {{-
-end -}} {{- end -}} {{- if $found -}} {{- /* Add or modify class attribute if
-specified */ -}} {{- if $class -}} {{- /* Check if class attribute already
-exists */ -}} {{- $hasClass := findRE `<svg[^
-  >]*\sclass=` $svg 1 -}} {{- if $hasClass -}} {{- /* Append to existing class
-  */ -}} {{- $svg = replaceRE `(<svg[^
-    >]*\sclass=")([^"]*)(")` (printf `${1}${2} %s${3}` $class) $svg 1 -}} {{-
-    else -}} {{- /* Add class attribute to svg tag */ -}} {{- $svg = replaceRE
-    `(<svg)([^
-      >]*)(>)` (printf `${1} class="%s"${2}${3}` $class) $svg 1 -}} {{- end -}}
-      {{- end -}} {{- $svg | safeHTML -}} {{- else -}} {{- errorf "inline-svg
-      shortcode: SVG file not found: %s (searched in page resources, assets/,
-      and static/)" $path -}} {{- end -}} {{- else -}} {{- errorf "inline-svg
-      shortcode: no path specified" -}} {{- end -}}
-    </svg)([^></svg[^
-  ></svg[^
->
+{{- $path := .Get 0 | default (.Get "path") -}}
+{{- $class := .Get "class" -}}
+{{- $svg := "" -}}
+{{- $found := false -}}
+
+{{- if not $path -}}
+  {{- errorf "inline-svg shortcode: no path specified" -}}
+{{- end -}}
+
+{{- with .Page.Resources.GetMatch $path -}}
+  {{- $svg = .Content -}}
+  {{- $found = true -}}
+{{- end -}}
+
+{{- if not $found -}}
+  {{- with resources.Get $path -}}
+    {{- $svg = .Content -}}
+    {{- $found = true -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not $found -}}
+  {{- $staticPath := strings.TrimPrefix "/" $path -}}
+  {{- if fileExists (printf "static/%s" $staticPath) -}}
+    {{- $svg = readFile (printf "static/%s" $staticPath) -}}
+    {{- $found = true -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not $found -}}
+  {{- errorf "inline-svg shortcode: SVG file not found: %s" $path -}}
+{{- end -}}
+
+{{- if $class -}}
+  {{- $hasClass := findRE `<svg[^>]*\sclass=` $svg 1 -}}
+  {{- if $hasClass -}}
+    {{- $svg = replaceRE `(<svg[^>]*\sclass=")([^"]*)(")` (printf `${1}${2} %s${3}` $class) $svg 1 -}}
+  {{- else -}}
+    {{- $svg = replaceRE `(<svg)([^>]*)(>)` (printf `${1} class="%s"${2}${3}` $class) $svg 1 -}}
+  {{- end -}}
+{{- end -}}
+
+{{ $svg | safeHTML }}

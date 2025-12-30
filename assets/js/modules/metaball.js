@@ -198,28 +198,28 @@ function metaball(
  * Convert metaball data to SVG path string
  */
 function metaballToPath(data) {
-  if (!data) return "";
+  if (!data) return '';
   const { p1, p2, p3, p4, h1, h2, h3, h4, escaped, radius } = data;
 
   return [
-    "M",
-    p1.map(round).join(","),
-    "C",
-    h1.map(round).join(","),
-    h3.map(round).join(","),
-    p3.map(round).join(","),
-    "A",
+    'M',
+    p1.map(round).join(','),
+    'C',
+    h1.map(round).join(','),
+    h3.map(round).join(','),
+    p3.map(round).join(','),
+    'A',
     round(radius),
     round(radius),
     0,
     escaped ? 1 : 0,
     0,
-    p4.map(round).join(","),
-    "C",
-    h4.map(round).join(","),
-    h2.map(round).join(","),
-    p2.map(round).join(","),
-  ].join(" ");
+    p4.map(round).join(','),
+    'C',
+    h4.map(round).join(','),
+    h2.map(round).join(','),
+    p2.map(round).join(','),
+  ].join(' ');
 }
 
 /**
@@ -227,7 +227,7 @@ function metaballToPath(data) {
  * Connects all three circles with smooth metaball transitions
  */
 function generateMetaballPath(circles) {
-  if (circles.length !== 3) return "";
+  if (circles.length !== 3) return '';
 
   const [c1, c2, c3] = circles;
   const center1 = [c1.cx, c1.cy];
@@ -240,7 +240,7 @@ function generateMetaballPath(circles) {
   const m31 = metaball(c3.r, c1.r, center3, center1);
 
   // If all connections exist, create unified shape
-  return [m12, m23, m31].map(metaballToPath).join(" ");
+  return [m12, m23, m31].map(metaballToPath).join(' ');
 }
 
 /**
@@ -275,7 +275,7 @@ function calculateBoundingBox(circles) {
  */
 function createSVGElement(tagName, attributes = {}) {
   const element = document.createElementNS(
-    "http://www.w3.org/2000/svg",
+    'http://www.w3.org/2000/svg',
     tagName,
   );
   Object.entries(attributes).forEach(([key, value]) => {
@@ -288,14 +288,14 @@ function createSVGElement(tagName, attributes = {}) {
  * Initializes metaball SVG on the page
  */
 export function initMetaball() {
-  const container = document.querySelector(".metaball-container");
+  const container = document.querySelector('.metaball-container');
   if (!container) return;
 
-  const svg = container.querySelector("svg");
+  const svg = container.querySelector('svg');
   if (!svg) return;
 
-  const width = parseFloat(svg.getAttribute("width") || 800);
-  const height = parseFloat(svg.getAttribute("height") || 600);
+  const width = parseFloat(svg.getAttribute('width') || 800);
+  const height = parseFloat(svg.getAttribute('height') || 600);
 
   // Generate circle data
   const circles = generateCircleData(width, height);
@@ -312,31 +312,31 @@ export function initMetaball() {
 
   // Update SVG dimensions to fit content
   svg.setAttribute(
-    "viewBox",
+    'viewBox',
     `${viewBoxX} ${viewBoxY} ${viewBoxWidth} ${viewBoxHeight}`,
   );
-  svg.setAttribute("width", width);
-  svg.setAttribute("height", Math.max(height, viewBoxHeight));
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', Math.max(height, viewBoxHeight));
 
   // Clear existing metaball content (but preserve defs from template)
-  const existingGroup = svg.querySelector(".metaball-group");
+  const existingGroup = svg.querySelector('.metaball-group');
   if (existingGroup) {
     existingGroup.remove();
   }
 
   // Create group for metaball shapes
   // Note: auroraGlow is a gradient, not a filter, so we don't apply it as filter
-  const group = createSVGElement("g", {
-    fill: "url(#auroraGradient)",
-    class: "metaball-group",
+  const group = createSVGElement('g', {
+    fill: 'url(#auroraGradient)',
+    class: 'metaball-group',
   });
 
   // Add metaball connector path
   const connectorPath = generateMetaballPath(circles);
   if (connectorPath) {
-    const path = createSVGElement("path", {
+    const path = createSVGElement('path', {
       d: connectorPath,
-      "stroke-linejoin": "round",
+      'stroke-linejoin': 'round',
     });
     group.appendChild(path);
   }
@@ -348,7 +348,7 @@ export function initMetaball() {
   if (window.innerWidth <= 767) {
     const randomRotation = Math.random() * 45;
     const randomScale = 1.25 + Math.random() * 0.75; // Scale between 1 and 1.5
-    svg.style.transformOrigin = "top left";
+    svg.style.transformOrigin = 'top left';
     svg.style.transform = `translate(-50%, -65%) rotate(${randomRotation}deg) scale(${randomScale})`;
   }
 }

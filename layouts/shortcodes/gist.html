@@ -1,107 +1,124 @@
 {{- /*
-GitHub Gist Shortcode
+  GitHub Gist Shortcode
 
-Fetches and renders a GitHub Gist locally with syntax highlighting.
+  Fetches and renders a GitHub Gist locally with syntax highlighting.
 
-Usage:
-  {{< gist username gist-id >}}
-  {{< gist username gist-id filename.js >}}
+  Usage:
+  {{< gist username gist-id
+>}}
+{{< gist username gist-id filename.js >}}
 
-Parameters:
-  - username: GitHub username
-  - gist-id: Gist ID
-  - filename: (optional) Specific file to display from gist
-
-*/ -}}
-
+Parameters: - username: GitHub username - gist-id: Gist ID - filename:
+(optional) Specific file to display from gist */ -}}
 {{- $username := .Get 0 -}}
 {{- $gistId := .Get 1 -}}
 {{- $requestedFilename := .Get 2 -}}
 
 {{- if and $username $gistId -}}
+  {{- /* Fetch gist metadata from GitHub API */ -}}
+  {{- $gistUrl := printf "https://gist.github.com/%s/%s" $username $gistId -}}
+  {{- $gistApiUrl := printf "https://api.github.com/gists/%s" $gistId -}}
+  {{- with resources.GetRemote $gistApiUrl -}}
+    {{- $gistData := .Content | transform.Unmarshal -}}
+    {{- $files := $gistData.files -}}
 
-{{- /* Fetch gist metadata from GitHub API */ -}}
-{{- $gistUrl := printf "https://gist.github.com/%s/%s" $username $gistId -}}
-{{- $gistApiUrl := printf "https://api.github.com/gists/%s" $gistId -}}
-{{- with resources.GetRemote $gistApiUrl -}}
-  {{- $gistData := .Content | transform.Unmarshal -}}
-  {{- $files := $gistData.files -}}
+    {{- /* Select which file to display */ -}}
+    {{- $selectedFile := dict -}}
+    {{- $selectedFilename := "" -}}
 
-  {{- /* Select which file to display */ -}}
-  {{- $selectedFile := dict -}}
-  {{- $selectedFilename := "" -}}
-
-  {{- if $requestedFilename -}}
-    {{- /* Use specified filename */ -}}
-    {{- range $filename, $fileData := $files -}}
-      {{- if eq $filename $requestedFilename -}}
-        {{- $selectedFile = $fileData -}}
-        {{- $selectedFilename = $filename -}}
+    {{- if $requestedFilename -}}
+      {{- /* Use specified filename */ -}}
+      {{- range $filename, $fileData := $files -}}
+        {{- if eq $filename $requestedFilename -}}
+          {{- $selectedFile = $fileData -}}
+          {{- $selectedFilename = $filename -}}
+        {{- end -}}
+      {{- end -}}
+    {{- else -}}
+      {{- /* Use first file */ -}}
+      {{- range $filename, $fileData := $files -}}
+        {{- if not $selectedFilename -}}
+          {{- $selectedFile = $fileData -}}
+          {{- $selectedFilename = $filename -}}
+        {{- end -}}
       {{- end -}}
     {{- end -}}
-  {{- else -}}
-    {{- /* Use first file */ -}}
-    {{- range $filename, $fileData := $files -}}
-      {{- if not $selectedFilename -}}
-        {{- $selectedFile = $fileData -}}
-        {{- $selectedFilename = $filename -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
 
-  {{- if $selectedFilename -}}
-    {{- $language := $selectedFile.language | default "text" | lower -}}
-    {{- $rawUrl := $selectedFile.raw_url -}}
+    {{- if $selectedFilename -}}
+      {{- $language := $selectedFile.language | default "text" | lower -}}
+      {{- $rawUrl := $selectedFile.raw_url -}}
 
-    {{- /* Fetch raw content */ -}}
-    {{- with resources.GetRemote $rawUrl -}}
-      {{- $code := .Content | string -}}
+      {{- /* Fetch raw content */ -}}
+      {{- with resources.GetRemote $rawUrl -}}
+        {{- $code := .Content | string -}}
 
-      {{- /* Apply syntax highlighting */ -}}
-      {{- $highlighted := "" -}}
-      {{- if eq $language "text" -}}
-        {{- /* For plain text, just wrap in pre/code */ -}}
-        {{- $highlighted = printf "<pre class=\"chroma\"><code>%s</code></pre>" (htmlEscape $code) -}}
-      {{- else -}}
-        {{- /* Use Hugo's highlight function */ -}}
-        {{- $highlighted = highlight $code $language -}}
-      {{- end -}}
+        {{- /* Apply syntax highlighting */ -}}
+        {{- $highlighted := "" -}}
+        {{- if eq $language "text" -}}
+          {{- /* For plain text, just wrap in pre/code */ -}}
+          {{- $highlighted = printf "<pre class=\"chroma\"><code>%s</code></pre>" (htmlEscape $code) -}}
+        {{- else -}}
+          {{- /* Use Hugo's highlight function */ -}}
+          {{- $highlighted = highlight $code $language -}}
+        {{- end -}}
 
-      <div class="gist-embed">
-        <div class="gist-header">
-          <a href="{{ $gistUrl }}" target="_blank" rel="noopener noreferrer" class="gist-filename">
-            <svg class="inline-svg" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16">
-              <path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0113.25 16h-9.5A1.75 1.75 0 012 14.25V1.75zm1.75-.25a.25.25 0 00-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 00.25-.25V6h-2.75A1.75 1.75 0 019 4.25V1.5H3.75a.25.25 0 00-.25.25z"></path>
-            </svg>
-            {{ $selectedFilename }}
-          </a>
-        </div>
-        <div class="gist-code-container">
-          <div>
-            {{ $highlighted | safeHTML }}
-          </div>
-        </div>
-        <div class="gist-footer">
-          <div class="gist-footer-left">
-            {{ $selectedFilename }}
-          </div>
-          <div class="gist-footer-right">
-            <a href="{{ $rawUrl }}" target="_blank" rel="noopener noreferrer" class="gist-raw-link">
-            {{ i18n "view_raw" }}
+
+        <div class="gist-embed">
+          <div class="gist-header">
+            <a
+              href="{{ $gistUrl }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="gist-filename">
+              <svg
+                class="inline-svg"
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16">
+                <path
+                  fill="currentColor"
+                  d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0113.25 16h-9.5A1.75 1.75 0 012 14.25V1.75zm1.75-.25a.25.25 0 00-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 00.25-.25V6h-2.75A1.75 1.75 0 019 4.25V1.5H3.75a.25.25 0 00-.25.25z"></path>
+              </svg>
+              {{ $selectedFilename }}
             </a>
           </div>
+          <div class="gist-code-container">
+            <div>
+              {{ $highlighted | safeHTML }}
+            </div>
+          </div>
+          <div class="gist-footer">
+            <div class="gist-footer-left">
+              {{ $selectedFilename }}
+            </div>
+            <div class="gist-footer-right">
+              <a
+                href="{{ $rawUrl }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="gist-raw-link">
+                {{ i18n "view_raw" }}
+              </a>
+            </div>
+          </div>
         </div>
+      {{- end -}}
+    {{- else -}}
+      <div
+        class="gist-error bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+        <strong>Warning:</strong>
+        File "{{ $requestedFilename }}" not found in gist.
       </div>
     {{- end -}}
-  {{- else -}}
-    <div class="gist-error bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
-      <strong>Warning:</strong> File "{{ $requestedFilename }}" not found in gist.
-    </div>
   {{- end -}}
-{{- end -}}
 
 {{- else -}}
-  <div class="gist-error bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-    <strong>Error:</strong> Gist shortcode requires username and gist ID. Usage: {{`{{< gist username gist-id [filename] >}}`}}
+  <div
+    class="gist-error bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+    <strong>Error:</strong>
+    Gist shortcode requires username and gist ID. Usage:
+    {{ `{{< gist username gist-id [filename] >}}`}}
   </div>
 {{- end -}}

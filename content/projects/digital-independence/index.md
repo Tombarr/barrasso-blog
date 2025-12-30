@@ -14,9 +14,9 @@ featured = false
 
 # Images
 featureImage = '/images/features/digital-independence.jpg'
-featureImageCaption = ''  # Optional caption displayed below the feature image
-featureImagePosition = 'none'  # Options: 'top' (before content), 'bottom' (after content), 'none' (not rendered on single page)
-screenshots = []  # Array of image paths (loaded as Hugo resources with width, height, and alt attributes)
+featureImageCaption = ''
+featureImagePosition = 'none'
+screenshots = []
 
 # External links
 projectUrl = 'https://www.facebook.com/DigitalIndependence/'

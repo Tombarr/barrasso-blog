@@ -2,27 +2,23 @@
   Generic sidebar section shortcode for resume pages.
 
   Parameters:
-    - title: Section heading (required)
-    - style: Display style - "list" or "pills" (optional, default: "list")
-    - headingSize: "lg" or "base" (optional, default: "base")
-    - spacing: "compact" or "normal" (optional, default: "normal")
+  - title: Section heading (required)
+  - style: Display style - "list" or "pills" (optional, default: "list")
+  - headingSize: "lg" or "base" (optional, default: "base")
+  - spacing: "compact" or "normal" (optional, default: "normal")
 
   Inner content: One item per line
 
   Usage:
-    {{< sidebar-section title="Skills" style="list" >}}
-    JavaScript
-    TypeScript
-    React
-    {{< /sidebar-section >}}
+  {{< sidebar-section title="Skills" style="list"
+>}}
+JavaScript TypeScript React
+{{< /sidebar-section >}}
 
-    {{< sidebar-section title="Technologies" style="pills" >}}
-    PostgreSQL
-    Docker
-    AWS
-    {{< /sidebar-section >}}
+{{< sidebar-section title="Technologies" style="pills" >}}
+PostgreSQL Docker AWS
+{{< /sidebar-section >}}
 */ -}}
-
 {{- $title := .Get "title" -}}
 {{- $style := .Get "style" | default "list" -}}
 {{- $headingSize := .Get "headingSize" | default "base" -}}
@@ -41,25 +37,31 @@
 
 {{- /* Only render if we have items */ -}}
 {{- if $items -}}
-<section class="sidebar-section {{ if eq $spacing "compact" }}mb-4{{ else }}mb-8{{ end }}">
-  <h2 class="text-{{ $headingSize }} font-semibold mb-2 pb-1 border-b border-slate-300">
-    {{ $title }}
-  </h2>
+  <section
+    class="sidebar-section {{ if eq $spacing "compact" }}
+      mb-4
+    {{ else }}
+      mb-8
+    {{ end }}">
+    <h2
+      class="text-{{ $headingSize }} font-semibold mb-2 pb-1 border-b border-slate-300">
+      {{ $title }}
+    </h2>
 
-  {{- if eq $style "pills" -}}
-    {{- /* Pill/tag display */ -}}
-    <div class="flex flex-wrap gap-2">
-      {{- range $items }}
-      <span class="skill-tag-resume">{{ . }}</span>
-      {{- end }}
-    </div>
-  {{- else -}}
-    {{- /* List display */ -}}
-    <ul class="space-y-0.5 text-xs text-slate-700 list-none">
-      {{- range $items }}
-      <li>{{ . | markdownify }}</li>
-      {{- end }}
-    </ul>
-  {{- end -}}
-</section>
+    {{- if eq $style "pills" -}}
+      {{- /* Pill/tag display */ -}}
+      <div class="flex flex-wrap gap-2">
+        {{- range $items }}
+          <span class="skill-tag-resume">{{ . }}</span>
+        {{- end }}
+      </div>
+    {{- else -}}
+      {{- /* List display */ -}}
+      <ul class="space-y-0.5 text-xs text-slate-700 list-none">
+        {{- range $items }}
+          <li>{{ . | markdownify }}</li>
+        {{- end }}
+      </ul>
+    {{- end -}}
+  </section>
 {{- end -}}

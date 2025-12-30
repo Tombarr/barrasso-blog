@@ -2,23 +2,23 @@
   <div class="logo-scroll-track">
     <!-- First set of logos -->
     <div class="logo-scroll-set">
-      {{ range (readDir "assets/images/logos") }} {{ if strings.HasSuffix .Name
-      ".svg" }}
-      <div class="logo-item">
-        {{ partial "svg.html" (print "logos/" (strings.TrimSuffix ".svg" .Name))
-        }}
-      </div>
-      {{ end }} {{ end }}
+      {{ range (readDir "assets/images/logos") }}
+        {{ if strings.HasSuffix .Name ".svg" }}
+          <div class="logo-item">
+            {{ partial "svg.html" (print "logos/" (strings.TrimSuffix ".svg" .Name)) }}
+          </div>
+        {{ end }}
+      {{ end }}
     </div>
     <!-- Second set of logos (duplicate for seamless loop) -->
     <div class="logo-scroll-set">
-      {{ range (readDir "assets/images/logos") }} {{ if strings.HasSuffix .Name
-      ".svg" }}
-      <div class="logo-item">
-        {{ partial "svg.html" (print "logos/" (strings.TrimSuffix ".svg" .Name))
-        }}
-      </div>
-      {{ end }} {{ end }}
+      {{ range (readDir "assets/images/logos") }}
+        {{ if strings.HasSuffix .Name ".svg" }}
+          <div class="logo-item">
+            {{ partial "svg.html" (print "logos/" (strings.TrimSuffix ".svg" .Name)) }}
+          </div>
+        {{ end }}
+      {{ end }}
     </div>
   </div>
 </div>

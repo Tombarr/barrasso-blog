@@ -1,69 +1,87 @@
-{{- $project := . -}} {{- /* Validate and get feature image resource (trim
-leading slash if present) */ -}} {{- $featureImage := "" -}} {{- if
-.Params.featureImage -}} {{- $cleanFeaturePath := strings.TrimPrefix "/"
-.Params.featureImage -}} {{- $featureImage = resources.Get $cleanFeaturePath -}}
-{{- if not $featureImage -}} {{- errorf "Feature image not found: %s (in %s)"
-.Params.featureImage .File.Path -}} {{- end -}} {{- end -}} {{- /* Validate and
-get icon resource (trim leading slash if present) */ -}} {{- $icon := "" -}} {{-
-if .Params.icon -}} {{- $cleanIconPath := strings.TrimPrefix "/" .Params.icon
--}} {{- $icon = resources.Get $cleanIconPath -}} {{- if not $icon -}} {{- errorf
-"Icon not found: %s (in %s)" .Params.icon .File.Path -}} {{- end -}} {{- end -}}
+{{- $project := . -}}
+{{- /* Validate and get feature image resource (trim leading slash if present) */ -}}
+{{- $featureImage := "" -}}
+{{- if .Params.featureImage -}}
+  {{- $cleanFeaturePath :=
+    strings.TrimPrefix "/" .Params.featureImage
+  -}}
+  {{- $featureImage = resources.Get $cleanFeaturePath -}}
+  {{- if not $featureImage -}}
+    {{- errorf "Feature image not found: %s (in %s)"
+      .Params.featureImage .File.Path
+    -}}
+  {{- end -}}
+{{- end -}}
+{{- /* Validate and get icon resource (trim leading slash if present) */ -}}
+{{- $icon := "" -}}
+{{- if .Params.icon -}}
+  {{- $cleanIconPath
+    := strings.TrimPrefix "/" .Params.icon
+  -}}
+
+  {{- $icon = resources.Get $cleanIconPath -}}
+  {{- if not $icon -}}
+    {{- errorf "Icon not found: %s (in %s)" .Params.icon .File.Path -}}
+  {{- end -}}
+{{- end -}}
+
 
 <article class="project-card">
   <a href="{{ .RelPermalink }}" class="project-card-link" title="{{ .Title }}">
     {{- if $featureImage }}
-    <div class="project-card-image-container">
-      {{- /* Use responsive image partial for feature images */ -}} {{- partial
-      "responsive-image.html" (dict "Page" $project "src"
-      $project.Params.featureImage "alt" $project.Title "class"
-      "project-card-image" "sizes" "(max-width: 768px) 100vw, (max-width:
-      1024px) 50vw, 33vw" "widths" (slice 400 600 800) "loading" "lazy"
-      "quality" 85 ) -}}
-    </div>
+      <div class="project-card-image-container">
+        {{- /* Use responsive image partial for feature images */ -}}
+        {{- partial "responsive-image.html" (dict "Page" $project "src" $project.Params.featureImage "alt" $project.Title "class" "project-card-image" "sizes" "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" "widths" (slice 400 600 800) "loading" "lazy" "quality" 85) -}}
+      </div>
     {{- end }}
+
 
     <div class="project-card-content">
       <div class="project-card-header">
         <div class="project-card-title-wrapper">
           {{- if $icon }}
-          <div class="project-card-icon-wrapper">
-            <img
-              src="{{ $icon.RelPermalink }}"
-              alt="{{ .Title }}"
-              width="{{ $icon.Width }}"
-              height="{{ $icon.Height }}"
-              loading="lazy"
-              draggable="false"
-              class="project-card-icon"
-            />
-          </div>
+            <div class="project-card-icon-wrapper">
+              <img
+                src="{{ $icon.RelPermalink }}"
+                alt="{{ .Title }}"
+                width="{{ $icon.Width }}"
+                height="{{ $icon.Height }}"
+                loading="lazy"
+                draggable="false"
+                class="project-card-icon" />
+            </div>
           {{- end }}
           <h3 class="project-card-title">{{ .Title }}</h3>
         </div>
       </div>
 
       {{- if or .Params.dateRange .Params.company }}
-      <div class="project-card-meta">
-        {{- if .Params.dateRange -}}
-        <span>{{ .Params.dateRange }}</span>
-        {{- end -}} {{- if and .Params.dateRange .Params.company -}}
-        <span class="project-card-meta-separator">•</span>
-        {{- end -}} {{- if .Params.company -}}
-        <span class="project-card-meta-company">{{ .Params.company }}</span>
-        {{- end -}}
-      </div>
-      {{- end }} {{- if .Params.summary }}
-      <p class="project-card-summary">{{ .Params.summary }}</p>
-      {{- end }} {{- if .Params.technologies }}
-      <div class="project-card-tech-wrapper">
-        {{- range first 2 .Params.technologies }}
-        <span class="project-card-tech-tag"> {{ . }} </span>
-        {{- end }} {{- if gt (len .Params.technologies) 2 }}
-        <span class="project-card-tech-tag">
-          +{{ sub (len .Params.technologies) 2 }}
-        </span>
-        {{- end }}
-      </div>
+        <div class="project-card-meta">
+          {{- if .Params.dateRange -}}
+            <span>{{ .Params.dateRange }}</span>
+          {{- end -}}
+          {{- if and .Params.dateRange .Params.company -}}
+            <span class="project-card-meta-separator">•</span>
+          {{- end -}}
+          {{- if .Params.company -}}
+            <span class="project-card-meta-company">{{ .Params.company }}</span>
+          {{- end -}}
+        </div>
+      {{- end }}
+      {{- if .Params.summary }}
+        <p class="project-card-summary">{{ .Params.summary }}</p>
+      {{- end }}
+      {{- if .Params.technologies }}
+        <div class="project-card-tech-wrapper">
+          {{- range first 2 .Params.technologies }}
+            <span class="project-card-tech-tag">{{ . }}</span>
+          {{- end }}
+          {{- if gt (len .Params.technologies) 2 }}
+            <span class="project-card-tech-tag"
+              >+{{ sub (len .Params.technologies) 2 }}</span
+            >
+          {{- end }}
+        </div>
       {{- end }}
     </div>
   </a>

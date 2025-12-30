@@ -1,10 +1,10 @@
-import { shuffle } from "./shuffle";
+import { shuffle } from './shuffle';
 
 const hasReplaceChildren =
-  typeof Element.prototype.replaceChildren === "function";
+  typeof Element.prototype.replaceChildren === 'function';
 
 function getSkills() {
-  return Array.from(document.querySelectorAll(".skill-tag"));
+  return Array.from(document.querySelectorAll('.skill-tag'));
 }
 
 function makeLast(allSkills, lastSkillClass) {
@@ -25,6 +25,6 @@ export function initShuffleSkills() {
   const skills = getSkills();
   if (skills.length === 0) return;
 
-  const shuffledSkills = makeLast(shuffle(skills), "ellipsis");
+  const shuffledSkills = makeLast(shuffle(skills), 'ellipsis');
   skills[0].parentNode.replaceChildren(...shuffledSkills);
 }

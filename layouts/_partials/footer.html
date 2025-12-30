@@ -2,7 +2,12 @@
 <footer class="footer-wrapper pt-6" id="footer">
   <section class="tree-divider-container mt-4">
     <div id="bigfoot"></div>
-    <canvas class="tree-divider" width="1200" height="240" style="overflow: hidden;" title="A random forest"></canvas>
+    <canvas
+      class="tree-divider"
+      width="1200"
+      height="240"
+      style="overflow: hidden;"
+      title="A random forest"></canvas>
   </section>
 
   <!-- Footer content section with three columns -->
@@ -11,15 +16,17 @@
       <!-- Column 1: About -->
       <div class="footer-column">
         <h3 class="footer-column-title">{{ i18n "footer.about.title" }}</h3>
-        <p class="footer-column-text" id="footer-tagline">{{ .Site.Params.summary }}</p>
+        <p class="footer-column-text" id="footer-tagline">
+          {{ .Site.Params.summary }}
+        </p>
         <script type="text/javascript">
-          (function() {
+          (function () {
             const taglines = [
-              "People, Process, Programming",
-              "Code, Culture, Creativity",
-              "Hacking, Writing, Learning",
-              "Code with Purpose<br />Design with Intention",
-              "Equal Parts Art & Science"
+              'People, Process, Programming',
+              'Code, Culture, Creativity',
+              'Hacking, Writing, Learning',
+              'Code with Purpose<br />Design with Intention',
+              'Equal Parts Art & Science',
             ];
             const taglineEl = document.getElementById('footer-tagline');
             if (taglineEl) {
@@ -34,14 +41,25 @@
           })();
         </script>
         {{- if ne .Type "resume" -}}
-        <p class="footer-column-text mt-2">
-          <a href="{{ relref . "/resume/tom" }}" class="footer-link inline-flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            {{ i18n "resume" }}
-          </a>
-        </p>
+          <p class="footer-column-text mt-2">
+            <a
+              href="{{ relref . "/resume/tom" }}"
+              class="footer-link inline-flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              {{ i18n "resume" }}
+            </a>
+          </p>
         {{- end -}}
       </div>
 
@@ -49,12 +67,15 @@
       <div class="footer-column">
         <h3 class="footer-column-title">{{ i18n "footer.contact.title" }}</h3>
         {{- with .Site.Params.author.email -}}
-        <a href="mailto:{{ . }}" role="button" class="footer-email-button inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full border text-white border-white bg-transparent hover:bg-white hover:text-black transition-colors duration-200 no-underline hover:no-underline">
-          {{- with resources.Get "images/email-icon.svg" -}}
-            {{ .Content | safeHTML }}
-          {{- end -}}
-          <span>{{ i18n "footer.contact.email" }}</span>
-        </a>
+          <a
+            href="mailto:{{ . }}"
+            role="button"
+            class="footer-email-button inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full border text-white border-white bg-transparent hover:bg-white hover:text-black transition-colors duration-200 no-underline hover:no-underline">
+            {{- with resources.Get "images/email-icon.svg" -}}
+              {{ .Content | safeHTML }}
+            {{- end -}}
+            <span>{{ i18n "footer.contact.email" }}</span>
+          </a>
         {{- end -}}
       </div>
 
@@ -63,16 +84,40 @@
         <h3 class="footer-column-title">{{ i18n "footer.social.title" }}</h3>
         <p class="footer-column-text footer-social-links">
           {{- with .Site.Params.github -}}
-          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="footer-link">{{ i18n "footer.social.github" }}</a>
+            <a
+              href="{{ . }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-link"
+              >{{ i18n "footer.social.github" }}</a
+            >
           {{- end -}}
           {{- with .Site.Params.medium -}}
-          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="footer-link">{{ i18n "footer.social.medium" }}</a>
+            <a
+              href="{{ . }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-link"
+              >{{ i18n "footer.social.medium" }}</a
+            >
           {{- end -}}
           {{- with .Site.Params.stackoverflow -}}
-          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="footer-link">{{ i18n "footer.social.stackoverflow" }}</a>
+            <a
+              href="{{ . }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-link"
+              >{{ i18n "footer.social.stackoverflow" }}</a
+            >
           {{- end -}}
           {{- with .Site.Params.linkedin -}}
-          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="footer-link">{{ i18n "footer.social.linkedin" }}</a>
+            <a
+              href="{{ . }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-link"
+              >{{ i18n "footer.social.linkedin" }}</a
+            >
           {{- end -}}
         </p>
       </div>
@@ -83,17 +128,20 @@
   <div class="footer-copyright">
     <div class="blog-content-width">
       {{- with .Site.Params.copyright -}}
-      <p class="mb-2">
-        {{ i18n "footer.copyright.text" (dict "Year" .year "Holder" .holder) }}
-      </p>
-      <p class="mb-2">
-        {{- $contentLicenseLink := printf "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer-copyright-link\">%s</a>" .contentLicense.url .contentLicense.name -}}
-        {{- $codeLicenseLink := printf "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer-copyright-link\">%s</a>" .codeLicense.url .codeLicense.name -}}
-        {{ i18n "footer.copyright.license" (dict "ContentLicense" $contentLicenseLink "CodeLicense" $codeLicenseLink) | safeHTML }}
-      </p>
-      <p>
-        {{ i18n "footer.copyright.last_updated" }} <time datetime="{{ now.Format "2006-01-02" }}">{{ now.Format "2006-01-02" }}</time>
-      </p>
+        <p class="mb-2">
+          {{ i18n "footer.copyright.text" (dict "Year" .year "Holder" .holder) }}
+        </p>
+        <p class="mb-2">
+          {{- $contentLicenseLink := printf "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer-copyright-link\">%s</a>" .contentLicense.url .contentLicense.name -}}
+          {{- $codeLicenseLink := printf "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"footer-copyright-link\">%s</a>" .codeLicense.url .codeLicense.name -}}
+          {{ i18n "footer.copyright.license" (dict "ContentLicense" $contentLicenseLink "CodeLicense" $codeLicenseLink) | safeHTML }}
+        </p>
+        <p>
+          {{ i18n "footer.copyright.last_updated" }}
+          <time datetime="{{ now.Format "2006-01-02" }}"
+            >{{ now.Format "2006-01-02" }}</time
+          >
+        </p>
       {{- end -}}
     </div>
   </div>

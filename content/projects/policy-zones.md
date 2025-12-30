@@ -5,19 +5,16 @@ date = 2024-09-01
 draft = false
 type = 'projects'
 
-# Project metadata
 summary = 'As a Meta TPM I led development and adoption of Privacy Aware Infrastructure'
 icon = '/images/icons/policy-zones.png'
 technologies = ['PHP', 'React', 'GraphQL', 'JavaScript', 'Thrift', 'Jest']
 dateRange = '2022 - 2024'
 featured = true
 
-# Images
 featureImage = '/images/features/policy-zones-promo.png'
 featureImagePosition = 'none'
 screenshots = []
 
-# External links
 projectUrl = 'https://engineering.fb.com/2025/07/23/security/policy-zones-meta-purpose-limitation-batch-processing-systems/'
 githubUrl = ''
 +++

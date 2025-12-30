@@ -1,73 +1,73 @@
 // Paper size toggle functionality for resume pages
 // Manages Letter vs A4 paper size selection and persists preference to localStorage
 
-const STORAGE_KEY = "resume-paper-size";
-const SIZE_LETTER = "letter";
-const SIZE_A4 = "a4";
+const STORAGE_KEY = 'resume-paper-size';
+const SIZE_LETTER = 'letter';
+const SIZE_A4 = 'a4';
 
 // US and Canadian timezones (use Letter paper)
 const LETTER_TIMEZONES = [
   // United States
-  "America/New_York",
-  "America/Chicago",
-  "America/Denver",
-  "America/Los_Angeles",
-  "America/Phoenix",
-  "America/Anchorage",
-  "America/Honolulu",
-  "America/Detroit",
-  "America/Indianapolis",
-  "America/Kentucky/Louisville",
-  "America/Kentucky/Monticello",
-  "America/Indiana/Indianapolis",
-  "America/Indiana/Knox",
-  "America/Indiana/Marengo",
-  "America/Indiana/Petersburg",
-  "America/Indiana/Tell_City",
-  "America/Indiana/Vevay",
-  "America/Indiana/Vincennes",
-  "America/Indiana/Winamac",
-  "America/Juneau",
-  "America/Nome",
-  "America/Yakutat",
-  "America/Sitka",
-  "America/Metlakatla",
-  "America/Boise",
-  "America/Shiprock",
-  "America/North_Dakota/Center",
-  "America/North_Dakota/New_Salem",
-  "America/North_Dakota/Beulah",
-  "America/Menominee",
-  "America/St_Thomas",
+  'America/New_York',
+  'America/Chicago',
+  'America/Denver',
+  'America/Los_Angeles',
+  'America/Phoenix',
+  'America/Anchorage',
+  'America/Honolulu',
+  'America/Detroit',
+  'America/Indianapolis',
+  'America/Kentucky/Louisville',
+  'America/Kentucky/Monticello',
+  'America/Indiana/Indianapolis',
+  'America/Indiana/Knox',
+  'America/Indiana/Marengo',
+  'America/Indiana/Petersburg',
+  'America/Indiana/Tell_City',
+  'America/Indiana/Vevay',
+  'America/Indiana/Vincennes',
+  'America/Indiana/Winamac',
+  'America/Juneau',
+  'America/Nome',
+  'America/Yakutat',
+  'America/Sitka',
+  'America/Metlakatla',
+  'America/Boise',
+  'America/Shiprock',
+  'America/North_Dakota/Center',
+  'America/North_Dakota/New_Salem',
+  'America/North_Dakota/Beulah',
+  'America/Menominee',
+  'America/St_Thomas',
   // Canada
-  "America/Toronto",
-  "America/Montreal",
-  "America/Vancouver",
-  "America/Edmonton",
-  "America/Winnipeg",
-  "America/Halifax",
-  "America/St_Johns",
-  "America/Regina",
-  "America/Iqaluit",
-  "America/Pangnirtung",
-  "America/Resolute",
-  "America/Rankin_Inlet",
-  "America/Cambridge_Bay",
-  "America/Yellowknife",
-  "America/Inuvik",
-  "America/Whitehorse",
-  "America/Dawson",
-  "America/Creston",
-  "America/Fort_Nelson",
-  "America/Glace_Bay",
-  "America/Goose_Bay",
-  "America/Moncton",
-  "America/Blanc-Sablon",
-  "America/Atikokan",
-  "America/Thunder_Bay",
-  "America/Nipigon",
-  "America/Rainy_River",
-  "America/Swift_Current",
+  'America/Toronto',
+  'America/Montreal',
+  'America/Vancouver',
+  'America/Edmonton',
+  'America/Winnipeg',
+  'America/Halifax',
+  'America/St_Johns',
+  'America/Regina',
+  'America/Iqaluit',
+  'America/Pangnirtung',
+  'America/Resolute',
+  'America/Rankin_Inlet',
+  'America/Cambridge_Bay',
+  'America/Yellowknife',
+  'America/Inuvik',
+  'America/Whitehorse',
+  'America/Dawson',
+  'America/Creston',
+  'America/Fort_Nelson',
+  'America/Glace_Bay',
+  'America/Goose_Bay',
+  'America/Moncton',
+  'America/Blanc-Sablon',
+  'America/Atikokan',
+  'America/Thunder_Bay',
+  'America/Nipigon',
+  'America/Rainy_River',
+  'America/Swift_Current',
 ];
 
 /**
@@ -80,7 +80,7 @@ function detectDefaultPaperSize() {
     return LETTER_TIMEZONES.includes(timezone) ? SIZE_LETTER : SIZE_A4;
   } catch (e) {
     // Fallback to Letter if detection fails
-    console.warn("Could not detect timezone, defaulting to Letter size");
+    console.warn('Could not detect timezone, defaulting to Letter size');
     return SIZE_LETTER;
   }
 }
@@ -104,25 +104,25 @@ function getPaperSizePreference() {
  * Update PDF download link based on paper size
  */
 function updatePdfDownloadLink(size) {
-  const downloadButton = document.querySelector(".pdf-download-button");
+  const downloadButton = document.querySelector('.pdf-download-button');
 
   if (!downloadButton) return;
 
-  const pdfLetter = downloadButton.getAttribute("data-pdf-letter");
-  const pdfA4 = downloadButton.getAttribute("data-pdf-a4");
-  const filenameBase = downloadButton.getAttribute("data-filename-base");
-  const filenameYear = downloadButton.getAttribute("data-filename-year");
+  const pdfLetter = downloadButton.getAttribute('data-pdf-letter');
+  const pdfA4 = downloadButton.getAttribute('data-pdf-a4');
+  const filenameBase = downloadButton.getAttribute('data-filename-base');
+  const filenameYear = downloadButton.getAttribute('data-filename-year');
 
   if (size === SIZE_A4) {
     downloadButton.href = pdfA4;
     downloadButton.setAttribute(
-      "download",
+      'download',
       `${filenameBase}-a4-${filenameYear}.pdf`,
     );
   } else {
     downloadButton.href = pdfLetter;
     downloadButton.setAttribute(
-      "download",
+      'download',
       `${filenameBase}-letter-${filenameYear}.pdf`,
     );
   }
@@ -132,11 +132,11 @@ function updatePdfDownloadLink(size) {
  * Apply paper size to the resume container
  */
 function applyPaperSize(size) {
-  const container = document.querySelector(".resume-container");
-  const select = document.getElementById("paper-size-select");
+  const container = document.querySelector('.resume-container');
+  const select = document.getElementById('paper-size-select');
 
   if (container) {
-    container.setAttribute("data-paper-size", size);
+    container.setAttribute('data-paper-size', size);
   }
 
   if (select) {
@@ -155,7 +155,7 @@ function handlePaperSizeChange(event) {
 
   // Validate size
   if (newSize !== SIZE_LETTER && newSize !== SIZE_A4) {
-    console.warn("Invalid paper size:", newSize);
+    console.warn('Invalid paper size:', newSize);
     return;
   }
 
@@ -167,7 +167,7 @@ function handlePaperSizeChange(event) {
 
   // Dispatch custom event for paper size changes
   document.dispatchEvent(
-    new CustomEvent("paperSizeChanged", {
+    new CustomEvent('paperSizeChanged', {
       detail: { size: newSize },
     }),
   );
@@ -187,15 +187,15 @@ function doPrint(e) {
  * Creates gaps between pages on screen (hidden in print)
  */
 function insertPageSpacers() {
-  const container = document.querySelector(".resume-container");
+  const container = document.querySelector('.resume-container');
   if (!container) return;
 
   // Remove existing spacers
-  const existingSpacers = container.querySelectorAll(".page-spacer");
+  const existingSpacers = container.querySelectorAll('.page-spacer');
   existingSpacers.forEach((spacer) => spacer.remove());
 
   // Get paper size and calculate page height in pixels
-  const paperSize = container.getAttribute("data-paper-size") || SIZE_LETTER;
+  const paperSize = container.getAttribute('data-paper-size') || SIZE_LETTER;
 
   // Convert to pixels (96 DPI standard)
   // Letter: 11 inches = 1056px, A4: 297mm ≈ 1122px
@@ -222,7 +222,7 @@ function insertPageSpacers() {
     // Find the best insertion point near the break position
     const allElements = Array.from(
       container.querySelectorAll(
-        ".resume-header, .resume-content-grid > *, .job-entry, .degree-entry, .project-entry",
+        '.resume-header, .resume-content-grid > *, .job-entry, .degree-entry, .project-entry',
       ),
     );
 
@@ -243,9 +243,9 @@ function insertPageSpacers() {
 
     // Create and insert spacer
     if (insertBeforeElement) {
-      const spacer = document.createElement("div");
-      spacer.className = "page-spacer screen-only";
-      spacer.setAttribute("data-page", page);
+      const spacer = document.createElement('div');
+      spacer.className = 'page-spacer screen-only';
+      spacer.setAttribute('data-page', page);
       insertBeforeElement.parentNode.insertBefore(spacer, insertBeforeElement);
     }
   }
@@ -257,12 +257,12 @@ function insertPageSpacers() {
  */
 export function initPaperSizeToggle() {
   // Only initialize on resume pages
-  const resumeContainer = document.querySelector(".resume-container");
-  const paperSizeSelect = document.getElementById("paper-size-select");
+  const resumeContainer = document.querySelector('.resume-container');
+  const paperSizeSelect = document.getElementById('paper-size-select');
   const printButtons = Array.from(
     document.querySelectorAll('[data-action="print"]'),
   );
-  printButtons.forEach((button) => button.addEventListener("click", doPrint));
+  printButtons.forEach((button) => button.addEventListener('click', doPrint));
 
   if (!resumeContainer || !paperSizeSelect) {
     // Not a resume page, skip initialization
@@ -274,7 +274,7 @@ export function initPaperSizeToggle() {
   applyPaperSize(paperSize);
 
   // Set up select dropdown listener
-  paperSizeSelect.addEventListener("change", handlePaperSizeChange);
+  paperSizeSelect.addEventListener('change', handlePaperSizeChange);
 
   // Insert page spacers after initial load
   // Wait for layout to settle before calculating positions
@@ -282,7 +282,7 @@ export function initPaperSizeToggle() {
 
   // Recalculate spacers on window resize (debounced)
   let resizeTimeout;
-  window.addEventListener("resize", () => {
+  window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => insertPageSpacers(), 300);
   });

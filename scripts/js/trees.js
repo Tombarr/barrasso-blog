@@ -1,4 +1,4 @@
-const COLOR = "#000000";
+const COLOR = '#000000';
 
 function secureRandomFloat() {
   const randomUint32 = new Uint32Array(1);
@@ -9,8 +9,8 @@ function secureRandomFloat() {
 
 function random() {
   if (
-    "crypto" in window &&
-    typeof window.crypto.getRandomValues === "function"
+    'crypto' in window &&
+    typeof window.crypto.getRandomValues === 'function'
   ) {
     return secureRandomFloat();
   }
@@ -612,14 +612,14 @@ const trees = shuffleArray([
 ]);
 
 function prepareCanvas(canvas) {
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext('2d');
   ctx.translate(0.5, 0.5);
   const dpi = Math.max(1, window.devicePixelRatio);
   const scale = dpi * 2;
   const width = canvas.width;
   const height = canvas.height;
-  canvas.style.width = Math.floor(width / scale) + "px";
-  canvas.style.height = Math.floor(height / scale) + "px";
+  canvas.style.width = Math.floor(width / scale) + 'px';
+  canvas.style.height = Math.floor(height / scale) + 'px';
   ctx.width = width * scale;
   ctx.height = height * scale;
   ctx.scale(scale, scale);
@@ -670,11 +670,11 @@ function fillCanvas(canvas) {
   ctx.translate(-0.5, -0.5);
 
   // Constrain to center
-  canvas.parentNode.style.maxWidth = canvasWidth + "px";
+  canvas.parentNode.style.maxWidth = canvasWidth + 'px';
 }
 
 function fillAllCanvases() {
-  const canvases = Array.from(document.querySelectorAll("canvas.tree-divider"));
+  const canvases = Array.from(document.querySelectorAll('canvas.tree-divider'));
   canvases.forEach(fillCanvas);
 }
 

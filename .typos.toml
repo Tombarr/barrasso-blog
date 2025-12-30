@@ -1,28 +1,28 @@
 [default]
 extend-ignore-re = [
-    # Ignore hex color codes
-    "#[0-9a-fA-F]{6}",
-    # Ignore URLs
-    "https?://[^\\s]+",
+  # Ignore hex color codes
+  "#[0-9a-fA-F]{6}",
+  # Ignore URLs
+  "https?://[^\\s]+",
 ]
 
 [files]
 extend-exclude = [
-    # Build outputs
-    "public/",
-    "resources/",
-    ".hugo_build.lock",
+  # Build outputs
+  "public/",
+  "resources/",
+  ".hugo_build.lock",
 
-    # Dependencies
-    "node_modules/",
-    "themes/",
+  # Dependencies
+  "node_modules/",
+  "themes/",
 
-    # Generated files
-    "assets/css/output.css",
+  # Generated files
+  "assets/css/output.css",
 
-    # Lock files and configs that may contain tokens
-    "package-lock.json",
-    "*.lock",
+  # Lock files and configs that may contain tokens
+  "package-lock.json",
+  "*.lock",
 ]
 
 [default.extend-words]
@@ -46,7 +46,7 @@ devcontainer = "devcontainer"
 
 [type.md]
 extend-ignore-re = [
-    # Ignore code blocks
-    "`[^`]*`",
-    "```[\\s\\S]*?```",
+  # Ignore code blocks
+  "`[^`]*`",
+  "```[\\s\\S]*?```",
 ]

@@ -1,23 +1,28 @@
 <!-- Portrait avatar (positioned left, top-aligned) -->
 <!-- Default data-portrait="0" ensures portrait displays without JavaScript -->
 <!-- Inline script randomizes immediately to prevent flash -->
-{{ $avatarPath := strings.TrimPrefix "/" .Site.Params.avatar }} {{ $portraits :=
-resources.Get $avatarPath }} {{- /* Generate WebP version for smaller file size
-*/ -}} {{ $portraitsWebP := $portraits.Resize "x600 webp q85" }} {{- /* Generate
-dithered version */ -}} {{ $portraitsGrayscale := $portraits.Filter
-(images.Contrast 50) (images.Grayscale) }} {{ $opts := dict "method" "Atkinson"
-"colors" (slice "000000" "ffffff" "999999") }} {{ $portraitsDithered :=
-$portraitsGrayscale.Filter (images.Dither $opts) }}
+{{ $avatarPath := strings.TrimPrefix "/" .Site.Params.avatar }}
+{{ $portraits := resources.Get $avatarPath }}
+{{- /* Generate WebP version for smaller file size */ -}}
+{{ $portraitsWebP :=
+  $portraits.Resize "x600 webp q85"
+}}
+{{- /* Generate dithered version */ -}}
+{{ $portraitsGrayscale := $portraits.Filter (images.Contrast 50) (images.Grayscale) }}
+{{ $opts := dict "method" "Atkinson"
+  "colors" (slice "000000" "ffffff" "999999")
+}}
+
+{{ $portraitsDithered := $portraitsGrayscale.Filter (images.Dither $opts) }}
+
 
 <figure
   id="portrait"
   data-dithered-url="{{ $portraitsDithered.RelPermalink }}"
-  data-color-url="{{ $portraitsWebP.RelPermalink }}"
->
+  data-color-url="{{ $portraitsWebP.RelPermalink }}">
   <div
     class="portrait-variation rounded-full! overflow-hidden block"
-    data-portrait="0"
-  ></div>
+    data-portrait="0"></div>
 </figure>
 
 <script type="text/javascript">
@@ -25,12 +30,12 @@ $portraitsGrayscale.Filter (images.Dither $opts) }}
     const NUM_PORTRAITS = 24;
     const COLS = 4; // 4x6 grid
     const ROWS = 6;
-    const figure = document.querySelector("#portrait");
-    const el = document.querySelector(".portrait-variation");
+    const figure = document.querySelector('#portrait');
+    const el = document.querySelector('.portrait-variation');
     if (el && figure) {
       // Set random portrait
       const portraitNum = Math.floor(Math.random() * NUM_PORTRAITS);
-      el.setAttribute("data-portrait", portraitNum);
+      el.setAttribute('data-portrait', portraitNum);
 
       // Calculate grid position (4 columns, 6 rows)
       const col = portraitNum % COLS;
@@ -42,15 +47,15 @@ $portraitsGrayscale.Filter (images.Dither $opts) }}
       const yPositions = [0, 20, 40, 60, 80, 100];
 
       // Set CSS variables for background-position
-      el.style.setProperty("--portrait-x", xPositions[col] + "%");
-      el.style.setProperty("--portrait-y", yPositions[row] + "%");
+      el.style.setProperty('--portrait-x', xPositions[col] + '%');
+      el.style.setProperty('--portrait-y', yPositions[row] + '%');
 
       // Set CSS custom properties for dithered and color images
-      const ditheredUrl = figure.getAttribute("data-dithered-url");
-      const colorUrl = figure.getAttribute("data-color-url");
+      const ditheredUrl = figure.getAttribute('data-dithered-url');
+      const colorUrl = figure.getAttribute('data-color-url');
       if (ditheredUrl && colorUrl) {
-        el.style.setProperty("--portrait-dithered", "url(" + ditheredUrl + ")");
-        el.style.setProperty("--portrait-color", "url(" + colorUrl + ")");
+        el.style.setProperty('--portrait-dithered', 'url(' + ditheredUrl + ')');
+        el.style.setProperty('--portrait-color', 'url(' + colorUrl + ')');
       }
     }
   })();

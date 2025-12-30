@@ -8,14 +8,23 @@ type = 'projects'
 # Project metadata
 summary = 'Tax compliance and application security for Amazon Pharmacy'
 icon = '/images/icons/amazon-pharmacy.png'
-technologies = ['Java', 'Python', 'Ruby on Rails', 'JavaScript', 'AWS', 'CloudFormation', 'VPC', 'Lambda']
+technologies = [
+  'Java',
+  'Python',
+  'Ruby on Rails',
+  'JavaScript',
+  'AWS',
+  'CloudFormation',
+  'VPC',
+  'Lambda',
+]
 dateRange = '2018 - 2021'
 featured = true
 
 # Images
 featureImage = '/images/features/amazon-pharmacy-hero.jpg'
 featureImageCaption = 'Promotion image from the launch of Amazon Pharmacy, 2020'
-featureImagePosition = 'top'  # Options: 'top' (before content), 'bottom' (after content), 'none' (not rendered on single page)
+featureImagePosition = 'top'
 screenshots = []
 
 # External links

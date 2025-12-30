@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Configure dark mode to use class-based selector instead of media query */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -8,11 +8,11 @@
 @source "../../layouts/**/*.html";
 
 /* Import self-hosted fonts (replaces Google Fonts) */
-@import "./fonts-local.css";
+@import './fonts-local.css';
 
 /* Import theme styles */
-@import "../../themes/henry/assets/css/theme.css";
-@import "../../themes/henry/assets/css/henry.css";
+@import '../../themes/henry/assets/css/theme.css';
+@import '../../themes/henry/assets/css/henry.css';
 
 /* Skill tags - minimal custom styles, mostly using Tailwind */
 @layer components {
@@ -63,7 +63,7 @@
 
   /* Tooltip arrow */
   .abbr-tooltip::after {
-    content: "";
+    content: '';
     @apply absolute bottom-full left-1/2 -translate-x-1/2 mb-1;
     @apply border-4 border-transparent border-t-slate-900;
     @apply opacity-0 pointer-events-none;
@@ -186,13 +186,13 @@
     z-index: 10;
     @apply bg-white dark:bg-slate-900;
     padding: 1rem 0.5rem 1rem 1rem;
-    border-right: 1px solid theme("colors.slate.200");
+    border-right: 1px solid theme('colors.slate.200');
     width: 1%;
     white-space: nowrap;
   }
 
   html.dark .gist-code-container .chroma .lntd:first-child {
-    border-right-color: theme("colors.slate.700");
+    border-right-color: theme('colors.slate.700');
   }
 
   /* Code content column */
@@ -219,7 +219,7 @@
   /* Ensure monospace font for code */
   .gist-code-container .chroma code,
   .gist-code-container .chroma pre {
-    font-family: var(--font-mono), "Source Code Pro", "Courier New", monospace;
+    font-family: var(--font-mono), 'Source Code Pro', 'Courier New', monospace;
   }
 
   .gist-footer {
@@ -377,13 +377,13 @@ img.border-none,
   height: auto;
 }
 
-article a.no-arrow[href*="//"]::after,
+article a.no-arrow[href*='//']::after,
 a.no-arrow.external-link::after,
-article .resume-main-content a[href*="//"]::after,
-article .gist-file a[href*="//"]::after,
-article .gist-embed a[href*="//"]::after,
-article a[role="button"][href*="//"]::after,
-.resume-sidebar.sidebar-section a[href*="//"]::after {
+article .resume-main-content a[href*='//']::after,
+article .gist-file a[href*='//']::after,
+article .gist-embed a[href*='//']::after,
+article a[role='button'][href*='//']::after,
+.resume-sidebar.sidebar-section a[href*='//']::after {
   display: none;
   visibility: hidden;
   width: 0;
@@ -505,7 +505,7 @@ a:hover img.external-favicon {
     bottom: 11px;
     opacity: 0;
     visibility: hidden;
-    background-image: url("/images/bigfoot.png");
+    background-image: url('/images/bigfoot.png');
     background-size: 48px 36px;
     background-repeat: no-repeat;
     background-position: 0px 0px;
@@ -635,7 +635,7 @@ a:hover img.external-favicon {
 
   /* Initial state: color layer is transparent, showing dithered beneath */
   .portrait-variation::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -677,7 +677,7 @@ a:hover img.external-favicon {
 
   /* Clear float after hero section */
   .hero ~ h2:first-of-type::before {
-    content: "";
+    content: '';
     display: table;
     clear: both;
     width: 100%;
@@ -812,7 +812,7 @@ a:hover img.external-favicon {
   }
 
   .footer-column-title::after {
-    content: "—";
+    content: '—';
     display: inline-block;
     margin-inline-start: 0.5em;
   }
@@ -856,7 +856,7 @@ a:hover img.external-favicon {
   }
 
   .footer-link + .footer-link::before {
-    content: ",";
+    content: ',';
     display: inline-block;
     margin-inline-end: 0.25em;
   }

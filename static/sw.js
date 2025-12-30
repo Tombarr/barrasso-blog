@@ -9,18 +9,18 @@
  */
 
 // Cache configuration
-const CACHE_VERSION = "v1";
+const CACHE_VERSION = 'v1';
 const CACHE_NAME = `barrasso-blog-${CACHE_VERSION}`;
-const OFFLINE_PAGE = "/offline/";
+const OFFLINE_PAGE = '/offline/';
 
 // Assets to cache on install
 const PRECACHE_ASSETS = [
   OFFLINE_PAGE,
-  "/css/output.css",
-  "/js/main.js",
-  "/fonts/figtree-normal.woff2",
-  "/fonts/fraunces-normal.woff2",
-  "/images/portraits.jpg",
+  '/css/output.css',
+  '/js/main.js',
+  '/fonts/figtree-normal.woff2',
+  '/fonts/fraunces-normal.woff2',
+  '/images/portraits.jpg',
 ];
 
 // Maximum cache sizes (prevent unlimited growth)
@@ -33,20 +33,20 @@ const MAX_CACHE_SIZE = {
 /**
  * Installation - precache critical assets
  */
-self.addEventListener("install", (event) => {
+self.addEventListener('install', (event) => {
   event.waitUntil(
     caches
       .open(CACHE_NAME)
       .then((cache) => {
         return cache.addAll(
-          PRECACHE_ASSETS.map((url) => new Request(url, { cache: "reload" })),
+          PRECACHE_ASSETS.map((url) => new Request(url, { cache: 'reload' })),
         );
       })
       .then(() => {
         return self.skipWaiting();
       })
       .catch((error) => {
-        console.error("[SW] Precache failed:", error);
+        console.error('[SW] Precache failed:', error);
       }),
   );
 });
@@ -54,7 +54,7 @@ self.addEventListener("install", (event) => {
 /**
  * Activation - clean up old caches
  */
-self.addEventListener("activate", (event) => {
+self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches
       .keys()
@@ -63,7 +63,7 @@ self.addEventListener("activate", (event) => {
           cacheNames
             .filter(
               (name) =>
-                name.startsWith("barrasso-blog-") && name !== CACHE_NAME,
+                name.startsWith('barrasso-blog-') && name !== CACHE_NAME,
             )
             .map((name) => {
               return caches.delete(name);
@@ -79,7 +79,7 @@ self.addEventListener("activate", (event) => {
 /**
  * Fetch - route requests with appropriate strategies
  */
-self.addEventListener("fetch", (event) => {
+self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
@@ -89,7 +89,7 @@ self.addEventListener("fetch", (event) => {
   }
 
   // Skip non-GET requests
-  if (request.method !== "GET") {
+  if (request.method !== 'GET') {
     return;
   }
 
@@ -141,9 +141,9 @@ async function networkFirstStrategy(request) {
     }
 
     // For other requests, return error
-    return new Response("Network error", {
+    return new Response('Network error', {
       status: 408,
-      headers: { "Content-Type": "text/plain" },
+      headers: { 'Content-Type': 'text/plain' },
     });
   }
 }
@@ -181,12 +181,12 @@ async function cacheFirstStrategy(request) {
 
     return networkResponse;
   } catch (error) {
-    console.error("[SW] Cache miss and network failed:", request.url);
+    console.error('[SW] Cache miss and network failed:', request.url);
 
     // Return a fallback response
-    return new Response("Resource not available", {
+    return new Response('Resource not available', {
       status: 503,
-      headers: { "Content-Type": "text/plain" },
+      headers: { 'Content-Type': 'text/plain' },
     });
   }
 }
@@ -205,7 +205,7 @@ function updateCacheInBackground(request) {
     })
     .catch((error) => {
       // Silently fail - cache update is optional
-      console.warn("[SW] Background cache update failed:", error);
+      console.warn('[SW] Background cache update failed:', error);
     });
 }
 
@@ -229,8 +229,8 @@ async function limitCacheSize(cacheName, maxSize) {
  * Helper: Check if request is for HTML
  */
 function isHTMLRequest(request) {
-  const acceptHeader = request.headers.get("Accept") || "";
-  return acceptHeader.includes("text/html");
+  const acceptHeader = request.headers.get('Accept') || '';
+  return acceptHeader.includes('text/html');
 }
 
 /**
@@ -238,13 +238,13 @@ function isHTMLRequest(request) {
  */
 function isAssetRequest(url) {
   return (
-    url.pathname.startsWith("/css/") ||
-    url.pathname.startsWith("/js/") ||
-    url.pathname.startsWith("/fonts/") ||
-    url.pathname.endsWith(".css") ||
-    url.pathname.endsWith(".js") ||
-    url.pathname.endsWith(".woff2") ||
-    url.pathname.endsWith(".woff")
+    url.pathname.startsWith('/css/') ||
+    url.pathname.startsWith('/js/') ||
+    url.pathname.startsWith('/fonts/') ||
+    url.pathname.endsWith('.css') ||
+    url.pathname.endsWith('.js') ||
+    url.pathname.endsWith('.woff2') ||
+    url.pathname.endsWith('.woff')
   );
 }
 
@@ -253,34 +253,34 @@ function isAssetRequest(url) {
  */
 function isImageRequest(url) {
   return (
-    url.pathname.startsWith("/images/") ||
-    url.pathname.endsWith(".jpg") ||
-    url.pathname.endsWith(".jpeg") ||
-    url.pathname.endsWith(".png") ||
-    url.pathname.endsWith(".gif") ||
-    url.pathname.endsWith(".webp") ||
-    url.pathname.endsWith(".svg") ||
-    url.pathname.endsWith(".ico")
+    url.pathname.startsWith('/images/') ||
+    url.pathname.endsWith('.jpg') ||
+    url.pathname.endsWith('.jpeg') ||
+    url.pathname.endsWith('.png') ||
+    url.pathname.endsWith('.gif') ||
+    url.pathname.endsWith('.webp') ||
+    url.pathname.endsWith('.svg') ||
+    url.pathname.endsWith('.ico')
   );
 }
 
 /**
  * Message handler for cache management
  */
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
 
-  if (event.data && event.data.type === "CLEAR_CACHE") {
+  if (event.data && event.data.type === 'CLEAR_CACHE') {
     event.waitUntil(
       caches.delete(CACHE_NAME).then(() => {
-        console.debug("[SW] Cache cleared");
+        console.debug('[SW] Cache cleared');
       }),
     );
   }
 
-  if (event.data && event.data.type === "GET_CACHE_SIZE") {
+  if (event.data && event.data.type === 'GET_CACHE_SIZE') {
     event.waitUntil(
       caches.open(CACHE_NAME).then((cache) => {
         return cache.keys().then((keys) => {

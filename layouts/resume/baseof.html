@@ -4,15 +4,16 @@
   lang="{{ .Language }}"
   class="no-js resume-light-mode"
   moznomarginboxes
-  mozdisallowselectionprint
->
+  mozdisallowselectionprint>
   {{- partial "head.html" . -}}
+
 
   <body class="min-h-screen bg-slate-100 text-slate-900">
     {{- block "content" . }}
-    <!-- Blocks may include default content. -->
-    {{- end }} {{- /* No header for resume pages */ -}} {{- partial
-    "scripts.html" . -}}
+      <!-- Blocks may include default content. -->
+    {{- end }}
+    {{- /* No header for resume pages */ -}}
+    {{- partial "scripts.html" . -}}
   </body>
 
   {{- partial "footer.html" . -}}

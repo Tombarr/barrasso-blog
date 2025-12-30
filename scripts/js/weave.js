@@ -1,4 +1,4 @@
-const defaultColor = "rgba(0, 0, 0, 0.8)";
+const defaultColor = 'rgba(0, 0, 0, 0.8)';
 
 function getRandomIntInclusive(min, max) {
   const minCeiled = Math.ceil(min);
@@ -247,7 +247,7 @@ const patterns = shuffleArray([
 ]);
 
 function fillCanvas(canvas) {
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext('2d');
   drawDividers(ctx);
 
   const count = Math.ceil(canvas.width / canvas.height);
@@ -268,7 +268,7 @@ function fillCanvas(canvas) {
 
 function fillAllCanvases() {
   const canvases = Array.from(
-    document.querySelectorAll("canvas.pattern-divider"),
+    document.querySelectorAll('canvas.pattern-divider'),
   );
   canvases.forEach(fillCanvas);
 }

@@ -1,0 +1,36 @@
+# Build outputs
+public/
+resources/
+.hugo_build.lock
+
+# Dependencies
+node_modules/
+
+# Generated files
+assets/css/output.css
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Theme files (external dependencies)
+themes/
+
+# Complex layouts
+layouts/index.search.json
+archetypes/projects.md
+layouts/shortcodes/remote-svg.html
+layouts/partials/responsive-image.html
+
+# Git
+.git/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

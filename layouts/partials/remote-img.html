@@ -1,32 +1,15 @@
-{{- $url := .url -}} {{- $class := .class | default "" -}} {{- $width := .width
-| default "16" -}} {{- $height := .height | default "16" -}} {{- $alt := .alt |
-default "favicon" -}} {{- with resources.GetRemote $url -}}
-<img
-  src="{{ .RelPermalink }}"
-  alt="{{ $alt }}"
-  {{
-  with
-  $class
-  }}
-  class="external-favicon {{ . }}"
-  {{
-  end
-  }}{{
-  with
-  $width
-  }}
-  width="{{ . }}"
-  {{
-  end
-  }}{{
-  with
-  $height
-  }}
-  height="{{ . }}"
-  {{
-  end
-  }}
-  loading="lazy"
-  draggable="false"
-/>
+{{- $url := .url -}}
+{{- $class := .class | default "" -}}
+{{- $width := .width | default "16" -}}
+{{- $height := .height | default "16" -}}
+{{- $alt := .alt | default "favicon" -}}
+{{- with resources.GetRemote $url -}}
+  <img
+    src="{{ .RelPermalink }}"
+    alt="{{ $alt }}"
+    {{ with $class }}class="external-favicon {{ . }}"{{ end }}{{ with $width }}
+      width="{{ . }}"
+    {{ end }}{{ with $height }}height="{{ . }}"{{ end }}
+    loading="lazy"
+    draggable="false" />
 {{- end -}}

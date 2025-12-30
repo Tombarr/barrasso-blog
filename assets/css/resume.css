@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Tell Tailwind where to look for classes in resume templates */
 @source "../../layouts/resume/**/*.html";
@@ -98,7 +98,7 @@ html.resume-light-mode {
 /* Force specific font for resume */
 @layer base {
   :root.resume-light-mode {
-    font-family: "Calibri", "Arial", sans-serif;
+    font-family: 'Calibri', 'Arial', sans-serif;
   }
 }
 
@@ -126,7 +126,7 @@ html.resume-light-mode #paper-size-select {
   @apply bg-white border-slate-300 text-slate-900;
 }
 
-html.resume-light-mode label[for="paper-size-select"] {
+html.resume-light-mode label[for='paper-size-select'] {
   @apply inline-block w-4 h-4 align-middle;
 }
 
@@ -171,14 +171,14 @@ html.resume-light-mode .pdf-download-button:hover {
 }
 
 /* Paper size dimensions - allow natural overflow for multi-page content */
-.resume-container[data-paper-size="letter"],
-.resume-container[data-paper-size="letter"] .page-spacer {
+.resume-container[data-paper-size='letter'],
+.resume-container[data-paper-size='letter'] .page-spacer {
   width: var(--paper-letter-width);
   max-width: var(--paper-letter-width);
 }
 
-.resume-container[data-paper-size="a4"],
-.resume-container[data-paper-size="a4"] .page-spacer {
+.resume-container[data-paper-size='a4'],
+.resume-container[data-paper-size='a4'] .page-spacer {
   width: var(--paper-a4-width);
   max-width: var(--paper-a4-width);
 }
@@ -188,11 +188,11 @@ html.resume-light-mode .pdf-download-button:hover {
 }
 
 /* Paper size dimensions - allow natural overflow for multi-page content */
-.resume-container[data-paper-size="letter"] .page-spacer {
+.resume-container[data-paper-size='letter'] .page-spacer {
   width: calc(var(--paper-letter-width) - var(--spacing) * 8);
 }
 
-.resume-container[data-paper-size="a4"] .page-spacer {
+.resume-container[data-paper-size='a4'] .page-spacer {
   width: calc(var(--paper-a4-width) - var(--spacing) * 8);
 }
 
@@ -210,7 +210,7 @@ html.resume-light-mode .pdf-download-button:hover {
 
 /* Visual indicator line within spacer */
 .page-spacer::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   left: 0;
@@ -228,7 +228,7 @@ html.resume-light-mode .pdf-download-button:hover {
 
 /* Optional: Page number indicator */
 .page-spacer::after {
-  content: "Page " attr(data-page);
+  content: 'Page ' attr(data-page);
   @apply text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded;
   position: relative;
   z-index: 1;
@@ -237,9 +237,9 @@ html.resume-light-mode .pdf-download-button:hover {
 /* Resume content grid - two column layout (75/25 split, all screen sizes) */
 .resume-content-grid {
   @apply grid gap-8;
-  grid-template-columns: calc(
-      var(--resume-main-column) - (var(--spacing) * 4)
-    ) calc(var(--resume-sidebar-column) - (var(--spacing) * 4));
+  grid-template-columns:
+    calc(var(--resume-main-column) - (var(--spacing) * 4))
+    calc(var(--resume-sidebar-column) - (var(--spacing) * 4));
   display: grid;
   align-items: start;
   flex: 1;
@@ -257,7 +257,7 @@ html.resume-light-mode .pdf-download-button:hover {
 }
 
 /* Smaller font for A4 to fit the page */
-.resume-container[data-paper-size="a4"]
+.resume-container[data-paper-size='a4']
   .resume-sidebar
   .sidebar-section
   ul
@@ -371,8 +371,8 @@ html.resume-light-mode .pdf-download-button:hover {
     max-width: var(--paper-letter-width);
   }
 
-  html:has(#resume-container[data-paper-size="a4"]),
-  body:has(#resume-container[data-paper-size="a4"]) {
+  html:has(#resume-container[data-paper-size='a4']),
+  body:has(#resume-container[data-paper-size='a4']) {
     max-width: var(--paper-a4-width);
   }
 
@@ -451,11 +451,11 @@ html.resume-light-mode .pdf-download-button:hover {
     padding-block: 0;
   }
 
-  .resume-container[data-paper-size="letter"] {
+  .resume-container[data-paper-size='letter'] {
     width: 100%;
   }
 
-  .resume-container[data-paper-size="a4"] {
+  .resume-container[data-paper-size='a4'] {
     width: 100%;
   }
 
@@ -473,21 +473,21 @@ html.resume-light-mode .pdf-download-button:hover {
     @apply fixed bottom-4;
   }
 
-  .resume-container[data-paper-size="letter"] footer.resume-version-footer {
+  .resume-container[data-paper-size='letter'] footer.resume-version-footer {
     width: calc(var(--paper-letter-width) - var(--spacing) * 8);
   }
 
-  .resume-container[data-paper-size="letter"] {
+  .resume-container[data-paper-size='letter'] {
     @apply px-4 py-8;
     max-width: var(--paper-letter-width);
     width: calc(var(--paper-letter-width) - var(--spacing) * 8);
   }
 
-  .resume-container[data-paper-size="a4"] footer.resume-version-footer {
+  .resume-container[data-paper-size='a4'] footer.resume-version-footer {
     width: calc(var(--paper-a4-width) - var(--spacing) * 8);
   }
 
-  .resume-container[data-paper-size="a4"] {
+  .resume-container[data-paper-size='a4'] {
     @apply px-4 py-8;
     max-width: var(--paper-a4-width);
     width: calc(var(--paper-a4-width) - var(--spacing) * 8);
@@ -497,9 +497,9 @@ html.resume-light-mode .pdf-download-button:hover {
   .resume-content-grid {
     @apply grid gap-8;
     display: grid;
-    grid-template-columns: calc(
-        var(--resume-main-column) - (var(--spacing) * 4)
-      ) calc(var(--resume-sidebar-column) - (var(--spacing) * 4));
+    grid-template-columns:
+      calc(var(--resume-main-column) - (var(--spacing) * 4))
+      calc(var(--resume-sidebar-column) - (var(--spacing) * 4));
     align-items: start;
     /* Allow grid to break across pages */
     break-inside: auto;
@@ -542,7 +542,7 @@ html.resume-light-mode .pdf-download-button:hover {
   }
 
   .https-before::before {
-    content: "https://";
+    content: 'https://';
     display: inline;
   }
 
@@ -702,7 +702,7 @@ html.resume-light-mode .pdf-download-button:hover {
   }
 }
 
-:root article .links-section a[href*="//"]::after {
+:root article .links-section a[href*='//']::after {
   position: relative;
 }
 

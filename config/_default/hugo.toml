@@ -61,9 +61,15 @@ frontend = ["React", "Svelte"]
 backend = ["Node.js", "Ruby on Rails"]
 devops = ["Docker", "AWS", "Linux"]
 databases = []
-practices = ["Program Management", "Product Management", "Technical Communication", "Data Visualization", "Risk Management"]
+practices = [
+  "Program Management",
+  "Product Management",
+  "Technical Communication",
+  "Data Visualization",
+  "Risk Management",
+]
 
 [privacy]
-  [privacy.youTube]
-    disable = false
-    privacyEnhanced = true
+[privacy.youTube]
+disable = false
+privacyEnhanced = true

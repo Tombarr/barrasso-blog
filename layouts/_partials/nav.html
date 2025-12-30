@@ -1,66 +1,91 @@
 {{ $currentSection := .Section | urlize }}
 
-<nav class="nav blog-content-width
+
+<nav
+  class="nav blog-content-width
             mt-12 md:mt-20
             flex justify-center">
-
-    <ul class="flex flex-row flex-wrap gap-2
+  <ul
+    class="flex flex-row flex-wrap gap-2
                justify-center">
+    {{- partial "nav-before.html" . -}}
 
-        {{- partial "nav-before.html" . -}}
 
-        <!-- SINGLE post pages -->
-        {{ if eq .Kind "page" }}
+    <!-- SINGLE post pages -->
+    {{ if eq .Kind "page" }}
 
-        <!-- show Categories  -->
-        {{ range $c := .Params.Categories }}
-        <li class="category-page"><a class="pill-slate text-xs" href="/categories/{{ $c | urlize }}">#{{$c}}</a></li>
-        {{ end }}
+      <!-- show Categories  -->
+      {{ range $c := .Params.Categories }}
+        <li class="category-page">
+          <a class="pill-slate text-xs" href="/categories/{{ $c | urlize }}"
+            >#{{ $c }}</a
+          >
+        </li>
+      {{ end }}
 
-        <!-- show Tags  -->
-        {{ range $t := .Params.Tags }}
-        <li class="tag-page"><a class="pill-hc text-xs" href="/tags/{{ $t | urlize }}">#{{$t}}</a></li>
-        {{ end }}
 
-        {{ end }}
+      <!-- show Tags  -->
+      {{ range $t := .Params.Tags }}
+        <li class="tag-page">
+          <a class="pill-hc text-xs" href="/tags/{{ $t | urlize }}"
+            >#{{ $t }}</a
+          >
+        </li>
+      {{ end }}
 
-        <!-- SECTION list pages like blog/episodes -->
-        {{ if eq .Kind "section" }}
+    {{ end }}
 
-        <!-- show other sections  -->
-        {{ $thisSection := .Page.Section }}
-        {{ range .Site.Sections }}
+
+    <!-- SECTION list pages like blog/episodes -->
+    {{ if eq .Kind "section" }}
+
+      <!-- show other sections  -->
+      {{ $thisSection := .Page.Section }}
+      {{ range .Site.Sections }}
 
         <!-- exclude section currently being show  -->
         {{ if not (eq .Section $thisSection) }}
-        <!-- exclude invisible section if they exist -->
-        {{ $invisibleSections := .Site.Params.InvisibleSections }}
-        {{ if $invisibleSections }}
-        {{ if not (in $invisibleSections .Section) }}
-        <li class="section-section"><a class="pill-hc text-xs" href="{{ .Permalink }}">{{.Section}}</a></li>
-        {{ end }}
-        {{ end }}
+          <!-- exclude invisible section if they exist -->
+          {{ $invisibleSections := .Site.Params.InvisibleSections }}
+          {{ if $invisibleSections }}
+            {{ if not (in $invisibleSections .Section) }}
+              <li class="section-section">
+                <a class="pill-hc text-xs" href="{{ .Permalink }}"
+                  >{{ .Section }}</a
+                >
+              </li>
+            {{ end }}
+          {{ end }}
         {{ end }}
 
-        {{ end }}
+      {{ end }}
 
-        <!-- in blog list page alone, show taxonomies/categories and tags  -->
-        {{ if eq .Section "blog" }}
+
+      <!-- in blog list page alone, show taxonomies/categories and tags  -->
+      {{ if eq .Section "blog" }}
         {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
-        {{ if (gt (len $taxonomy) 0) }}
-        <li class="taxonomy-section"><a class="pill-slate text-xs" href="{{ " /" | relLangURL}}{{ $taxonomyname | urlize
-                }}">{{$taxonomyname}}</a></li>
+          {{ if (gt (len $taxonomy) 0) }}
+            <li class="taxonomy-section">
+              <a
+                class="pill-slate text-xs"
+                href="{{ " /" | relLangURL }}{{ $taxonomyname | urlize }}"
+                >{{ $taxonomyname }}</a
+              >
+            </li>
+          {{ end }}
         {{ end }}
-        {{ end }}
-        {{ end }}
+      {{ end }}
 
-        {{ end }}
+    {{ end }}
 
-        <!-- if TAXONOMY list page has values like categories/tips/ -->
-        {{ if eq .Kind "term" }}
-        <li class="term"><a class="pill-slate text-xs" href="/{{.Section}}">{{.Section}}</a></li>
-        {{ end }}
 
-        {{- partial "nav-after.html" . -}}
-    </ul>
+    <!-- if TAXONOMY list page has values like categories/tips/ -->
+    {{ if eq .Kind "term" }}
+      <li class="term">
+        <a class="pill-slate text-xs" href="/{{ .Section }}">{{ .Section }}</a>
+      </li>
+    {{ end }}
+
+    {{- partial "nav-after.html" . -}}
+  </ul>
 </nav>

@@ -4,19 +4,16 @@ date = 2011-09-14
 draft = false
 type = 'projects'
 
-# Project metadata
 summary = 'The first status bar replacement app for Android'
 icon = '/images/icons/status-bar-plus.png'
 technologies = ['Android', 'Java', 'WindowManager', 'Ant']
 dateRange = '2011 - 2012'
 featured = true
 
-# Images
 featureImage = '/images/features/statusbar-promo.jpg'
 featureImagePosition = 'bottom'
 screenshots = []
 
-# External links
 projectUrl = 'https://www.redmondpie.com/statusbar-plus-gives-your-android-device-the-windows-phone-7-esque-status-bar/'
 githubUrl = ''
 +++

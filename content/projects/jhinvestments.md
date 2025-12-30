@@ -5,20 +5,25 @@ date = 2018-09-10
 draft = false
 type = 'projects'
 
-# Project metadata
 summary = 'Front-end lead with data visualization focus'
 icon = '/images/icons/jhinvestments.png'
-technologies = ['Marionette', 'Java', 'JavaScript', 'Gulp', 'Adobe Experience Manager', 'Puppeteer', 'Plotly']
+technologies = [
+  'Marionette',
+  'Java',
+  'JavaScript',
+  'Gulp',
+  'Adobe Experience Manager',
+  'Puppeteer',
+  'Plotly',
+]
 dateRange = '2017 - 2018'
 featured = false
 
-# Images
 featureImage = '/images/features/jhinvestments.png'
 featureImageCaption = 'Screenshot of the hypothetical growth of $10k chart on the Fund Compare tool on JHInvestments.com'
-featureImagePosition = 'top'  # Options: 'top' (before content), 'bottom' (after content), 'none' (not rendered on single page)
+featureImagePosition = 'top'
 screenshots = []
 
-# External links
 projectUrl = 'https://jhinvestments.com'
 githubUrl = ''
 +++

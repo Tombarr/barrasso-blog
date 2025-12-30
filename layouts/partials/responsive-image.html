@@ -1,21 +1,4 @@
-{{- /*
-  Responsive Image Partial
-
-  Generates responsive images with multiple sizes and formats (WebP + original)
-
-  Context must include:
-    .Page - Page context
-    .src - Image source path
-    .alt - Alt text (optional)
-    .class - CSS classes (optional)
-    .sizes - sizes attribute (optional, default "100vw")
-    .widths - Array or comma-separated widths (optional, default "320,640,1024,1920")
-    .loading - "lazy" or "eager" (optional, default "lazy")
-    .quality - 1-100 (optional, default 85)
-    .caption - Figure caption (optional, wraps image in <figure> when provided)
-    .fullBleed - If true, adds "full-bleed" class to <figure> (optional, default false)
-*/ -}}
-
+<!-- Responsive Image Partial -->
 {{- $src := .src -}}
 {{- $alt := .alt | default "" -}}
 {{- $class := .class | default "" -}}
@@ -100,22 +83,27 @@
 {{- $fallbackHeight := div (mul $image.Height $fallbackWidth) $image.Width -}}
 
 {{- if $caption -}}
-<figure{{- if $fullBleed }} class="full-bleed"{{ end -}}>
-{{- end -}}
+<figure{{- if $fullBleed }} class="full-bleed"{{ end }}>
+  <picture>
+    <source type="image/webp" srcset='{{ delimit $webpSrcset ", " }}' sizes="{{ $sizes }}" />
+    <source type="image/{{ $originalFormat }}" srcset='{{ delimit $originalSrcset ", " }}' sizes="{{ $sizes }}" />
+    <img
+      src="{{ $fallbackSrc }}"
+      alt="{{ $alt }}"
+      {{- with $class }} class="{{ . }}"{{ end }}
+      width="{{ $fallbackWidth }}"
+      height="{{ $fallbackHeight }}"
+      loading="{{ $loading }}"
+      decoding="async"
+      draggable="false"
+    />
+  </picture>
+  <figcaption class="text-sm text-ht-light italic mt-2 text-center">{{ $caption | markdownify }}</figcaption>
+</figure>
+{{- else -}}
 <picture>
-  {{- /* WebP source */ -}}
-  <source
-    type="image/webp"
-    srcset="{{ delimit $webpSrcset ", " }}"
-    sizes="{{ $sizes }}"
-  >
-  {{- /* Original format source */ -}}
-  <source
-    type="image/{{ $originalFormat }}"
-    srcset="{{ delimit $originalSrcset ", " }}"
-    sizes="{{ $sizes }}"
-  >
-  {{- /* Fallback img */ -}}
+  <source type="image/webp" srcset='{{ delimit $webpSrcset ", " }}' sizes="{{ $sizes }}" />
+  <source type="image/{{ $originalFormat }}" srcset='{{ delimit $originalSrcset ", " }}' sizes="{{ $sizes }}" />
   <img
     src="{{ $fallbackSrc }}"
     alt="{{ $alt }}"
@@ -125,9 +113,6 @@
     loading="{{ $loading }}"
     decoding="async"
     draggable="false"
-  >
+  />
 </picture>
-{{- if $caption }}
-  <figcaption class="text-sm text-ht-light italic mt-2 text-center">{{ $caption | markdownify }}</figcaption>
-</figure>
 {{- end -}}

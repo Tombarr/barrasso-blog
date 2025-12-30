@@ -6,7 +6,16 @@ type = 'projects'
 
 summary = 'The first podcast app for KaiOS feature phones with 10M+ installs'
 icon = 'images/icons/podlp.png'
-technologies = ['TypeScript', 'AWS', 'Cloudflare', 'KaiOS', 'Svelte', 'Cloud Phone', 'JavaScript', 'Progressive Web App']
+technologies = [
+  'TypeScript',
+  'AWS',
+  'Cloudflare',
+  'KaiOS',
+  'Svelte',
+  'Cloud Phone',
+  'JavaScript',
+  'Progressive Web App',
+]
 dateRange = '2020 - Present'
 featured = true
 

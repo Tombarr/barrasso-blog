@@ -1,5 +1,5 @@
 ---
-title: "Tom Barrasso"
+title: 'Tom Barrasso'
 draft: false
 timeless: true
 noindex: true
