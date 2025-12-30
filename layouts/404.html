@@ -1,0 +1,55 @@
+{{ define "content" }}
+<div
+  class="flex flex-col items-center justify-center blog-content-width pt-20 md:pt-30 pb-12 min-h-[60vh]"
+>
+  <div class="text-center max-w-2xl">
+    <!-- 404 Number -->
+    <h1 class="text-9xl font-title font-bold text-ht-lighter mb-4">
+      {{ i18n "404.title" }}
+    </h1>
+
+    <!-- Error Message -->
+    <h2 class="text-3xl font-title font-semibold text-ht mb-6">
+      {{ i18n "404.heading" }}
+    </h2>
+
+    <p class="text-lg text-ht-light mb-8">{{ i18n "404.message" }}</p>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a
+        href="{{ .Site.Home.RelPermalink }}"
+        class="px-6 py-3 bg-yellow-500 dark:bg-orange-500 text-slate-900 dark:text-slate-900 font-semibold rounded-lg hover:bg-yellow-600 dark:hover:bg-orange-600 transition-colors duration-20 no-underline"
+      >
+        {{ i18n "404.go_home" }}
+      </a>
+
+      {{ with .Site.GetPage "section" "posts" }}
+      <a
+        href="{{ .RelPermalink }}"
+        class="px-6 py-3 border-2 border-slate-300 dark:border-slate-600 text-ht font-semibold rounded-lg hover:border-yellow-500 dark:hover:border-orange-500 hover:text-yellow-500 dark:hover:text-orange-500 transition-colors duration-200 no-underline"
+      >
+        {{ i18n "404.browse_posts" }}
+      </a>
+      {{ end }}
+    </div>
+
+    <!-- Recent Posts -->
+    <div class="mt-12 mb-4 w-full">
+      <p class="text-sm text-ht-light mb-4">{{ i18n "404.recent_posts" }}</p>
+      <ul class="text-left space-y-2">
+        {{ range first 5 (where .Site.RegularPages "Type" "posts") }}
+        <li>
+          <a
+            href="{{ .RelPermalink }}"
+            class="text-ht hover:text-yellow-500 dark:hover:text-orange-500 transition-colors"
+          >
+            {{ .Title }}
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+</div>
+{{ end }}

@@ -67,3 +67,22 @@ other = "Except as otherwise noted, the content of this page is licensed under t
 
 [footer.copyright.last_updated]
 other = "Last updated on"
+
+# 404 Page
+[404.title]
+other = "404"
+
+[404.heading]
+other = "Page Not Found"
+
+[404.message]
+other = "The page you're looking for doesn't exist or has been moved."
+
+[404.go_home]
+other = "Go Home"
+
+[404.browse_posts]
+other = "Browse Posts"
+
+[404.recent_posts]
+other = "Or check out some recent posts:"
