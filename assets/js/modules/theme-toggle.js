@@ -1,9 +1,9 @@
 // Theme toggle functionality
 // Manages dark/light mode switching and persists preference to localStorage
 
-const STORAGE_KEY = 'theme-preference';
-const THEME_DARK = 'dark';
-const THEME_LIGHT = 'light';
+const STORAGE_KEY = "theme-preference";
+const THEME_DARK = "dark";
+const THEME_LIGHT = "light";
 
 /**
  * Get the current theme preference
@@ -17,7 +17,10 @@ function getThemePreference() {
   }
 
   // Check system preference
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+  if (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: light)").matches
+  ) {
     return THEME_LIGHT;
   }
 
@@ -30,21 +33,23 @@ function getThemePreference() {
  */
 function applyTheme(theme) {
   const htmlElement = document.documentElement;
-  const sunIcon = document.getElementById('theme-toggle-sun');
-  const moonIcon = document.getElementById('theme-toggle-moon');
+  const sunIcon = document.getElementById("theme-toggle-sun");
+  const moonIcon = document.getElementById("theme-toggle-moon");
 
   if (theme === THEME_DARK) {
-    htmlElement.classList.add('dark');
-    if (sunIcon) sunIcon.classList.remove('hidden');
-    if (moonIcon) moonIcon.classList.add('hidden');
+    htmlElement.classList.add("dark");
+    if (sunIcon) sunIcon.classList.remove("hidden");
+    if (moonIcon) moonIcon.classList.add("hidden");
   } else {
-    htmlElement.classList.remove('dark');
-    if (sunIcon) sunIcon.classList.add('hidden');
-    if (moonIcon) moonIcon.classList.remove('hidden');
+    htmlElement.classList.remove("dark");
+    if (sunIcon) sunIcon.classList.add("hidden");
+    if (moonIcon) moonIcon.classList.remove("hidden");
   }
 
   // Dispatch custom event for theme changes
-  document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
+  document.dispatchEvent(
+    new CustomEvent("themeChanged", { detail: { theme } }),
+  );
 }
 
 /**
@@ -67,18 +72,20 @@ export function initThemeToggle() {
   applyTheme(theme);
 
   // Set up toggle button
-  const toggleButton = document.getElementById('theme-toggle');
+  const toggleButton = document.getElementById("theme-toggle");
   if (toggleButton) {
-    toggleButton.addEventListener('click', toggleTheme);
+    toggleButton.addEventListener("click", toggleTheme);
   }
 
   // Listen for system theme changes
   if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      // Only respond to system changes if user hasn't set a preference
-      if (!localStorage.getItem(STORAGE_KEY)) {
-        applyTheme(e.matches ? THEME_DARK : THEME_LIGHT);
-      }
-    });
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        // Only respond to system changes if user hasn't set a preference
+        if (!localStorage.getItem(STORAGE_KEY)) {
+          applyTheme(e.matches ? THEME_DARK : THEME_LIGHT);
+        }
+      });
   }
 }

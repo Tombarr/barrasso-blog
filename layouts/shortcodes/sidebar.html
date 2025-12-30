@@ -1,16 +1,7 @@
-{{- /*
-  Sidebar wrapper shortcode for resume pages.
-  Captures all sidebar content and stores it in .Page.Scratch
-  for rendering in the sidebar area of the template.
-
-  Usage:
-    {{< sidebar >}}
-      {{< sidebar-section title="Skills" >}}...{{< /sidebar-section >}}
-      {{< sidebar-section title="Technologies" style="pills" >}}...{{< /sidebar-section >}}
-    {{< /sidebar >}}
-*/ -}}
-
-{{- /* Process inner content and store in Scratch */ -}}
-{{- .Page.Scratch.Set "sidebar-content" (.Inner | safeHTML) -}}
-
-{{- /* No output in main content area */ -}}
+{{- /* Sidebar wrapper shortcode for resume pages. Captures all sidebar content
+and stores it in .Page.Scratch for rendering in the sidebar area of the
+template. Usage: {{< sidebar >}} {{< sidebar-section title="Skills" >}}...{{<
+/sidebar-section >}} {{< sidebar-section title="Technologies" style="pills"
+>}}...{{< /sidebar-section >}} {{< /sidebar >}} */ -}} {{- /* Process inner
+content and store in Scratch */ -}} {{- .Page.Scratch.Set "sidebar-content"
+(.Inner | safeHTML) -}} {{- /* No output in main content area */ -}}

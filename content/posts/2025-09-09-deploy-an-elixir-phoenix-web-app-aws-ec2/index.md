@@ -89,13 +89,13 @@ The following values need to be added to your GitHub repository under Settings >
 
 {{< img src="github-action-secrets.png" >}}
 
-| Secret Name | Description | Example Values |
-|-------------|-------------|----------------|
-| `EC2_HOST` | The SSH host with port | `172.32.18.129` or `ec2-172-32-18-129.us-east-2.compute.amazonaws.com` |
-| `EC2_SSH_KEY` | The private SSH key, in `.pem` file format | Contents of your `.pem` key file |
-| `EC2_USER` | The SSH user | `ec2-user` (default for Amazon Linux) |
-| `ENV_VARS` | Environment variables in `.env` format | `DATABASE_URL=postgres://...`{{< br >}}`API_KEY=abc123` |
-| `RELEASE_COOKIE` | The release cookie for distributed Erlang | Value from `releases/COOKIE` or generate with `mix release.init` |
-| `SECRET_KEY_BASE` | Phoenix secret key base | Run `mix phx.gen.secret` to generate |
+| Secret Name       | Description                                | Example Values                                                         |
+| ----------------- | ------------------------------------------ | ---------------------------------------------------------------------- |
+| `EC2_HOST`        | The SSH host with port                     | `172.32.18.129` or `ec2-172-32-18-129.us-east-2.compute.amazonaws.com` |
+| `EC2_SSH_KEY`     | The private SSH key, in `.pem` file format | Contents of your `.pem` key file                                       |
+| `EC2_USER`        | The SSH user                               | `ec2-user` (default for Amazon Linux)                                  |
+| `ENV_VARS`        | Environment variables in `.env` format     | `DATABASE_URL=postgres://...`{{< br >}}`API_KEY=abc123`                |
+| `RELEASE_COOKIE`  | The release cookie for distributed Erlang  | Value from `releases/COOKIE` or generate with `mix release.init`       |
+| `SECRET_KEY_BASE` | Phoenix secret key base                    | Run `mix phx.gen.secret` to generate                                   |
 
 {{< gist "Tombarr" "17b94f79ccfc698792a2abafb8955409" >}}

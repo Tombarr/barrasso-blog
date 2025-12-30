@@ -1,4 +1,4 @@
-const defaultColor = 'rgba(0, 0, 0, 0.8)';
+const defaultColor = "rgba(0, 0, 0, 0.8)";
 
 function getRandomIntInclusive(min, max) {
   const minCeiled = Math.ceil(min);
@@ -11,7 +11,7 @@ function drawDividers(ctx, color = defaultColor) {
   const repeatCount = Math.ceil(ctx.canvas.width / ctx.canvas.height) + 1;
 
   for (let i = 1; i < repeatCount; i++) {
-    const lineOffset = (ctx.canvas.height * i);
+    const lineOffset = ctx.canvas.height * i;
 
     // Draw a vertical line
     ctx.beginPath();
@@ -30,7 +30,7 @@ function drawVerticalLines(ctx, x = 0, color = defaultColor) {
 
   for (let i = 1; i <= lineCount; i++) {
     const r = getRandomIntInclusive(-2, 2);
-    const lineOffset = r + x + (i * ctx.canvas.height / (lineCount + 1));
+    const lineOffset = r + x + (i * ctx.canvas.height) / (lineCount + 1);
 
     // Draw a vertical line
     ctx.beginPath();
@@ -49,7 +49,7 @@ function drawHorizontalLines(ctx, x = 0, color = defaultColor) {
 
   for (let i = 1; i <= lineCount; i++) {
     const r = getRandomIntInclusive(-2, 2);
-    const lineOffset = r + i * ctx.canvas.height / (lineCount + 1);
+    const lineOffset = r + (i * ctx.canvas.height) / (lineCount + 1);
 
     // Draw a horizontal line
     ctx.beginPath();
@@ -68,9 +68,9 @@ function drawTrianglesDown(ctx, x = 0, color = defaultColor) {
 
   for (let i = 0; i < triangleCount; i++) {
     const r = getRandomIntInclusive(-2, 2);
-    const top = r + i * ctx.canvas.height / triangleCount;
-    const bottom = r + (i + 1) * ctx.canvas.height / triangleCount;
-    const middle = x + (ctx.canvas.height / 2);
+    const top = r + (i * ctx.canvas.height) / triangleCount;
+    const bottom = r + ((i + 1) * ctx.canvas.height) / triangleCount;
+    const middle = x + ctx.canvas.height / 2;
     const end = x + ctx.canvas.height;
 
     // Draw a triangle line
@@ -91,9 +91,9 @@ function drawTrianglesUp(ctx, x = 0, color = defaultColor) {
 
   for (let i = 0; i < triangleCount; i++) {
     const r = getRandomIntInclusive(-2, 2);
-    const top = r + i * ctx.canvas.height / triangleCount;
-    const bottom = r + (i + 1) * ctx.canvas.height / triangleCount;
-    const middle = x + (ctx.canvas.height / 2);
+    const top = r + (i * ctx.canvas.height) / triangleCount;
+    const bottom = r + ((i + 1) * ctx.canvas.height) / triangleCount;
+    const middle = x + ctx.canvas.height / 2;
     const end = x + ctx.canvas.height;
 
     // Draw a triangle line
@@ -114,8 +114,8 @@ function drawTallTriangles(ctx, x = 0, color = defaultColor) {
 
   for (let i = 0; i < triangleCount; i++) {
     const r = getRandomIntInclusive(-1, 1);
-    const start = r + x + i * ctx.canvas.height / triangleCount;
-    const end = r + x + (i + 1) * ctx.canvas.height / triangleCount;
+    const start = r + x + (i * ctx.canvas.height) / triangleCount;
+    const end = r + x + ((i + 1) * ctx.canvas.height) / triangleCount;
 
     // Draw a triangle line
     ctx.beginPath();
@@ -135,9 +135,9 @@ function drawTallInvertedTriangles(ctx, x = 0, color = defaultColor) {
 
   for (let i = 0; i < triangleCount; i++) {
     const r = getRandomIntInclusive(-1, 1);
-    const start = r + x + i * ctx.canvas.height / triangleCount;
-    const end = r + x + (i + 1) * ctx.canvas.height / triangleCount;
-    const middle = r + x + (i + 0.5) * ctx.canvas.height / triangleCount;
+    const start = r + x + (i * ctx.canvas.height) / triangleCount;
+    const end = r + x + ((i + 1) * ctx.canvas.height) / triangleCount;
+    const middle = r + x + ((i + 0.5) * ctx.canvas.height) / triangleCount;
 
     // Draw a triangle line
     ctx.beginPath();
@@ -158,11 +158,12 @@ function drawSquiggles(ctx, x = 0, color = defaultColor) {
   ctx.beginPath();
   ctx.strokeStyle = color;
   ctx.lineWidth = 4;
-  ctx.moveTo(x, ctx.canvas.height - (ctx.lineWidth * 4));
+  ctx.moveTo(x, ctx.canvas.height - ctx.lineWidth * 4);
 
   for (let i = 1; i <= squiggleCount; i++) {
-    const start = x + (i * (ctx.canvas.height / squiggleCount));
-    const top = (i % 2 === 0) ? ctx.canvas.height - (ctx.lineWidth * 4) : (ctx.lineWidth * 4);
+    const start = x + i * (ctx.canvas.height / squiggleCount);
+    const top =
+      i % 2 === 0 ? ctx.canvas.height - ctx.lineWidth * 4 : ctx.lineWidth * 4;
     const r = getRandomIntInclusive(-2, 2);
     ctx.lineTo(start + r, top + r);
   }
@@ -181,7 +182,7 @@ function drawCheckerboard(ctx, x = 0, color = defaultColor) {
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < columns; j++) {
       // Only draw alternating squares
-      if ((isInverse) ? (j % 2 !== i % 2) : (j % 2 === i % 2)) {
+      if (isInverse ? j % 2 !== i % 2 : j % 2 === i % 2) {
         const r = getRandomIntInclusive(-1, 1);
         const start = r + x + j * size;
         const top = r + i * size;
@@ -207,8 +208,8 @@ function drawMiniTriangles(ctx, x = 0, color = defaultColor) {
       const r = getRandomIntInclusive(-1, 1);
       const start = Math.max(x, r + x + j * size);
       const top = i * size;
-      const middle = start + (size / 2);
-      const bottom = top + (size * 1.1);
+      const middle = start + size / 2;
+      const bottom = top + size * 1.1;
       const end = Math.min(x + ctx.canvas.height, start + size);
 
       ctx.beginPath();
@@ -225,10 +226,10 @@ function drawMiniTriangles(ctx, x = 0, color = defaultColor) {
 function shuffleArray(array) {
   const clone = [...array];
   for (let i = clone.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = clone[i];
-      clone[i] = clone[j];
-      clone[j] = temp;
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = clone[i];
+    clone[i] = clone[j];
+    clone[j] = temp;
   }
   return clone;
 }
@@ -246,7 +247,7 @@ const patterns = shuffleArray([
 ]);
 
 function fillCanvas(canvas) {
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext("2d");
   drawDividers(ctx);
 
   const count = Math.ceil(canvas.width / canvas.height);
@@ -266,7 +267,9 @@ function fillCanvas(canvas) {
 }
 
 function fillAllCanvases() {
-  const canvases = Array.from(document.querySelectorAll('canvas.pattern-divider'));
+  const canvases = Array.from(
+    document.querySelectorAll("canvas.pattern-divider"),
+  );
   canvases.forEach(fillCanvas);
 }
 

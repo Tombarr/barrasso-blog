@@ -55,10 +55,7 @@
     },
     {
       "label": "Start Development Server",
-      "dependsOn": [
-        "Watch CSS (Tailwind + PostCSS)",
-        "Start Hugo Server"
-      ],
+      "dependsOn": ["Watch CSS (Tailwind + PostCSS)", "Start Hugo Server"],
       "dependsOrder": "parallel",
       "group": {
         "kind": "build",

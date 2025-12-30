@@ -1,54 +1,72 @@
-{{ $title := partial "get-title-for-site.html" . }}
-{{/* RSS feed autodiscovery - uses Hugo's output formats */}}
-{{ range .AlternativeOutputFormats -}}
-  {{ if eq .Name "rss" -}}
-    <link rel="alternate" type="application/rss+xml" title="{{ $title }}" href="{{ .Permalink }}" />
-    <link rel="feed" type="application/rss+xml" title="{{ $title }}" href="{{ .Permalink }}" />
-  {{ end -}}
-{{ end -}}
+{{ $title := partial "get-title-for-site.html" . }} {{/* RSS feed autodiscovery
+- uses Hugo's output formats */}} {{ range .AlternativeOutputFormats -}} {{ if
+eq .Name "rss" -}}
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="{{ $title }}"
+  href="{{ .Permalink }}"
+/>
+<link
+  rel="feed"
+  type="application/rss+xml"
+  title="{{ $title }}"
+  href="{{ .Permalink }}"
+/>
+{{ end -}} {{ end -}} {{/* Preferably set this similar to your --color-hbg from
+theme.css */}}
+<meta
+  name="theme-color"
+  media="(prefers-color-scheme: light)"
+  content="#1c2b33"
+/>
+<meta
+  name="theme-color"
+  media="(prefers-color-scheme: dark)"
+  content="#1c2b33"
+/>
 
-{{/*  Preferably set this similar to your --color-hbg from theme.css */}}
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#1c2b33">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c2b33">
+{{/* Preload critical fonts for faster text rendering */}} {{ if not (or .IsHome
+hugo.IsServer) }}
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/figtree-normal.woff2"
+  crossorigin
+/>
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fraunces-normal.woff2"
+  crossorigin
+/>
+{{ end}} {{/* Resource hints for external domains */}}
+<link rel="dns-prefetch" href="https://github.com" />
+<link rel="dns-prefetch" href="https://medium.com" />
+<link rel="dns-prefetch" href="https://linkedin.com" />
+<link rel="dns-prefetch" href="https://stackoverflow.com" />
 
-{{/* Preload critical fonts for faster text rendering */}}
-{{ if not (or .IsHome hugo.IsServer) }}
-<link rel="preload" as="font" type="font/woff2" href="/fonts/figtree-normal.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-normal.woff2" crossorigin>
-{{ end}}
-
-{{/* Resource hints for external domains */}}
-<link rel="dns-prefetch" href="https://github.com">
-<link rel="dns-prefetch" href="https://medium.com">
-<link rel="dns-prefetch" href="https://linkedin.com">
-<link rel="dns-prefetch" href="https://stackoverflow.com">
-
-{{ if .Params.externalLink }}
-{{/* Meta refresh for external link posts - redirects immediately */}}
+{{ if .Params.externalLink }} {{/* Meta refresh for external link posts -
+redirects immediately */}}
 <meta http-equiv="refresh" content="0; url={{ .Params.externalLink }}" />
-{{ end }}
-
-{{/* Override favicon for external articles if favicon is set */}}
-{{ if .Params.favicon }}
-  {{- $favicon := .Params.favicon -}}
-  {{- if or (hasPrefix $favicon "http://") (hasPrefix $favicon "https://") -}}
-    <link rel="icon" href="{{ $favicon }}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="{{ $favicon }}">
-  {{- else -}}
-    {{- warnf "Invalid favicon URL (must be external http/https): %s (in %s)" $favicon .File.Path -}}
-  {{- end -}}
-{{/* Override favicon for project pages if project icon is set */}}
-{{ else if and (eq .Type "projects") .Params.icon }}
-  {{- $cleanIconPath := strings.TrimPrefix "/" .Params.icon -}}
-  {{- $icon := resources.Get $cleanIconPath -}}
-  {{- if $icon -}}
-    <link rel="icon" href="{{ $icon.RelPermalink }}" type="image/png">
-    <link rel="apple-touch-icon" href="{{ $icon.RelPermalink }}">
-  {{- end -}}
-{{ end }}
+{{ end }} {{/* Override favicon for external articles if favicon is set */}} {{
+if .Params.favicon }} {{- $favicon := .Params.favicon -}} {{- if or (hasPrefix
+$favicon "http://") (hasPrefix $favicon "https://") -}}
+<link rel="icon" href="{{ $favicon }}" type="image/x-icon" />
+<link rel="apple-touch-icon" href="{{ $favicon }}" />
+{{- else -}} {{- warnf "Invalid favicon URL (must be external http/https): %s
+(in %s)" $favicon .File.Path -}} {{- end -}} {{/* Override favicon for project
+pages if project icon is set */}} {{ else if and (eq .Type "projects")
+.Params.icon }} {{- $cleanIconPath := strings.TrimPrefix "/" .Params.icon -}}
+{{- $icon := resources.Get $cleanIconPath -}} {{- if $icon -}}
+<link rel="icon" href="{{ $icon.RelPermalink }}" type="image/png" />
+<link rel="apple-touch-icon" href="{{ $icon.RelPermalink }}" />
+{{- end -}} {{ end }}
 
 <script type="speculationrules">
-{
-  "prerender": [{ "source": "document", "eagerness": "moderate" }]
-}
+  {
+    "prerender": [{ "source": "document", "eagerness": "moderate" }]
+  }
 </script>

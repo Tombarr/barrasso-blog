@@ -9,12 +9,12 @@
  */
 export function initServiceWorker() {
   // Check if service workers are supported
-  if (!('serviceWorker' in navigator)) {
+  if (!("serviceWorker" in navigator)) {
     return;
   }
 
   // Wait for page to load before registering
-  window.addEventListener('load', () => {
+  window.addEventListener("load", () => {
     registerServiceWorker();
   });
 }
@@ -24,19 +24,22 @@ export function initServiceWorker() {
  */
 async function registerServiceWorker() {
   try {
-    const registration = await navigator.serviceWorker.register('/sw.js', {
-      scope: '/'
+    const registration = await navigator.serviceWorker.register("/sw.js", {
+      scope: "/",
     });
 
     // Check for updates on page load
     registration.update();
 
     // Handle service worker updates
-    registration.addEventListener('updatefound', () => {
+    registration.addEventListener("updatefound", () => {
       const newWorker = registration.installing;
 
-      newWorker.addEventListener('statechange', () => {
-        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+      newWorker.addEventListener("statechange", () => {
+        if (
+          newWorker.state === "installed" &&
+          navigator.serviceWorker.controller
+        ) {
           // New service worker available - show update notification
           showUpdateNotification(newWorker);
         }
@@ -44,12 +47,11 @@ async function registerServiceWorker() {
     });
 
     // Listen for controller change (new SW activated)
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
       window.location.reload();
     });
-
   } catch (error) {
-    console.error('[SW] Registration failed:', error);
+    console.error("[SW] Registration failed:", error);
   }
 }
 
@@ -58,17 +60,17 @@ async function registerServiceWorker() {
  */
 function showUpdateNotification(worker) {
   // Check if user wants to see update notifications
-  const showNotification = localStorage.getItem('sw-show-updates') !== 'false';
+  const showNotification = localStorage.getItem("sw-show-updates") !== "false";
 
   if (!showNotification) {
     // Auto-update without notification
-    worker.postMessage({ type: 'SKIP_WAITING' });
+    worker.postMessage({ type: "SKIP_WAITING" });
     return;
   }
 
   // Create update notification banner
-  const banner = document.createElement('div');
-  banner.id = 'sw-update-banner';
+  const banner = document.createElement("div");
+  banner.id = "sw-update-banner";
   banner.innerHTML = `
     <div style="
       position: fixed;
@@ -119,13 +121,13 @@ function showUpdateNotification(worker) {
   document.body.appendChild(banner);
 
   // Handle update button click
-  document.getElementById('sw-update-btn').addEventListener('click', () => {
-    worker.postMessage({ type: 'SKIP_WAITING' });
+  document.getElementById("sw-update-btn").addEventListener("click", () => {
+    worker.postMessage({ type: "SKIP_WAITING" });
     banner.remove();
   });
 
   // Handle dismiss button click
-  document.getElementById('sw-dismiss-btn').addEventListener('click', () => {
+  document.getElementById("sw-dismiss-btn").addEventListener("click", () => {
     banner.remove();
   });
 }
@@ -145,10 +147,9 @@ export async function getCacheInfo() {
       resolve(event.data);
     };
 
-    navigator.serviceWorker.controller.postMessage(
-      { type: 'GET_CACHE_SIZE' },
-      [messageChannel.port2]
-    );
+    navigator.serviceWorker.controller.postMessage({ type: "GET_CACHE_SIZE" }, [
+      messageChannel.port2,
+    ]);
   });
 }
 
@@ -160,13 +161,13 @@ export async function clearCache() {
     return;
   }
 
-  navigator.serviceWorker.controller.postMessage({ type: 'CLEAR_CACHE' });
+  navigator.serviceWorker.controller.postMessage({ type: "CLEAR_CACHE" });
 }
 
 // Expose functions to window for console debugging
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   window.swDebug = {
     getCacheInfo,
-    clearCache
+    clearCache,
   };
 }

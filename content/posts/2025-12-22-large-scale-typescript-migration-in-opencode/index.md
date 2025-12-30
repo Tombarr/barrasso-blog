@@ -17,17 +17,17 @@ I migrated [PodLP]({{< relref "projects/podlp" >}}), my podcast app for [KaiOS](
 - **Scale**. ~35,000 lines of code (LOC) across 160 JavaScript files, 67 Svelte components, and 28 JSON translation dictionaries
 - **Cost**. $43 using [$300 free credit](https://cloud.google.com/free) for new Google Cloud customers
 - **Time**. Two half days of background tasks, primarily baking cookies and working on other projects
-- **Impact**. A codebase that's *completely* migrated to TypeScript
+- **Impact**. A codebase that's _completely_ migrated to TypeScript
 - **What didn't work?** Attempting a one-shot conversion
 - **What did work?** Multiple well-scoped subagents and some patience
 
 ## Background and Motivation
 
-I've maintained PodLP for 5+ years. As it grew, it became more complex and honestly a *bit messy*. It eventually morphed into a monorepo with several front-end versions: the original for KaiOS, one for the [JioPhone](https://www.jio.com/general/jiophone/) (India), and one for [Cloud Phone]({{< relref "projects/cloud-phone" >}}).
+I've maintained PodLP for 5+ years. As it grew, it became more complex and honestly a _bit messy_. It eventually morphed into a monorepo with several front-end versions: the original for KaiOS, one for the [JioPhone](https://www.jio.com/general/jiophone/) (India), and one for [Cloud Phone]({{< relref "projects/cloud-phone" >}}).
 
 Moreover, when I started PodLP, I knew nothing about podcatchers or podcast indexing. I also had no experience with KaiOS or it's many quirks and undocumented APIs. Iteratively over several years, the app grew in size and complexity. Yet I still generated builds (ZIP files) locally on my [M1 MacBook Air](https://amzn.to/4p0N4s5) and uploaded them manually to the [KaiStore](https://developer.kaiostech.com/docs/distribution/submission-portal/).
 
-I tried to keep up-to-date with processes and dependencies. I upgraded PodLP from Svelte 3 to Svelte 4, I rewrote  [offline downloads](https://kaios.dev/2023/02/the-download-on-kaios-downloads/) to used chunked streams (`moz-chunked-arraybuffer`) written not to `IndexedDB` but instead to [`DeviceStorage`](https://developer.kaiostech.com/docs/api/web-apis/deviceStorage/device-storage/), I added support for [KaiOS 3.0](https://blog.podlp.com/posts/podlp-kaios-3/) and I migrated PodLP's back-end to the [Podcast Index](https://blog.podlp.com/posts/podlp-podcast-index/).
+I tried to keep up-to-date with processes and dependencies. I upgraded PodLP from Svelte 3 to Svelte 4, I rewrote [offline downloads](https://kaios.dev/2023/02/the-download-on-kaios-downloads/) to used chunked streams (`moz-chunked-arraybuffer`) written not to `IndexedDB` but instead to [`DeviceStorage`](https://developer.kaiostech.com/docs/api/web-apis/deviceStorage/device-storage/), I added support for [KaiOS 3.0](https://blog.podlp.com/posts/podlp-kaios-3/) and I migrated PodLP's back-end to the [Podcast Index](https://blog.podlp.com/posts/podlp-podcast-index/).
 
 Although there are tools like [jscodeshift](https://github.com/facebook/jscodeshift) and [`sv migrate`](https://svelte.dev/docs/cli/sv-migrate), large-scale refactoring of 200+ files and 30,000+ lines without ready-made scripts was too much time and effort to justify. Inspired by Simon Willison’s port of [JustHTML from Python to JavaScript](https://simonwillison.net/2025/Dec/15/porting-justhtml/), I decided to try a similar agentic approach.
 
@@ -92,10 +92,10 @@ The entire process was remarkably smooth. In a few hours, I had dozens of type d
 
 I'm aware that there are several libraries like [`webidl2ts`](https://github.com/giniedp/webidl2ts) that convert WebIDL to TypeScript like [`webidl2`](https://www.npmjs.com/package/webidl2). In the past, I've tried this approach but ran into several issues.
 
-1) Not all KaiOS APIs are defined in WebIDL files
-2) Some WebIDL files that don't originate from Boot2Gecko are not open source
-3) Parsers operate file-by-file without an understanding of module resolution
-4) Parsers often fail for complex WebIDL files with inheritance or incomplete but similar types
+1. Not all KaiOS APIs are defined in WebIDL files
+2. Some WebIDL files that don't originate from Boot2Gecko are not open source
+3. Parsers operate file-by-file without an understanding of module resolution
+4. Parsers often fail for complex WebIDL files with inheritance or incomplete but similar types
 
 KaiOS can be a mess. For example, asynchronous programming includes `DOMRequest` callbacks (KaiOS 2.5 only), `Promises` (partially supported on KaiOS 2.5 without the `finally` method), and the `async` keyword on KaiOS 3.0+. I probably could have taken a hybrid approach allowing an agent to make a tool call to `webidl2`, but I didn't find it necessary. Plus, it would have roughly doubled input token usage to send both a `.webidl` and `.d.ts` file in the context for each request. Perhaps a future attempt would use AI to write a custom parser using `webidl2` tested specifically against Firefox and KaiOS.
 
@@ -107,9 +107,11 @@ Given how easy it was to create `kaios-types`, I decided to replicate the succes
 # TypeScript Migration Plan - Fast Track
 
 ## Overview
+
 Migrate JavaScript files to TypeScript using pragmatic typing with liberal `any` usage for speed. Testing on both KaiOS 2.5 and 3.0 devices available.
 
 ## Strategy
+
 - **Speed First**: Use `any` liberally where KaiOS APIs lack complete type definitions
 - **Follow Patterns**: Match existing migrated files' typing approach
 - **Build Validation**: Verify TypeScript compiles and Babel transpiles correctly
@@ -171,10 +173,9 @@ Migration complete when:
 2. TypeScript compilation succeeds
 3. Production build works
 4. All features tested on both KaiOS versions
-
 ```
 
-At first glance, the plan seemed fine although I would prefer to not "use `any` liberally." For small files with few dependencies, this was sufficient. However, I exhausted my Claude Pro daily usage *very quickly* and found it got stuck far too often. Claude reinvented the wheel (didn't use `kaios-types`) and was **too liberal** with type assertions to `any`. For better results, I needed to be more specific about the changes I expected, more methodical in iterating across files, and narrower in scope with each prompt.
+At first glance, the plan seemed fine although I would prefer to not "use `any` liberally." For small files with few dependencies, this was sufficient. However, I exhausted my Claude Pro daily usage _very quickly_ and found it got stuck far too often. Claude reinvented the wheel (didn't use `kaios-types`) and was **too liberal** with type assertions to `any`. For better results, I needed to be more specific about the changes I expected, more methodical in iterating across files, and narrower in scope with each prompt.
 
 I noticed most failures came when converting highly-interconnected components (itself a code smell for refactor, but that's a problem for another day). My approach was similar to the [Strangler Fig](https://martinfowler.com/bliki/StranglerFigApplication.html): don't arbitrarily walk file-by-file, but instead focus on the "outermost" independent components with the least imports. As Gemini put it, "start with leaf utilities (e.g., `src/strings/`, `src/utils/`) and move up to components." For PodLP, this meant the parts of the code that handle transcripts, translations, push notifications, and downloads.
 
@@ -198,7 +199,6 @@ This document outlines the strategy to modernize the PodLP codebase by migrating
 **Goal:** Enable TypeScript support in the build pipeline while **keeping Babel** for critical KaiOS down-leveling.
 
 1.  **Install Dependencies:**
-
     - `typescript`
     - `tslib`
     - `svelte-preprocess`
@@ -208,7 +208,6 @@ This document outlines the strategy to modernize the PodLP codebase by migrating
     - `kaios-types` (already installed or ensure it is added)
 
 2.  **Configuration:**
-
     - Create `tsconfig.json`:
       - Extend `@tsconfig/svelte/tsconfig.json`.
       - Set `target` to `ESNext` (let Babel handle the heavy lifting to ES5/ES6 for Firefox 48).
@@ -228,7 +227,6 @@ This document outlines the strategy to modernize the PodLP codebase by migrating
 **Goal:** Convert codebase to TypeScript.
 
 1.  **Iterative Conversion:**
-
     - Rename `.js` files to `.ts`.
     - Update `.svelte` files: `<script>` -> `<script lang="ts">`.
     - Fix immediate type errors.
@@ -236,7 +234,6 @@ This document outlines the strategy to modernize the PodLP codebase by migrating
     - Start with leaf utilities (e.g., `src/strings/`, `src/utils/`) and move up to components.
 
 2.  **Type Safety:**
-
     - Run `npm run check` (using `svelte-check`) to identify issues.
     - Define interfaces for API responses and core data structures (Podcast, Episode).
     - Replace `any` with specific types where possible.
@@ -249,7 +246,6 @@ This document outlines the strategy to modernize the PodLP codebase by migrating
 
 1.  Update `README.md` with new build instructions and TS guidelines.
 2.  Verify `package.json` scripts.
-
 ```
 
 This process continued for several hours split across two days driven by rate limits and resource quotas. I began with Gemini 3 Pro to draft and vet the plan, then to Gemini 3 Flash and 2.5 Flash for the file-by-file conversion. Only a few highly-interconnected files caused issues, and even these were able to be converted with some manual intervention.
@@ -277,7 +273,7 @@ During the conversion process, liberal use of `any` or generic types like `Event
 
 The second issue was with a single instance where the [`...` spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) was dropped, causing Svelte's reactivity statement to not trigger and a component to not render. This was incredibly easy to spot since it caused the entire page to be blank. One more fix, and it was resolved.
 
-The only other issues I ran into were duplication of KaiOS API types (redefining APIs already present in `kaios-types`). Given how little training data is available for KaiOS, it's likely the model wasn't able to `grep` for the correct API and choose instead to redefine it. I addressed most of this with a single prompt listing where to find each duplicated type definition. In the end, I even spotted a few APIs *missing* from `kaios-types`!
+The only other issues I ran into were duplication of KaiOS API types (redefining APIs already present in `kaios-types`). Given how little training data is available for KaiOS, it's likely the model wasn't able to `grep` for the correct API and choose instead to redefine it. I addressed most of this with a single prompt listing where to find each duplicated type definition. In the end, I even spotted a few APIs _missing_ from `kaios-types`!
 
 ## Results
 

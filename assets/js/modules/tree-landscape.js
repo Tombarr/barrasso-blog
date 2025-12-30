@@ -8,7 +8,7 @@
  */
 function getTreeColor() {
   // Always draw in black - CSS will invert to white for light theme
-  return '#000000';
+  return "#000000";
 }
 
 function secureRandomFloat() {
@@ -19,7 +19,10 @@ function secureRandomFloat() {
 }
 
 function random() {
-  if ('crypto' in window && typeof window.crypto.getRandomValues === 'function') {
+  if (
+    "crypto" in window &&
+    typeof window.crypto.getRandomValues === "function"
+  ) {
     return secureRandomFloat();
   }
 
@@ -85,7 +88,7 @@ function drawPineTree2(ctx, { x, y }, size, color) {
   const branchLevels = 8;
   for (let i = 0; i < branchLevels; i++) {
     const yPos = y + (i / branchLevels) * h * 0.85 - h * 0.075;
-    const branchWidth = (w * 0.65) * (i / (branchLevels + 2));
+    const branchWidth = w * 0.65 * (i / (branchLevels + 2));
 
     ctx.beginPath();
     ctx.moveTo(x + w / 2 - branchWidth, yPos);
@@ -108,10 +111,10 @@ function drawPineTree3(ctx, { x, y }, size, color) {
   const layers = [
     { yStart: 0.05, height: 0.25, width: 0.5 },
     { yStart: 0.3, height: 0.25, width: 0.4 },
-    { yStart: 0.55, height: 0.25, width: 0.3 }
+    { yStart: 0.55, height: 0.25, width: 0.3 },
   ];
 
-  layers.forEach(layer => {
+  layers.forEach((layer) => {
     const yTop = y + h * layer.yStart;
     const yBottom = y + h * (layer.yStart + layer.height);
     const widthAtBottom = w * (layer.yStart + layer.height + 0.2);
@@ -151,7 +154,7 @@ function drawPineTree4(ctx, { x, y }, size, color) {
   const branches = 8;
   for (let i = 0; i < branches; i++) {
     const yPos = y + (i / branches) * h * 0.8 + h * 0.1;
-    const branchWidth = (w * 0.65) * (i / (branches + 3));
+    const branchWidth = w * 0.65 * (i / (branches + 3));
 
     // Left branch
     ctx.beginPath();
@@ -187,7 +190,7 @@ function drawPineTree5(ctx, { x, y }, size, color) {
   const layers = 7;
   for (let i = 0; i < layers; i++) {
     const yPos = y + (i / layers) * h * 0.75 + h * 0.15;
-    const branchWidth = (w * 0.65) * (i / (layers + 2));
+    const branchWidth = w * 0.65 * (i / (layers + 2));
 
     // Horizontal branch
     ctx.beginPath();
@@ -211,7 +214,7 @@ function drawPineTree5(ctx, { x, y }, size, color) {
 /**
  * Type 6: Detailed evergreen with horizontal branches, short trunk
  */
- function drawPineTree6(ctx, { x, y }, size, color) {
+function drawPineTree6(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
   const h = BASE_HEIGHT * size;
 
@@ -228,7 +231,7 @@ function drawPineTree5(ctx, { x, y }, size, color) {
   const branchLevels = 7;
   for (let i = 0; i < branchLevels; i++) {
     const yPos = y + (i / branchLevels) * h * 0.85 - h * 0.075;
-    const branchWidth = (w * 0.85) * (i / (branchLevels + 2));
+    const branchWidth = w * 0.85 * (i / (branchLevels + 2));
 
     ctx.beginPath();
     ctx.moveTo(x + w / 2 - branchWidth, yPos);
@@ -240,7 +243,7 @@ function drawPineTree5(ctx, { x, y }, size, color) {
 /**
  * Type 7: Detailed evergreen with varied horizontal branches
  */
- function drawPineTree7(ctx, { x, y }, size, color) {
+function drawPineTree7(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
   const h = BASE_HEIGHT * size;
 
@@ -271,7 +274,7 @@ function drawPineTree5(ctx, { x, y }, size, color) {
 /**
  * Type 8: Simple evergreen with upward angled branches
  */
- function drawPineTree8(ctx, { x, y }, size, color) {
+function drawPineTree8(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
   const h = BASE_HEIGHT * size;
 
@@ -288,7 +291,7 @@ function drawPineTree5(ctx, { x, y }, size, color) {
   const branches = 7;
   for (let i = 0; i < branches; i++) {
     const yPos = y + (i / branches) * h * 0.75 + h * 0.2;
-    const branchWidth = (w * 0.75) * (i / (branches + 2));
+    const branchWidth = w * 0.75 * (i / (branches + 2));
 
     // Left branch - angled upward
     ctx.beginPath();
@@ -340,7 +343,7 @@ function drawPineTree9(ctx, { x, y }, size, color) {
 /**
  * Type 10: Angular zigzag evergreen
  */
- function drawPineTree10(ctx, { x, y }, size, color) {
+function drawPineTree10(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
   const h = BASE_HEIGHT * size;
 
@@ -357,7 +360,7 @@ function drawPineTree9(ctx, { x, y }, size, color) {
   const layers = 6;
   for (let i = 0; i < layers; i++) {
     const yPos = y + (i / layers) * h * 0.75 + h * 0.15;
-    const branchWidth = (w * 0.5) * (i / layers);
+    const branchWidth = w * 0.5 * (i / layers);
     const segmentHeight = h * 0.05;
 
     // Left branch with zigzag
@@ -379,7 +382,7 @@ function drawPineTree9(ctx, { x, y }, size, color) {
 /**
  * Deciduous Type 1: Circular canopy with branches
  */
- function drawDeciduousTree1(ctx, { x, y }, size, color) {
+function drawDeciduousTree1(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
   const h = BASE_HEIGHT * size;
 
@@ -455,11 +458,29 @@ function drawDeciduousTree2(ctx, { x, y }, size, color) {
   ctx.beginPath();
   ctx.moveTo(canopyX + cornerRadius, canopyY);
   ctx.lineTo(canopyX + canopyWidth - cornerRadius, canopyY);
-  ctx.arcTo(canopyX + canopyWidth, canopyY, canopyX + canopyWidth, canopyY + cornerRadius, cornerRadius);
+  ctx.arcTo(
+    canopyX + canopyWidth,
+    canopyY,
+    canopyX + canopyWidth,
+    canopyY + cornerRadius,
+    cornerRadius,
+  );
   ctx.lineTo(canopyX + canopyWidth, canopyY + canopyHeight - cornerRadius);
-  ctx.arcTo(canopyX + canopyWidth, canopyY + canopyHeight, canopyX + canopyWidth - cornerRadius, canopyY + canopyHeight, cornerRadius);
+  ctx.arcTo(
+    canopyX + canopyWidth,
+    canopyY + canopyHeight,
+    canopyX + canopyWidth - cornerRadius,
+    canopyY + canopyHeight,
+    cornerRadius,
+  );
   ctx.lineTo(canopyX + cornerRadius, canopyY + canopyHeight);
-  ctx.arcTo(canopyX, canopyY + canopyHeight, canopyX, canopyY + canopyHeight - cornerRadius, cornerRadius);
+  ctx.arcTo(
+    canopyX,
+    canopyY + canopyHeight,
+    canopyX,
+    canopyY + canopyHeight - cornerRadius,
+    cornerRadius,
+  );
   ctx.lineTo(canopyX, canopyY + cornerRadius);
   ctx.arcTo(canopyX, canopyY, canopyX + cornerRadius, canopyY, cornerRadius);
   ctx.stroke();
@@ -489,7 +510,7 @@ function drawDeciduousTree2(ctx, { x, y }, size, color) {
 /**
  * Deciduous Type 4: Oval/elliptical canopy with branches
  */
- function drawDeciduousTree4(ctx, { x, y }, size, color) {
+function drawDeciduousTree4(ctx, { x, y }, size, color) {
   const w = BASE_WIDTH * size;
   const h = BASE_HEIGHT * size;
 
@@ -577,10 +598,10 @@ function drawDeciduousTree9(ctx, { x, y }, size, color) {
 function shuffleArray(array) {
   const clone = [...array];
   for (let i = clone.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = clone[i];
-      clone[i] = clone[j];
-      clone[j] = temp;
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = clone[i];
+    clone[i] = clone[j];
+    clone[j] = temp;
   }
   return clone;
 }
@@ -598,11 +619,11 @@ const trees = shuffleArray([
   drawDeciduousTree1,
   drawDeciduousTree2,
   drawDeciduousTree4,
-  drawDeciduousTree9
+  drawDeciduousTree9,
 ]);
 
 function prepareCanvas(canvas) {
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext("2d");
   const dpi = Math.max(1, window.devicePixelRatio);
   const scale = dpi * 2;
 
@@ -656,7 +677,12 @@ function fillCanvas(canvas) {
     const deltaX = getRandomIntInclusive(BASE_WIDTH * 0.85, BASE_WIDTH * 1.25);
     const drawTree = trees[r];
 
-    drawTree(ctx, { x: previousX + deltaX, y: top + BASE_HEIGHT * (1 - scale) }, scale, color);
+    drawTree(
+      ctx,
+      { x: previousX + deltaX, y: top + BASE_HEIGHT * (1 - scale) },
+      scale,
+      color,
+    );
     previousX += deltaX;
   }
 
@@ -673,11 +699,11 @@ function fillCanvas(canvas) {
   ctx.translate(-0.5, -0.5);
 
   // Constrain to center
-  canvas.parentNode.style.maxWidth = canvasWidth + 'px';
+  canvas.parentNode.style.maxWidth = canvasWidth + "px";
 }
 
 function fillAllCanvases() {
-  const canvases = Array.from(document.querySelectorAll('canvas.tree-divider'));
+  const canvases = Array.from(document.querySelectorAll("canvas.tree-divider"));
   canvases.forEach(fillCanvas);
 }
 

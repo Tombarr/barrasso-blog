@@ -1,11 +1,19 @@
-{{- $css := resources.Get "css/resume-output.css" -}}
-
-{{- if $css -}}
-  {{- if not hugo.IsServer -}}
-    {{- $css = $css | minify | fingerprint -}}
-  {{- end -}}
-  <link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}"{{ end }}>
-{{- else -}}
-  {{- warnf "Resume CSS file not found at assets/css/resume-output.css. Run 'make css' or 'make css-resume' to generate it." -}}
-  <!-- Resume CSS file not found - run Tailwind compilation -->
+{{- $css := resources.Get "css/resume-output.css" -}} {{- if $css -}} {{- if not
+hugo.IsServer -}} {{- $css = $css | minify | fingerprint -}} {{- end -}}
+<link
+  rel="stylesheet"
+  href="{{ $css.RelPermalink }}"
+  {{
+  with
+  $css.Data.Integrity
+  }}
+  integrity="{{ . }}"
+  {{
+  end
+  }}
+/>
+{{- else -}} {{- warnf "Resume CSS file not found at
+assets/css/resume-output.css. Run 'make css' or 'make css-resume' to generate
+it." -}}
+<!-- Resume CSS file not found - run Tailwind compilation -->
 {{- end -}}

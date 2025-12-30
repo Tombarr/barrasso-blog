@@ -10,9 +10,7 @@
       "version": "lts"
     }
   },
-  "forwardPorts": [
-    1313
-  ],
+  "forwardPorts": [1313],
   "portsAttributes": {
     "1313": {
       "label": "Hugo Dev Server",
@@ -32,7 +30,7 @@
         "yzhang.markdown-all-in-one",
         "tamasfe.even-better-toml",
         "streetsidesoftware.code-spell-checker",
-	"rusnasonov.vscode-hugo"
+        "rusnasonov.vscode-hugo"
       ]
     }
   },

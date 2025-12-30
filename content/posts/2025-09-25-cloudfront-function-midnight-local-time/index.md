@@ -24,8 +24,8 @@ After writing and editing 26 scripts (one for each letter A-Z), I used [ElevenLa
 
 To rotate content daily I considered:
 
-* Serving fully static using Cloudfront with an S3 origin, then using a Lambda function on a daily [EventBridge scheduler](https://docs.aws.amazon.com/scheduler/latest/UserGuide/what-is-scheduler.html) to copy one of the 26 stories as "today's story"
-* Serving static content using either a [Cloudfront Function](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-functions.html) or Lambda@Edge function to select an S3 object based on the current day in the user's local time using the [`CloudFront-Viewer-Time-Zone` header](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/adding-cloudfront-headers.html)
+- Serving fully static using Cloudfront with an S3 origin, then using a Lambda function on a daily [EventBridge scheduler](https://docs.aws.amazon.com/scheduler/latest/UserGuide/what-is-scheduler.html) to copy one of the 26 stories as "today's story"
+- Serving static content using either a [Cloudfront Function](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-functions.html) or Lambda@Edge function to select an S3 object based on the current day in the user's local time using the [`CloudFront-Viewer-Time-Zone` header](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/adding-cloudfront-headers.html)
 
 I choose the second option because it's cumbersome to explain that, "the story updates every day at Midnight UTC." I opted instead for a Cloufront Function because they are very low latency and _much cheaper_ than Lambda@Edge. Cloudfront Functions cost a flat $0.10 per 1 million invocations vs. Lambda@Edge which costs approximately $0.60 per 1 million invocations (price depends on region) plus execution time and memory measured in GB-seconds.
 
@@ -51,9 +51,9 @@ At this point, it would have been much simpler to just migrate over to Lambda@Ed
 
 To map IANA timezones to UTC offsets I considered:
 
-* Storing timezone name to UTC offsets in [Cloudfront KeyValueStore](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/kvs-with-functions.html)
-* Using an NPM package that contained the mappings
-* Inlining the mappings within my application code
+- Storing timezone name to UTC offsets in [Cloudfront KeyValueStore](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/kvs-with-functions.html)
+- Using an NPM package that contained the mappings
+- Inlining the mappings within my application code
 
 Another important limitation of Cloudfront Functions is that the [maximum function size](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html) is just 10 KB! Unfortunately, I could not find any NPM packages that would comfortably fit within that limit. Cloudfront KeyValueStore isn't too expensive at [$0.03 per 1 million reads](https://aws.amazon.com/cloudfront/pricing/), and probably would have been a convenient long-term solution, especially if I had multiple functions rotating content and reading from the same KV store.
 
@@ -111,8 +111,8 @@ I estimated that I needed about ~3.5 KB for my function code unminified, and thi
 
 This static timezone mapping has several obvious ~flaws~ limitations, most notably:
 
-* It's static: sometimes countries or territories change timezones
-* It doesn't account for Daylight Savings Time (DST)
+- It's static: sometimes countries or territories change timezones
+- It doesn't account for Daylight Savings Time (DST)
 
 That said, countries changing timezones isn't a frequent occurrence. It's even less likely that I'll have many users in such countries. Plus, there's growing evidence that [daylight savings is unhealthy](https://www.health.harvard.edu/staying-healthy/the-dark-side-of-daylight-saving-time).
 

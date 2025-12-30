@@ -1,9 +1,11 @@
-{{- $js := resources.Get "js/main.js" -}}
-{{- if $js -}}
-  {{- $opts := dict "target" "es2015" "minify" hugo.IsProduction "format" "iife" -}}
-  {{- $built := $js | js.Build $opts -}}
-  {{- if hugo.IsProduction -}}
-    {{- $built = $built | fingerprint -}}
-  {{- end -}}
-  <script src="{{ $built.RelPermalink }}" integrity="{{ $built.Data.Integrity }}" nonce="{{ $built.Data.Nonce }}" defer></script>
+{{- $js := resources.Get "js/main.js" -}} {{- if $js -}} {{- $opts := dict
+"target" "es2015" "minify" hugo.IsProduction "format" "iife" -}} {{- $built :=
+$js | js.Build $opts -}} {{- if hugo.IsProduction -}} {{- $built = $built |
+fingerprint -}} {{- end -}}
+<script
+  src="{{ $built.RelPermalink }}"
+  integrity="{{ $built.Data.Integrity }}"
+  nonce="{{ $built.Data.Nonce }}"
+  defer
+></script>
 {{- end -}}

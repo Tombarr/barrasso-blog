@@ -30,6 +30,7 @@ With more than **500,000+ installs**, Noyze was featured on [Gadget Hacks](https
 {{< responsive-image src="noyze-nexus.png" alt="Noyze Volume Panel" class="w-full contain" >}}
 
 {{< br >}}
+
 ### **Themes**
 
 {{< br >}}

@@ -1,51 +1,31 @@
-{{- /*
-  Responsive Image Shortcode
-
-  Generates responsive images with multiple sizes and formats (WebP + original)
-  Uses Hugo's image processing to create optimal srcset
-
-  Usage:
-    {{< responsive-image src="images/photo.jpg" alt="Description" >}}
-    {{< responsive-image src="images/photo.jpg" alt="Description" class="my-class" sizes="(max-width: 768px) 100vw, 50vw" >}}
-    {{< responsive-image src="images/photo.jpg" alt="Description" widths="320,640,1024,1920" >}}
-    {{< responsive-image src="images/photo.jpg" alt="Description" caption="Photo by John Doe" >}}
-    {{< responsive-image src="images/photo.jpg" alt="Description" caption="Wide shot" fullBleed="true" >}}
-
-  Parameters:
-    - src (required): Path to image in assets/ or page resources
-    - alt (optional): Alt text for accessibility
-    - class (optional): CSS classes to add
-    - sizes (optional): sizes attribute (default: "100vw")
-    - widths (optional): Comma-separated widths (default: "320,640,1024,1920")
-    - loading (optional): "lazy" (default) or "eager"
-    - quality (optional): JPEG/WebP quality 1-100 (default: 85)
-    - caption (optional): Figure caption (wraps image in <figure> when provided)
-    - fullBleed (optional): If "true", adds "full-bleed" class to <figure> (requires caption)
-*/ -}}
-
-{{- $src := .Get "src" | default (.Get 0) -}}
-{{- $alt := .Get "alt" | default "" -}}
-{{- $class := .Get "class" | default "" -}}
-{{- $sizes := .Get "sizes" | default "100vw" -}}
-{{- $widths := .Get "widths" | default "320,640,1024,1920" -}}
-{{- $loading := .Get "loading" | default "lazy" -}}
-{{- $quality := .Get "quality" | default 85 -}}
-{{- $caption := .Get "caption" | default "" -}}
-{{- $fullBleed := eq (.Get "fullBleed") "true" -}}
-
-{{- if not $src -}}
-  {{- errorf "responsive-image shortcode: src parameter is required" -}}
-{{- end -}}
-
-{{ partial "responsive-image.html" (dict
-  "Page" .Page
-  "src" $src
-  "alt" $alt
-  "class" $class
-  "sizes" $sizes
-  "widths" $widths
-  "loading" $loading
-  "quality" $quality
-  "caption" $caption
-  "fullBleed" $fullBleed
-) }}
+{{- /* Responsive Image Shortcode Generates responsive images with multiple
+sizes and formats (WebP + original) Uses Hugo's image processing to create
+optimal srcset Usage: {{< responsive-image src="images/photo.jpg"
+alt="Description" >}} {{< responsive-image src="images/photo.jpg"
+alt="Description" class="my-class" sizes="(max-width: 768px) 100vw, 50vw" >}}
+{{< responsive-image src="images/photo.jpg" alt="Description"
+widths="320,640,1024,1920" >}} {{< responsive-image src="images/photo.jpg"
+alt="Description" caption="Photo by John Doe" >}} {{< responsive-image
+src="images/photo.jpg" alt="Description" caption="Wide shot" fullBleed="true"
+>}} Parameters: - src (required): Path to image in assets/ or page resources -
+alt (optional): Alt text for accessibility - class (optional): CSS classes to
+add - sizes (optional): sizes attribute (default: "100vw") - widths (optional):
+Comma-separated widths (default: "320,640,1024,1920") - loading (optional):
+"lazy" (default) or "eager" - quality (optional): JPEG/WebP quality 1-100
+(default: 85) - caption (optional): Figure caption (wraps image in
+<figure>
+  when provided) - fullBleed (optional): If "true", adds "full-bleed" class to
+  <figure>
+    (requires caption) */ -}} {{- $src := .Get "src" | default (.Get 0) -}} {{-
+    $alt := .Get "alt" | default "" -}} {{- $class := .Get "class" | default ""
+    -}} {{- $sizes := .Get "sizes" | default "100vw" -}} {{- $widths := .Get
+    "widths" | default "320,640,1024,1920" -}} {{- $loading := .Get "loading" |
+    default "lazy" -}} {{- $quality := .Get "quality" | default 85 -}} {{-
+    $caption := .Get "caption" | default "" -}} {{- $fullBleed := eq (.Get
+    "fullBleed") "true" -}} {{- if not $src -}} {{- errorf "responsive-image
+    shortcode: src parameter is required" -}} {{- end -}} {{ partial
+    "responsive-image.html" (dict "Page" .Page "src" $src "alt" $alt "class"
+    $class "sizes" $sizes "widths" $widths "loading" $loading "quality" $quality
+    "caption" $caption "fullBleed" $fullBleed ) }}
+  </figure>
+</figure>

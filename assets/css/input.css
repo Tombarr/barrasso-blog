@@ -382,8 +382,8 @@ a.no-arrow.external-link::after,
 article .resume-main-content a[href*="//"]::after,
 article .gist-file a[href*="//"]::after,
 article .gist-embed a[href*="//"]::after,
-article a[role="button"][href*='//']::after,
-.resume-sidebar.sidebar-section a[href*='//']::after {
+article a[role="button"][href*="//"]::after,
+.resume-sidebar.sidebar-section a[href*="//"]::after {
   display: none;
   visibility: hidden;
   width: 0;
@@ -546,7 +546,9 @@ a:hover img.external-favicon {
 
   /* Add left padding to content to make room for portrait */
   .hero-with-portrait > * {
-    padding-inline-start: calc(var(--portrait-size) + 40px); /* 200px portrait + 40px gap */
+    padding-inline-start: calc(
+      var(--portrait-size) + 40px
+    ); /* 200px portrait + 40px gap */
   }
 
   /* Remove padding from the portrait itself */
@@ -747,7 +749,7 @@ a:hover img.external-favicon {
       right: 1rem;
       top: 0;
       z-index: 100;
-      border: 1px solid #3E3E3E;
+      border: 1px solid #3e3e3e;
       border-radius: 8px;
       width: calc(100vw - 60px);
     }
@@ -1138,21 +1140,21 @@ body > article.blog-content-width:first-child img.w-12 {
 }
 
 svg.spiral-knot {
-    position: absolute;
-    height: 100px;
-    object-fit: contain;
-    transform: rotate(0deg);
-    animation: spin 10s linear infinite;
-    will-change: transform;
+  position: absolute;
+  height: 100px;
+  object-fit: contain;
+  transform: rotate(0deg);
+  animation: spin 10s linear infinite;
+  will-change: transform;
 }
 
 .spiral-container {
-    height: 100px;
-    width: 100px;
-    margin: 0 auto;
-    position: relative;
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
+  position: relative;
 }
 
 svg.spiral-knot path {
-    fill: currentColor;
+  fill: currentColor;
 }
