@@ -106,7 +106,7 @@
 
         {{- if .Params.summary }}
           <p class="text-sm text-slate-700 leading-relaxed">
-            {{ .Params.summary }}
+            {{ .Params.summary | safeHTML }}
           </p>
         {{- end }}
       </header>

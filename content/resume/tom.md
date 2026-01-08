@@ -9,7 +9,7 @@ name = 'Tom Barrasso'
 email = 'tom@barrasso.me'
 phone = '(617) 894-7466'
 location = 'Boston, MA'
-summary = 'Technical leader with 10+ years launching zero-to-one products. Proven expertise in software engineering, program management, and developer relations across privacy compliance, healthcare, and consumer applications. Drives measurable impact through cross-functional leadership and scalable cloud architecture.'
+summary = '<b>Technical Program Leader • Cross-Functional Delivery • Metrics-Driven Architect</b><br />10+ years launching zero-to-one products with experience coordinating researchers, engineers, designers, and product teams across privacy compliance, healthcare, and consumer applications.'
 
 # Section Toggles
 showWorkExperience = true
@@ -44,10 +44,10 @@ companyIcon="cloudmosa" >}}
 
 - Authored, designed, and developed the [Cloud Phone for Developers]({{< relref "projects/cloud-phone" >}}) website
 - **Published 5 open-source reference applications**, libraries, and accompanying tutorials
-- Expanded platform reach by speaking on 4 podcasts, producing YouTube videos, publishing guest articles, and presenting at developer Meetups in 3 countries
-- **Supported hundreds of developers** via email, Discord, Zoom, and in-person consultations
+- Drove platform adoption via podcasts, video, guest articles, and developer talks in 4 countries
+- Captured and analyzed developer signals to define product needs around platform usability
 - Built and grew developer communities across Reddit, Discord, Bluesky, and X
-- **Prospected regional brands**, resulting in 6 enterprise applications published to the platform
+- Prospected regional brands, resulting in **6 enterprise applications published** to the platform
 
 {{< /job >}}
 
@@ -61,6 +61,7 @@ employerUrl="https://meta.com"
 companyIcon="meta" >}}
 
 - Executed **company-wide data governance programs** ensuring compliance with international privacy regulations including GDPR, DMA, DSA, CCPA, and ePD
+- Architected a scalable metrics framework with Privacy Data Science, **quantifying developer productivity and onboarding cost** using time-to-proficiency and time-in-motion analysis
 - Led execution to integrate and scale [Privacy Aware Infrastructure]({{< relref "projects/policy-zones" >}}) (PAI) across 150+ use cases in under 1 year, **mitigating €14B+ in regulatory risk**
 - Automated annual compliance audits, reducing operational costs by 75% {{< abbr title="Year-on-Year" >}}YoY{{< /abbr >}}
 
@@ -76,7 +77,7 @@ employerUrl="https://amazon.com"
 companyIcon="amazon" >}}
 
 - Unblocked [Amazon Pharmacy]({{< relref "projects/amazon-pharmacy" >}}) launch by **orchestrating security certification** across 54 services, 25 teams, and 1 external vendor in a single quarter
-- Led critical data replication system improvements, resolving longest-running downtime and largest source of customer-facing errors
+- Reduced user-facing SEV1 volume by 60% leading critical data replication system improvements
 - Drove development of [Supply Chain Standards](https://sustainability.aboutamazon.com/amazon-supply-chain-standards-english.pdf) auditing tool for global compliance initiatives
 
 {{< /job >}}
@@ -117,7 +118,7 @@ company="Finch Therapeutics"
 location="Boston, MA"
 dates="Jan 2017 - Aug 2017" >}}
 
-- Standardized {{< abbr title="Gas Chromatography-Mass Spectrometry" >}}GC-MS{{< /abbr >}} methodology for short-chain fatty acid (SCFA) analysis, improving analytical consistency and shortening run time by over 80%
+- Standardized {{< abbr title="Gas Chromatography-Mass Spectrometry" >}}GC-MS{{< /abbr >}} methodology for short-chain fatty acid (SCFA) analysis, improving analytical consistency and throughput by shortening run times more than 80%
   {{< /job >}}
 
 <!-- prettier-ignore -->
@@ -174,7 +175,6 @@ employerUrl="https://www.intouchcorp.com/" >}}
   school="University of Massachusetts Amherst"
   subject="Chemistry, BS"
   location="Amherst, MA"
-  dates="2012 - 2016"
 />}}
 
 {{< /education >}}
@@ -220,6 +220,7 @@ Node.js
 Java
 PHP
 Ruby on Rails
+Python
 RSpec
 Svelte
 React

@@ -608,8 +608,15 @@ html.resume-light-mode .pdf-download-button:hover {
     page-break-before: avoid;
   }
 
-  /* Ensure links don't break */
+  /* Underline links in resume body for print */
   a {
+    text-decoration: underline;
+  }
+
+  /* Remove underlines from header, contact, and navigation links */
+  .resume-header a,
+  .contact-info a,
+  .sidebar-footer a {
     text-decoration: none;
   }
 
