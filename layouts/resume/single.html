@@ -66,17 +66,26 @@
       </script>
       {{- /* Header Section */ -}}
       <header class="resume-header mb-6">
-        <div class="flex items-start justify-between">
-          <h1 class="text-4xl font-bold text-slate-900">
-            <a
-              href="{{ site.BaseURL }}"
-              class="no-underline text-slate-900 hover:text-slate-700 transition-colors">
-              {{ .Params.name | default .Title }}
-            </a>
-          </h1>
+        <div class="flex items-start justify-between gap-4">
+          {{- /* Left column: Name and Summary */ -}}
+          <div class="flex-1">
+            <h1 class="text-4xl font-bold text-slate-900">
+              <a
+                href="{{ site.BaseURL }}"
+                class="no-underline text-slate-900 hover:text-slate-700 transition-colors">
+                {{ .Params.name | default .Title }}
+              </a>
+            </h1>
+            {{- if .Params.summary }}
+              <p class="text-sm text-slate-700 leading-relaxed mt-2">
+                {{ .Params.summary | safeHTML }}
+              </p>
+            {{- end }}
+          </div>
 
+          {{- /* Right column: Contact Info */ -}}
           <div
-            class="contact-info flex flex-col items-end gap-1 text-sm text-slate-700">
+            class="contact-info flex flex-col items-end gap-1 text-sm text-slate-700 flex-shrink-0">
             {{- if .Params.email }}
               <a
                 href="mailto:{{ .Params.email }}"
@@ -101,14 +110,44 @@
                 {{ .Params.location }}
               </span>
             {{- end }}
+
+            {{- /* Social links */ -}}
+            {{- if .Params.showLinks }}
+              {{- with .Params.links }}
+                {{- if .linkedin }}
+                  <a
+                    href="{{ .linkedin }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 text-slate-600 hover:text-slate-900 no-underline no-external-icon no-arrow">
+                    {{- partial "svg.html" "icons/fontawesome/linkedin" -}}
+                    {{ i18n "linkedin" }}
+                  </a>
+                {{- end }}
+                {{- if .github }}
+                  <a
+                    href="{{ .github }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 text-slate-600 hover:text-slate-900 no-underline no-external-icon no-arrow">
+                    {{- partial "svg.html" "icons/fontawesome/github" -}}
+                    {{ i18n "github" }}
+                  </a>
+                {{- end }}
+                {{- if .portfolio }}
+                  <a
+                    href="{{ .portfolio }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 text-slate-600 hover:text-slate-900 no-underline no-external-icon no-arrow">
+                    {{- partial "svg.html" "icons/fontawesome/globe" -}}
+                    {{ i18n "portfolio" }}
+                  </a>
+                {{- end }}
+              {{- end }}
+            {{- end }}
           </div>
         </div>
-
-        {{- if .Params.summary }}
-          <p class="text-sm text-slate-700 leading-relaxed">
-            {{ .Params.summary | safeHTML }}
-          </p>
-        {{- end }}
       </header>
 
       {{- /* Two-column layout */ -}}
@@ -158,52 +197,6 @@
                 </ul>
               </section>
             {{- end }}
-          {{- end }}
-
-          {{- /* Links Section */ -}}
-          {{- if .Params.showLinks }}
-            <section class="sidebar-section links-section mb-8">
-              <h2
-                class="text-base font-semibold mb-2 pb-1 border-b border-slate-300">
-                {{ i18n "links" | default "Links" }}
-              </h2>
-              <div class="space-y-1 text-xs">
-                {{- with .Params.links }}
-                  {{- if .github }}
-                    <a
-                      href="{{ .github }}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="flex items-center gap-2 text-slate-700 hover:text-slate-900 no-underline">
-                      {{- partial "svg.html" "icons/fontawesome/github" -}}
-                      <span>GitHub</span>
-                    </a>
-                  {{- end }}
-
-                  {{- if .linkedin }}
-                    <a
-                      href="{{ .linkedin }}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="flex items-center gap-2 text-slate-700 hover:text-slate-900 no-underline">
-                      {{- partial "svg.html" "icons/fontawesome/linkedin" -}}
-                      <span>LinkedIn</span>
-                    </a>
-                  {{- end }}
-
-                  {{- if .portfolio }}
-                    <a
-                      href="{{ .portfolio }}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="flex items-center gap-2 text-slate-700 hover:text-slate-900 no-underline">
-                      {{- partial "svg.html" "icons/fontawesome/globe" -}}
-                      <span>Portfolio</span>
-                    </a>
-                  {{- end }}
-                {{- end }}
-              </div>
-            </section>
           {{- end }}
 
           {{- /* Spacer to push footer to bottom */ -}}

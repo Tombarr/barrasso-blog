@@ -293,12 +293,6 @@ html.resume-light-mode .pdf-download-button:hover {
   flex-shrink: 0;
 }
 
-.resume-header > div + p {
-  margin-block-start: -1.5em;
-  margin-block-start: -1.5em;
-  padding-inline-end: 10em;
-  padding-inline-end: 10em;
-}
 
 .resume-section + .resume-section.mb-6:last-of-type {
   margin-block-end: 0;
@@ -742,10 +736,6 @@ article.resume-page p {
     padding-block-end: 0;
   }
 
-  :root .resume-header > div + p {
-    margin-block-start: 1rem;
-    padding-inline-end: 0;
-  }
 
   .resume-controls {
     @apply w-full max-w-full;
@@ -768,7 +758,7 @@ article.resume-page p {
     order: 2;
   }
 
-  /* Adjust header layout - stack name and contact */
+  /* Adjust header layout - stack title/summary and contact */
   .resume-header > div.flex {
     flex-direction: column;
     gap: 1rem;
@@ -776,6 +766,7 @@ article.resume-page p {
 
   .resume-header .contact-info {
     align-items: flex-start;
+    width: 100%;
   }
 
   /* Smaller title on mobile */

@@ -379,6 +379,7 @@ img.border-none,
 
 article a.no-arrow[href*='//']::after,
 a.no-arrow.external-link::after,
+a.no-external-icon::after,
 article .resume-main-content a[href*='//']::after,
 article .gist-file a[href*='//']::after,
 article .gist-embed a[href*='//']::after,

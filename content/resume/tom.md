@@ -8,8 +8,7 @@ type = 'resume'
 name = 'Tom Barrasso'
 email = 'tom@barrasso.me'
 phone = '(617) 894-7466'
-location = 'Boston, MA'
-summary = '<b>Technical Program Leader • Cross-Functional Delivery • Metrics-Driven Architect</b><br />10+ years launching zero-to-one products with experience coordinating researchers, engineers, designers, and product teams across privacy compliance, healthcare, and consumer applications.'
+summary = '<b>Build • Align • Deliver</b><br />10+ years launching zero-to-one technical products from strategy to delivery. Experienced in developer tools, mobile apps, privacy compliance, healthcare, and consumer applications.'
 
 # Section Toggles
 showWorkExperience = true
@@ -42,12 +41,10 @@ dates="Sept 2024 - Dec 2025"
 employerUrl="https://www.cloudphone.tech"
 companyIcon="cloudmosa" >}}
 
-- Authored, designed, and developed the [Cloud Phone for Developers]({{< relref "projects/cloud-phone" >}}) website
-- **Published 5 open-source reference applications**, libraries, and accompanying tutorials
-- Drove platform adoption via podcasts, video, guest articles, and developer talks in 4 countries
+- Created [Cloud Phone for Developers]({{< relref "projects/cloud-phone" >}}) site and **published 5 open-source apps** &amp; libraries
 - Captured and analyzed developer signals to define product needs around platform usability
-- Built and grew developer communities across Reddit, Discord, Bluesky, and X
-- Prospected regional brands, resulting in **6 enterprise applications published** to the platform
+- Drove platform adoption and grew developer community via social media management, podcasts, video, guest articles, and global in-person talks
+- Secured partnerships with top South Asian telecom &amp; media firms to **launch 6 enterprise apps**
 
 {{< /job >}}
 
@@ -61,7 +58,7 @@ employerUrl="https://meta.com"
 companyIcon="meta" >}}
 
 - Executed **company-wide data governance programs** ensuring compliance with international privacy regulations including GDPR, DMA, DSA, CCPA, and ePD
-- Architected a scalable metrics framework with Privacy Data Science, **quantifying developer productivity and onboarding cost** using time-to-proficiency and time-in-motion analysis
+- Architected a scalable **developer experience metrics framework**, quantifying productivity and onboarding friction using time-to-proficiency and time-in-motion analysis
 - Led execution to integrate and scale [Privacy Aware Infrastructure]({{< relref "projects/policy-zones" >}}) (PAI) across 150+ use cases in under 1 year, **mitigating €14B+ in regulatory risk**
 - Automated annual compliance audits, reducing operational costs by 75% {{< abbr title="Year-on-Year" >}}YoY{{< /abbr >}}
 
@@ -77,7 +74,7 @@ employerUrl="https://amazon.com"
 companyIcon="amazon" >}}
 
 - Unblocked [Amazon Pharmacy]({{< relref "projects/amazon-pharmacy" >}}) launch by **orchestrating security certification** across 54 services, 25 teams, and 1 external vendor in a single quarter
-- Reduced user-facing SEV1 volume by 60% leading critical data replication system improvements
+- Reduced user-facing SEV1 load by 60% leading critical **distributed data replication** improvements
 - Drove development of [Supply Chain Standards](https://sustainability.aboutamazon.com/amazon-supply-chain-standards-english.pdf) auditing tool for global compliance initiatives
 
 {{< /job >}}
@@ -169,29 +166,20 @@ employerUrl="https://www.intouchcorp.com/" >}}
 
 {{< /work-experience >}}
 
-{{< education >}}
-
-{{< degree
-  school="University of Massachusetts Amherst"
-  subject="Chemistry, BS"
-  location="Amherst, MA"
-/>}}
-
-{{< /education >}}
-
 {{< resume-projects >}}
 
 <!-- prettier-ignore -->
 {{< resume-project
 title="Founder, PodLP"
-dates="2020 - Present" >}}
+url="https://podlp.com"
+dates="March 2020 - Present" >}}
 Built and monetized [PodLP]({{< relref "projects/podlp" >}}), a podcast app for flip phones surpassing **10M+ installs** across **175+ countries** generating **$100K+ lifetime revenue**
 {{< /resume-project >}}
 
 <!-- prettier-ignore -->
 {{< resume-project
 title="Android Developer"
-dates="2010 - 2015" >}}
+dates="Sept 2010 - Oct 2015" >}}
 Developed and published 12+ Android applications including [StatusBar+]({{< relref "projects/statusbarplus" >}}), [ChargeBar]({{< relref "projects/chargebar" >}}), and [Noyze]({{< relref "projects/noyze" >}}), totaling **2M+ installs** resulting in **2 successful acquisitions**
 {{< /resume-project >}}
 
@@ -200,10 +188,11 @@ Developed and published 12+ Android applications including [StatusBar+]({{< relr
 {{< sidebar >}}
 
 {{< sidebar-section title="Skills" style="list" headingSize="lg" >}}
-Cross-Functional Program Management
-Product Strategy & Roadmapping
+Product Strategy
+Roadmap Planning
+Cross-Functional Alignment
+Developer Advocacy
 Technical Documentation
-Developer Relations & Advocacy
 Cloud Architecture
 Security & Privacy Compliance
 Agile Development
@@ -213,28 +202,34 @@ Test-Driven Development
 AI-Assisted Development
 {{< /sidebar-section >}}
 
+{{< sidebar-section title="Education" style="list" >}}
+
+**University of Massachusetts**
+Amherst, MA
+B.S. in Chemistry
+
+{{< /sidebar-section >}}
+
+{{< sidebar-section title="Certifications" style="list" >}}
+AWS Solutions Architect – Associate
+AWS Cloud Practitioner
+{{< /sidebar-section >}}
+
 {{< sidebar-section title="Technologies" style="pills" >}}
 TypeScript
 JavaScript
 Node.js
 Java
-PHP
 Ruby on Rails
 Python
-RSpec
 Svelte
 React
 SQL
-REST
-Vite
 Git
-Playwright
-Babel
-GraphQL
 AWS
+Android
 Cloudflare
 Docker
-CI/CD
 HTML
 CSS
 {{< /sidebar-section >}}

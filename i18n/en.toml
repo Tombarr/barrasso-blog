@@ -24,6 +24,11 @@ technologies = "Technologies"
 links = "Links"
 resume_typeset = "Typeset in HTML + CSS"
 
+# Social links
+github = "GitHub"
+linkedin = "LinkedIn"
+portfolio = "Portfolio"
+
 # Paper size options
 paper_size = "Paper Size"
 letter = "Letter"

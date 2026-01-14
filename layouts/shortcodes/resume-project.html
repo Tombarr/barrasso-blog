@@ -1,10 +1,17 @@
 {{- $title := .Get "title" -}}
 {{- $dates := .Get "dates" -}}
+{{- $url := .Get "url" -}}
 
 
 <div class="project-entry">
   <div class="flex flex-row md:items-start md:justify-between mb-1">
-    <h3 class="text-base font-semibold text-slate-900 flex-1">{{ $title }}</h3>
+    <h3 class="text-base font-semibold text-slate-900 flex-1">
+      {{- if $url -}}
+        <a href="{{ $url }}" target="_blank" rel="noopener">{{ $title }}</a>
+      {{- else -}}
+        {{ $title }}
+      {{- end -}}
+    </h3>
     {{- if $dates }}
       <div class="text-xs text-slate-600 mt-1 md:mt-0 flex items-center gap-1">
         {{- partial "svg.html" "icons/fontawesome/calendar" -}}
