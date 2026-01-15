@@ -7,7 +7,7 @@
   <div class="flex flex-row md:items-start md:justify-between mb-1">
     <h3 class="text-base font-semibold text-slate-900 flex-1">
       {{- if $url -}}
-        <a href="{{ $url }}" target="_blank" rel="noopener">{{ $title }}</a>
+        <a href="{{ $url }}" target="_blank" rel="noopener" class="text-slate-600 hover:text-slate-900 no-underline no-arrow print-no-underline">{{ $title }}</a>
       {{- else -}}
         {{ $title }}
       {{- end -}}

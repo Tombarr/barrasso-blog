@@ -89,7 +89,7 @@
             {{- if .Params.email }}
               <a
                 href="mailto:{{ .Params.email }}"
-                class="inline-flex items-center gap-1 hover:text-slate-900 no-underline">
+                class="inline-flex items-center gap-1 text-slate-600 hover:text-slate-900 no-underline">
                 {{- partial "svg.html" "icons/fontawesome/envelope" -}}
                 {{ .Params.email }}
               </a>
@@ -98,7 +98,7 @@
             {{- if .Params.phone }}
               <a
                 href="tel:{{ .Params.phone }}"
-                class="inline-flex items-center gap-1 hover:text-slate-900 no-underline">
+                class="inline-flex items-center gap-1 text-slate-600 hover:text-slate-900 no-underline">
                 {{- partial "svg.html" "icons/fontawesome/phone" -}}
                 {{ .Params.phone }}
               </a>

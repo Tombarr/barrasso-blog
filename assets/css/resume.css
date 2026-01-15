@@ -343,6 +343,15 @@ html.resume-light-mode .pdf-download-button:hover {
   @apply my-1;
 }
 
+/* Force consistent link colors in resume prose content (override dark mode) */
+.resume-container .prose a {
+  @apply text-slate-600 underline decoration-dotted;
+}
+
+.resume-container .prose a:hover {
+  @apply text-slate-900 underline decoration-dotted;
+}
+
 /* Page spacer - creates vertical space and page break */
 .page-spacer {
   min-height: 1.5rem;
@@ -621,6 +630,10 @@ html.resume-light-mode .pdf-download-button:hover {
     page-break-inside: avoid;
   }
 
+  :root .resume-container .prose a {
+    text-decoration: none !important;
+  }
+
   /* Basic Reset */
   *,
   *:before,
@@ -665,6 +678,10 @@ html.resume-light-mode .pdf-download-button:hover {
   .sidebar-footer {
     position: fixed;
     bottom: 0;
+  }
+
+  :root .print-no-underline {
+    text-decoration: none !important;
   }
 }
 
