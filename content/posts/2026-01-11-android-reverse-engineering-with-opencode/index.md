@@ -6,7 +6,7 @@ categories = ['OpenCode', 'Android', 'PodLP']
 tags = ['Claude', 'Gemini', 'Android', 'Reverse Engineering', 'PodLP']
 summary = 'Quickly disassemble and reconstruct proprietary Android APIs using APKTool, Gemini, and OpenCode'
 banner = 'kyocera-podlp.jpeg'
-bannerCaption = 'Early beta of PodLP on the Kyocera DuraXV Extreme using system soft keys via hidden APIs'
+bannerCaption = 'Early beta of PodLP on the Kyocera DuraXV Extreme and Sonim XP3+ using system soft keys via hidden APIs'
 showBanner = true
 +++
 
@@ -672,7 +672,7 @@ After a bit more searching, I was able to reconsruct the entire API including th
 
 ## Part 2. Sonim and Beyond
 
-{{< responsive-image src="kyocera-and-sonim-podlp.jpeg" alt="PodLP on Android Flip Phones" caption="PodLP on the Sonim XP3+ and Kyocera DuraXV" class="w-full no-border contain" >}}
+{{< responsive-image src="kyocera-and-sonim-podlp.jpeg" alt="PodLP on Android Flip Phones" caption="PodLP on the Sonim XP3+ (left) and Kyocera DuraXV (right)" class="w-full no-border contain" >}}
 
 Thanks to the folks on the [JTech Forum](https://forums.jtechforums.org/) and for several newly-acquired devices on eBay, I've been able to investigate the firmware on more models. For instance, on the [Sonim XP3+ XP3900](https://amzn.to/3ZmSW4u) soft keys are handled in a completely different way.
 
