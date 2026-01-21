@@ -670,6 +670,33 @@ It turns out this API was already documented on [r/flipphones](https://www.reddi
 
 After a bit more searching, I was able to reconsruct the entire API including the `setSoftkeyEventListener` method and corresponding listener. Before integrating these APIs into PodLP, clicking the physical volume keys would trigger the soft key bar to show and not hide with the system dialog. After integration, the app feels more native and no longer has the previous quirks.
 
+## Part 2. Sonim and Beyond
+
+{{< responsive-image src="kyocera-and-sonim-podlp.jpeg" alt="PodLP on Android Flip Phones" caption="PodLP on the Sonim XP3+ and Kyocera DuraXV" class="w-full no-border contain" >}}
+
+Thanks to the folks on the [JTech Forum](https://forums.jtechforums.org/) and for several newly-acquired devices on eBay, I've been able to investigate the firmware on more models. For instance, on the [Sonim XP3+ XP3900](https://amzn.to/3ZmSW4u) soft keys are handled in a completely different way.
+
+Unlike Kyocera, there are three soft keys (left, middle, and right). Soft middle is a separate key from `Enter` or `DPAD_CENTER`. The soft key UI cannot be hidden, and menu items can only be `Strings` (no `Drawables`). Setting soft keys is easy:
+
+```kotlin
+val softBarIntent = Intent("android.intent.action.CHANGE_NAV_BAR").apply {
+    putExtra("left", "Menu")
+    putExtra("center", "Select")
+    putExtra("right", "Back")
+    putExtra("from_package", context.packageName)
+}
+
+context.sendBroadcast(softBarIntent)
+```
+
+Unfortunately, it's not possible to detect this `Intent`'s receiver with `packageManager.queryBroadcastReceivers` because it's registered dynamically inside SystemUI using the centralized `BroadcastDispatcher`. There is no way to know whether the `Intent` was received and the UI updated.
+
+```text
+01-21 17:29:32.806  7704  7713 W dex2oat32: Accessing hidden method Landroid/content/Context;->isUiContext()Z (blacklist, linking, denied)
+```
+
+I've also been experimenting with other hidden APIs. In this instance, access via Android X or some compatability library was blocked from calling `Context.isUiContext`. Because the Sonim XP3+ runs Android 11 (the Kyocera DuraXV runs the much older Android 8), I've had to use [HiddenApiBypass](https://github.com/LSPosed/AndroidHiddenApiBypass) to circumvent the Android 9+ [restrictions on non-SDK interfaces](https://developer.android.com/guide/app-compatibility/restrictions-non-sdk-interfaces). Fortunately, LSPass works well on the Sonim XP3+ so I've been able to continue experimenting.
+
 ## Conclusion
 
 Using Gemini via OpenCode for reverse engineering hidden Android APIs is much more efficient than doing it by hand. As I acquire more phone models, I'll expand this analysis to better integrate into these fragmented feature phones. I'm also exploring other uses of Gemini & OpenCode for Android development including:
