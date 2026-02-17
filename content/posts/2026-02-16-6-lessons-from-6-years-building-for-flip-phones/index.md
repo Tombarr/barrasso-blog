@@ -16,7 +16,7 @@ Like many, the COVID-19 pandemic gave me sudden free time. Curious to try a "dig
 
 Fast forward to 2026, I've built (and rebuilt) PodLP for three very different platforms: [KaiOS](https://www.kaiostech.com/), [Cloud Phone](https://developer.cloudfone.com/), and [Android](https://developer.android.com/). It's been downloaded over 10 million times across 175+ countries. For many, it was their introduction to podcasts. While its growth has ebbed and flowed, PodLP has proved to be both a successful side hustle and technical playground.
 
-These lessons might apply to starting a one-person billion-dollar company, but they are relevant for bootstrapping an impactful consumer-facing application without quitting your day job.
+These lessons might _not_ apply to starting a one-person billion-dollar company, but they are relevant for bootstrapping an impactful consumer-facing application without quitting your day job.
 
 ## 1. Leave the crowds
 
