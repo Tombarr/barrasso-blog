@@ -51,7 +51,7 @@
 <meta property="og:description" content="{{ $summary }}" />
 
 {{ with .Permalink }}<meta property="og:url" content="{{ . }}" />{{ end }}
-<meta property="og:locale" content="{{ .Site.LanguageCode }}" />
+<meta property="og:locale" content="{{ if ge hugo.Version "0.158.0" }}{{ .Site.Language.Locale }}{{ else }}{{ .Site.LanguageCode }}{{ end }}" />
 <meta
   property="og:type"
   content="{{ if eq .Kind "page" }}

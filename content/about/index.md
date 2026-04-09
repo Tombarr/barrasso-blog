@@ -75,8 +75,9 @@ The blob on the homepage is a [metaball](https://medium.com/@tbarrasso/pretty-sv
 - [Ghostty](https://ghostty.org/) (Terminal)
 - [Waterfox Classic](https://classic.waterfox.net/) (KaiOS)
 - [VSCode](https://code.visualstudio.com/) (IDE)
-- [Claude Code](https://www.claude.com/product/claude-code) & [OpenCode](https://opencode.ai/) (agentic coding)
+- [Claude Code](https://claude.ai/referral/1is-TiX1TQ) & [OpenCode](https://opencode.ai/) (agentic coding)
 - [DevPod](https://devpod.sh/) (DevContainers)
+- [RunPod](https://runpod.io?ref=o0vjyqx6) (GPUs)
 - [Signal](https://signal.org/) (Messaging)
 - [PodLP](https://podlp.com) (Podcasts)
 
@@ -86,10 +87,12 @@ The blob on the homepage is a [metaball](https://medium.com/@tbarrasso/pretty-sv
 
 {{< br >}}
 
+- [Last-Byte.org](https://last-byte.org)
 - [PodLP.com](https://podlp.com)
 - [KaiOS.dev](https://kaios.dev)
 - [KaiOS.app](https://kaios.app)
 - [PodCal.app](https://podcal.app)
+- [GetiClaw.com](https://geticlaw.com)
 - [Yoto.fm](https://yoto.fm)
 
 {{< br >}}
@@ -98,3 +101,8 @@ The blob on the homepage is a [metaball](https://medium.com/@tbarrasso/pretty-sv
 
 {{< br >}}
 Reach out via [email](mailto:blog@barrasso.me) or find me on [GitHub](https://github.barrasso.me). View my [resume]({{< relref "/resume/tom.md" >}}).
+
+{{< br >}}
+{{< small >}}
+**Affiliate Disclosure**: this website contains affiliate links. If you click them and make a purchase, I may receive a small commission at no extra cost to you.
+{{</ small >}}

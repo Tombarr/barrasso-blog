@@ -1,0 +1,57 @@
+{{- $pages := partial "get-posts.html" . -}}
+
+{{- $limit := .Site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 -}}
+    {{- $pages = $pages | first $limit -}}
+{{- end -}}
+
+{{ $pageCount := (len $pages) -}}
+
+{{- $title := partial "get-title-for-site.html" . -}}
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <channel>
+
+        <title>{{ $title }}</title>
+        <link>{{ .Permalink }}</link>
+        <description>Recent content - {{ $title }}</description>
+        {{ if eq hugo.Environment "development" }} <pageCount>{{len $pages}}</pageCount>{{ end }}
+        {{ if ge hugo.Version "0.158.0" }}{{ with .Site.Language.Locale }}<language>{{.}}</language>{{end}}{{ else }}{{ with .Site.LanguageCode }}<language>{{.}}</language>{{end}}{{ end }}
+        {{ with .Site.Params.Author.email }}<managingEditor>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</managingEditor>{{end}}
+        {{ with .Site.Params.Author.email }}<webMaster>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</webMaster>{{end}}
+        {{ with .Site.Copyright }}<copyright>{{.}}</copyright>{{end}}
+        {{/* most recent time the content of channel was modified */}}
+        {{ if not .Date.IsZero }}<lastBuildDate>{{ .Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 GMT" | safeHTML }}</lastBuildDate>{{ end }}
+        {{ if (fileExists (printf "%s/%s" "static" .Site.Params.avatar)) }}
+            <image>
+                <url>{{.Site.BaseURL}}/{{.Site.Params.avatar}}</url>
+                <title>{{ $title }}</title>
+                <link>{{ .Permalink }}</link>
+            </image>
+        {{ else if (fileExists "static/images/favicon.png") }}
+            <image>
+                <url>{{.Site.BaseURL}}/images/favicon.png</url>
+                <title>{{ $title }}</title>
+                <link>{{ .Permalink }}</link>
+            </image>
+        {{ end }}
+
+        {{- with .OutputFormats.Get "RSS" -}}
+        {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+        {{- end -}}
+
+        {{ range $pages }}
+            <item>
+                <title>{{ partial "get-title-for-post.html" . }}</title>
+                <link>{{ .Permalink }}</link>
+                <description>
+                    {{ .Content | html }}
+                </description>
+                {{ with .Site.Params.Author.email }}<author>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</author>{{end}}
+                <guid>{{ .Permalink }}</guid>
+                {{/* original publication date for channel or item */}}
+                <pubDate>{{ .Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 GMT" | safeHTML }}</pubDate>
+            </item>
+        {{ end }}
+    </channel>
+</rss>
