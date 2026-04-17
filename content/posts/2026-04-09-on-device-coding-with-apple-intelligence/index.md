@@ -118,6 +118,12 @@ With 1M tokens you might include an entire file plus its call sites. But with 4K
 
 Prompt engineering can only take you so far. For Junco, to generate somewhat-consistently valid and up-to-date Swift code I needed to train a [custom model adapter](https://developer.apple.com/apple-intelligence/foundation-models-adapter/) using Low-Rank Adaption (LoRA).
 
+> **⚠️ Caution: macOS 26 Apple Intelligence Bug**
+>
+> macOS 26.3.1 (likely earlier versions) has a system service bug in `TGOnDeviceInferenceProviderService`, where an AFM LoRA adapter gets copied into a [System Integrity Protection (SIP)](https://developer.apple.com/documentation/security/disabling-and-enabling-system-integrity-protection)-protected location, `/private/var/db/AppleIntelligencePlatform/AppModelAssets/`, with _every instantiation_.
+>
+> This means every time you load an adapter using `LanguageModelSession(model: customAdapterModel)`, you're copying ~150MB of data that can only be deleted in [Recovery Mode](https://support.apple.com/en-us/102518). Until Apple fixes this bug, **exercise caution when using custom AFM adapters**. See [Apple Forum #823001](https://developer.apple.com/forums/thread/823001) for status and details.
+
 LoRAs are a form of fine tuning where you train a tiny ~60M parameter model. In the case of AFM, you generate a ~160MB `.fmadapter` file (itself a folder with model weights & metadata). I trained several [LoRA iterations for Junco](https://github.com/LastByteLLC/junco/releases/tag/v0.6.0-lora) using permissively-licensed code samples, synthetic code, and API signatures. Although initially challenging, the **LoRA was the most effective AFM enhancement**. It's difficult to quantize because it's inherently stochastic, but before the LoRA I almost never got the AFM to generate valid, modern Swift code.
 
 Keep in mind, Apple says you need, "at least 32GB RAM," to train an adapter. You also need to submit a [request form](https://developer.apple.com/contact/request/foundation-models-framework-adapter-entitlement/) for access, to accept a separate agreement, and to include the [`com.apple.developer.foundation-model-adapter`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.foundation-model-adapter) entitlement in your application. Because this is a `com.apple.*` restricted namespaced entitlement, you'll also need to set up a [Provisioning Profile](https://developer.apple.com/help/account/provisioning-profiles/edit-download-or-delete-profiles/), otherwise users will see, "The application “...” can’t be opened." Apple Mobile File Integrity (AMFI) will log an error like, "Unsatisfied Entitlements: Code has restricted entitlements."
@@ -129,6 +135,8 @@ I managed to train my first adapter on a MacBook Air with 24GB RAM. However, it 
 Apple wants you to talk nicely to its AI. Don't swear or get political, otherwise you'll trigger a [guardrail violation](https://developer.apple.com/documentation/FoundationModels/improving-the-safety-of-generative-model-output)! Apple says, "Guardrails aim to block harmful or sensitive content, such as self-harm, violence, and adult materials, from both model input and output."
 
 In practice, Apple's guardrails feel _too safe_. Violations get triggered by aggressive prompts, but also by code, and sometimes mixed-language input. Fortunately, you can turn these guardrails off with [`SystemLanguageModel(guardrails: .permissiveContentTransformations)`](https://developer.apple.com/documentation/foundationmodels/systemlanguagemodel/guardrails/permissivecontenttransformations).
+
+Behind the scenes, Apple uses the `MobileAsset` framework to load a model with the identifier `com.apple.fm.language.instruct_300m.safety`. Guardrails uses a [300M-parameter model](https://arxiv.org/pdf/2507.08284) trained using RL-guidance and human seed data with synthetic expansion to classify intent. `permissiveContentTransformations` appears to disable these calls and the upstream `GenerationError.guardrailViolation` error.
 
 Fun fact: Apple's original codename for the AFM was ["Project Greymatter"](https://www.linkedin.com/pulse/what-apples-project-graymatter-taught-me-management-bhatnagar-pmp--x67sc/), which you'll see signs of in macOS app logs like `AFIsDeviceGreymatterEligible`.
 
@@ -148,6 +156,7 @@ Another weakness of the AFM is [stochastic parroting](https://arxiv.org/html/250
 
 The past few weeks saw unbelievable development in local models.
 
+- Qwen [3.6-35B-A3B](https://huggingface.co/Qwen/Qwen3.6-35B-A3B)
 - Google's [Gemma 4](https://deepmind.google/models/gemma/gemma-4/)
 - PrismML's [1-Bit Bonsai](https://prismml.com/news/bonsai-8b)
 - Liquid AI's [LFM2.5-350M](https://www.liquid.ai/blog/lfm2-5-350m-no-size-left-behind)
