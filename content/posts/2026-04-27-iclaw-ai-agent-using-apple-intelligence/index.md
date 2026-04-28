@@ -26,7 +26,13 @@ iClaw is fundamentally different. It's designed to use the AI you already have (
 
 At present, **iClaw is basically a bad Siri**. Ask it for the weather, a stock quote, a Wikipedia summary, or some basic math. It uses Apple's tools to read calendar events, search through email, transcribe a podcast, or translate a document. But iClaw (and general-purpose on-device AI) has some major limits today. Small models excel at executing a single, narrowly defined task, but they fail at task decomposition and "reading between the lines." If you don't spell out exactly what you want, on-device AI models are much more likely to make mistakes.
 
-What's more exciting is what iClaw _could_ do with an updated model and an improved harness.
+Some of iClaw's key features include:
+
+- **Just-in-time Permissions**. iClaw doesn't use blanket permissions or policies. It lives in the App Sandbox and asks permission whenever it wants to read your Calendar or send an iMessage.
+- **Browser Bridge**. iClaw can read and interact with Safari, Chrome, or Firefox through a Web Extension.
+- **Dynamic Widgets**. iClaw creates on-the-fly widgets using it's own DSL, so you don't have to read a wall of text.
+
+What's exciting is what iClaw _could_ do with an updated model and an improved harness.
 
 ### What _could_ iClaw do?
 
@@ -38,6 +44,7 @@ In building iClaw, I've explored lots of applications and integration surfaces. 
 - **Mac-iPhone Continuity**: use Apple Intelligence and iCloud Sync to search your MacBook's files via [Spotlight](https://developer.apple.com/documentation/foundation/spotlight) on the go from your iPhone
 - **Automate Everything**: use Apple Intelligence to author custom [AppleScript automation](https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html) for transcription, conversion, batch image editing, and more
 - **Background Browsing**: natively bridge a [Safari Extension](https://developer.apple.com/safari/extensions/) to Apple Intelligence so AI can browse real estate listings, classifieds, and social media on your behalf
+- **Learned Skills**: Skills written in Markdown are simple, but not intuitive for the average user. A better approach would be to "learn" common tasks and codify them into Skills
 
 Apple itself may be exploring similar applications, with rumors of ["Campos"](https://www.powerpage.org/rumor-apple-developing-ai-based-siri-chatbot-for-ios-27-ipados-27-and-macos-27/), an AI-powered Siri chatbot with access to Photos, Mail, Messages, and more.
 
@@ -47,7 +54,7 @@ Local models aren't just about privacy — they're about [business strategy](htt
 
 #### Local Tradeoffs
 
-There's no such thing as a [free lunch](https://en.wikipedia.org/wiki/No_free_lunch_theorem). Apple's [3B Foundation Model](https://machinelearning.apple.com/research/apple-foundation-models-2025-updates) is arguably one of the _worst_ contenders for an on-device agent. It's terrible at following instructions, has a miniscule 4,096 context window, doesn't offer a [native thinking mode](https://rockyshikoku.medium.com/building-a-thinking-mode-with-apples-foundation-models-5601ff5bd430), has aggressive [safety guardrails](https://developer.apple.com/documentation/FoundationModels/improving-the-safety-of-generative-model-output), and can be [extremely flakey](https://www.reddit.com/r/swift/comments/1nrv3lo/swiftfoundation_models_framework_missing_single_a/). Then there are concerns related to how AI affects battery life, uses tons of memory, and serves inference sequentially (so your app might have to wait its turn). Despite these shortcomings, Apple Intelligence can still be quite useful for tasks like summarization, redaction, pattern matching, and search augmentation.
+There's no such thing as a [free lunch](https://en.wikipedia.org/wiki/No_free_lunch_theorem). Apple's [3B Foundation Model](https://machinelearning.apple.com/research/apple-foundation-models-2025-updates) is arguably one of the _worst_ contenders for an on-device agent. It's terrible at following instructions, has a minuscule 4,096-token context window, doesn't offer a [native thinking mode](https://rockyshikoku.medium.com/building-a-thinking-mode-with-apples-foundation-models-5601ff5bd430), has aggressive [safety guardrails](https://developer.apple.com/documentation/FoundationModels/improving-the-safety-of-generative-model-output), and can be [extremely flakey](https://www.reddit.com/r/swift/comments/1nrv3lo/swiftfoundation_models_framework_missing_single_a/). Then there are concerns related to how AI affects battery life, uses tons of memory, and serves inference sequentially (so your app might have to wait its turn). Despite these shortcomings, Apple Intelligence can still be quite useful for tasks like summarization, redaction, pattern matching, and search augmentation.
 
 #### What about other models?
 
@@ -82,6 +89,24 @@ I had dozens of ideas for iClaw. One notable idea took inspiration from [Agent-t
 My second approach involved [training a custom adapter](https://developer.apple.com/documentation/foundationmodels/loading-and-using-a-custom-adapter-with-foundation-models) and pre-generating templates for a slot-fill strategy. This worked _better_ in that it prevented the most egregious failure modes, but it was still far from consistent.
 
 My advice: lower your expectations. On-device AI _will_ make more mistakes, so give it fewer tasks to mess up. For now, this is the price you pay when your cost per million tokens is $0.
+
+### 4. Other lessons
+
+#### Nested choices
+
+Replace flat lists–`weather`, `calendar`, `messages`, `news`–with clustered domains–`media` and `communication`. Nested and hierarchical choice enhances user experience by reducing mental load, and improves model performance by reducing tool selection errors. Local models have the benefit of zero network latency, so they are better suited at sequential tasks. Again, these models are hopeless if you give them 40 tools, but use a classifier to pick 1 of 8 domains, then ask the model to select when of the 3 tools in that domain to use.
+
+#### Arithmetic and hallucinations
+
+AI models are _still_ [bad at math](https://primo.mobi/en/blogs/primo-blog/why-ai-fails-math-en). Don't ask the AFM to do arithmetic, format dates, or convert units — it will confidently get them _really_ wrong. Instead, have tools return facts and let the LLM rephrase these into natural language. Emit LaTeX, timezone identifiers, and precisely-formatted numbers then verify the model's output against the formatted inputs.
+
+#### Don't pollute the context
+
+One unhandled exception can pollute an entire context chain. If a tool returns an error, and that error gets passed as context into the next turn with the model, prompt outputs can go way off track. Catch errors, and either retry deterministically or ask the LLM to heal certain classes of errors. When it's not possible, ask the LLM to phrase the error in a human-readable way. Error handling is definitely [not a solved problem](https://utcc.utoronto.ca/~cks/space/blog/programming/ErrorHandlingNotSolvedProblem) and LLMs offer an entirely new class of vulnerabilities and errors to deal with.
+
+#### Rewind the tapes
+
+Ruby's [VCR](https://github.com/vcr/vcr) library is still one of my favorites. Unit tests need to be reliable, repeatable, fast, and thorough in order to be informative. Like HTTP requests, LLM responses are non-deterministic. Consider running, storing, and replaying past responses so your unit tests are consistent.
 
 ### Tactical advice
 
