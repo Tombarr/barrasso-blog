@@ -391,6 +391,13 @@ article a[role='button'][href*='//']::after,
   height: 0;
 }
 
+/* shrink external-link arrow inside image captions */
+figcaption a[href*='//']::after,
+figcaption a.external-link::after {
+  width: 0.6rem;
+  height: 0.6rem;
+}
+
 :root .hero.post-content > :not(figure.full-bleed) {
   margin: 0;
   width: 100%;

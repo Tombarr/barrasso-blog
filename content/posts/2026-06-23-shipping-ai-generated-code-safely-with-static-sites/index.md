@@ -25,17 +25,25 @@ The Bay State has had an outsized impact on housing and architecture, where many
 
 #### The Cape Cod
 
+{{< responsive-image src="Oldest_House_in_Brockton_Heights,_MA.jpg" alt="The oldest house in Brockton Heights, a Cape Cod cottage, on a 1910 postcard" caption="The oldest house in Brockton Heights, Brockton, MA, a classic Cape Cod (1910 postcard). [Public domain](https://commons.wikimedia.org/wiki/File:Oldest_House_in_Brockton_Heights,_MA.jpg), via Wikimedia Commons." class="mx-auto" >}}
+
 First built in the late 17th century, the Cape Cod style is attributed to Massachusetts' coastal region. The Cape Cod House is one of the US' most recognizable styles, with its steep roof to shed snow, central chimney, and iconic cedar shingles worn to a gray tone.
 
 #### The Saltbox
 
-Named after wooden boxes used to store salt, the Saltbox is basically an asymmetric Cape.
+{{< responsive-image src="Comfort_Starr_House.jpg" alt="The Comfort Starr House, a colonial saltbox with a long sloping rear roof" caption="The Comfort Starr House in Guilford, CT, a colonial saltbox. Photo from the [Historic American Buildings Survey](https://commons.wikimedia.org/wiki/File:Comfort_Starr_House.jpg) (National Park Service), public domain." class="mx-auto" >}}
+
+Named after wooden boxes used to store salt, the Saltbox is an asymmetric Cape: a steep rear roofline that sweeps down to a single story at the back.
 
 #### New England Triple-Decker
+
+{{< responsive-image src="CambridgeTripleDecker.jpg" alt="A three-story triple-decker house in Cambridge with stacked front porches" caption="A triple-decker in Cambridge, MA, with stacked porches on each floor. Photo by [Bcorr](https://commons.wikimedia.org/wiki/File:CambridgeTripleDecker.jpg), [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)." class="mx-auto" >}}
 
 Built in communities like Worcester, Boston, and Fall River to house immigrant workers, the Triple-Decker with matching front and rear porches is another MA contribution to affordable, dense housing.
 
 #### Walter Gropius & Modernists
+
+{{< responsive-image src="TAC-designed_Five_Field_House.jpg" alt="A low, flat-roofed midcentury modern house designed by The Architects Collaborative" caption="A TAC-designed house (1954) in the Five Fields neighborhood of Lexington, MA. Photo by [Fothergilla](https://commons.wikimedia.org/wiki/File:TAC-designed_Five_Field_House.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)." class="mx-auto" >}}
 
 Walter Gropius, founder of the Bauhaus, brought Modernism to Massachusetts when he joined the Harvard Graduate School of Design in 1937. Along with Carl Koch and fellow members of The Architects Collaborative (TAC), Modernism took shape in Boston suburbs like Lincoln.
 
@@ -53,7 +61,7 @@ Compared to IDX feeds, the RESO Web API has more (often non-public) data fields,
 
 ### Stitching data together
 
-{{< responsive-image src="unique-homes-ma-architecture.png" alt="Data flow diagram showing sources feeding Python pipelines into DuckDB, then Hugo, then Cloudflare Pages" caption="Architecture of UniqueHomesMA.com" class="no-border contain mx-auto" >}}
+{{< responsive-image src="unique-homes-ma-architecture.png" alt="Data flow diagram showing sources feeding Python pipelines into DuckDB, then Hugo, then Cloudflare Pages" caption="Architecture of UniqueHomesMA.com" class="no-border contain w-full" >}}
 
 [Unique Homes MA](https://uniquehomesma.com) pulls parcels, address, deed, location, historical designation, and other data from sources including MLS PIN, Massachusetts Geographic Information Systems (GIS), Massachusetts Cultural Resource Information System (MACRIS), the National Registry of Historic Places (NRHP), and Wikidata. Next, addresses need to be normalized including town suffix (e.g. "Southboro" vs "Southborough"), unit designation, and road abbreviations (e.g. "St" vs "Street").
 
@@ -118,7 +126,7 @@ Although dynamic websites might crash or return an HTTP 500 if there's a bug, **
 
 With PaaS services like Cloudflare Workers, static websites don't have to be 100% static. Workers lets you write small functions for things like handling a contact form or subscribing to an email list. Serverless platforms can then integrate with:
 
-* [Cloudflare Email Service](https://developers.cloudflare.com/email-service/get-started/send-emails/) – requires Workers Paid ($5/m) + $0.35 per 1,000 emails
+* [Cloudflare Email](https://developers.cloudflare.com/email-service/get-started/send-emails/) – Workers Paid ($5/m) + $0.35/1,000 emails
 * AWS Simple Email Service (SES) – $0.10/1000 emails (see [pricing](https://aws.amazon.com/ses/pricing/))
 * Third-party APIs – Resend, SendGrid, etc
 * Webhooks – [Discord](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks), Slack, etc
@@ -130,13 +138,13 @@ While dynamic websites primarily use session cookies to store detailed user info
 
 When visitors to Unique Homes MA click "Request more info" they are taken to a static page that pulls information from `URLSearchParams` about the previous listing. The homepage also displays "Recently viewed" properties stored in `localStorage`, so visitors can quickly find properties they previously considered.
 
-<u>Warning</u>: [do not store sensitive information](https://snyk.io/blog/is-localstorage-safe-to-use/) like identification numbers, passwords, or names in browser storage. It may be vulnerable to cross-site scripting (XSS), is likely stored unencrypted, and can be cleared at any time.
+[Never store sensitive information in browser storage](https://snyk.io/blog/is-localstorage-safe-to-use/), like identification numbers, passwords, or names. It may be vulnerable to cross-site scripting (XSS), is likely stored unencrypted, and can be cleared at any time.
 
 ## Closing thoughts
 
 ### Crawl then walk
 
-Websites need to be crawled by search engines like Google, Yandex, and Bing in order to be discovered. Don't forget to create a `sitemap.xml`, `robots.txt`, [`llms.txt`](https://llmstxt.org/), include [JSON-LD](https://json-ld.org/) tags, and register your website in Google Search Console and Bing Webmaster Tools if you want to be discovered.
+Websites need to be crawled by search engines like Google, Yandex, and Bing in order to be discovered. Don't forget to create a [`sitemap.xml`](https://www.sitemaps.org/protocol.html), [`robots.txt`](https://www.robotstxt.org/robotstxt.html), [`llms.txt`](https://llmstxt.org/), include [JSON-LD](https://json-ld.org/) tags, and register your website in [Google Search Console](https://search.google.com/search-console/about) and [Bing Webmaster Tools](https://www.bing.com/webmasters/) if you want to be discovered.
 
 ### When to NOT go static
 
