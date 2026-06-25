@@ -11,9 +11,9 @@ bannerCaption = 'Frontend: a clean ground fault circuit interrupter (GFCI) outle
 showBanner = true
 +++
 
-For years, I've built websites using [Hugo](https://gohugo.io/). It powers [this blog](https://barrasso.me), [Cloud Phone for Developers]({{< relref "projects/cloud-phone" >}}), and now my personal real estate website, [Unique Homes Massachusetts](https://uniquehomesma.com). Even early versions of the [PodLP](https://podlp.com) Podcast API were architected as static websites, where the podcatcher crawled RSS feeds, and when the feed content changes, pre-computed API payloads as JSON fragments stored in S3 and hosted by Cloudfront.
+For years, I've built websites using [Hugo](https://gohugo.io/). It powers [this blog](https://barrasso.me), [Cloud Phone for Developers]({{< relref "projects/cloud-phone" >}}), and now my personal real estate website, [Unique Homes Massachusetts](https://uniquehomesma.com). Even early versions of the [PodLP](https://podlp.com) Podcast API were architected as static websites, where the podcatcher crawled RSS feeds and, when the feed content changed, pre-computed API payloads as JSON fragments stored in S3 and hosted by CloudFront.
 
-Simply put, **any website that can be statically-generated, should be**. With coding agents like [Claude Code](https://claude.ai/referral/1is-TiX1TQ), and serverless platform-as-a-service (PaaS) hosting services like Cloudflare Workers, it's trivial to build frequently-updated, information-dense, custom-designed, affordable static websites. I'll share more context on Unique Homes MA, its architecture, and how I've validated and amortized the use of AI into reproducible, daily builds on Cloudflare Pages.
+Simply put, **any website that can be statically-generated, should be**. With coding agents like [Claude Code](https://claude.ai/referral/1is-TiX1TQ), and serverless platform-as-a-service (PaaS) hosting services like Cloudflare Workers, it's trivial to build frequently-updated, information-dense, custom-designed, affordable static websites. I'll share more context on Unique Homes MA, its architecture, and how I've validated and shifted AI to build time for reproducible, daily builds on Cloudflare Pages.
 
 ## Carving out a niche in real estate
 
@@ -43,33 +43,50 @@ Walter Gropius, founder of the Bauhaus, brought Modernism to Massachusetts when 
 
 Websites like Zillow and Redfin access property listings through Multiple Listing Services (MLS), which share and vend data to brokerages using the Internet Data Exchange (IDX) format. From a technical perspective, data is typically served in comma-separated value (CSV) format, delimited using the pipe character (`|`), with column names like `LOT_SIZE` in upper-snake case. Booleans are stored as `Yes` and `No`, and IDX consumers need to honor office-level opt out requests or visibility controls like `DisplayOnInternet = No` or `ShowAddress = No`.
 
-Fortunately, these files are manageable in both format and size. The total record for all single-family homes sold in MA in the past year is only ~65MB. The challenge is in reliably stitching together data from a variety of sources accurately and with minimal loss.
+Fortunately, these files are manageable in both format and size. The total records for all single-family homes sold in MA in the past year are only ~65MB. The challenge is in reliably stitching together data from a variety of sources accurately and with minimal loss.
 
 ### Alternative approaches
 
-Other than IDX feeds, the Real Estate Standards Organization (RESO) maintains a standard for the [RESO Web API](https://www.reso.org/reso-web-api/), including [public specifications](https://github.com/RESOStandards/transport/blob/a99fb6ca307208280ac51bca1f573e89cb67b202/proposals/web-api-core.md). The RESO Web is a RESTful API that serves data in real time, supports reads and writes, and uses OAuth 2.0 & OpenID Connect exchanged in JSON format. The RESO Data Dictionary standardizes fields like `BedroomsTotal` to avoid localized MLS variations.
+Other than IDX feeds, the Real Estate Standards Organization (RESO) maintains a standard for the [RESO Web API](https://www.reso.org/reso-web-api/), including [public specifications](https://github.com/RESOStandards/transport/blob/a99fb6ca307208280ac51bca1f573e89cb67b202/proposals/web-api-core.md). The RESO Web API is RESTful, serves data in real time, supports reads and writes, and uses OAuth 2.0 & OpenID Connect exchanged in JSON format. The RESO Data Dictionary standardizes fields like `BedroomsTotal` to avoid localized MLS variations.
 
 Compared to IDX feeds, the RESO Web API has more (often non-public) data fields, but comes at a greater cost and with stricter compliance requirements. For lead generation, public IDX data offers enough information to entice prospective buyers.
 
 ### Stitching data together
 
-{{< responsive-image src="unique-homes-ma-architecture.png" alt="Architecture of statically-generated website UniqueHomesMA.com" caption="Architecture of UniqueHomesMA.com" class="no-border contain mx-auto" >}}
+{{< responsive-image src="unique-homes-ma-architecture.png" alt="Data flow diagram showing sources feeding Python pipelines into DuckDB, then Hugo, then Cloudflare Pages" caption="Architecture of UniqueHomesMA.com" class="no-border contain mx-auto" >}}
 
-[Unique Homes MA](https://uniquehomesma.com) pulls parcels, address, deed, location, historical designation, and other data from sources including MLS PIN, Massachusetts Geographic Information Systems (GIS), Massachusetts Cultural Resource Information System (MACRIS), the National Registry of Historic Places (NRHP), and Wikidata. Next, addresses need to be normalized including town suffix (i.e. "Southboro" vs "Southborough"), unit designation, and road abbreviations (i.e. "St" vs "Street").
+[Unique Homes MA](https://uniquehomesma.com) pulls parcels, address, deed, location, historical designation, and other data from sources including MLS PIN, Massachusetts Geographic Information Systems (GIS), Massachusetts Cultural Resource Information System (MACRIS), the National Registry of Historic Places (NRHP), and Wikidata. Next, addresses need to be normalized including town suffix (e.g. "Southboro" vs "Southborough"), unit designation, and road abbreviations (e.g. "St" vs "Street").
 
 Some sources provide latitude, longitude, and a radius, while others give specific bounding boxes to identify parcel boundaries. The configuration and logic needed to test and stitch all of this together gets very messy, and is certainly the type of job I'll happily offload to a coding assistant.
 
-Most of the Unique Homes MA pipelines are written in Python. Python has an extensive catalog of libraries for handling data manipulation and transformation. DuckDB is used to store and query listings and property data, primarily driven by flexible query patterns. Lastly, as I mentioned at the start, I'm using [Hugo](https://gohugo.io) as the static-site generator because it's familiar, fast, and flexible. End-to-end pipeline takes ~5 minutes, ~30 seconds of which is `hugo --minify` generating 13,000+ pages.
+Most of the Unique Homes MA pipelines are written in Python. Python has an extensive catalog of libraries for handling data manipulation and transformation. DuckDB is used to store and query listings and property data. It's embedded (no server to run, so it's cheap), open-source, and reads CSV, Parquet, and time-series data efficiently. Its columnar engine handles full table scans far better than SQLite, which lets me test different categorizations quickly without reshaping the underlying data. Lastly, as I mentioned at the start, I'm using [Hugo](https://gohugo.io) as the static-site generator because it's familiar, fast, and flexible. End-to-end pipeline takes ~5 minutes, ~30 seconds of which is `hugo --minify` generating 13,000+ pages.
 
 ### Daily updates
 
-Balancing cost and freshness, Unique Homes MA runs a daily cron job using an EventBridge Scheduler that triggers an EC2 instance to run a `systemd` service. When the pipeline and `hugo --minify` build finish (typically in ~5 minutes), the service publishes HTML documents to Cloudflare Pages using `wrangler deploy`, then stops itself. Data is stored on Elastic Block Storage (EBS) to preserve state across execution runs.
+Balancing cost and freshness, Unique Homes MA runs a daily cron job using an EventBridge Scheduler that triggers an EC2 instance to run a `systemd` service. When the pipeline and `hugo --minify` build finish, the service publishes HTML documents to Cloudflare Pages using `wrangler deploy`, then stops itself. Data is stored on Elastic Block Storage (EBS) to preserve state across execution runs.
+
+At $0.034/hour for a `t4g.medium` EC2 instance, $0.05 per GB-month of EBS, and $0.023 per GB-month on S3 (for backups), the **total cost is ~$2.35 per month**, or about **$39 per year** including .com domain registration fees. That's well below common real estate expenses like annual licensure renewal fees, MLS membership dues, or broker desk fees. Compare that to services like [AgentWebsite](https://www.agentwebsite.net/plans-and-prices) that start at $39 _per month_.
 
 ### Irregular expressions
 
 I've never enjoyed writing regular expressions (regex), but they're a powerful tool for pattern-matching and extracting information from raw text. Unique Homes MA uses regex extensively to match words and phrases in the listing broker remarks. Claude proposes and validates each expression against historical data, identifies outliers, and continuously improves coverage and accuracy. Unlike calls to `claude -p` from the terminal, regular expressions are deterministic, don't require network access, and cost (effectively) nothing to execute. Combined with other pattern-recognition techniques, this allows Unique Homes MA to quickly identify, catalog, and sort over ten thousand homes by style, builder, and feature.
 
-<u>Note:</u> listing broker remarks are notoriously inconsistent. Character count limits encourage agents to use nicknames (i.e. "Nab Lake" vs "Nabnasset Lake") and abbreviations (i.e. "FHA" instead of "forced hot air"). It's not uncommon to see exaggerations (i.e. "lakefront" vs "lake view"), or typos (i.e. "Sears & Robuck"). Agents are the only sensible solution to identify and match these variations across tens of thousands of regularly-updated listings.
+```python
+_ARTS_CRAFTS_STYLE_RE: Final = re.compile(
+    r"\barts\s*(?:&|and)\s*crafts[-\s]+"
+    r"(?:(?!or\b|and\b|for\b|with\b|studio|rooms?|space|area|office|nook|corner|"
+    r"station|closet|loft|den|table)[a-z][\w-]*\s+)?"
+    r"(?:home|house|bungalow|colonial|cottage|residence|cape|victorian|tudor|foursquare|"
+    r"styled?|movement|period|era|design|architectur\w+|aesthetic|character|charm|"
+    r"influenced?|inspired|revival|interior|woodwork|built[\s-]?ins?|detail\w*|trim|"
+    r"millwork|gem|beaut\w+|masterpiece|pedigree|flair|grandeur|elements?)\b",
+    re.IGNORECASE,
+)
+```
+
+For example, this gnarly regular expression is used as a signal to classify a property as [Arts and Crafts style](https://en.wikipedia.org/wiki/Arts_and_Crafts_movement). Combined with other signals like build year and MLS style codes, this categorizes properties described as "historic Arts & Crafts Colonial built by F.A. Day," while ignoring descriptions like "extra space for arts & crafts or office."
+
+<u>Note:</u> listing broker remarks are notoriously inconsistent. Character count limits encourage agents to use nicknames (e.g. "Nab Lake" vs "Nabnasset Lake") and abbreviations (e.g. "FHA" instead of "forced hot air"). It's not uncommon to see exaggerations (e.g. "lakefront" vs "lake view"), or typos (e.g. "Sears & Robuck"). No regular expression or deterministic solution will work perfectly across tens of thousands of listings. Rules must be validated against live listings regularly for accuracy and precision.
 
 ## Why go static?
 
@@ -85,6 +102,8 @@ I chose Hugo because I'm familiar with it and it's portable, mature, lightweight
 
 ### Testing and validation
 
+AI-generated code for a static site isn't inherently safer. "Safe to ship" in a static context still requires you to tell the agent what "good" looks like, write tests against that outcome, iterate, build, and ship. To keep token cost low and builds deterministic, an LLM doesn't evaluate and classify listings at build time. Instead, it authors rules inside of a pipeline, gated by tests, that ultimately produce a set of artifacts (namely, Markdown and HTML).
+
 Every change to Unique Homes MA runs a number of checks including:
 
 * `pytest` unit tests, including [VCR-like](https://anaynayak.medium.com/eliminating-flaky-tests-using-vcr-tests-for-llms-a3feabf90bc5) network replay tests
@@ -93,7 +112,7 @@ Every change to Unique Homes MA runs a number of checks including:
 * HTML validation
 * Drop [orphaned links](https://burgeonlab.com/blog/find-orphan-pages-using-python/)
 
-Although dynamic websites might crash or return an HTTP 500 if there's a bug, static sites can silently "fail." Validation checks before and after each site build are important to ensure the website works correctly.
+Although dynamic websites might crash or return an HTTP 500 if there's a bug, **static sites can silently "fail."** A visitor won't hit an error page and complain. Instead, they won't realize a listing is missing or know when a property goes under contract. Users might click a broken link, notice a discrepancy against Zillow or Redfin, and ultimately leave. Silent failures aren't a blocker, but they do require a different strategy: **detection and validation at build time, before anything ships**. Each build of Unique Homes MA sends me an email through AWS SES so I can keep an eye on whether builds succeed, fail, or stall, instead of quietly serving broken or stale information.
 
 ### Mostly static
 
@@ -117,14 +136,18 @@ When visitors to Unique Homes MA click "Request more info" they are taken to a s
 
 ### Crawl then walk
 
-Websites need to be crawled by search engines like Google, Yandex, and Bing in order to be discovered. Don't forget to create a `robots.txt` and register your website in Google Search Console and Bing Webmaster Tools if you want to be discovered.
+Websites need to be crawled by search engines like Google, Yandex, and Bing in order to be discovered. Don't forget to create a `sitemap.xml`, `robots.txt`, [`llms.txt`](https://llmstxt.org/), include [JSON-LD](https://json-ld.org/) tags, and register your website in Google Search Console and Bing Webmaster Tools if you want to be discovered.
 
 ### When to NOT go static
 
 Static websites are great! But they are _not_ the right solution whenever you regularly store sensitive information or require real-time content updates. If you primarily host user-generated content (UGC), need to control content access, or publish minute-by-minute updates, a dynamic website is almost certainly required.
 
+### What I'd do differently
+
+Static websites aren't totally pain free. For me the hardest part was getting started. It would have been far easier to create a website with an embedded `<iframe>` that links to an existing IDX service provider. Regex still misses some listings and misclassifies others. Image classification would almost certainly do better at determining architectural style. Testing Terraform was a huge pain, and right-sizing the EC2 instance was tricky because the workload is spiky (idle stretches waiting on network downloads followed by heavy CPU usage computing nearest-neighbor membership). That said, most of these frustrations and costs are paid one-time for the benefit of low ongoing expenses and creative control.
+
 ### Takeaway
 
-This pattern works well: it's cheap, fast, secure, and easy to maintain. Coding agents handle the messy work of stitching data, matching addresses, writing regular expressions, and gluing pipelines together, while static generation keeps the result lean and safe to host just about anywhere. Real estate is only one domain where this pattern proves valuable. Using AI at build time would be more flexible, but substantially increase cost and result in non-deterministic builds.
+This pattern works well: it's cheap, fast, secure, and easy to maintain. Coding agents handle the messy work of stitching data, matching addresses, writing regular expressions, and gluing pipelines together, while static generation keeps the result lean and safe to host just about anywhere. Real estate is only one domain where this pattern proves valuable. Running an LLM at build time would be more flexible, but substantially increase cost and result in non-deterministic builds.
 
 My takeaway is this: start static, then add dynamic APIs only when necessary because any website that can be statically-generated, should be.
