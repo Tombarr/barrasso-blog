@@ -1,11 +1,21 @@
+{{- /* Logos that should link out. Key = SVG filename without extension. */ -}}
+{{- $links := dict "nestora" "https://www.nestora.ai" "vipaso" "https://vipaso.io/" "kaios" "https://kaiostech.com/" "jio" "https://www.jio.com/" "mongodb" "https://www.mongodb.com/" -}}
 <div class="logo-scroll-container">
   <div class="logo-scroll-track">
     <!-- First set of logos -->
     <div class="logo-scroll-set">
       {{ range (readDir "assets/images/logos") }}
         {{ if strings.HasSuffix .Name ".svg" }}
+          {{ $name := strings.TrimSuffix ".svg" .Name }}
+          {{ $href := index $links $name }}
           <div class="logo-item">
-            {{ partial "svg.html" (print "logos/" (strings.TrimSuffix ".svg" .Name)) }}
+            {{ if $href }}
+              <a href="{{ $href }}" target="_blank" rel="noopener noreferrer" class="no-arrow" aria-label="{{ $name }}">
+                {{ partial "svg.html" (print "logos/" $name) }}
+              </a>
+            {{ else }}
+              {{ partial "svg.html" (print "logos/" $name) }}
+            {{ end }}
           </div>
         {{ end }}
       {{ end }}
@@ -14,8 +24,16 @@
     <div class="logo-scroll-set">
       {{ range (readDir "assets/images/logos") }}
         {{ if strings.HasSuffix .Name ".svg" }}
+          {{ $name := strings.TrimSuffix ".svg" .Name }}
+          {{ $href := index $links $name }}
           <div class="logo-item">
-            {{ partial "svg.html" (print "logos/" (strings.TrimSuffix ".svg" .Name)) }}
+            {{ if $href }}
+              <a href="{{ $href }}" target="_blank" rel="noopener noreferrer" class="no-arrow" aria-label="{{ $name }}">
+                {{ partial "svg.html" (print "logos/" $name) }}
+              </a>
+            {{ else }}
+              {{ partial "svg.html" (print "logos/" $name) }}
+            {{ end }}
           </div>
         {{ end }}
       {{ end }}

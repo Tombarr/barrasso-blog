@@ -1,6 +1,6 @@
 +++
 title = 'Tom Barrasso'
-date = 2025-11-05
+date = 2026-09-17
 draft = false
 type = 'resume'
 
@@ -8,7 +8,7 @@ type = 'resume'
 name = 'Tom Barrasso'
 email = 'tom@barrasso.me'
 phone = '(617) 894-7466'
-summary = '<b>Build • Align • Deliver</b><br />10+ years launching zero-to-one technical products from strategy to delivery. Experienced in developer tools, mobile apps, privacy compliance, healthcare, and consumer applications.'
+summary = '<b>TPM Lead • Platform Strategy • Distributed Systems</b><br />10+ years driving ambiguous technical programs, from billion-user infrastructure to flip-phone apps and on-device AI. Owning perpetual platform programs with rolling multi-year roadmaps; securing buy-in across engineering and business leadership through automation-first execution.'
 
 # Section Toggles
 showWorkExperience = true
@@ -34,6 +34,19 @@ resumeGitLink = 'resume.barrasso.me'
 
 <!-- prettier-ignore -->
 {{< job
+title="Staff Technical Program Manager"
+company="MongoDB"
+location="Boston, MA"
+dates="Aug 2026 - Present"
+employerUrl="https://www.mongodb.com"
+companyIcon="mongodb" >}}
+
+- Own a portfolio of **competitive infrastructure programs** spanning architectural improvements to the **query engine**, **queryable encryption**, and query **parallelization**
+
+{{< /job >}}
+
+<!-- prettier-ignore -->
+{{< job
 title="Head of Developer Relations"
 company="CloudMosa"
 location="Remote"
@@ -42,7 +55,6 @@ employerUrl="https://www.cloudphone.tech"
 companyIcon="cloudmosa" >}}
 
 - Created [Cloud Phone for Developers]({{< relref "projects/cloud-phone" >}}) site and **published 5 open-source apps** &amp; libraries
-- Captured and analyzed developer signals to define product needs around platform usability
 - Drove platform adoption and grew developer community via social media management, podcasts, video, guest articles, and global in-person talks
 - Secured partnerships with top South Asian telecom &amp; media firms to **launch 6 enterprise apps**
 
@@ -55,12 +67,13 @@ company="Meta"
 location="Bellevue, WA"
 dates="Feb 2022 - Sept 2024"
 employerUrl="https://meta.com"
-companyIcon="meta" >}}
+companyIcon="meta"
+promotion="Promo: Senior → Staff, June 2023" >}}
 
-- Executed **company-wide data governance programs** ensuring compliance with international privacy regulations including GDPR, DMA, DSA, CCPA, and ePD
-- Architected a scalable **developer experience metrics framework**, quantifying productivity and onboarding friction using time-to-proficiency and time-in-motion analysis
-- Led execution to integrate and scale [Privacy Aware Infrastructure]({{< relref "projects/policy-zones" >}}) (PAI) across 150+ use cases in under 1 year, **mitigating €14B+ in regulatory risk**
-- Automated annual compliance audits, reducing operational costs by 75% {{< abbr title="Year-on-Year" >}}YoY{{< /abbr >}}
+- Scaled [Privacy Aware Infrastructure]({{< relref "projects/policy-zones" >}}) (PAI), a multi-year platform program, across **150+ search, ranking, recommendation, and ML** use cases in <1 year, defining evaluation criteria, rollout gates, and reproducibility standards across federated orgs; influenced senior ICs/VPs to **mitigate €14B+ in regulatory risk**
+- Partnered with Data Science & Engineering to architect a scalable **metrics & evaluation framework**, instrumenting time-in-motion analysis to quantify program health, establish predictable delivery, and drive data-driven prioritization across 30+ federated engineering orgs
+- Drove **company-wide data governance strategy** spanning AI training data and inference, ensuring compliance with international privacy regulations including GDPR, DMA, DSA, CCPA, and ePD
+- Automated annual compliance audits via static-analysis tooling, reducing operational costs 75% {{< abbr title="Year-on-Year" >}}YoY{{< /abbr >}}
 
   {{< /job >}}
 
@@ -73,9 +86,9 @@ dates="Apr 2020 - Jan 2022"
 employerUrl="https://amazon.com"
 companyIcon="amazon" >}}
 
-- Unblocked [Amazon Pharmacy]({{< relref "projects/amazon-pharmacy" >}}) launch by **orchestrating security certification** across 54 services, 25 teams, and 1 external vendor in a single quarter
-- Reduced user-facing SEV1 load by 60% leading critical **distributed data replication** improvements
-- Drove development of [Supply Chain Standards](https://sustainability.aboutamazon.com/amazon-supply-chain-standards-english.pdf) auditing tool for global compliance initiatives
+- Drove **non-functional programs** — service resilience, quality, observability — reducing user-facing SEV1 by 60%; led **distributed data replication**, multi-region failover, and monitoring/alerting/tracing, establishing repeatable health-evaluation criteria across critical services
+- Unblocked [Amazon Pharmacy]({{< relref "projects/amazon-pharmacy" >}}) launch by **orchestrating security & compliance certification** across 54 services, 25 teams, and 1 vendor in one quarter; built shared audit-evidence pipeline
+- Drove development of [Supply Chain Standards](https://sustainability.aboutamazon.com/amazon-supply-chain-standards-english.pdf) auditing tool for global compliance; designed evaluation rubric and review workflow scaling the program across suppliers
 
 {{< /job >}}
 
@@ -86,10 +99,11 @@ company="PillPack/ Amazon Pharmacy"
 location="Boston, MA"
 dates="Dec 2018 - Apr 2020"
 employerUrl="https://pharmacy.amazon.com"
-companyIcon="amazon" >}}
+companyIcon="amazon"
+promotion="Promo: SDE I → SDE II, March 2019" >}}
 
+- Refactored insurance claim adjudication service for **high availability and fault tolerance** (five nines: 99.999%), establishing proactive system health monitoring and SLO-based evaluation
 - Architected sales tax calculation and reporting engine, processing 10M+ {{< abbr title="Transactions per Month" >}}txn/month{{< /abbr >}}
-- Refactored insurance claim adjudication service for high availability (five nines: 99.999%)
   {{< /job >}}
 
 <!-- prettier-ignore -->
@@ -105,8 +119,6 @@ companyIcon="maark" >}}
 - Developed interactive prototypes and component libraries for Marriott, Manulife, and Merck
 
 {{< /job >}}
-
-{{< section class="new-page print-only" >}} {{< / section >}}
 
 <!-- prettier-ignore -->
 {{< job
@@ -188,17 +200,20 @@ Developed and published 12+ Android applications including [StatusBar+]({{< relr
 {{< sidebar >}}
 
 {{< sidebar-section title="Skills" style="list" headingSize="lg" >}}
+Distributed Systems
+Monitoring & Observability
+AI/ML Quality & Evaluation
+On-Device AI Inference
+AI Program Management
+Evaluation Methodology & A/B Testing
+Operational Excellence & Automation
 Product Strategy
-Roadmap Planning
+Roadmap Planning & OKRs
 Cross-Functional Alignment
-Developer Advocacy
-Technical Documentation
-Cloud Architecture
+Technical Debt & Capacity Planning
 Security & Privacy Compliance
-Agile Development
+R&D Program Execution
 Team Leadership & Mentorship
-Change Management
-Test-Driven Development
 AI-Assisted Development
 {{< /sidebar-section >}}
 
@@ -213,6 +228,8 @@ B.S. in Chemistry
 {{< sidebar-section title="Certifications" style="list" >}}
 AWS Solutions Architect – Associate
 AWS Cloud Practitioner
+MA Real Estate Salesperson
+Yoga Teacher (YTT200)
 {{< /sidebar-section >}}
 
 {{< sidebar-section title="Technologies" style="pills" >}}
@@ -226,6 +243,8 @@ Svelte
 React
 SQL
 Git
+Jira
+Asana
 AWS
 Android
 Cloudflare
@@ -233,8 +252,6 @@ Docker
 HTML
 CSS
 {{< /sidebar-section >}}
-
-{{< section class="new-page print-only" >}} {{< / section >}}
 
 {{< sidebar-section title="Interests" style="list" >}}
 Privacy by design

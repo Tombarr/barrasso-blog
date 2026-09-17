@@ -1,5 +1,7 @@
 {{- $svg := resources.Get (print "images/" . ".svg") -}}
 {{- $title := index (last 1 (strings.Split . "/" )) 0 -}}
-<span class="inline-svg" title="{{ title $title }}"
+{{- /* If the SVG carries its own <title>, let it supply the tooltip (preserves brand casing). */ -}}
+{{- $hasTitle := strings.Contains $svg.Content "<title>" -}}
+<span class="inline-svg"{{ if not $hasTitle }} title="{{ title $title }}"{{ end }}
   >{{ $svg.Content | safeHTML }}</span
 >

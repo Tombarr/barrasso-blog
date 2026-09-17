@@ -11,6 +11,9 @@ noindex: true
 I’ve been building digital experiences for years. I have launched products for some of the biggest and most respected brands, managed and mentored engineers and program managers, and ran cross-functional programs across large-scale organizations.
 
 {{< br >}}
+I joined [MongoDB](https://www.mongodb.com) in August 2026 as a Staff TPM where I lead a portfolio of programs centered around query performance, testing, and encryption.
+
+{{< br >}}
 I code, write, speak, climb, mentor, practice, listen, read, run, encourage, travel, and much more.
 
 {{< br >}}
